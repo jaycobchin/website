@@ -89,54 +89,68 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative z-10">
+      <section className="min-h-screen flex items-center justify-center px-6 pt-32 md:pt-40 relative z-10">
         <div className="max-w-7xl w-full">
-          <div className="space-y-8 animate-fade-in">
-            <div className="space-y-4">
-              <p className="text-blue-400 text-lg md:text-xl tracking-wide">Hello, I am</p>
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight">
-                JAYCOB
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                  CHIN
-                </span>
-              </h1>
-            </div>
-            
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl leading-relaxed">
-              I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients. I share simple tips and show how the skills you&apos;ve learned can become useful &quot;tools&quot; to make optometry more enjoyable (hopefully!).
-            </p>
-
-            <p className="text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed">
-              I also hope to help parents understand more about eye care so they can better support their kids&apos; eye health. These tips can make eye checks and glasses less scary for your children. Sometimes it can be really fun!
-            </p>
-
-            {/* Philosophy Quote */}
-            <div className="pt-6 border-l-4 border-blue-400 pl-6 max-w-2xl">
-              <p className="text-2xl md:text-3xl font-light italic text-gray-200">
-                &quot;The simple act of caring is heroic.&quot;
+          <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in">
+            {/* Left side - Text content */}
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <p className="text-blue-400 text-base md:text-lg tracking-wide">Hello, I am</p>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+                  JAYCOB
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+                    CHIN
+                  </span>
+                </h1>
+              </div>
+              
+              <p className="text-base md:text-lg text-gray-300 leading-relaxed">
+                I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients. I share simple tips and show how the skills you&apos;ve learned can become useful &quot;tools&quot; to make optometry more enjoyable (hopefully!).
               </p>
-              <p className="text-lg text-blue-400 mt-3">— Edward Albert</p>
+
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+                I also hope to help parents understand more about eye care so they can better support their kids&apos; eye health. These tips can make eye checks and glasses less scary for your children. Sometimes it can be really fun!
+              </p>
+
+              {/* Philosophy Quote */}
+              <div className="pt-4 border-l-4 border-blue-400 pl-4">
+                <p className="text-lg md:text-xl font-light italic text-gray-200">
+                  &quot;The simple act of caring is heroic.&quot;
+                </p>
+                <p className="text-sm text-blue-400 mt-2">— Edward Albert</p>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-6">
+                <button className="group px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center gap-2 transition-all text-sm md:text-base">
+                  View My Work
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                </button>
+                <button className="px-6 py-3 border border-white/20 hover:border-white/40 rounded-full transition-all text-sm md:text-base">
+                  Get In Touch
+                </button>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-8">
-              <button className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center gap-2 transition-all">
-                View My Work
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-              </button>
-              <button className="px-8 py-4 border border-white/20 hover:border-white/40 rounded-full transition-all">
-                Get In Touch
-              </button>
+            {/* Right side - Photo */}
+            <div className="flex justify-center md:justify-end">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                {/* Your profile photo */}
+                <img 
+                  src="/jaycob_chin_optometrist_profile_photo.jpg"
+                  alt="Jaycob Chin - Optometrist"
+                  className="w-full h-full object-cover rounded-full"
+                />
+                <div className="absolute inset-0 rounded-full border-4 border-white/10" />
+                
+                {/* Floating decorative elements */}
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-blue-500/20 rounded-full blur-xl" />
+                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-500/20 rounded-full blur-xl" />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full" />
-          </div>
-        </div>
       </section>
 
       {/* About Section */}
