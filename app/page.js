@@ -258,19 +258,19 @@ export default function HomePage() {
             Selected <span className="text-blue-400">Work</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="group relative aspect-video rounded-2xl overflow-hidden cursor-pointer"
+                className="group relative h-40 md:h-56 rounded-2xl overflow-hidden cursor-pointer"
                 onClick={() => project.id === 'myopia-tool' && setSelectedProject(project.id)}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">
-                  <p className="text-sm uppercase tracking-wider mb-2 opacity-80">{project.category}</p>
-                  <h3 className="text-3xl md:text-4xl font-bold">{project.title}</h3>
-                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight size={32} />
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
+                  <p className="text-xs uppercase tracking-wider mb-1 opacity-80">{project.category}</p>
+                  <h3 className="text-lg md:text-xl font-bold">{project.title}</h3>
+                  <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight size={20} />
                   </div>
                 </div>
               </div>
