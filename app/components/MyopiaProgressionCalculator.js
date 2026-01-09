@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import Chart from 'chart.js/auto';
 
 export default function MyopiaProgressionCalculator({ isDark = true, onClose }) {
   const [ethnicity, setEthnicity] = useState('Chinese');
@@ -11,6 +12,9 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
   const [treatment, setTreatment] = useState('Myopia Control Soft Contact Lens');
   const [chartData, setChartData] = useState(null);
   const [tableData, setTableData] = useState(null);
+  const canvasRef = useRef(null);
+  const chartInstanceRef = useRef(null);
+  const [showTable, setShowTable] = useState(false);
 
   const getEthnicityFactor = (ethnicity) => {
     const factors = {
@@ -91,6 +95,69 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
   useEffect(() => {
     handleCalculate();
   }, []);
+
+  useEffect(() => {
+    // create or update chart when chartData changes
+    if (!canvasRef.current) return;
+
+    const ctx = canvasRef.current.getContext('2d');
+
+    if (chartInstanceRef.current) {
+      chartInstanceRef.current.destroy();
+      chartInstanceRef.current = null;
+    }
+
+    if (!chartData) return;
+
+    chartInstanceRef.current = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: chartData.baseline.ages,
+        datasets: [
+          {
+            label: 'Baseline (Single Vision Lens)',
+            data: chartData.baseline.ses,
+            borderColor: '#dc3545',
+            backgroundColor: 'rgba(220,53,69,0.08)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 4
+          },
+          {
+            label: chartData.treatmentName,
+            data: chartData.treated.ses,
+            borderColor: '#28a745',
+            backgroundColor: 'rgba(40,167,69,0.08)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top' }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Age (years)' } },
+          y: {
+            title: { display: true, text: 'Myopia Prescription (D)' },
+            suggestedMin: Math.min(...chartData.baseline.ses, ...chartData.treated.ses) - 0.5,
+            suggestedMax: 0
+          }
+        }
+      }
+    });
+
+    return () => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.destroy();
+        chartInstanceRef.current = null;
+      }
+    };
+  }, [chartData]);
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
@@ -184,8 +251,27 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             </div>
           </div>
 
-          {/* Results Table */}
-          {tableData && (
+          {/* Chart */}
+          <div className="mb-4 bg-white rounded-lg p-4" style={{ height: 320 }}>
+            <canvas ref={canvasRef} />
+          </div>
+
+          {/* Toggle for table (hidden by default) - clickable header */}
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={() => setShowTable(!showTable)}
+              className="text-sm text-gray-600 hover:text-gray-800 flex items-center gap-2"
+              aria-expanded={showTable}
+            >
+              <span>Results (summary shown on chart)</span>
+              <svg className={`w-4 h-4 transform transition-transform ${showTable ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Results Table (collapsible) */}
+          {showTable && tableData && (
             <div className="overflow-x-auto mb-6">
               <table className="w-full border-collapse">
                 <thead>
