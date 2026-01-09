@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
-import MyopiaTool from './components/MyopiaTool';
+import MyopiaTool from './components/MyopiaTool.js';
+import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +59,7 @@ export default function HomePage() {
 
   const projects = [
     { title: 'Risks Factors Analysis in Children', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'myopia-tool' },
-    { title: 'Project Two', category: 'Parent Guides', color: 'from-cyan-500 to-blue-600' },
+    { title: 'Risk Factors Analysis in Children', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
     { title: 'Project Three', category: 'Resources', color: 'from-blue-500 to-indigo-600' },
     { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
   ];
@@ -75,7 +76,7 @@ export default function HomePage() {
   return (
     <div className={`min-h-screen ${bgClass} ${textClass} overflow-x-hidden relative transition-colors duration-500`}>
       {/* Animated gradient background */}
-      <div className={`fixed inset-0 ${isDark ? 'bg-gradient-animated-dark' : 'bg-gradient-animated-light'} ${isDark ? 'opacity-90' : 'opacity-40'} transition-opacity duration-500`} />
+      <div className={`fixed inset-0 ${isDark ? 'bg-gradient-animated-dark' : 'bg-gradient-animated-light'} ${isDark ? 'opacity-90' : 'opacity-100'} transition-opacity duration-500`} />
 
       {/* Mouse-tracking gradient overlay */}
       <div 
@@ -184,7 +185,7 @@ export default function HomePage() {
               <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Your profile photo */}
                 <img 
-                  src="/jaycob_chin_optometrist_profile_photo.jpg.JPG"
+                  src="/jaycob_chin.jpg"
                   alt="Jaycob Chin - Optometrist"
                   className="w-full h-full object-cover rounded-full"
                 />
@@ -200,7 +201,7 @@ export default function HomePage() {
       </section>
 
       {/* Philosophy Section */}
-      <section id="philosophy" className="min-h-screen flex items-center px-6 py-20 relative z-10">
+      <section id="philosophy" className="min-h-screen flex items-center px-6 py-16 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6">
@@ -252,18 +253,18 @@ export default function HomePage() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="min-h-screen flex items-center px-6 py-20 relative z-10">
-        <div className="max-w-7xl mx-auto w-full">
+      <section id="work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+        <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
           <h2 className="text-5xl md:text-6xl font-bold mb-16">
             Selected <span className="text-blue-400">Work</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-2xl w-full">
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="group relative h-40 md:h-56 rounded-2xl overflow-hidden cursor-pointer"
-                onClick={() => project.id === 'myopia-tool' && setSelectedProject(project.id)}
+                className="group relative h-32 md:h-40 rounded-2xl overflow-hidden cursor-pointer"
+                onClick={() => project.id && setSelectedProject(project.id)}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
@@ -283,9 +284,12 @@ export default function HomePage() {
       {selectedProject === 'myopia-tool' && (
         <MyopiaTool isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
+      {selectedProject === 'progression-calculator' && (
+        <MyopiaProgressionCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center px-6 py-20 relative z-10">
+      <section id="contact" className="min-h-screen flex items-center px-6 py-16 relative z-10">
         <div className="max-w-7xl mx-auto w-full text-center">
           <h2 className="text-5xl md:text-7xl font-bold mb-8">
             Let&apos;s Make Eye Care
@@ -376,13 +380,13 @@ export default function HomePage() {
         .bg-gradient-animated-light {
           background: linear-gradient(
             -45deg,
-            #e0f2fe,
-            #dbeafe,
-            #bfdbfe,
-            #dbeafe,
-            #e0f2fe,
-            #ccfbf1,
-            #dbeafe
+            #0099ff,
+            #0066ff,
+            #0088ff,
+            #0055ff,
+            #0066ff,
+            #00aaff,
+            #0077ff
           );
           background-size: 400% 400%;
           animation: gradient-shift 20s ease infinite;
