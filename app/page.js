@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
+import MyopiaTool from './components/MyopiaTool';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,11 +57,13 @@ export default function HomePage() {
   ];
 
   const projects = [
-    { title: 'Project One', category: 'Eye Care Tips', color: 'from-teal-500 to-cyan-600' },
+    { title: 'Risks Factors Analysis in Children', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'myopia-tool' },
     { title: 'Project Two', category: 'Parent Guides', color: 'from-cyan-500 to-blue-600' },
     { title: 'Project Three', category: 'Resources', color: 'from-blue-500 to-indigo-600' },
     { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
   ];
+
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const bgClass = isDark ? 'bg-black' : 'bg-white';
   const textClass = isDark ? 'text-white' : 'text-gray-900';
@@ -181,7 +184,7 @@ export default function HomePage() {
               <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Your profile photo */}
                 <img 
-                  src="/jaycob_chin_optometrist_profile_photo.jpg"
+                  src="/jaycob_chin_optometrist_profile_photo.jpg.JPG"
                   alt="Jaycob Chin - Optometrist"
                   className="w-full h-full object-cover rounded-full"
                 />
@@ -260,6 +263,7 @@ export default function HomePage() {
               <div 
                 key={index}
                 className="group relative aspect-video rounded-2xl overflow-hidden cursor-pointer"
+                onClick={() => project.id === 'myopia-tool' && setSelectedProject(project.id)}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">
@@ -274,6 +278,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Myopia Tool Modal */}
+      {selectedProject === 'myopia-tool' && (
+        <MyopiaTool isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
 
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center px-6 py-20 relative z-10">
