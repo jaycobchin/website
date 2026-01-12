@@ -175,7 +175,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
         </div>
 
         <div className="p-5 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
-          <p className="text-center mb-6 text-gray-600">
+          <p className="text-center mb-6 text-gray-600 text-sm md:text-base whitespace-nowrap">
             Compare expected myopia progression with <strong>no treatment (Single Vision Lens)</strong> vs your <strong>selected treatment</strong> up to age 18.
           </p>
 
