@@ -3,7 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
-import MyopiaTool from './components/MyopiaTool.js';
+import RiskFactorsAnalysis from './components/Risk Factors Analysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 
 export default function HomePage() {
@@ -60,7 +60,7 @@ export default function HomePage() {
 
   const projects = [
     { title: 'Risk Factors Analysis', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'myopia-tool' },
-    { title: 'Risk Factors Analysis in Children', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
+    { title: 'Myopia Progression Calculator', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
     { title: 'Project Three', category: 'Resources', color: 'from-blue-500 to-indigo-600' },
     { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
   ];
@@ -283,7 +283,7 @@ export default function HomePage() {
 
       {/* Myopia Tool Modal */}
       {selectedProject === 'myopia-tool' && (
-        <MyopiaTool isDark={isDark} onClose={() => setSelectedProject(null)} />
+        <RiskFactorsAnalysis isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
       {selectedProject === 'progression-calculator' && (
         <MyopiaProgressionCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
