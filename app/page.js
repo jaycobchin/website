@@ -3,7 +3,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
-import RiskFactorsAnalysis from './components/Risk Factors Analysis.js';
+import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
+import MyopiaTool from './components/MyopiaTool.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 
 export default function HomePage() {
@@ -281,10 +282,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Myopia Tool Modal */}
-      {selectedProject === 'myopia-tool' && (
+      {/* Risk Factors Analysis Modal */}
+      {selectedProject === 'risk-factors-analysis' && (
         <RiskFactorsAnalysis isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
+      {/* Myopia Tool Modal */}
+      {selectedProject === 'myopia-tool' && (
+        <MyopiaTool isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
+      {/* Progression Calculator Modal */}
       {selectedProject === 'progression-calculator' && (
         <MyopiaProgressionCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
