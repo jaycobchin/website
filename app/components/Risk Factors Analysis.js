@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
 
-export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
+export default function MyopiaTool({ isDark = true, onClose }) {
   const [age, setAge] = useState(8);
   const [gender, setGender] = useState(0);
   const [ethnicity, setEthnicity] = useState(3);
