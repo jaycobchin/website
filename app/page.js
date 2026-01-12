@@ -98,7 +98,8 @@ export default function HomePage() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 relative z-10">
             <a href="#philosophy" className="hover:text-blue-400 transition-colors">Philosophy</a>
-            <a href="#work" className="hover:text-blue-400 transition-colors">Work</a>
+            <a href="#past-work" className="hover:text-blue-400 transition-colors">Past Work</a>
+            <a href="#work" className="hover:text-blue-400 transition-colors">Tools</a>
             <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
             
             {/* Theme Toggle Button */}
@@ -125,7 +126,8 @@ export default function HomePage() {
           <div className={`md:hidden ${isDark ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-lg`}>
             <div className="px-6 py-4 flex flex-col gap-4">
               <a href="#philosophy" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
-              <a href="#work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="#past-work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Past Work</a>
+              <a href="#work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
               <a href="#contact" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
               <button
                 onClick={toggleTheme}
@@ -227,27 +229,46 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              {skillsDetail.map((item, index) => (
-                <div 
-                  key={index}
-                  onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-                  className={`${expandedCard === index ? 'col-span-2' : ''} p-6 ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${borderClass} ${hoverBorderClass} transition-all hover:scale-105 cursor-pointer`}
-                >
-                  <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                  <p className={textLightClass}>{item.desc}</p>
-                  
-                  {expandedCard === index && (
-                    <div className={`mt-4 pt-4 border-t ${borderClass} ${textMutedClass} text-sm animate-fade-in`}>
-                      {item.detail}
-                    </div>
-                  )}
-                  
-                  <div className={`mt-3 text-xs text-blue-400 ${expandedCard === index ? '' : 'opacity-70'}`}>
-                    {expandedCard === index ? 'Click to close' : 'Click to read more'}
-                  </div>
+            <div className="w-full">
+              <div className={`${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${borderClass} w-full h-96 flex items-center justify-center`}>
+                <div className="text-center">
+                  <div className={`text-6xl mb-4 ${textMutedClass}`}>🖼️</div>
+                  <p className={textMutedClass}>Image placeholder</p>
+                  <p className="text-sm text-gray-500 mt-2">Your image will go here</p>
                 </div>
-              ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Past Work Section */}
+      <section id="past-work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+        <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-5xl md:text-6xl font-bold mb-16">
+            Past <span className="text-blue-400">Work</span>
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className={`p-8 ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${borderClass}`}>
+              <h3 className="text-2xl font-bold mb-4">Clinical Practice</h3>
+              <p className={textMutedClass}>
+                Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
+              </p>
+            </div>
+
+            <div className={`p-8 ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${borderClass}`}>
+              <h3 className="text-2xl font-bold mb-4">Professional Appointment</h3>
+              <p className={textMutedClass}>
+                Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
+              </p>
+            </div>
+
+            <div className={`p-8 ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${borderClass}`}>
+              <h3 className="text-2xl font-bold mb-4">Community Engagement</h3>
+              <p className={textMutedClass}>
+                Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+              </p>
             </div>
           </div>
         </div>
@@ -257,7 +278,7 @@ export default function HomePage() {
       <section id="work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
           <h2 className="text-5xl md:text-6xl font-bold mb-16">
-            Selected <span className="text-blue-400">Work</span>
+            Useful <span className="text-blue-400">Tools</span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl w-full">
