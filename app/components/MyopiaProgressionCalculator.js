@@ -306,6 +306,62 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
           <p className="text-sm italic text-gray-600 mb-6">
             Disclaimer: This calculator provides estimates based on averaged data from clinical studies and meta-analyses. Individual progression varies significantly due to genetics, environment, and other factors. This is not medical advice. Always consult an eye care professional.
           </p>
+
+          {/* References Section */}
+          <div className="p-5 bg-white rounded-lg border border-gray-200">
+            <h2 className="text-2xl font-bold text-slate-800 mb-3">References</h2>
+            <p className="text-gray-700 mb-4">The estimates in this calculator are derived from the following peer-reviewed studies and meta-analyses. Click the links to view the original sources.</p>
+
+            <div className="space-y-4 text-sm">
+              <div>
+                <h3 className="font-bold text-slate-700 mb-2">General Reviews & Guidelines</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li><a href="https://doi.org/10.1167/iovs.66.12.39" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI—Interventions for controlling myopia onset and progression 2025 (IOVS, 2025)</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-slate-700 mb-2">Myopia Control Spectacle Lenses</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li><a href="https://doi.org/10.1136/bjo-2025-327629" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Efficacy of spectacle lenses for myopia control: A meta-analysis (BJO, 2025)</a></li>
+                  <li><a href="https://doi.org/10.1136/bjophthalmol-2018-313739" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DIMS spectacle lenses slow myopia progression: 2-year RCT (BJO, 2020)</a></li>
+                  <li><a href="https://doi.org/10.1038/s41598-023-32700-7" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Long-term myopia control effect in children wearing DIMS lenses for 6 years (Scientific Reports, 2023)</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-slate-700 mb-2">Myopia Control Soft Contact Lenses</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li><a href="https://doi.org/10.1097/OPX.0000000000001410" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">3-year randomized clinical trial of MiSight lenses for myopia control (OVS, 2019)</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-slate-700 mb-2">Orthokeratology</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li><a href="https://doi.org/10.1186/s12886-023-03175-x" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Orthokeratology in controlling myopia: A meta-analysis of RCTs (BMC Ophthalmology, 2023)</a></li>
+                  <li><a href="https://www.mdpi.com/2227-9067/10/2/402" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Clinical effectiveness of DRL Orthokeratology vs SVS: 2-year study (Children, 2023)</a></li>
+                  <li><a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2023.1323851/full" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Efficacy of DRL orthokeratology lens in French children (Frontiers in Medicine, 2024)</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-slate-700 mb-2">Atropine Treatment</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li><a href="https://doi.org/10.1016/j.ophtha.2018.05.029" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Low-concentration atropine for myopia progression (LAMP) study (Ophthalmology, 2019)</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-slate-700 mb-2">Ethnicity & Epidemiology</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li><a href="https://doi.org/10.1111/opo.13401" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Regional/ethnic differences in myopic and non-myopic children (OPO, 2025)</a></li>
+                  <li><a href="https://pubmed.ncbi.nlm.nih.gov/8266124/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Race, culture and myopia in Singaporean males (SMJ, 1993)</a></li>
+                  <li><a href="https://doi.org/10.1167/iovs.04-0565" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Incidence and progression of myopia in Singaporean school children (IOVS, 2005)</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
