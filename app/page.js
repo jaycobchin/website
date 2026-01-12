@@ -13,6 +13,7 @@ export default function HomePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [expandedCard, setExpandedCard] = useState(null);
   const [isDark, setIsDark] = useState(true); // Dark mode by default
+  const [selectedProfile, setSelectedProfile] = useState('parents');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,11 +61,46 @@ export default function HomePage() {
   ];
 
   const projects = [
-    { title: 'Risk Factors Analysis', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'risk-factors-analysis' },
-    { title: 'Myopia Progression Calculator', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
-    { title: 'Axial Length Estimation', category: 'Tools', color: 'from-blue-500 to-indigo-600', id: 'axial-length-estimation' },
-    { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
+    { 
+      title: 'Risk Factors Analysis', 
+      category: 'Parents', 
+      audience: ['parents'],
+      color: 'from-teal-500 to-cyan-600', 
+      id: 'risk-factors-analysis',
+      description: 'Interactive tool to assess your child\'s myopia risk factors and receive personalized recommendations based on current research and clinical guidelines.'
+    },
+    { 
+      title: 'Myopia Progression Calculator', 
+      category: 'Parents', 
+      audience: ['parents'],
+      color: 'from-cyan-500 to-blue-600', 
+      id: 'progression-calculator',
+      description: 'Calculate and visualize how myopia may progress over time with and without intervention, helping you make informed decisions about treatment options.'
+    },
+    { 
+      title: 'Axial Length Estimation', 
+      category: 'Tools', 
+      audience: ['optometrists'],
+      color: 'from-blue-500 to-indigo-600', 
+      id: 'axial-length-estimation',
+      description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
+    },
+    { 
+      title: 'Project Four', 
+      category: 'Community', 
+      audience: ['parents', 'optometrists'],
+      color: 'from-indigo-500 to-teal-600',
+      description: 'Coming soon - another helpful resource for eye care professionals and parents.'
+    }
   ];
+
+  const filteredProjects = selectedProfile === 'all'
+    ? projects
+    : projects.filter((project) =>
+        selectedProfile === 'parents'
+          ? project.audience.includes('parents')
+          : project.audience.includes('optometrists')
+      );
 
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -246,7 +282,7 @@ export default function HomePage() {
       <section id="past-work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-5xl md:text-6xl font-bold mb-16">
-            Past <span className="text-blue-400">Work</span>
+            Work
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -276,24 +312,70 @@ export default function HomePage() {
 
       {/* Work Section */}
       <section id="work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
-        <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+        <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-5xl md:text-6xl font-bold mb-16">
             Useful <span className="text-blue-400">Tools</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl w-full">
-            {projects.map((project, index) => (
+          <div className={`inline-flex items-center gap-1 mb-10 px-1 py-1 rounded-full backdrop-blur-sm shadow-md shadow-black/10 ${isDark ? 'bg-white/5 border border-white/5' : 'bg-gray-100 border border-gray-200/40'}`}>
+            <button
+              onClick={() => setSelectedProfile('all')}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                selectedProfile === 'all'
+                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/30'
+                  : isDark
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              <span className="h-2 w-2 rounded-full bg-slate-200" />
+              All
+            </button>
+            <button
+              onClick={() => setSelectedProfile('parents')}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                selectedProfile === 'parents'
+                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/30'
+                  : isDark
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              <span className="h-2 w-2 rounded-full bg-blue-300" />
+              Parents
+            </button>
+            <button
+              onClick={() => setSelectedProfile('optometrists')}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                selectedProfile === 'optometrists'
+                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/30'
+                  : isDark
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              <span className="h-2 w-2 rounded-full bg-indigo-300" />
+              Optometrists
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
               <div 
                 key={index}
-                className="group relative h-32 md:h-40 rounded-2xl overflow-hidden cursor-pointer"
+                className={`group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105`}
                 onClick={() => project.id && setSelectedProject(project.id)}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
-                  <p className="text-xs uppercase tracking-wider mb-1 opacity-80">{project.category}</p>
-                  <h3 className="text-lg md:text-xl font-bold">{project.title}</h3>
-                  <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight size={20} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-90 group-hover:opacity-100 transition-opacity`} />
+                <div className="relative z-10 text-white">
+                  <p className="text-xs uppercase tracking-wider mb-2 opacity-90">{project.category}</p>
+                  <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+                  <p className="text-sm opacity-90 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span>Click to open tool</span>
+                    <ArrowRight size={16} />
                   </div>
                 </div>
               </div>
