@@ -59,7 +59,7 @@ export default function HomePage() {
   ];
 
   const projects = [
-    { title: 'Risks Factors Analysis in Children', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'myopia-tool' },
+    { title: 'Risk Factors Analysis', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'myopia-tool' },
     { title: 'Risk Factors Analysis in Children', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
     { title: 'Project Three', category: 'Resources', color: 'from-blue-500 to-indigo-600' },
     { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
