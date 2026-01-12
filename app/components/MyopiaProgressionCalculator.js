@@ -15,6 +15,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
   const canvasRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const [showTable, setShowTable] = useState(false);
+  const [showReferences, setShowReferences] = useState(false);
 
   const getEthnicityFactor = (ethnicity) => {
     const factors = {
@@ -307,7 +308,22 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             Disclaimer: This calculator provides estimates based on averaged data from clinical studies and meta-analyses. Individual progression varies significantly due to genetics, environment, and other factors. This is not medical advice. Always consult an eye care professional.
           </p>
 
-          {/* References Section */}
+          {/* Toggle for references (hidden by default) */}
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={() => setShowReferences(!showReferences)}
+              className="text-sm text-gray-600 hover:text-gray-800 flex items-center gap-2"
+              aria-expanded={showReferences}
+            >
+              <span>References</span>
+              <svg className={`w-4 h-4 transform transition-transform ${showReferences ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
+
+          {/* References Section (collapsible) */}
+          {showReferences && (
           <div className="p-5 bg-white rounded-lg border border-gray-200">
             <h2 className="text-2xl font-bold text-slate-800 mb-3">References</h2>
             <p className="text-gray-700 mb-4">The estimates in this calculator are derived from the following peer-reviewed studies and meta-analyses. Click the links to view the original sources.</p>
@@ -362,6 +378,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
     </div>
