@@ -61,7 +61,7 @@ export default function HomePage() {
   const projects = [
     { title: 'Risk Factors Analysis', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'risk-factors-analysis' },
     { title: 'Myopia Progression Calculator', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
-    { title: 'Project Three', category: 'Resources', color: 'from-blue-500 to-indigo-600' },
+    { title: 'Axial Length Estimation', category: 'Tools', color: 'from-blue-500 to-indigo-600' },
     { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
   ];
 
