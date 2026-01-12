@@ -4,8 +4,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useState, useEffect } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
-import MyopiaTool from './components/MyopiaTool.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
+import AxialLengthEstimation from './components/AxialLengthEstimation.js';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +62,7 @@ export default function HomePage() {
   const projects = [
     { title: 'Risk Factors Analysis', category: 'Parents', color: 'from-teal-500 to-cyan-600', id: 'risk-factors-analysis' },
     { title: 'Myopia Progression Calculator', category: 'Parents', color: 'from-cyan-500 to-blue-600', id: 'progression-calculator' },
-    { title: 'Axial Length Estimation', category: 'Tools', color: 'from-blue-500 to-indigo-600' },
+    { title: 'Axial Length Estimation', category: 'Tools', color: 'from-blue-500 to-indigo-600', id: 'axial-length-estimation' },
     { title: 'Project Four', category: 'Community', color: 'from-indigo-500 to-teal-600' }
   ];
 
@@ -89,7 +89,7 @@ export default function HomePage() {
       />
 
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? `${isDark ? 'bg-black/80' : 'bg-white/80'} backdrop-blur-lg py-4` : 'py-6'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? `${isDark ? 'bg-black/80' : 'bg-white/80'} backdrop-blur-lg py-2` : 'py-3'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="/" className="text-2xl font-bold tracking-tight relative z-10">
             JAYCOB<span className="text-blue-400">.</span>
@@ -139,7 +139,7 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-32 md:pt-40 relative z-10">
+      <section className="min-h-screen flex items-center justify-center px-6 pt-16 md:pt-20 relative z-10">
         <div className="max-w-7xl w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in">
             {/* Left side - Text content */}
@@ -164,11 +164,14 @@ export default function HomePage() {
               </p>
 
               {/* Philosophy Quote */}
-              <div className={`pt-4 border-l-4 border-blue-400 pl-4`}>
-                <p className={`text-lg md:text-xl font-light italic ${textMutedClass}`}>
-                  &quot;The simple act of caring is heroic.&quot;
-                </p>
-                <p className="text-sm text-blue-400 mt-2">— Edward Albert</p>
+              <div className={`flex gap-4 mt-12`}>
+                <div className={`border-l-4 border-blue-400 pt-1`}></div>
+                <div>
+                  <p className={`text-lg md:text-xl font-light italic ${textMutedClass}`}>
+                    &quot;The simple act of caring is heroic.&quot;
+                  </p>
+                  <p className="text-sm text-blue-400 mt-2">— Edward Albert</p>
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-4 pt-6">
@@ -183,7 +186,7 @@ export default function HomePage() {
             </div>
 
             {/* Right side - Photo */}
-            <div className="flex justify-center md:justify-end">
+            <div className="flex justify-center md:justify-center items-start md:items-start -mt-12 md:-mt-16">
               <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Your profile photo */}
                 <img 
@@ -192,10 +195,6 @@ export default function HomePage() {
                   className="w-full h-full object-cover rounded-full"
                 />
                 <div className={`absolute inset-0 rounded-full border-4 ${borderClass}`} />
-                
-                {/* Floating decorative elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-blue-500/20 rounded-full blur-xl" />
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-500/20 rounded-full blur-xl" />
               </div>
             </div>
           </div>
@@ -293,6 +292,10 @@ export default function HomePage() {
       {/* Progression Calculator Modal */}
       {selectedProject === 'progression-calculator' && (
         <MyopiaProgressionCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
+      {/* Axial Length Estimation Modal */}
+      {selectedProject === 'axial-length-estimation' && (
+        <AxialLengthEstimation isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
 
       {/* Contact Section */}
