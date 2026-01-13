@@ -84,9 +84,16 @@ export default function VisionSimulator({ isDark = true, onClose }) {
     return tempCanvas.toDataURL();
   };
 
-  const applyBlur = (ctx, radius) => {
+  const applyBlur = (ctx, canvas, radius) => {
     if (radius > 0) {
       ctx.filter = `blur(${radius}px)`;
+      const temp = document.createElement('canvas');
+      temp.width = canvas.width;
+      temp.height = canvas.height;
+      const tCtx = temp.getContext('2d');
+      tCtx.drawImage(canvas, 0, 0);
+      ctx.drawImage(temp, 0, 0);
+      ctx.filter = 'none';
     }
   };
 
@@ -133,15 +140,30 @@ export default function VisionSimulator({ isDark = true, onClose }) {
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const maxR = Math.max(canvas.width, canvas.height);
-    const visR = maxR * (1 - severity / 150);
+    // Make tunnel vision more aggressive - shrinks faster and becomes darker
+    const visR = maxR * (1 - severity / 100);
     
-    const grad = ctx.createRadialGradient(centerX, centerY, visR, centerX, centerY, maxR);
+    const grad = ctx.createRadialGradient(centerX, centerY, visR * 0.8, centerX, centerY, visR * 1.2);
     grad.addColorStop(0, 'rgba(0,0,0,0)');
-    grad.addColorStop(0.3, 'rgba(0,0,0,0.3)');
-    grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+    grad.addColorStop(0.5, `rgba(0,0,0,${Math.min(0.7, severity / 100)})`);
+    grad.addColorStop(1, 'rgba(0,0,0,1)');
     
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add peripheral blur for more realistic effect
+    if (severity > 30) {
+      ctx.filter = `blur(${severity / 20}px)`;
+      ctx.globalCompositeOperation = 'multiply';
+      const grad2 = ctx.createRadialGradient(centerX, centerY, visR, centerX, centerY, maxR);
+      grad2.addColorStop(0, 'rgba(255,255,255,1)');
+      grad2.addColorStop(0.6, 'rgba(128,128,128,1)');
+      grad2.addColorStop(1, 'rgba(0,0,0,1)');
+      ctx.fillStyle = grad2;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.filter = 'none';
+      ctx.globalCompositeOperation = 'source-over';
+    }
   };
 
   const applyMacular = (ctx, canvas, severity) => {
@@ -171,13 +193,13 @@ export default function VisionSimulator({ isDark = true, onClose }) {
       ctx.drawImage(img, 0, 0, 800, 600);
 
       if (condition === 'myopia') {
-        applyBlur(ctx, severity / 10);
+        applyBlur(ctx, canvas, severity / 10);
       } else if (condition === 'hyperopia') {
-        applyBlur(ctx, severity / 12);
+        applyBlur(ctx, canvas, severity / 12);
       } else if (condition === 'astigmatism') {
         applyAstigmatism(ctx, canvas, severity);
       } else if (condition === 'presbyopia') {
-        applyBlur(ctx, severity / 15);
+        applyBlur(ctx, canvas, severity / 15);
       } else if (condition === 'cataract') {
         applyCataract(ctx, canvas, severity);
       } else if (condition === 'glaucoma') {
