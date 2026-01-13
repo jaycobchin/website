@@ -134,7 +134,7 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
 
   useEffect(() => {
     calculateRisk();
-  }, []);
+  }, [age, gender, ethnicity, family, refraction, outdoor, nearwork]);
 
   const getRiskBadgeClass = (risk) => {
     const styles = {
@@ -265,14 +265,6 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
                 className="w-full"
               />
             </div>
-
-            <button
-              onClick={calculateRisk}
-              className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-md cursor-pointer transition-colors"
-            >
-              Calculate Risk
-            </button>
-          </div>
 
           {/* Results Section */}
           {results && (
