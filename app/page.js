@@ -6,6 +6,7 @@ import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-r
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 import AxialLengthEstimation from './components/AxialLengthEstimation.js';
+import VisionSimulator from './components/VisionSimulator.js';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -86,11 +87,12 @@ export default function HomePage() {
       description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
     },
     { 
-      title: 'Project Four', 
-      category: 'Community', 
-      audience: ['parents', 'optometrists'],
+      title: 'Vision Simulator', 
+      category: 'Parents', 
+      audience: ['parents'],
       color: 'from-indigo-500 to-teal-600',
-      description: 'Coming soon - another helpful resource for eye care professionals and parents.'
+      id: 'vision-simulator',
+      description: 'Experience different refractive errors and eye conditions. See how myopia, hyperopia, astigmatism, and other conditions affect vision in real-time.'
     }
   ];
 
@@ -134,7 +136,7 @@ export default function HomePage() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 relative z-10">
             <a href="#philosophy" className="hover:text-blue-400 transition-colors">Philosophy</a>
-            <a href="#past-work" className="hover:text-blue-400 transition-colors">Past Work</a>
+            <a href="#past-work" className="hover:text-blue-400 transition-colors">Work</a>
             <a href="#work" className="hover:text-blue-400 transition-colors">Tools</a>
             <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
             
@@ -162,7 +164,7 @@ export default function HomePage() {
           <div className={`md:hidden ${isDark ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-lg`}>
             <div className="px-6 py-4 flex flex-col gap-4">
               <a href="#philosophy" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
-              <a href="#past-work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Past Work</a>
+              <a href="#past-work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
               <a href="#work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
               <a href="#contact" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
               <button
@@ -399,6 +401,10 @@ export default function HomePage() {
       {/* Axial Length Estimation Modal */}
       {selectedProject === 'axial-length-estimation' && (
         <AxialLengthEstimation isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
+      {/* Vision Simulator Modal */}
+      {selectedProject === 'vision-simulator' && (
+        <VisionSimulator isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
 
       {/* Contact Section */}
