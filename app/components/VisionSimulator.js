@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { X, Eye } from 'lucide-react';
 
 export default function VisionSimulator({ isDark = true, onClose }) {
@@ -243,7 +243,7 @@ export default function VisionSimulator({ isDark = true, onClose }) {
   const labelClass = isDark ? 'text-gray-200' : 'text-gray-700';
 
   // Apply effect on mount and when condition/severity changes
-  React.useEffect(() => {
+  useEffect(() => {
     loadAndApply();
   }, [condition, severity, imageSource, uploadedImage]);
 
