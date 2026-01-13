@@ -141,11 +141,12 @@ export default function VisionSimulator({ isDark = true, onClose }) {
     const centerY = canvas.height / 2;
     const maxR = Math.max(canvas.width, canvas.height);
     // Make tunnel vision more aggressive - shrinks faster and becomes darker
-    const visR = maxR * (1 - severity / 100);
+    const visR = Math.max(1, maxR * (1 - severity / 100)); // Ensure at least 1px to avoid zero radius
+    const edgeR = visR + Math.max(50, maxR * 0.15); // Transition zone
     
-    const grad = ctx.createRadialGradient(centerX, centerY, visR * 0.8, centerX, centerY, visR * 1.2);
+    const grad = ctx.createRadialGradient(centerX, centerY, visR * 0.6, centerX, centerY, edgeR);
     grad.addColorStop(0, 'rgba(0,0,0,0)');
-    grad.addColorStop(0.5, `rgba(0,0,0,${Math.min(0.7, severity / 100)})`);
+    grad.addColorStop(0.4, `rgba(0,0,0,${Math.min(0.85, severity / 80)})`);
     grad.addColorStop(1, 'rgba(0,0,0,1)');
     
     ctx.fillStyle = grad;
@@ -155,7 +156,8 @@ export default function VisionSimulator({ isDark = true, onClose }) {
     if (severity > 30) {
       ctx.filter = `blur(${severity / 20}px)`;
       ctx.globalCompositeOperation = 'multiply';
-      const grad2 = ctx.createRadialGradient(centerX, centerY, visR, centerX, centerY, maxR);
+      const blurEdge = Math.max(visR, 1);
+      const grad2 = ctx.createRadialGradient(centerX, centerY, blurEdge, centerX, centerY, maxR);
       grad2.addColorStop(0, 'rgba(255,255,255,1)');
       grad2.addColorStop(0.6, 'rgba(128,128,128,1)');
       grad2.addColorStop(1, 'rgba(0,0,0,1)');
@@ -169,14 +171,45 @@ export default function VisionSimulator({ isDark = true, onClose }) {
   const applyMacular = (ctx, canvas, severity) => {
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
-    const blurR = 150 * (severity / 100);
+    const blurR = 200 * (severity / 100);
+    const opacity = Math.min(0.95, severity / 100);
     
-    const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, blurR);
-    grad.addColorStop(0, 'rgba(200,200,200,0.8)');
+    // Apply central blur
+    if (severity > 20) {
+      ctx.filter = `blur(${severity / 8}px)`;
+      const temp = document.createElement('canvas');
+      temp.width = canvas.width;
+      temp.height = canvas.height;
+      const tCtx = temp.getContext('2d');
+      tCtx.drawImage(canvas, 0, 0);
+      
+      // Create circular mask for central blur
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, blurR * 1.2, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(temp, 0, 0);
+      ctx.restore();
+      ctx.filter = 'none';
+    }
+    
+    // Add central darkening/graying effect
+    const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, blurR * 1.5);
+    grad.addColorStop(0, `rgba(150,150,150,${opacity * 0.9})`);
+    grad.addColorStop(0.6, `rgba(180,180,180,${opacity * 0.5})`);
     grad.addColorStop(1, 'rgba(200,200,200,0)');
     
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add darker spot in the very center for severe cases
+    if (severity > 50) {
+      const darkGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, blurR * 0.4);
+      darkGrad.addColorStop(0, `rgba(100,100,100,${(severity - 50) / 80})`);
+      darkGrad.addColorStop(1, 'rgba(100,100,100,0)');
+      ctx.fillStyle = darkGrad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
   };
 
   const loadAndApply = () => {
