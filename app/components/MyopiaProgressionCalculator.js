@@ -176,7 +176,8 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
 
         <div className="p-5 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
           <p className="text-center mb-6 text-gray-600 text-sm md:text-base">
-            Compare expected myopia progression with <strong>no treatment (Single Vision Lens)</strong> vs your <strong>selected treatment</strong> up to age 18.
+            Projected Myopia Progression – Single Vision vs. Your Selected Treatment<br />
+            (To Age 18)
           </p>
 
           {/* Input Section */}
@@ -337,13 +338,6 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               </table>
             </div>
           )}
-
-          <button
-            onClick={handleCalculate}
-            className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-md cursor-pointer mb-6 transition-colors"
-          >
-            Calculate & Compare Progression
-          </button>
 
           <p className="text-sm italic text-gray-600 mb-6">
             Disclaimer: This calculator provides estimates based on averaged data from clinical studies and meta-analyses. Individual progression varies significantly due to genetics, environment, and other factors. This is not medical advice. Always consult an eye care professional.
