@@ -38,7 +38,7 @@ export default function VisionSimulator({ isDark = true, onClose }) {
       desc: 'Cloudy or foggy vision with reduced contrast' 
     },
     glaucoma: { 
-      name: 'Glaucoma (Tunnel Vision)', 
+      name: 'Glaucoma', 
       desc: 'Loss of peripheral (side) vision' 
     },
     macular: { 
