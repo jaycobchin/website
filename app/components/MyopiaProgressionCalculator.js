@@ -175,7 +175,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
         </div>
 
         <div className="p-5 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
-          <p className="text-center mb-6 text-gray-600 text-sm md:text-base whitespace-nowrap">
+          <p className="text-center mb-6 text-gray-600 text-sm md:text-base">
             Compare expected myopia progression with <strong>no treatment (Single Vision Lens)</strong> vs your <strong>selected treatment</strong> up to age 18.
           </p>
 
@@ -185,7 +185,15 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               <label className="block font-bold mb-2 text-slate-700">Ethnicity:</label>
               <select
                 value={ethnicity}
-                onChange={(e) => setEthnicity(e.target.value)}
+                onChange={(e) => {
+                  setEthnicity(e.target.value);
+                  const ethnicityFactor = getEthnicityFactor(e.target.value);
+                  const isMale = gender === 'Male';
+                  const baseline = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, 0);
+                  const reduction = getReduction(treatment);
+                  const treated = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
+                  setChartData({ baseline, treated, treatmentName: treatment });
+                }}
                 className="w-full p-2 border border-gray-300 rounded-md bg-white"
               >
                 <option>Chinese</option>
@@ -200,7 +208,15 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               <label className="block font-bold mb-2 text-slate-700">Gender:</label>
               <select
                 value={gender}
-                onChange={(e) => setGender(e.target.value)}
+                onChange={(e) => {
+                  setGender(e.target.value);
+                  const ethnicityFactor = getEthnicityFactor(ethnicity);
+                  const isMale = e.target.value === 'Male';
+                  const baseline = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, 0);
+                  const reduction = getReduction(treatment);
+                  const treated = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
+                  setChartData({ baseline, treated, treatmentName: treatment });
+                }}
                 className="w-full p-2 border border-gray-300 rounded-md bg-white"
               >
                 <option>Male</option>
@@ -212,7 +228,15 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               <label className="block font-bold mb-2 text-slate-700">Current Age:</label>
               <select
                 value={currentAge}
-                onChange={(e) => setCurrentAge(e.target.value)}
+                onChange={(e) => {
+                  setCurrentAge(e.target.value);
+                  const ethnicityFactor = getEthnicityFactor(ethnicity);
+                  const isMale = gender === 'Male';
+                  const baseline = calculateProgression(parseInt(e.target.value), parseFloat(currentSE), ethnicityFactor, isMale, 0);
+                  const reduction = getReduction(treatment);
+                  const treated = calculateProgression(parseInt(e.target.value), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
+                  setChartData({ baseline, treated, treatmentName: treatment });
+                }}
                 className="w-full p-2 border border-gray-300 rounded-md bg-white"
               >
                 {[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(age => (
@@ -225,7 +249,16 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               <label className="block font-bold mb-2 text-slate-700">Current Prescription:</label>
               <select
                 value={currentSE}
-                onChange={(e) => setCurrentSE(parseFloat(e.target.value))}
+                onChange={(e) => {
+                  const newSE = parseFloat(e.target.value);
+                  setCurrentSE(newSE);
+                  const ethnicityFactor = getEthnicityFactor(ethnicity);
+                  const isMale = gender === 'Male';
+                  const baseline = calculateProgression(parseInt(currentAge), newSE, ethnicityFactor, isMale, 0);
+                  const reduction = getReduction(treatment);
+                  const treated = calculateProgression(parseInt(currentAge), newSE, ethnicityFactor, isMale, reduction);
+                  setChartData({ baseline, treated, treatmentName: treatment });
+                }}
                 className="w-full p-2 border border-gray-300 rounded-md bg-white"
               >
                 {Array.from({ length: 40 }, (_, i) => -0.25 - (i * 0.25)).map(val => (
@@ -238,7 +271,15 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
               <label className="block font-bold mb-2 text-slate-700">Treatment Option:</label>
               <select
                 value={treatment}
-                onChange={(e) => setTreatment(e.target.value)}
+                onChange={(e) => {
+                  setTreatment(e.target.value);
+                  const ethnicityFactor = getEthnicityFactor(ethnicity);
+                  const isMale = gender === 'Male';
+                  const baseline = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, 0);
+                  const reduction = getReduction(e.target.value);
+                  const treated = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
+                  setChartData({ baseline, treated, treatmentName: e.target.value });
+                }}
                 className="w-full p-2 border border-gray-300 rounded-md bg-white"
               >
                 <option>Single Vision Lens</option>
