@@ -484,11 +484,9 @@ export default function HomePage() {
               </button>
             </div>
             <div className="p-8 leading-relaxed text-gray-800">
-              <div className="bg-blue-50 border-l-4 border-blue-800 p-6 mb-8 rounded">
-                <p className="text-base">
-                  I was nominated to join a professional association handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website I have created can help the public, parents, and fellow healthcare professionals better understand what optometrists do as the main primary eye care providers.
-                </p>
-              </div>
+              <p className="text-base mb-8 text-gray-800">
+                I was nominated to join a professional association handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website I have created can help the public, parents, and fellow healthcare professionals better understand what optometrists do as the main primary eye care providers.
+              </p>
 
               <h3 className="text-2xl font-bold mb-6 text-blue-900">Singapore Optometric Association (SOA)</h3>
               
@@ -511,18 +509,18 @@ export default function HomePage() {
                 </div>
 
                 <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">9th SOA Conference (2024) – Organizing Chair</h4>
+                  <h4 className="font-bold text-slate-700 text-lg">9th SOA Conference 2024 – Organizing Chair</h4>
                   <p className="text-gray-700">Led the organization and execution of the annual conference.</p>
                 </div>
 
                 <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">10th SOA Conference (2025) – Organizing Committee Member</h4>
+                  <h4 className="font-bold text-slate-700 text-lg">10th SOA Conference 2025 – Organizing Committee Member</h4>
                   <p className="text-gray-700">Contributed to operations and planning for the event.</p>
                 </div>
 
                 <div className="pb-4">
-                  <h4 className="font-bold text-slate-700 text-lg">Council Member (Previous term)</h4>
-                  <p className="text-sm text-gray-600 mb-2">Dec 2020 – Dec 2023 (3 years)</p>
+                  <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
+                  <p className="text-sm text-gray-600 mb-2">Dec 2020 – Dec 2023</p>
                   <p className="text-gray-700">Drove membership growth, produced newsletters, and organized conferences and webinars.</p>
                 </div>
               </div>
