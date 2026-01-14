@@ -19,6 +19,20 @@ export default function HomePage() {
   const [selectedWork, setSelectedWork] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageCaption, setSelectedImageCaption] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const galleryImages = [
+    { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg', caption: '47th SOA Council 2024 & 2025' },
+    { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG', caption: '47th SOA Council 2025' },
+    { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg', caption: 'SOA Conference 2025 with Dr Koh Poh Koon' },
+    { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg', caption: 'Council and Organizing Committee at SOA Conference 2024' },
+    { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg', caption: 'SOA Conference 2024 Opening Address' },
+    { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg', caption: 'Dispensing of Spectacles in NorthLight School 2024' },
+    { url: '/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg', caption: '46th SOA Council 2023' },
+    { url: '/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg', caption: 'SOA with Guest of Honor - Dr Tan Tuan Lin' },
+    { url: '/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg', caption: 'Organizing Committee for GOMCC 2023' },
+    { url: '/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg', caption: 'Lion Dance Team for GOMCC 2023' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +51,24 @@ export default function HomePage() {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
+  // Auto-rotate carousel
+  useEffect(() => {
+    if (!selectedImage) return;
+    
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
+    }, 5000); // Rotate every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [selectedImage, galleryImages.length]);
+
+  // Update selected image when carousel index changes
+  useEffect(() => {
+    if (selectedImage) {
+      setSelectedImageCaption(galleryImages[currentImageIndex].caption);
+    }
+  }, [currentImageIndex, selectedImage, galleryImages]);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -533,61 +565,61 @@ export default function HomePage() {
                     src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg" 
                     alt="47th SOA Council 2024 & 2025" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg'); setSelectedImageCaption('47th SOA Council 2024 & 2025');}}
+                    onClick={() => {setCurrentImageIndex(0); setSelectedImage(galleryImages[0].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG" 
                     alt="47th SOA Council 2025" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG'); setSelectedImageCaption('47th SOA Council 2025');}}
+                    onClick={() => {setCurrentImageIndex(1); setSelectedImage(galleryImages[1].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg" 
                     alt="SOA Conference 2025 with Dr Koh Poh Koon" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg'); setSelectedImageCaption('SOA Conference 2025 with Dr Koh Poh Koon');}}
+                    onClick={() => {setCurrentImageIndex(2); setSelectedImage(galleryImages[2].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg" 
                     alt="Council and Organizing Committee at SOA Conference 2024" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg'); setSelectedImageCaption('Council and Organizing Committee at SOA Conference 2024');}}
+                    onClick={() => {setCurrentImageIndex(3); setSelectedImage(galleryImages[3].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg" 
                     alt="SOA Conference 2024 Opening Address" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg'); setSelectedImageCaption('SOA Conference 2024 Opening Address');}}
+                    onClick={() => {setCurrentImageIndex(4); setSelectedImage(galleryImages[4].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg" 
                     alt="Dispensing of Spectacles in NorthLight School 2024" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg'); setSelectedImageCaption('Dispensing of Spectacles in NorthLight School 2024');}}
+                    onClick={() => {setCurrentImageIndex(5); setSelectedImage(galleryImages[5].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg" 
                     alt="46th SOA Council 2023" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg'); setSelectedImageCaption('46th SOA Council 2023');}}
+                    onClick={() => {setCurrentImageIndex(6); setSelectedImage(galleryImages[6].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg" 
                     alt="SOA with Guest of Honor - Dr Tan Tuan Lin" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg'); setSelectedImageCaption('SOA with Guest of Honor - Dr Tan Tuan Lin');}}
+                    onClick={() => {setCurrentImageIndex(7); setSelectedImage(galleryImages[7].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg" 
                     alt="Organizing Committee for GOMCC 2023" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg'); setSelectedImageCaption('Organizing Committee for GOMCC 2023');}}
+                    onClick={() => {setCurrentImageIndex(8); setSelectedImage(galleryImages[8].url);}}
                   />
                   <img 
                     src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg" 
                     alt="Lion Dance Team for GOMCC 2023" 
                     className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg'); setSelectedImageCaption('Lion Dance Team for GOMCC 2023');}}
+                    onClick={() => {setCurrentImageIndex(9); setSelectedImage(galleryImages[9].url);}}
                   />
                 </div>
               </div>
@@ -627,7 +659,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Image Lightbox Modal */}
+      {/* Image Carousel Modal */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
           <button
@@ -636,15 +668,56 @@ export default function HomePage() {
           >
             <X size={32} className="text-white" />
           </button>
-          <div className="flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={selectedImage} 
-              alt="Enlarged view" 
-              className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
-            />
-            {selectedImageCaption && (
-              <p className="text-white text-center max-w-2xl text-lg">{selectedImageCaption}</p>
+          <div className="flex flex-col items-center gap-4 w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+            {/* Carousel Container */}
+            <div className="relative w-full flex items-center justify-center">
+              <img 
+                src={galleryImages[currentImageIndex].url} 
+                alt="Gallery image" 
+                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+              />
+              
+              {/* Previous Button */}
+              <button
+                onClick={() => setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)}
+                className="absolute left-0 ml-4 p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              {/* Next Button */}
+              <button
+                onClick={() => setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)}
+                className="absolute right-0 mr-4 p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Caption */}
+            {galleryImages[currentImageIndex].caption && (
+              <p className="text-white text-center max-w-2xl text-lg font-medium">{galleryImages[currentImageIndex].caption}</p>
             )}
+            
+            {/* Image Counter */}
+            <p className="text-white/70 text-sm">{currentImageIndex + 1} / {galleryImages.length}</p>
+            
+            {/* Thumbnail Dots */}
+            <div className="flex gap-2 justify-center flex-wrap">
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentImageIndex ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/70'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       )}
