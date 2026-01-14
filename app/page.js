@@ -583,7 +583,7 @@ export default function HomePage() {
                   <p className="text-lg font-medium text-slate-800 text-center">{galleryImages[currentImageIndex].caption}</p>
                   
                   {/* Thumbnail Preview */}
-                  <div className="flex gap-3 justify-center overflow-x-auto pb-2 w-full scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  <div className="flex gap-3 justify-start overflow-x-auto pb-2 w-full scrollbar-hide px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {galleryImages.map((image, index) => (
                       <button
                         key={index}
