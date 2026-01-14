@@ -683,18 +683,14 @@ export default function HomePage() {
               </button>
             </div>
             <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
-              <p className="text-base mb-8 text-gray-800">
+              <p className="text-base mb-6 text-gray-800">
                 I have taken part in volunteer work both locally and overseas.
               </p>
-
-              <h3 className="text-2xl font-bold mb-6 text-blue-900">Local Volunteer Work – Optometry Giving Sight (OGS), Singapore</h3>
-              <p className="text-gray-700 mb-6">
+              <p className="text-base mb-6 text-gray-800">
                 I worked with Optometry Giving Sight (OGS) locally to organize full eye checks and provide free spectacles to needy families in Singapore.
               </p>
-
-              <h3 className="text-2xl font-bold mb-6 text-blue-900">Overseas Volunteer Work</h3>
-              <p className="text-gray-700 mb-8">
-                Overseas, I joined Lions Club Singapore for eye screening programs in Myanmar, and also worked with Humanitarian with Love and Khmer Sight Foundation to conduct eye screenings in Cambodia. Those patients in need are referred for further treatment if necessary. The foundation in Cambodia continues to reach out to rural areas so people there can get help in time.
+              <p className="text-base mb-8 text-gray-800">
+                Overseas, I joined Lions Club Singapore for eye screening programs in Myanmar, and also worked with Humanitarian with Love and Khmer Sight Foundation to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
               </p>
 
               {/* Photo Gallery Carousel */}
