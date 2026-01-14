@@ -265,6 +265,7 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
                 className="w-full"
               />
             </div>
+          </div>
 
           {/* Results Section */}
           {results && (

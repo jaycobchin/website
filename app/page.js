@@ -475,10 +475,6 @@ export default function HomePage() {
       {selectedProject === 'risk-factors-analysis' && (
         <RiskFactorsAnalysis isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
-      {/* Myopia Tool Modal */}
-      {selectedProject === 'myopia-tool' && (
-        <MyopiaTool isDark={isDark} onClose={() => setSelectedProject(null)} />
-      )}
       {/* Progression Calculator Modal */}
       {selectedProject === 'progression-calculator' && (
         <MyopiaProgressionCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
