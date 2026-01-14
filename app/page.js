@@ -17,6 +17,7 @@ export default function HomePage() {
   const [selectedProfile, setSelectedProfile] = useState('parents');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedWork, setSelectedWork] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -527,16 +528,66 @@ export default function HomePage() {
                 <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
                 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg" alt="47th SOA Council 2024 & 2025" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG" alt="47th SOA Council 2025" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg" alt="SOA Conference 2025 with Dr Koh Poh Koon" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg" alt="Council and Organizing Committee at SOA Conference 2024" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg" alt="SOA Conference 2024 Opening Address" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg" alt="Dispensing of Spectacles in NorthLight School 2024" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg" alt="46th SOA Council 2023" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg" alt="SOA with Guest of Honor - Dr Tan Tuan Lin" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg" alt="Organizing Committee for GOMCC 2023" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                  <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg" alt="Lion Dance Team for GOMCC 2023" className="w-full h-auto rounded-lg shadow-md object-cover" />
+                  <img 
+                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg" 
+                    alt="47th SOA Council 2024 & 2025" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG" 
+                    alt="47th SOA Council 2025" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg" 
+                    alt="SOA Conference 2025 with Dr Koh Poh Koon" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg" 
+                    alt="Council and Organizing Committee at SOA Conference 2024" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg" 
+                    alt="SOA Conference 2024 Opening Address" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg" 
+                    alt="Dispensing of Spectacles in NorthLight School 2024" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg" 
+                    alt="46th SOA Council 2023" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg" 
+                    alt="SOA with Guest of Honor - Dr Tan Tuan Lin" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg" 
+                    alt="Organizing Committee for GOMCC 2023" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg')}
+                  />
+                  <img 
+                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg" 
+                    alt="Lion Dance Team for GOMCC 2023" 
+                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setSelectedImage('/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg')}
+                  />
                 </div>
               </div>
             </div>
@@ -572,6 +623,24 @@ export default function HomePage() {
               </p>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Image Lightbox Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+          >
+            <X size={32} className="text-white" />
+          </button>
+          <img 
+            src={selectedImage} 
+            alt="Enlarged view" 
+            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
 
