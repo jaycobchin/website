@@ -614,9 +614,6 @@ export default function HomePage() {
                     ))}
                   </div>
                   
-                  {/* Image Counter */}
-                  <p className="text-sm text-gray-600">{currentImageIndex + 1} / {galleryImages.length}</p>
-                  
                   {/* Thumbnail Dots */}
                   <div className="flex gap-2 justify-center flex-wrap">
                     {galleryImages.map((_, index) => (
