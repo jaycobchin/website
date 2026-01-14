@@ -276,13 +276,13 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-wrap gap-4 pt-6">
-                <button className="group px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 transition-all text-sm md:text-base">
+                <a href="#work-experience" className="group px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 transition-all text-sm md:text-base">
                   View My Work
                   <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
-                </button>
-                <button className={`px-6 py-3 border ${borderClass} hover:border-blue-400 rounded-full transition-all text-sm md:text-base`}>
+                </a>
+                <a href="#contact" className={`px-6 py-3 border ${borderClass} hover:border-blue-400 rounded-full transition-all text-sm md:text-base`}>
                   Get In Touch
-                </button>
+                </a>
               </div>
             </div>
 
