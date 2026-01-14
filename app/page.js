@@ -288,112 +288,106 @@ export default function HomePage() {
             Work
           </h2>
 
-          <div className="space-y-4">
-            {/* Clinical Practice Tab */}
-            <div
-              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all"
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Clinical Practice Card */}
+            <div 
+              key="clinical"
+              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
               onClick={() => setExpandedWork(expandedWork === 'clinical' ? null : 'clinical')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-cyan-600 opacity-90 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 text-white">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
-                    <h3 className="text-2xl font-bold">Clinical Practice</h3>
-                  </div>
-                  <svg 
-                    className={`w-6 h-6 transform transition-transform ${expandedWork === 'clinical' ? 'rotate-180' : ''}`} 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor"
-                  >
-                    <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                  </svg>
+                <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
+                <h3 className="text-xl font-bold mb-4">Clinical Practice</h3>
+                <p className="text-sm opacity-90 leading-relaxed mb-4">
+                  Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
+                </p>
+                <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>{expandedWork === 'clinical' ? 'Close' : 'View details'}</span>
+                  <ArrowRight size={16} />
                 </div>
               </div>
             </div>
 
-            {/* Clinical Practice Content */}
-            {expandedWork === 'clinical' && (
-              <div className={`p-8 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm border ${borderClass}`}>
-                <p className={textMutedClass}>
-                  Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
-                </p>
-                <p className={`${textMutedClass} mt-4`}>
-                  Add your detailed work experience here...
-                </p>
-              </div>
-            )}
-
-            {/* Professional Appointment Tab */}
-            <div
-              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all"
+            {/* Professional Appointment Card */}
+            <div 
+              key="professional"
+              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
               onClick={() => setExpandedWork(expandedWork === 'professional' ? null : 'professional')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 text-white">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
-                    <h3 className="text-2xl font-bold">Professional Appointment</h3>
-                  </div>
-                  <svg 
-                    className={`w-6 h-6 transform transition-transform ${expandedWork === 'professional' ? 'rotate-180' : ''}`} 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor"
-                  >
-                    <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                  </svg>
+                <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
+                <h3 className="text-xl font-bold mb-4">Professional Appointment</h3>
+                <p className="text-sm opacity-90 leading-relaxed mb-4">
+                  Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
+                </p>
+                <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>{expandedWork === 'professional' ? 'Close' : 'View details'}</span>
+                  <ArrowRight size={16} />
                 </div>
               </div>
             </div>
 
-            {/* Professional Appointment Content */}
-            {expandedWork === 'professional' && (
-              <div className={`p-8 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm border ${borderClass}`}>
-                <p className={textMutedClass}>
-                  Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
-                </p>
-                <p className={`${textMutedClass} mt-4`}>
-                  Add your detailed work experience here...
-                </p>
-              </div>
-            )}
-
-            {/* Community Engagement Tab */}
-            <div
-              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all"
+            {/* Community Engagement Card */}
+            <div 
+              key="community"
+              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
               onClick={() => setExpandedWork(expandedWork === 'community' ? null : 'community')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-90 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 text-white">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
-                    <h3 className="text-2xl font-bold">Community Engagement</h3>
-                  </div>
-                  <svg 
-                    className={`w-6 h-6 transform transition-transform ${expandedWork === 'community' ? 'rotate-180' : ''}`} 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor"
-                  >
-                    <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                  </svg>
+                <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
+                <h3 className="text-xl font-bold mb-4">Community Engagement</h3>
+                <p className="text-sm opacity-90 leading-relaxed mb-4">
+                  Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+                </p>
+                <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>{expandedWork === 'community' ? 'Close' : 'View details'}</span>
+                  <ArrowRight size={16} />
                 </div>
               </div>
             </div>
-
-            {/* Community Engagement Content */}
-            {expandedWork === 'community' && (
-              <div className={`p-8 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm border ${borderClass}`}>
-                <p className={textMutedClass}>
-                  Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
-                </p>
-                <p className={`${textMutedClass} mt-4`}>
-                  Add your detailed work experience here...
-                </p>
-              </div>
-            )}
           </div>
+
+          {/* Expanded Details Section */}
+          {expandedWork && (
+            <div className={`mt-12 p-8 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm border ${borderClass}`}>
+              {expandedWork === 'clinical' && (
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Clinical Practice</h3>
+                  <p className={textMutedClass}>
+                    Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
+                  </p>
+                  <p className={`${textMutedClass} mt-4`}>
+                    Add your detailed work experience here...
+                  </p>
+                </div>
+              )}
+              {expandedWork === 'professional' && (
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Professional Appointment</h3>
+                  <p className={textMutedClass}>
+                    Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
+                  </p>
+                  <p className={`${textMutedClass} mt-4`}>
+                    Add your detailed work experience here...
+                  </p>
+                </div>
+              )}
+              {expandedWork === 'community' && (
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Community Engagement</h3>
+                  <p className={textMutedClass}>
+                    Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+                  </p>
+                  <p className={`${textMutedClass} mt-4`}>
+                    Add your detailed work experience here...
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
