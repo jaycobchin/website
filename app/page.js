@@ -503,8 +503,8 @@ export default function HomePage() {
       {/* Work Experience Modals */}
       {selectedWork === 'clinical' && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
               <h1 className="text-2xl font-bold text-slate-800">Clinical Practice</h1>
               <button
                 onClick={() => setSelectedWork(null)}
@@ -513,20 +513,47 @@ export default function HomePage() {
                 <X size={24} className="text-gray-600" />
               </button>
             </div>
-            <div className="p-8 leading-relaxed text-gray-800">
-              <p className="text-lg mb-6">
-                Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
-              </p>
-              <h3 className="text-xl font-bold mb-4 text-slate-700">Key Responsibilities:</h3>
-              <ul className="space-y-2 list-disc pl-6 mb-6">
-                <li>Comprehensive eye examinations and assessments</li>
-                <li>Patient education and care plan development</li>
-                <li>Myopia management and progression monitoring</li>
-                <li>Preventive care strategy implementation</li>
-              </ul>
-              <p className="text-gray-600 italic">
-                Add your detailed work experience, achievements, and impact here...
-              </p>
+            <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
+              {/* Profile Photo */}
+              <div className="flex justify-center mb-8">
+                <div className="w-40 h-40 bg-gray-300 rounded-full flex items-center justify-center shadow-lg">
+                  <svg className="w-20 h-20 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+
+              <h2 className="text-3xl font-bold text-center mb-2 text-slate-800">Jaycob Chin, FIAOMC</h2>
+              <p className="text-center text-gray-600 mb-2 text-sm">Optometrist</p>
+              
+              <div className="text-center mb-8 text-sm text-gray-700 space-y-1">
+                <p>M.Sc Optom (Aust), B.Sc Optom (U.S.A.), Dip. Optom (S'pore)</p>
+                <p>Full Registration, Singapore Optometrists and Opticians Board</p>
+                <p>Council Member, Singapore Optometric Association</p>
+                <p>Fellow, American Academy of Orthokeratology and Myopia Control</p>
+              </div>
+
+              <div className="border-t border-gray-200 pt-8">
+                <p className="text-gray-800 mb-6">
+                  I am a fully licensed and registered optometrist currently practicing at <strong>EMME Visioncare</strong> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
+                </p>
+
+                <p className="text-gray-800 mb-6">
+                  My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from UNSW, reflecting my dedication to the latest research-driven approaches.
+                </p>
+
+                <p className="text-gray-800 mb-6">
+                  Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including specialty fittings like hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at EMME Visioncare, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
+                </p>
+
+                <p className="text-gray-800 mb-6">
+                  In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in Ngee Ann Polyclinic while pursuing my Doctor of Optometry degree from Aston University. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
+                </p>
+
+                <p className="text-gray-800">
+                  I am driven by a deep commitment to eye health, evidence-based practice, and making quality vision care available to everyone.
+                </p>
+              </div>
             </div>
           </div>
         </div>
