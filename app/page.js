@@ -20,6 +20,7 @@ export default function HomePage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageCaption, setSelectedImageCaption] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentGallery, setCurrentGallery] = useState('professional');
   const thumbnailRefs = useState([])[0];
 
   const galleryImages = [
@@ -34,6 +35,42 @@ export default function HomePage() {
     { url: '/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg', caption: 'Organizing Committee for GOMCC 2023' },
     { url: '/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg', caption: 'Lion Dance Team for GOMCC 2023' }
   ];
+
+  const communityImages = [
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 1.jpeg', caption: 'World Sight Day 2018 - 1' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 2.jpeg', caption: 'World Sight Day 2018 - 2' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 3.jpeg', caption: 'World Sight Day 2018 - 3' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 4.jpeg', caption: 'World Sight Day 2018 - 4' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 5.jpeg', caption: 'World Sight Day 2018 - 5' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 6.jpeg', caption: 'World Sight Day 2018 - 6' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 7.jpeg', caption: 'World Sight Day 2018 - 7' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2018 - 8.jpeg', caption: 'World Sight Day 2018 - 8' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 1.jpeg', caption: 'World Sight Day 2019 - 1' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 2.jpeg', caption: 'World Sight Day 2019 - 2' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 3.jpeg', caption: 'World Sight Day 2019 - 3' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 4.jpeg', caption: 'World Sight Day 2019 - 4' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 5.jpeg', caption: 'World Sight Day 2019 - 5' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 6.jpeg', caption: 'World Sight Day 2019 - 6' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 7.jpeg', caption: 'World Sight Day 2019 - 7' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 8.jpeg', caption: 'World Sight Day 2019 - 8' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 9.jpeg', caption: 'World Sight Day 2019 - 9' },
+    { url: '/Community Engagement/Volunteer - OGS Photos/WSD 2019 - 10.jpeg', caption: 'World Sight Day 2019 - 10' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Myanmar 2019 - 1.JPG', caption: 'Gift of Sight Myanmar 2019 - 1' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Myanmar 2019 - 2.JPG', caption: 'Gift of Sight Myanmar 2019 - 2' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar - 6.JPG', caption: 'Gift of Sight Pa-Auk Myanmar' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar 2018 - 1.JPG', caption: 'Gift of Sight Pa-Auk Myanmar 2018 - 1' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar 2018 - 2.JPG', caption: 'Gift of Sight Pa-Auk Myanmar 2018 - 2' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar 2018 - 3.JPG', caption: 'Gift of Sight Pa-Auk Myanmar 2018 - 3' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar 2018 - 4.JPG', caption: 'Gift of Sight Pa-Auk Myanmar 2018 - 4' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar 2018 - 5 (Optometrist Team).JPG', caption: 'Gift of Sight Pa-Auk Myanmar 2018 - Optometrist Team' },
+    { url: '/Community Engagement/Volunteer - Gift of Sight by Lions Club Singapore/Gift of Sight Pa-Auk Myanmar 2018 - 7.JPG', caption: 'Gift of Sight Pa-Auk Myanmar 2018 - 7' },
+    { url: '/Community Engagement/Volunteer - Humanitarian with Love (Cambodia)/Humanitarian with Love & Khmer Sight Foundation 2019 (Dr Sean and Dr Huot).JPG', caption: 'Humanitarian with Love & Khmer Sight Foundation 2019' },
+    { url: '/Community Engagement/Volunteer - Humanitarian with Love (Cambodia)/Humanitarian with Love & Khmer Sight Foundation 2019 - 1.JPG', caption: 'Humanitarian with Love & Khmer Sight Foundation 2019 - 1' },
+    { url: '/Community Engagement/Volunteer - Humanitarian with Love (Cambodia)/Humanitarian with Love & Khmer Sight Foundation 2019 - 2.JPG', caption: 'Humanitarian with Love & Khmer Sight Foundation 2019 - 2' },
+    { url: '/Community Engagement/Volunteer - Humanitarian with Love (Cambodia)/Humanitarian with Love & Khmer Sight Foundation 2023 - 1.JPG', caption: 'Humanitarian with Love & Khmer Sight Foundation 2023 - 1' },
+    { url: '/Community Engagement/Volunteer - Humanitarian with Love (Cambodia)/Humanitarian with Love & Khmer Sight Foundation 2023 - 2.JPG', caption: 'Humanitarian with Love & Khmer Sight Foundation 2023 - 2' }
+  ];
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -634,31 +671,114 @@ export default function HomePage() {
       )}
 
       {selectedWork === 'community' && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}>
+          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
               <h1 className="text-2xl font-bold text-slate-800">Community Engagement</h1>
               <button
-                onClick={() => setSelectedWork(null)}
+                onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
                 <X size={24} className="text-gray-600" />
               </button>
             </div>
-            <div className="p-8 leading-relaxed text-gray-800">
-              <p className="text-lg mb-6">
-                Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+            <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
+              <p className="text-base mb-8 text-gray-800">
+                I have taken part in volunteer work both locally and overseas.
               </p>
-              <h3 className="text-xl font-bold mb-4 text-slate-700">Key Initiatives:</h3>
-              <ul className="space-y-2 list-disc pl-6 mb-6">
-                <li>Community education programs and workshops</li>
-                <li>Eye health awareness campaigns</li>
-                <li>Vision care accessibility advocacy</li>
-                <li>Public health collaboration and outreach</li>
-              </ul>
-              <p className="text-gray-600 italic">
-                Add your detailed community engagement activities and impact here...
+
+              <h3 className="text-2xl font-bold mb-6 text-blue-900">Local Volunteer Work – Optometry Giving Sight (OGS), Singapore</h3>
+              <p className="text-gray-700 mb-6">
+                I worked with Optometry Giving Sight (OGS) locally to organize full eye checks and provide free spectacles to needy families in Singapore.
               </p>
+
+              <h3 className="text-2xl font-bold mb-6 text-blue-900">Overseas Volunteer Work</h3>
+              <p className="text-gray-700 mb-8">
+                Overseas, I joined Lions Club Singapore for eye screening programs in Myanmar, and also worked with Humanitarian with Love and Khmer Sight Foundation to conduct eye screenings in Cambodia. Those patients in need are referred for further treatment if necessary. The foundation in Cambodia continues to reach out to rural areas so people there can get help in time.
+              </p>
+
+              {/* Photo Gallery Carousel */}
+              <div className="mt-12">
+                <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
+                
+                <div className="relative flex flex-col items-center gap-6 bg-gray-50 p-8 rounded-lg">
+                  {/* Carousel Image */}
+                  <div className="relative w-full flex items-center justify-center">
+                    <img 
+                      src={communityImages[currentImageIndex].url} 
+                      alt="Gallery image" 
+                      className="max-w-full max-h-96 object-contain rounded-lg shadow-lg"
+                    />
+                    
+                    {/* Previous Button */}
+                    <button
+                      onClick={() => {
+                        const newIndex = (currentImageIndex - 1 + communityImages.length) % communityImages.length;
+                        setCurrentImageIndex(newIndex);
+                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                      }}
+                      className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                    >
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    
+                    {/* Next Button */}
+                    <button
+                      onClick={() => {
+                        const newIndex = (currentImageIndex + 1) % communityImages.length;
+                        setCurrentImageIndex(newIndex);
+                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                      }}
+                      className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                    >
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  {/* Caption */}
+                  <p className="text-lg font-medium text-slate-800 text-center">{communityImages[currentImageIndex].caption}</p>
+                  
+                  {/* Thumbnail Preview */}
+                  <div className="flex gap-3 justify-start overflow-x-auto pb-2 w-full scrollbar-hide px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    {communityImages.map((image, index) => (
+                      <button
+                        key={index}
+                        ref={(el) => thumbnailRefs[index] = el}
+                        onClick={() => {
+                          setCurrentImageIndex(index);
+                          thumbnailRefs[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }}
+                        className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${
+                          index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
+                        }`}
+                      >
+                        <img 
+                          src={image.url} 
+                          alt={`Thumbnail ${index + 1}`} 
+                          className="w-16 h-16 object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {/* Thumbnail Dots */}
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    {communityImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          index === currentImageIndex ? 'bg-blue-500 w-8' : 'bg-gray-400 hover:bg-gray-600'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
