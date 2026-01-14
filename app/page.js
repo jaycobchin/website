@@ -329,13 +329,11 @@ export default function HomePage() {
             </div>
 
             <div className="w-full">
-              <div className={`${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${borderClass} w-full h-96 flex items-center justify-center`}>
-                <div className="text-center">
-                  <div className={`text-6xl mb-4 ${textMutedClass}`}>🖼️</div>
-                  <p className={textMutedClass}>Image placeholder</p>
-                  <p className="text-sm text-gray-500 mt-2">Your image will go here</p>
-                </div>
-              </div>
+              <img 
+                src="/philosophy_himalaya_scenery.jpeg" 
+                alt="Philosophy - Himalaya Scenery" 
+                className="w-full h-96 object-cover rounded-2xl border shadow-lg"
+              />
             </div>
           </div>
         </div>
