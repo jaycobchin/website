@@ -143,7 +143,7 @@ export default function HomePage() {
     },
     { 
       title: 'Axial Length Estimation', 
-      category: 'Tools', 
+      category: 'Optometrists', 
       audience: ['optometrists'],
       color: 'from-blue-500 to-indigo-600', 
       id: 'axial-length-estimation',
@@ -197,7 +197,7 @@ export default function HomePage() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 relative z-10">
             <a href="#philosophy" className="hover:text-blue-400 transition-colors">Philosophy</a>
-            <a href="#past-work" className="hover:text-blue-400 transition-colors">Work</a>
+            <a href="#work-experience" className="hover:text-blue-400 transition-colors">Work</a>
             <a href="#work" className="hover:text-blue-400 transition-colors">Tools</a>
             <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
             
@@ -225,7 +225,7 @@ export default function HomePage() {
           <div className={`md:hidden ${isDark ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-lg`}>
             <div className="px-6 py-4 flex flex-col gap-4">
               <a href="#philosophy" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
-              <a href="#past-work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="#work-experience" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
               <a href="#work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
               <a href="#contact" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
               <button
@@ -308,7 +308,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6">
               <h2 className="text-5xl md:text-6xl font-bold">
-                My Optometry <span className="text-blue-400">Philosophy</span>
+                My <span className="text-blue-400">Philosophy</span>
               </h2>
               <div className={`space-y-4 ${textMutedClass} text-lg`}>
                 <p>
