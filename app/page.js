@@ -526,18 +526,13 @@ export default function HomePage() {
               <div className="mt-12">
                 <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
                 
-                <h4 className="text-lg font-bold mb-4 text-slate-700">SOA Treasurer (Dec 2023 - Dec 2025)</h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg" alt="47th SOA Council 2024 & 2025" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG" alt="47th SOA Council 2025" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg" alt="SOA Conference 2025 with Dr Koh Poh Koon" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg" alt="Council and Organizing Committee at SOA Conference 2024" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg" alt="SOA Conference 2024 Opening Address" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg" alt="Dispensing of Spectacles in NorthLight School 2024" className="w-full h-auto rounded-lg shadow-md object-cover" />
-                </div>
-
-                <h4 className="text-lg font-bold mb-4 text-slate-700">SOA Council Member (Dec 2020 - Dec 2023)</h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg" alt="46th SOA Council 2023" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg" alt="SOA with Guest of Honor - Dr Tan Tuan Lin" className="w-full h-auto rounded-lg shadow-md object-cover" />
                   <img src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg" alt="Organizing Committee for GOMCC 2023" className="w-full h-auto rounded-lg shadow-md object-cover" />
