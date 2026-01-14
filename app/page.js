@@ -473,8 +473,8 @@ export default function HomePage() {
 
       {selectedWork === 'professional' && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
               <h1 className="text-2xl font-bold text-slate-800">Professional Appointment</h1>
               <button
                 onClick={() => setSelectedWork(null)}
@@ -483,9 +483,9 @@ export default function HomePage() {
                 <X size={24} className="text-gray-600" />
               </button>
             </div>
-            <div className="p-8 leading-relaxed text-gray-800">
+            <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
               <p className="text-base mb-8 text-gray-800">
-                I was nominated to join a professional association handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website I have created can help the public, parents, and fellow healthcare professionals better understand what optometrists do as the main primary eye care providers.
+                I was nominated to join a professional association in handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website that I have created can help the public, parents and fellow healthcare folks better understand what optometrists do as the main primary eye care provider.
               </p>
 
               <h3 className="text-2xl font-bold mb-6 text-blue-900">Singapore Optometric Association (SOA)</h3>
@@ -493,19 +493,16 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="pb-4 border-b">
                   <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
-                  <p className="text-sm text-gray-600 mb-2">Dec 2025 – Present (2 months)</p>
+                  <p className="text-sm text-gray-600 mb-2">Dec 2025 – Present</p>
                   <p className="text-gray-700">Responsible for social media management, driving community growth and engagement.</p>
                 </div>
 
                 <div className="pb-4 border-b">
                   <h4 className="font-bold text-slate-700 text-lg">Treasurer</h4>
-                  <p className="text-sm text-gray-600 mb-2">Dec 2023 – Present</p>
-                  <p className="text-gray-700">Oversee financial operations and governance for the association.</p>
-                </div>
-
-                <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">Student Liaison Officer</h4>
-                  <p className="text-gray-700 mb-3">Focused on digital outreach (LinkedIn & Meta platforms). Built and managed social media presence, leading to significant growth: +1K followers on LinkedIn and +2K followers on Meta.</p>
+                  <p className="text-sm text-gray-600 mb-2">Dec 2023 – Dec 2025</p>
+                  <p className="text-gray-700 mb-4">Oversee financial operations and governance for the association.</p>
+                  <h5 className="font-bold text-slate-700">Student Liaison Officer</h5>
+                  <p className="text-gray-700">Focused on digital outreach (LinkedIn & Meta platforms). Built and managed social media presence, leading to significant growth: +1K followers on LinkedIn and +2K followers on Meta.</p>
                 </div>
 
                 <div className="pb-4 border-b">
