@@ -52,17 +52,6 @@ export default function HomePage() {
     };
   }, []);
 
-  // Auto-rotate carousel
-  useEffect(() => {
-    if (!selectedImage) return;
-    
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
-    }, 5000); // Rotate every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [selectedImage, galleryImages.length]);
-
   // Update selected image when carousel index changes
   useEffect(() => {
     if (selectedImage) {
@@ -556,71 +545,58 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Photo Gallery */}
+              {/* Photo Gallery Carousel */}
               <div className="mt-12">
                 <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
                 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <img 
-                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg" 
-                    alt="47th SOA Council 2024 & 2025" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(0); setSelectedImage(galleryImages[0].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2025.JPG" 
-                    alt="47th SOA Council 2025" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(1); setSelectedImage(galleryImages[1].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2025 with Dr Koh Poh Koon - Ngee Ann Polytechnic Convention Centre.jpeg" 
-                    alt="SOA Conference 2025 with Dr Koh Poh Koon" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(2); setSelectedImage(galleryImages[2].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Council and Organizing Committee at SOA Conference 2024 - Ngee Ann Polytecnic Convention Centre.jpeg" 
-                    alt="Council and Organizing Committee at SOA Conference 2024" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(3); setSelectedImage(galleryImages[3].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/SOA Conference 2024 Opening Address - Ngee Ann Polytechnic Convetion Centre.jpeg" 
-                    alt="SOA Conference 2024 Opening Address" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(4); setSelectedImage(galleryImages[4].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/Dispensing of Spectacles in NorthLight School 2024 - Sponsored by Carl Zeiss Vision Care.jpeg" 
-                    alt="Dispensing of Spectacles in NorthLight School 2024" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(5); setSelectedImage(galleryImages[5].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/46th SOA Council 2023.jpeg" 
-                    alt="46th SOA Council 2023" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(6); setSelectedImage(galleryImages[6].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/SOA with Guest of Honor - Dr Tan Tuan Lin (Commencement of 4th GOMCC Singapore 2023 - Opening Ceremony.jpeg" 
-                    alt="SOA with Guest of Honor - Dr Tan Tuan Lin" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(7); setSelectedImage(galleryImages[7].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Organizing Committee for GOMCC 2023 - Team Photo during gala dinner @ Furama riverside Hotel.jpeg" 
-                    alt="Organizing Committee for GOMCC 2023" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(8); setSelectedImage(galleryImages[8].url);}}
-                  />
-                  <img 
-                    src="/Professional Appointment/SOA Council Member Dec 2020 to Dec 2023/Lion Dance Team for GOMCC 2023 - Group Photo with SP Lion Dance.jpeg" 
-                    alt="Lion Dance Team for GOMCC 2023" 
-                    className="w-full h-48 rounded-lg shadow-md object-cover cursor-pointer hover:opacity-90 transition-opacity" 
-                    onClick={() => {setCurrentImageIndex(9); setSelectedImage(galleryImages[9].url);}}
-                  />
+                <div className="relative flex flex-col items-center gap-6 bg-gray-50 p-8 rounded-lg">
+                  {/* Carousel Image */}
+                  <div className="relative w-full flex items-center justify-center">
+                    <img 
+                      src={galleryImages[currentImageIndex].url} 
+                      alt="Gallery image" 
+                      className="max-w-full max-h-96 object-contain rounded-lg shadow-lg"
+                    />
+                    
+                    {/* Previous Button */}
+                    <button
+                      onClick={() => setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)}
+                      className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                    >
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    
+                    {/* Next Button */}
+                    <button
+                      onClick={() => setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)}
+                      className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                    >
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  {/* Caption */}
+                  <p className="text-lg font-medium text-slate-800 text-center">{galleryImages[currentImageIndex].caption}</p>
+                  
+                  {/* Image Counter */}
+                  <p className="text-sm text-gray-600">{currentImageIndex + 1} / {galleryImages.length}</p>
+                  
+                  {/* Thumbnail Dots */}
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    {galleryImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          index === currentImageIndex ? 'bg-blue-500 w-8' : 'bg-gray-400 hover:bg-gray-600'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
