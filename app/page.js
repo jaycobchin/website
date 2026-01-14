@@ -106,8 +106,6 @@ export default function HomePage() {
           : project.audience.includes('optometrists')
       );
 
-  const [selectedProject, setSelectedProject] = useState(null);
-
   const bgClass = isDark ? 'bg-black' : 'bg-white';
   const textClass = isDark ? 'text-white' : 'text-gray-900';
   const textMutedClass = isDark ? 'text-gray-300' : 'text-gray-700';
