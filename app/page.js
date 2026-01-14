@@ -583,7 +583,7 @@ export default function HomePage() {
                   <p className="text-lg font-medium text-slate-800 text-center">{galleryImages[currentImageIndex].caption}</p>
                   
                   {/* Thumbnail Preview */}
-                  <div className="flex gap-3 justify-center overflow-x-auto pb-2 w-full">
+                  <div className="flex gap-3 justify-center overflow-x-auto pb-2 w-full scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {galleryImages.map((image, index) => (
                       <button
                         key={index}
@@ -823,6 +823,10 @@ export default function HomePage() {
 
         .animate-fade-in {
           animation: fade-in 1s ease-out;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>
