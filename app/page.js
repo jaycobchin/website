@@ -20,6 +20,7 @@ export default function HomePage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageCaption, setSelectedImageCaption] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const thumbnailRefs = useState([])[0];
 
   const galleryImages = [
     { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg', caption: '47th SOA Council 2024 & 2025' },
@@ -560,7 +561,11 @@ export default function HomePage() {
                     
                     {/* Previous Button */}
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)}
+                      onClick={() => {
+                        const newIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                        setCurrentImageIndex(newIndex);
+                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                      }}
                       className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
                     >
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -570,7 +575,11 @@ export default function HomePage() {
                     
                     {/* Next Button */}
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)}
+                      onClick={() => {
+                        const newIndex = (currentImageIndex + 1) % galleryImages.length;
+                        setCurrentImageIndex(newIndex);
+                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                      }}
                       className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
                     >
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -587,7 +596,11 @@ export default function HomePage() {
                     {galleryImages.map((image, index) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentImageIndex(index)}
+                        ref={(el) => thumbnailRefs[index] = el}
+                        onClick={() => {
+                          setCurrentImageIndex(index);
+                          thumbnailRefs[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }}
                         className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${
                           index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
                         }`}
