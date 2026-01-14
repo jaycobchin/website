@@ -15,7 +15,8 @@ export default function HomePage() {
   const [expandedCard, setExpandedCard] = useState(null);
   const [isDark, setIsDark] = useState(true); // Dark mode by default
   const [selectedProfile, setSelectedProfile] = useState('parents');
-  const [expandedWork, setExpandedWork] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedWork, setSelectedWork] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -291,9 +292,8 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Clinical Practice Card */}
             <div 
-              key="clinical"
               className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
-              onClick={() => setExpandedWork(expandedWork === 'clinical' ? null : 'clinical')}
+              onClick={() => setSelectedWork('clinical')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-cyan-600 opacity-90 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 text-white">
@@ -303,7 +303,7 @@ export default function HomePage() {
                   Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>{expandedWork === 'clinical' ? 'Close' : 'View details'}</span>
+                  <span>Click to open</span>
                   <ArrowRight size={16} />
                 </div>
               </div>
@@ -311,9 +311,8 @@ export default function HomePage() {
 
             {/* Professional Appointment Card */}
             <div 
-              key="professional"
               className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
-              onClick={() => setExpandedWork(expandedWork === 'professional' ? null : 'professional')}
+              onClick={() => setSelectedWork('professional')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 text-white">
@@ -323,7 +322,7 @@ export default function HomePage() {
                   Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>{expandedWork === 'professional' ? 'Close' : 'View details'}</span>
+                  <span>Click to open</span>
                   <ArrowRight size={16} />
                 </div>
               </div>
@@ -331,9 +330,8 @@ export default function HomePage() {
 
             {/* Community Engagement Card */}
             <div 
-              key="community"
               className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
-              onClick={() => setExpandedWork(expandedWork === 'community' ? null : 'community')}
+              onClick={() => setSelectedWork('community')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-90 group-hover:opacity-100 transition-opacity" />
               <div className="relative z-10 text-white">
@@ -343,51 +341,12 @@ export default function HomePage() {
                   Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>{expandedWork === 'community' ? 'Close' : 'View details'}</span>
+                  <span>Click to open</span>
                   <ArrowRight size={16} />
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Expanded Details Section */}
-          {expandedWork && (
-            <div className={`mt-12 p-8 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-gray-100'} backdrop-blur-sm border ${borderClass}`}>
-              {expandedWork === 'clinical' && (
-                <div>
-                  <h3 className="text-2xl font-bold mb-4">Clinical Practice</h3>
-                  <p className={textMutedClass}>
-                    Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
-                  </p>
-                  <p className={`${textMutedClass} mt-4`}>
-                    Add your detailed work experience here...
-                  </p>
-                </div>
-              )}
-              {expandedWork === 'professional' && (
-                <div>
-                  <h3 className="text-2xl font-bold mb-4">Professional Appointment</h3>
-                  <p className={textMutedClass}>
-                    Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
-                  </p>
-                  <p className={`${textMutedClass} mt-4`}>
-                    Add your detailed work experience here...
-                  </p>
-                </div>
-              )}
-              {expandedWork === 'community' && (
-                <div>
-                  <h3 className="text-2xl font-bold mb-4">Community Engagement</h3>
-                  <p className={textMutedClass}>
-                    Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
-                  </p>
-                  <p className={`${textMutedClass} mt-4`}>
-                    Add your detailed work experience here...
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </section>
 
@@ -480,6 +439,100 @@ export default function HomePage() {
       {/* Vision Simulator Modal */}
       {selectedProject === 'vision-simulator' && (
         <VisionSimulator isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
+
+      {/* Work Experience Modals */}
+      {selectedWork === 'clinical' && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
+          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+              <h1 className="text-2xl font-bold text-slate-800">Clinical Practice</h1>
+              <button
+                onClick={() => setSelectedWork(null)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <X size={24} className="text-gray-600" />
+              </button>
+            </div>
+            <div className="p-8 leading-relaxed text-gray-800">
+              <p className="text-lg mb-6">
+                Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
+              </p>
+              <h3 className="text-xl font-bold mb-4 text-slate-700">Key Responsibilities:</h3>
+              <ul className="space-y-2 list-disc pl-6 mb-6">
+                <li>Comprehensive eye examinations and assessments</li>
+                <li>Patient education and care plan development</li>
+                <li>Myopia management and progression monitoring</li>
+                <li>Preventive care strategy implementation</li>
+              </ul>
+              <p className="text-gray-600 italic">
+                Add your detailed work experience, achievements, and impact here...
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedWork === 'professional' && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
+          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+              <h1 className="text-2xl font-bold text-slate-800">Professional Appointment</h1>
+              <button
+                onClick={() => setSelectedWork(null)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <X size={24} className="text-gray-600" />
+              </button>
+            </div>
+            <div className="p-8 leading-relaxed text-gray-800">
+              <p className="text-lg mb-6">
+                Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
+              </p>
+              <h3 className="text-xl font-bold mb-4 text-slate-700">Key Roles:</h3>
+              <ul className="space-y-2 list-disc pl-6 mb-6">
+                <li>Professional organization leadership and committee work</li>
+                <li>Standards development and implementation</li>
+                <li>Best practices advancement and advocacy</li>
+                <li>Regional collaboration and professional development</li>
+              </ul>
+              <p className="text-gray-600 italic">
+                Add your detailed professional appointments, positions, and contributions here...
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedWork === 'community' && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
+          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+              <h1 className="text-2xl font-bold text-slate-800">Community Engagement</h1>
+              <button
+                onClick={() => setSelectedWork(null)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <X size={24} className="text-gray-600" />
+              </button>
+            </div>
+            <div className="p-8 leading-relaxed text-gray-800">
+              <p className="text-lg mb-6">
+                Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+              </p>
+              <h3 className="text-xl font-bold mb-4 text-slate-700">Key Initiatives:</h3>
+              <ul className="space-y-2 list-disc pl-6 mb-6">
+                <li>Community education programs and workshops</li>
+                <li>Eye health awareness campaigns</li>
+                <li>Vision care accessibility advocacy</li>
+                <li>Public health collaboration and outreach</li>
+              </ul>
+              <p className="text-gray-600 italic">
+                Add your detailed community engagement activities and impact here...
+              </p>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Contact Section */}
