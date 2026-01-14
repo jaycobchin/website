@@ -582,6 +582,25 @@ export default function HomePage() {
                   {/* Caption */}
                   <p className="text-lg font-medium text-slate-800 text-center">{galleryImages[currentImageIndex].caption}</p>
                   
+                  {/* Thumbnail Preview */}
+                  <div className="flex gap-3 justify-center overflow-x-auto pb-2 w-full">
+                    {galleryImages.map((image, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${
+                          index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
+                        }`}
+                      >
+                        <img 
+                          src={image.url} 
+                          alt={`Thumbnail ${index + 1}`} 
+                          className="w-16 h-16 object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  
                   {/* Image Counter */}
                   <p className="text-sm text-gray-600">{currentImageIndex + 1} / {galleryImages.length}</p>
                   
