@@ -687,10 +687,10 @@ export default function HomePage() {
                 I have taken part in volunteer work both locally and overseas.
               </p>
               <p className="text-base mb-6 text-gray-800">
-                I worked with Optometry Giving Sight (OGS) locally to organize full eye checks and provide free spectacles to needy families in Singapore.
+                I worked with <a href="https://givingsight.org/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Optometry Giving Sight (OGS)</a> locally to organize full eye checks and provide free spectacles to needy families in Singapore.
               </p>
               <p className="text-base mb-8 text-gray-800">
-                Overseas, I joined Lions Club Singapore for eye screening programs in Myanmar, and also worked with Humanitarian with Love and Khmer Sight Foundation to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
+                Overseas, I joined <a href="https://lionsclubs.org.sg/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Lions Club Singapore</a> for eye screening programs in Myanmar, and also worked with <a href="https://www.facebook.com/humanitarianwithlove/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Humanitarian with Love</a> and <a href="https://www.facebook.com/CISACAMBODIA/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Khmer Sight Foundation</a> to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
               </p>
 
               {/* Photo Gallery Carousel */}
