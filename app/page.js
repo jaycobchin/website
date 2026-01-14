@@ -484,18 +484,51 @@ export default function HomePage() {
               </button>
             </div>
             <div className="p-8 leading-relaxed text-gray-800">
-              <p className="text-lg mb-6">
-                Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
-              </p>
-              <h3 className="text-xl font-bold mb-4 text-slate-700">Key Roles:</h3>
-              <ul className="space-y-2 list-disc pl-6 mb-6">
-                <li>Professional organization leadership and committee work</li>
-                <li>Standards development and implementation</li>
-                <li>Best practices advancement and advocacy</li>
-                <li>Regional collaboration and professional development</li>
-              </ul>
-              <p className="text-gray-600 italic">
-                Add your detailed professional appointments, positions, and contributions here...
+              <div className="bg-blue-50 border-l-4 border-blue-800 p-6 mb-8 rounded">
+                <p className="text-base">
+                  I was nominated to join a professional association handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website I have created can help the public, parents, and fellow healthcare professionals better understand what optometrists do as the main primary eye care providers.
+                </p>
+              </div>
+
+              <h3 className="text-2xl font-bold mb-6 text-blue-900">Singapore Optometric Association (SOA)</h3>
+              
+              <div className="space-y-4">
+                <div className="pb-4 border-b">
+                  <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
+                  <p className="text-sm text-gray-600 mb-2">Dec 2025 – Present (2 months)</p>
+                  <p className="text-gray-700">Responsible for social media management, driving community growth and engagement.</p>
+                </div>
+
+                <div className="pb-4 border-b">
+                  <h4 className="font-bold text-slate-700 text-lg">Treasurer</h4>
+                  <p className="text-sm text-gray-600 mb-2">Dec 2023 – Present</p>
+                  <p className="text-gray-700">Oversee financial operations and governance for the association.</p>
+                </div>
+
+                <div className="pb-4 border-b">
+                  <h4 className="font-bold text-slate-700 text-lg">Student Liaison Officer</h4>
+                  <p className="text-gray-700 mb-3">Focused on digital outreach (LinkedIn & Meta platforms). Built and managed social media presence, leading to significant growth: +1K followers on LinkedIn and +2K followers on Meta.</p>
+                </div>
+
+                <div className="pb-4 border-b">
+                  <h4 className="font-bold text-slate-700 text-lg">9th SOA Conference (2024) – Organizing Chair</h4>
+                  <p className="text-gray-700">Led the organization and execution of the annual conference.</p>
+                </div>
+
+                <div className="pb-4 border-b">
+                  <h4 className="font-bold text-slate-700 text-lg">10th SOA Conference (2025) – Organizing Committee Member</h4>
+                  <p className="text-gray-700">Contributed to operations and planning for the event.</p>
+                </div>
+
+                <div className="pb-4">
+                  <h4 className="font-bold text-slate-700 text-lg">Council Member (Previous term)</h4>
+                  <p className="text-sm text-gray-600 mb-2">Dec 2020 – Dec 2023 (3 years)</p>
+                  <p className="text-gray-700">Drove membership growth, produced newsletters, and organized conferences and webinars.</p>
+                </div>
+              </div>
+
+              <p className="text-gray-600 italic mt-8 text-sm">
+                Photos gallery will be added here
               </p>
             </div>
           </div>
