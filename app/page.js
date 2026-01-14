@@ -516,11 +516,11 @@ export default function HomePage() {
             <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
               {/* Profile Photo */}
               <div className="flex justify-center mb-8">
-                <div className="w-40 h-40 bg-gray-300 rounded-full flex items-center justify-center shadow-lg">
-                  <svg className="w-20 h-20 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
+                <img 
+                  src="/Clinical Practice/jaycob_chin_profile.JPG" 
+                  alt="Jaycob Chin Profile" 
+                  className="w-40 h-40 rounded-full object-cover shadow-lg"
+                />
               </div>
 
               <h2 className="text-3xl font-bold text-center mb-2 text-slate-800">Jaycob Chin, FIAOMC</h2>
@@ -535,19 +535,19 @@ export default function HomePage() {
 
               <div className="border-t border-gray-200 pt-8">
                 <p className="text-gray-800 mb-6">
-                  I am a fully licensed and registered optometrist currently practicing at <strong>EMME Visioncare</strong> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
+                  I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className="text-blue-700 underline" target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
                 </p>
 
                 <p className="text-gray-800 mb-6">
-                  My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from UNSW, reflecting my dedication to the latest research-driven approaches.
+                  My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className="text-blue-700 underline" target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
                 </p>
 
                 <p className="text-gray-800 mb-6">
-                  Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including specialty fittings like hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at EMME Visioncare, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
+                  Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className="text-blue-700 underline" target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
                 </p>
 
                 <p className="text-gray-800 mb-6">
-                  In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in Ngee Ann Polyclinic while pursuing my Doctor of Optometry degree from Aston University. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
+                  In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
                 </p>
 
                 <p className="text-gray-800">
