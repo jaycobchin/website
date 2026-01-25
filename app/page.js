@@ -2,7 +2,7 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 import AxialLengthEstimation from './components/AxialLengthEstimation.js';
@@ -885,9 +885,6 @@ export default function HomePage() {
           <div className="flex justify-center gap-6 mb-12">
             <a href="mailto:chinyanjie@gmail.com" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
               <Mail size={24} />
-            </a>
-            <a href="https://github.com/jaycobchin" target="_blank" rel="noreferrer" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
-              <Github size={24} />
             </a>
             <a href="https://www.linkedin.com/in/jaycob-chin/" target="_blank" rel="noreferrer" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
               <Linkedin size={24} />
