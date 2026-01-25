@@ -7,6 +7,7 @@ import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 import AxialLengthEstimation from './components/AxialLengthEstimation.js';
 import VisionSimulator from './components/VisionSimulator.js';
+import ContactLensVertexCalculator from './components/ContactLensVertexCalculator.js';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -148,6 +149,14 @@ export default function HomePage() {
       color: 'from-blue-500 to-indigo-600', 
       id: 'axial-length-estimation',
       description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
+    },
+    { 
+      title: 'CL Rx Vertex Calculator', 
+      category: 'Optometrists', 
+      audience: ['optometrists'],
+      color: 'from-indigo-500 to-purple-600', 
+      id: 'cl-rx-vertex-calculator',
+      description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment; includes K conversions and common K values.'
     },
     { 
       title: 'Vision Simulator', 
@@ -496,6 +505,11 @@ export default function HomePage() {
       {/* Vision Simulator Modal */}
       {selectedProject === 'vision-simulator' && (
         <VisionSimulator isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
+
+      {/* CL Rx Vertex Calculator Modal */}
+      {selectedProject === 'cl-rx-vertex-calculator' && (
+        <ContactLensVertexCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
 
       {/* Work Experience Modals */}
