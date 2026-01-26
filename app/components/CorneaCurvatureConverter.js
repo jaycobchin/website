@@ -4,6 +4,12 @@ import { useState, useMemo } from 'react';
 import { X, RotateCcw } from 'lucide-react';
 
 export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
+  // Define limits
+  const MIN_RADIUS = 4.00;
+  const MAX_RADIUS = 12.00;
+  const MIN_DIOPTER = 337.5 / MAX_RADIUS; // 28.125 D
+  const MAX_DIOPTER = 337.5 / MIN_RADIUS; // 84.375 D
+
   // Radius to Diopters
   const [radiusInput, setRadiusInput] = useState(7.80);
   
@@ -15,12 +21,14 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
   const radiusToDiopters = (radius) => {
     const r = parseFloat(radius);
     if (!r || r <= 0) return null;
+    if (r < MIN_RADIUS || r > MAX_RADIUS) return 'out-of-range';
     return 337.5 / r;
   };
 
   const dioptersToRadius = (diopters) => {
     const d = parseFloat(diopters);
     if (!d || d <= 0) return null;
+    if (d < MIN_DIOPTER || d > MAX_DIOPTER) return 'out-of-range';
     return 337.5 / d;
   };
 
@@ -62,16 +70,25 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                   <input 
                     type="number" 
                     step="0.01" 
+                    min={MIN_RADIUS}
+                    max={MAX_RADIUS}
                     value={radiusInput} 
                     onChange={(e) => setRadiusInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
+                  <p className="text-xs text-gray-500 mt-1">Range: {MIN_RADIUS} - {MAX_RADIUS} mm</p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-300">
                   <p className="text-sm text-gray-600 mb-1">Power</p>
                   <p className="text-2xl font-bold text-blue-600">
-                    {radiusResult ? `${formatToTwoDecimals(radiusResult)} D` : '—'}
+                    {radiusResult === 'out-of-range' ? (
+                      <span className="text-red-600 text-base">Out of range</span>
+                    ) : radiusResult ? (
+                      `${formatToTwoDecimals(radiusResult)} D`
+                    ) : (
+                      '—'
+                    )}
                   </p>
                 </div>
               </div>
@@ -85,16 +102,25 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                   <input 
                     type="number" 
                     step="0.01" 
+                    min={MIN_DIOPTER}
+                    max={MAX_DIOPTER}
                     value={diopterInput} 
                     onChange={(e) => setDiopterInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
+                  <p className="text-xs text-gray-500 mt-1">Range: {formatToTwoDecimals(MIN_DIOPTER)} - {formatToTwoDecimals(MAX_DIOPTER)} D</p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-300">
                   <p className="text-sm text-gray-600 mb-1">Radius</p>
                   <p className="text-2xl font-bold text-blue-600">
-                    {diopterResult ? `${formatToTwoDecimals(diopterResult)} mm` : '—'}
+                    {diopterResult === 'out-of-range' ? (
+                      <span className="text-red-600 text-base">Out of range</span>
+                    ) : diopterResult ? (
+                      `${formatToTwoDecimals(diopterResult)} mm`
+                    ) : (
+                      '—'
+                    )}
                   </p>
                 </div>
               </div>
