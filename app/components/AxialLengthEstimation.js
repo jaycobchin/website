@@ -126,6 +126,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     max="10.00"
                     value={rightEye.flatK}
                     onChange={(e) => handleRightEyeChange('flatK', e.target.value)}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) handleRightEyeChange('flatK', val.toFixed(2));
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -139,6 +143,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     max="10.00"
                     value={rightEye.steepK}
                     onChange={(e) => handleRightEyeChange('steepK', e.target.value)}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) handleRightEyeChange('steepK', val.toFixed(2));
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -188,6 +196,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     max="10.00"
                     value={leftEye.flatK}
                     onChange={(e) => handleLeftEyeChange('flatK', e.target.value)}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) handleLeftEyeChange('flatK', val.toFixed(2));
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -201,6 +213,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     max="10.00"
                     value={leftEye.steepK}
                     onChange={(e) => handleLeftEyeChange('steepK', e.target.value)}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) handleLeftEyeChange('steepK', val.toFixed(2));
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>

@@ -68,7 +68,11 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                     min={MIN_RADIUS}
                     max={MAX_RADIUS}
                     value={radiusInput} 
-                    onChange={(e) => setRadiusInput(e.target.value)} 
+                    onChange={(e) => setRadiusInput(e.target.value)}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) setRadiusInput(val.toFixed(2));
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
                 </div>
@@ -99,7 +103,11 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                     min={MIN_DIOPTER}
                     max={MAX_DIOPTER}
                     value={diopterInput} 
-                    onChange={(e) => setDiopterInput(e.target.value)} 
+                    onChange={(e) => setDiopterInput(e.target.value)}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      if (!isNaN(val)) setDiopterInput(val.toFixed(2));
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
                 </div>
