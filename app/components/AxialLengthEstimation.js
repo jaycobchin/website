@@ -113,7 +113,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {/* Right Eye */}
             <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-slate-800 mb-4">Right Eye (OD)</h2>
+              <h2 className="text-lg font-bold text-slate-800 mb-4">OD</h2>
               
               <div className="space-y-4">
                 <div>
@@ -183,7 +183,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
 
             {/* Left Eye */}
             <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-slate-800 mb-4">Left Eye (OS)</h2>
+              <h2 className="text-lg font-bold text-slate-800 mb-4">OS</h2>
               
               <div className="space-y-4">
                 <div>
