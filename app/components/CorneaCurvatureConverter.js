@@ -76,7 +76,6 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                     onChange={(e) => setRadiusInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
-                  <p className="text-xs text-gray-500 mt-1">Range: {MIN_RADIUS} - {MAX_RADIUS} mm</p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-300">
@@ -108,7 +107,6 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                     onChange={(e) => setDiopterInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
-                  <p className="text-xs text-gray-500 mt-1">Range: {formatToTwoDecimals(MIN_DIOPTER)} - {formatToTwoDecimals(MAX_DIOPTER)} D</p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-300">
@@ -170,29 +168,6 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                   This matters when comparing keratometry readings, topography outputs, and contact lens base curves. One device may report a meridian as 45.00 D, while another reports the same curvature as 7.50 mm. Converting between units keeps interpretation consistent across instruments and ordering systems.
                 </p>
               </div>
-            </div>
-          </div>
-
-          {/* Common K Values Reference Table */}
-          <div className="mb-6">
-            <h2 className="text-xl font-bold text-slate-800 mb-4">Common K Values Reference Table</h2>
-            <div className="overflow-x-auto bg-white rounded-lg border border-gray-200">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-slate-800">Diopters (D)</th>
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-slate-800">Radius (mm)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableRows.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                      <td className="border border-gray-300 p-3 text-slate-700">{row.D}</td>
-                      <td className="border border-gray-300 p-3 text-slate-700">{row.mm}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
