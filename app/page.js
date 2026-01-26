@@ -2,6 +2,7 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { ArrowRight, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
@@ -10,6 +11,8 @@ import VisionSimulator from './components/VisionSimulator.js';
 import ContactLensVertexCalculator from './components/ContactLensVertexCalculator.js';
 
 export default function HomePage() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -23,6 +26,20 @@ export default function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentGallery, setCurrentGallery] = useState('professional');
   const thumbnailRefs = useState([])[0];
+
+  // Map tool IDs to URL paths
+  const toolPaths = {
+    'risk-factors-analysis': '/tools/risk-factors-analysis',
+    'progression-calculator': '/tools/progression-calculator',
+    'axial-length-estimation': '/tools/axial-length-estimation',
+    'vision-simulator': '/tools/vision-simulator',
+    'cl-rx-vertex-calculator': '/tools/cl-rx-vertex-calculator'
+  };
+
+  // Reverse mapping for URL to tool ID
+  const pathToTool = Object.fromEntries(
+    Object.entries(toolPaths).map(([key, value]) => [value, key])
+  );
 
   const galleryImages = [
     { url: '/Professional Appointment/SOA Treasurer Dec 2023 - Dec 2025/47th SOA Council 2024 & 2025.jpeg', caption: '47th SOA Council 2024 & 2025' },
@@ -97,6 +114,39 @@ export default function HomePage() {
       setSelectedImageCaption(galleryImages[currentImageIndex].caption);
     }
   }, [currentImageIndex, selectedImage, galleryImages]);
+
+  // Sync URL with selected tool on mount
+  useEffect(() => {
+    if (pathname && pathToTool[pathname]) {
+      setSelectedProject(pathToTool[pathname]);
+    }
+  }, []);
+
+  // Update URL when tool is selected
+  useEffect(() => {
+    if (selectedProject && toolPaths[selectedProject]) {
+      router.push(toolPaths[selectedProject]);
+    } else if (!selectedProject && pathname !== '/') {
+      // Only push to home if we're clearing a tool and not already on home
+      if (pathname.startsWith('/tools/')) {
+        router.push('/');
+      }
+    }
+  }, [selectedProject]);
+
+  // Handle browser back/forward button
+  useEffect(() => {
+    const handlePopState = () => {
+      if (pathname === '/') {
+        setSelectedProject(null);
+      } else if (pathToTool[pathname]) {
+        setSelectedProject(pathToTool[pathname]);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [pathname]);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -535,24 +585,24 @@ export default function HomePage() {
 
       {/* Risk Factors Analysis Modal */}
       {selectedProject === 'risk-factors-analysis' && (
-        <RiskFactorsAnalysis isDark={isDark} onClose={() => setSelectedProject(null)} />
+        <RiskFactorsAnalysis isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
       )}
       {/* Progression Calculator Modal */}
       {selectedProject === 'progression-calculator' && (
-        <MyopiaProgressionCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
+        <MyopiaProgressionCalculator isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
       )}
       {/* Axial Length Estimation Modal */}
       {selectedProject === 'axial-length-estimation' && (
-        <AxialLengthEstimation isDark={isDark} onClose={() => setSelectedProject(null)} />
+        <AxialLengthEstimation isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
       )}
       {/* Vision Simulator Modal */}
       {selectedProject === 'vision-simulator' && (
-        <VisionSimulator isDark={isDark} onClose={() => setSelectedProject(null)} />
+        <VisionSimulator isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
       )}
 
       {/* CL Rx Vertex Calculator Modal */}
       {selectedProject === 'cl-rx-vertex-calculator' && (
-        <ContactLensVertexCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
+        <ContactLensVertexCalculator isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
       )}
 
       {/* Work Experience Modals */}
