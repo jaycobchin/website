@@ -7,25 +7,24 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
   // OD values
   const [odSphere, setOdSphere] = useState(-0.25);
   const [odCyl, setOdCyl] = useState(-1.00);
-  const [odAxis, setOdAxis] = useState(90);
+  const [odAxis, setOdAxis] = useState(180);
 
   // OS values
   const [osSphere, setOsSphere] = useState(0.00);
   const [osCyl, setOsCyl] = useState(0.00);
-  const [osAxis, setOsAxis] = useState(90);
+  const [osAxis, setOsAxis] = useState(180);
 
   const [vertex, setVertex] = useState(12); // mm
-  const [calculated, setCalculated] = useState(false);
 
   const [kInput, setKInput] = useState(7.80);
   const [kType, setKType] = useState('mm');
 
   const availableCyls = useMemo(() => [-0.75, -1.25, -1.75, -2.25, -2.75], []);
 
-  // Generate sphere options from -20.00 to +20.00 in 0.25 steps
+  // Generate sphere options from +20.00 to -20.00 in 0.25 steps (positive first)
   const sphereOptions = useMemo(() => {
     const options = [];
-    for (let i = -2000; i <= 2000; i += 25) {
+    for (let i = 2000; i >= -2000; i -= 25) {
       options.push((i / 100).toFixed(2));
     }
     return options;
@@ -130,19 +129,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
     };
   };
 
-  const handleCalculate = () => {
-    setCalculated(true);
-  };
 
-  const handleReset = () => {
-    setOdSphere(-0.25);
-    setOdCyl(-1.00);
-    setOdAxis(90);
-    setOsSphere(0.00);
-    setOsCyl(0.00);
-    setOsAxis(90);
-    setCalculated(false);
-  };
 
   const convertKValue = () => {
     const constant = 337.5;
@@ -160,8 +147,8 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
     return commonDs.map(d => ({ D: d.toFixed(2), mm: (337.5 / d).toFixed(2) }));
   }, []);
 
-  const odResult = calculated ? computeCL(odSphere, odCyl, odAxis) : null;
-  const osResult = calculated ? computeCL(osSphere, osCyl, osAxis) : null;
+  const odResult = computeCL(odSphere, odCyl, odAxis);
+  const osResult = computeCL(osSphere, osCyl, osAxis);
   const kResult = convertKValue();
 
   const formatRx = (result) => {
@@ -185,7 +172,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
         <div className="p-8 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
           {/* Starting Spectacle Prescription */}
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Starting Spectacle Prescription</h2>
+            <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Initial Spectacles Prescription</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               {/* OD Column */}
@@ -281,27 +268,11 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
               </div>
             </div>
 
-            {/* Buttons */}
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={handleCalculate}
-                className="flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors shadow-md"
-              >
-                <Calculator size={18} />
-                Calculate
-              </button>
-              <button
-                onClick={handleReset}
-                className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors border border-gray-300"
-              >
-                <RotateCcw size={18} />
-                Reset
-              </button>
-            </div>
+
           </div>
 
           {/* Results */}
-          {calculated && (
+          {
             <div className="mb-8">
               <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Results</h2>
               
@@ -337,7 +308,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                 </div>
               </div>
             </div>
-          )}
+          }
 
           {/* Cornea Curvature Conversion */}
           <h2 className="text-xl font-semibold text-slate-800 mt-8 mb-3">Cornea Curvature Conversion</h2>
