@@ -144,9 +144,6 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
     setCalculated(false);
   };
 
-  const odResult = calculated ? computeCL(odSphere, odCyl, odAxis) : null;
-  const osResult = calculated ? computeCL(osSphere, osCyl, osAxis) : null;
-
   const convertKValue = () => {
     const constant = 337.5;
     const input = parseFloat(kInput);
