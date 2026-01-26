@@ -2,11 +2,12 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, Github, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
 import AxialLengthEstimation from './components/AxialLengthEstimation.js';
 import VisionSimulator from './components/VisionSimulator.js';
+import ContactLensVertexCalculator from './components/ContactLensVertexCalculator.js';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -148,6 +149,14 @@ export default function HomePage() {
       color: 'from-blue-500 to-indigo-600', 
       id: 'axial-length-estimation',
       description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
+    },
+    { 
+      title: 'CL Rx Vertex Calculator', 
+      category: 'Optometrists', 
+      audience: ['optometrists'],
+      color: 'from-indigo-500 to-purple-600', 
+      id: 'cl-rx-vertex-calculator',
+      description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment; includes K conversions and common K values.'
     },
     { 
       title: 'Vision Simulator', 
@@ -541,6 +550,11 @@ export default function HomePage() {
         <VisionSimulator isDark={isDark} onClose={() => setSelectedProject(null)} />
       )}
 
+      {/* CL Rx Vertex Calculator Modal */}
+      {selectedProject === 'cl-rx-vertex-calculator' && (
+        <ContactLensVertexCalculator isDark={isDark} onClose={() => setSelectedProject(null)} />
+      )}
+
       {/* Work Experience Modals */}
       {selectedWork === 'clinical' && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
@@ -928,9 +942,6 @@ export default function HomePage() {
           <div className="flex justify-center gap-6 mb-12">
             <a href="mailto:chinyanjie@gmail.com" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
               <Mail size={24} />
-            </a>
-            <a href="https://github.com/jaycobchin" target="_blank" rel="noreferrer" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
-              <Github size={24} />
             </a>
             <a href="https://www.linkedin.com/in/jaycob-chin/" target="_blank" rel="noreferrer" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
               <Linkedin size={24} />
