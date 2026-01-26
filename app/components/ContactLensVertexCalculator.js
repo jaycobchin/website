@@ -1,18 +1,53 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { X } from 'lucide-react';
+import { X, RotateCcw, Calculator } from 'lucide-react';
 
 export default function ContactLensVertexCalculator({ isDark = true, onClose }) {
-  const [sphere, setSphere] = useState(0.0);
-  const [cyl, setCyl] = useState(0.0);
-  const [axis, setAxis] = useState(0);
+  // OD values
+  const [odSphere, setOdSphere] = useState(-0.25);
+  const [odCyl, setOdCyl] = useState(-1.00);
+  const [odAxis, setOdAxis] = useState(90);
+
+  // OS values
+  const [osSphere, setOsSphere] = useState(0.00);
+  const [osCyl, setOsCyl] = useState(0.00);
+  const [osAxis, setOsAxis] = useState(90);
+
   const [vertex, setVertex] = useState(12); // mm
+  const [calculated, setCalculated] = useState(false);
 
   const [kInput, setKInput] = useState(7.80);
   const [kType, setKType] = useState('mm');
 
   const availableCyls = useMemo(() => [-0.75, -1.25, -1.75, -2.25, -2.75], []);
+
+  // Generate sphere options from -20.00 to +20.00 in 0.25 steps
+  const sphereOptions = useMemo(() => {
+    const options = [];
+    for (let i = -2000; i <= 2000; i += 25) {
+      options.push((i / 100).toFixed(2));
+    }
+    return options;
+  }, []);
+
+  // Generate cylinder options from 0.00 to -10.00 in 0.25 steps
+  const cylinderOptions = useMemo(() => {
+    const options = ['0.00'];
+    for (let i = -25; i >= -1000; i -= 25) {
+      options.push((i / 100).toFixed(2));
+    }
+    return options;
+  }, []);
+
+  // Generate axis options from 1 to 180
+  const axisOptions = useMemo(() => {
+    const options = [];
+    for (let i = 1; i <= 180; i++) {
+      options.push(i.toString().padStart(3, '0'));
+    }
+    return options;
+  }, []);
 
   const vertexCorrect = (power, vertexDistMeters) => {
     return power / (1 - vertexDistMeters * power);
@@ -59,7 +94,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
     return closests;
   };
 
-  const computeCL = () => {
+  const computeCL = (sphere, cyl, axis) => {
     let s = parseFloat(sphere);
     let c = parseFloat(cyl) || 0;
     let a = parseInt(axis) || 0;
@@ -82,30 +117,35 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
       se = adjSphere;
     }
 
+    const clSphere = roundToQuarter(adjSphere);
+    const clCyl = roundToQuarter(adjCyl);
     const clSe = roundToQuarter(se);
     const roundedAxis = roundAxisTo10(a);
 
-    if (Math.abs(adjCyl) <= 0.5) {
-      return {
-        type: 'spherical',
-        message: `Recommended: Spherical Contact Lens Rx: ${formatToTwoDecimals(clSe)} D (using spherical equivalent for low astigmatism)`,
-        se: clSe,
-        axis: roundedAxis,
-      };
-    } else {
-      const options = [];
-      const closestCyls = getClosestAvailableCyls(adjCyl);
-      closestCyls.forEach((selectedCyl, index) => {
-        const delta = adjCyl - selectedCyl;
-        const compensate = delta / 2;
-        const compSphere = adjSphere + compensate;
-        const clSphere = roundToQuarter(compSphere);
-        const label = closestCyls.length > 1 ? (index === 0 ? 'Option 1 (undercorrect)' : 'Option 2 (overcorrect)') : 'Recommended';
-        options.push({ label, sphere: clSphere, cyl: selectedCyl, axis: roundedAxis });
-      });
-      return { type: 'toric', options, se: clSe };
-    }
+    return {
+      sphere: clSphere,
+      cyl: clCyl,
+      axis: roundedAxis,
+      se: clSe
+    };
   };
+
+  const handleCalculate = () => {
+    setCalculated(true);
+  };
+
+  const handleReset = () => {
+    setOdSphere(-0.25);
+    setOdCyl(-1.00);
+    setOdAxis(90);
+    setOsSphere(0.00);
+    setOsCyl(0.00);
+    setOsAxis(90);
+    setCalculated(false);
+  };
+
+  const odResult = calculated ? computeCL(odSphere, odCyl, odAxis) : null;
+  const osResult = calculated ? computeCL(osSphere, osCyl, osAxis) : null;
 
   const convertKValue = () => {
     const constant = 337.5;
@@ -123,61 +163,184 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
     return commonDs.map(d => ({ D: d.toFixed(2), mm: (337.5 / d).toFixed(2) }));
   }, []);
 
-  const clResult = computeCL();
+  const odResult = calculated ? computeCL(odSphere, odCyl, odAxis) : null;
+  const osResult = calculated ? computeCL(osSphere, osCyl, osAxis) : null;
   const kResult = convertKValue();
+
+  const formatRx = (result) => {
+    if (!result) return '';
+    if (result.cyl === 0) {
+      return `${formatToTwoDecimals(result.sphere)} DS`;
+    }
+    return `${formatToTwoDecimals(result.sphere)} ${formatToTwoDecimals(result.cyl)} ×${result.axis.toString().padStart(3, '0')}`;
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-2xl max-w-3xl w-full my-8" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
         <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
-          <h1 className="text-2xl font-bold text-slate-800">CL Rx Vertex Calculator</h1>
+          <h1 className="text-2xl font-bold text-slate-800">Spectacle to Contact Lens Prescription</h1>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X size={24} className="text-gray-600" />
           </button>
         </div>
 
-        <div className="p-5 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
-          {/* Spectacle to CL Conversion */}
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Spectacle to Contact Lens Conversion</h2>
-          <div className="grid md:grid-cols-2 gap-6 mb-4 p-5 bg-gray-50 rounded-lg">
-            <div>
-              <label className="block font-bold mb-2 text-slate-700">Spectacle Sphere (D):</label>
-              <input type="number" step="0.25" value={sphere} onChange={(e) => setSphere(parseFloat(e.target.value))} className="w-full p-2 border border-gray-300 rounded-md bg-white" />
+        <div className="p-8 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
+          {/* Starting Spectacle Prescription */}
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Starting Spectacle Prescription</h2>
+            
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              {/* OD Column */}
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-base font-bold text-slate-800 mb-4">OD</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                    <select 
+                      value={odSphere.toFixed(2)} 
+                      onChange={(e) => setOdSphere(parseFloat(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      {sphereOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                    <select 
+                      value={odCyl.toFixed(2)} 
+                      onChange={(e) => setOdCyl(parseFloat(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      {cylinderOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Axis</label>
+                    <select 
+                      value={odAxis.toString().padStart(3, '0')} 
+                      onChange={(e) => setOdAxis(parseInt(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      {axisOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* OS Column */}
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-base font-bold text-slate-800 mb-4">OS</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                    <select 
+                      value={osSphere.toFixed(2)} 
+                      onChange={(e) => setOsSphere(parseFloat(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      {sphereOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                    <select 
+                      value={osCyl.toFixed(2)} 
+                      onChange={(e) => setOsCyl(parseFloat(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      {cylinderOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Axis</label>
+                    <select 
+                      value={osAxis.toString().padStart(3, '0')} 
+                      onChange={(e) => setOsAxis(parseInt(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      {axisOptions.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <label className="block font-bold mb-2 text-slate-700">Spectacle Cylinder (D, optional):</label>
-              <input type="number" step="0.25" value={cyl} onChange={(e) => setCyl(parseFloat(e.target.value))} className="w-full p-2 border border-gray-300 rounded-md bg-white" />
-            </div>
-            <div>
-              <label className="block font-bold mb-2 text-slate-700">Axis (degrees, if cylinder):</label>
-              <input type="number" min="0" max="180" value={axis} onChange={(e) => setAxis(parseInt(e.target.value) || 0)} className="w-full p-2 border border-gray-300 rounded-md bg-white" />
-            </div>
-            <div>
-              <label className="block font-bold mb-2 text-slate-700">Vertex Distance (mm, default 12):</label>
-              <input type="number" value={vertex} min="0" onChange={(e) => setVertex(parseFloat(e.target.value) || 12)} className="w-full p-2 border border-gray-300 rounded-md bg-white" />
+
+            {/* Buttons */}
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={handleCalculate}
+                className="flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors shadow-md"
+              >
+                <Calculator size={18} />
+                Calculate
+              </button>
+              <button
+                onClick={handleReset}
+                className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors border border-gray-300"
+              >
+                <RotateCcw size={18} />
+                Reset
+              </button>
             </div>
           </div>
 
-          <div id="clResults" className="p-4 bg-white rounded-lg border border-gray-200">
-            <h3 className="text-lg font-semibold text-slate-800 mb-2">Results</h3>
-            {clResult?.type === 'spherical' && (
-              <p>Recommended: Spherical Contact Lens Rx: {formatToTwoDecimals(clResult.se)} D (using spherical equivalent for low astigmatism)</p>
-            )}
-            {clResult?.type === 'toric' && (
-              <div>
-                <p className="mb-2">Recommended Toric Contact Lens Options:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                  {clResult.options.map((opt, idx) => (
-                    <li key={idx}>{opt.label}: {formatToTwoDecimals(opt.sphere)} {formatToTwoDecimals(opt.cyl)} x {opt.axis}</li>
-                  ))}
-                </ul>
+          {/* Results */}
+          {calculated && (
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Results</h2>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* OD Results */}
+                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                  <h3 className="text-base font-bold text-slate-800 mb-4">OD</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Contact Lens Rx</p>
+                      <p className="text-lg font-semibold text-slate-800">{formatRx(odResult)}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Spherical Equivalent</p>
+                      <p className="text-lg font-semibold text-slate-800">{formatToTwoDecimals(odResult.se)} DS</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* OS Results */}
+                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                  <h3 className="text-base font-bold text-slate-800 mb-4">OS</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Contact Lens Rx</p>
+                      <p className="text-lg font-semibold text-slate-800">{formatRx(osResult)}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Spherical Equivalent</p>
+                      <p className="text-lg font-semibold text-slate-800">{formatToTwoDecimals(osResult.se)} DS</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            )}
-            {clResult && (
-              <p className="mt-2">Spherical Equivalent: {formatToTwoDecimals(clResult.se)} D</p>
-            )}
-            <p className="text-sm italic text-gray-600 mt-2">Always verify with professional fitting, over-refraction, and check product availability.</p>
-          </div>
+            </div>
+          )}
 
           {/* Cornea Curvature Conversion */}
           <h2 className="text-xl font-semibold text-slate-800 mt-8 mb-3">Cornea Curvature Conversion</h2>
