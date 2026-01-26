@@ -67,7 +67,7 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                     step="0.01" 
                     min={MIN_RADIUS}
                     max={MAX_RADIUS}
-                    value={radiusInput} 
+                    value={Number(radiusInput).toFixed(2)} 
                     onChange={(e) => setRadiusInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />

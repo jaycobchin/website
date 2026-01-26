@@ -152,7 +152,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
         <div className="p-8 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
           {/* Starting Spectacle Prescription */}
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Initial Spectacles Prescription</h2>
+            <h2 className="text-xl font-bold text-slate-800 mb-6">Initial Spectacles Prescription</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               {/* OD Column */}
@@ -254,7 +254,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
           {/* Results */}
           {
             <div className="mb-8">
-              <h2 className="text-lg font-semibold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">Results</h2>
+              <h2 className="text-xl font-bold text-slate-800 mb-6">Results</h2>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {/* OD Results */}
