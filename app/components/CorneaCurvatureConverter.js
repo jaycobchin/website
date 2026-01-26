@@ -139,7 +139,7 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                 </p>
                 <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm mb-2">
                   <p className="mb-1"><strong>Power (D) = 337.5 ÷ radius (mm)</strong></p>
-                  <p className="text-gray-600">For instance, a corneal radius of 7.50 mm converts to approximately 45.00 D of refractive power.</p>
+                  <p className="text-gray-600">For instance, a corneal radius of 7.80 mm converts to approximately 43.27 D of refractive power.</p>
                 </div>
                 <p className="text-sm leading-relaxed mb-2">To convert in the reverse direction:</p>
                 <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm">
