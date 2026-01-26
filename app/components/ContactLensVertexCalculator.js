@@ -128,25 +128,8 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
 
 
 
-  const convertKValue = () => {
-    const constant = 337.5;
-    const input = parseFloat(kInput);
-    if (!input || input <= 0) return null;
-    if (kType === 'mm') {
-      return { value: constant / input, unit: 'D' };
-    } else {
-      return { value: constant / input, unit: 'mm' };
-    }
-  };
-
-  const tableRows = useMemo(() => {
-    const commonDs = [36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53];
-    return commonDs.map(d => ({ D: d.toFixed(2), mm: (337.5 / d).toFixed(2) }));
-  }, []);
-
   const odResult = computeCL(odSphere, odCyl, odAxis);
   const osResult = computeCL(osSphere, osCyl, osAxis);
-  const kResult = convertKValue();
 
   const formatRx = (result) => {
     if (!result) return '';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { X, RotateCcw } from 'lucide-react';
+import { X } from 'lucide-react';
 
 export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
   // Define limits
@@ -30,11 +30,6 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
     if (!d || d <= 0) return null;
     if (d < MIN_DIOPTER || d > MAX_DIOPTER) return 'out-of-range';
     return 337.5 / d;
-  };
-
-  const handleReset = () => {
-    setRadiusInput(7.80);
-    setDiopterInput(43.27);
   };
 
   const radiusResult = radiusToDiopters(radiusInput);
@@ -122,17 +117,6 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Reset Button */}
-            <div className="flex justify-center mt-6">
-              <button
-                onClick={handleReset}
-                className="flex items-center gap-2 px-6 py-2 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors border border-gray-300"
-              >
-                <RotateCcw size={16} />
-                Reset
-              </button>
             </div>
           </div>
 
