@@ -120,8 +120,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Flat K (mm)</label>
                   <input
-                    type="text"
-                    inputMode="decimal"
+                    type="number"
+                    step="0.01"
+                    min="6.00"
+                    max="10.00"
                     value={Number(rightEye.flatK).toFixed(2)}
                     onChange={(e) => handleRightEyeChange('flatK', e.target.value)}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -131,8 +133,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Steep K (mm)</label>
                   <input
-                    type="text"
-                    inputMode="decimal"
+                    type="number"
+                    step="0.01"
+                    min="6.00"
+                    max="10.00"
                     value={Number(rightEye.steepK).toFixed(2)}
                     onChange={(e) => handleRightEyeChange('steepK', e.target.value)}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -178,8 +182,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Flat K (mm)</label>
                   <input
-                    type="text"
-                    inputMode="decimal"
+                    type="number"
+                    step="0.01"
+                    min="6.00"
+                    max="10.00"
                     value={Number(leftEye.flatK).toFixed(2)}
                     onChange={(e) => handleLeftEyeChange('flatK', e.target.value)}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -189,8 +195,10 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Steep K (mm)</label>
                   <input
-                    type="text"
-                    inputMode="decimal"
+                    type="number"
+                    step="0.01"
+                    min="6.00"
+                    max="10.00"
                     value={Number(leftEye.steepK).toFixed(2)}
                     onChange={(e) => handleLeftEyeChange('steepK', e.target.value)}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"

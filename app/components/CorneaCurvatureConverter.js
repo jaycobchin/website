@@ -63,8 +63,10 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-slate-700 mb-2">Radius (mm)</label>
                   <input 
-                    type="text" 
-                    inputMode="decimal"
+                    type="number" 
+                    step="0.01" 
+                    min={MIN_RADIUS}
+                    max={MAX_RADIUS}
                     value={Number(radiusInput).toFixed(2)} 
                     onChange={(e) => setRadiusInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
@@ -92,9 +94,11 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-slate-700 mb-2">Diopters (D)</label>
                   <input 
-                    type="text" 
-                    inputMode="decimal"
-                    value={diopterInput} 
+                    type="number" 
+                    step="0.01" 
+                    min={MIN_DIOPTER}
+                    max={MAX_DIOPTER}
+                    value={Number(diopterInput).toFixed(2)} 
                     onChange={(e) => setDiopterInput(e.target.value)} 
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                   />
