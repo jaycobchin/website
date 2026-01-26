@@ -926,7 +926,7 @@ export default function HomePage() {
       )}
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+      <section id="contact" className="min-h-screen flex items-start px-6 pt-28 pb-16 relative z-10">
         <div className="max-w-7xl mx-auto w-full text-center">
           <h2 className="text-5xl md:text-7xl font-bold mb-8">
             Let&apos;s Make Eye Care
