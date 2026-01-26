@@ -5,8 +5,8 @@ import { X, RotateCcw, Calculator } from 'lucide-react';
 
 export default function ContactLensVertexCalculator({ isDark = true, onClose }) {
   // OD values
-  const [odSphere, setOdSphere] = useState(-0.25);
-  const [odCyl, setOdCyl] = useState(-1.00);
+  const [odSphere, setOdSphere] = useState(0.00);
+  const [odCyl, setOdCyl] = useState(0.00);
   const [odAxis, setOdAxis] = useState(180);
 
   // OS values
@@ -15,9 +15,6 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
   const [osAxis, setOsAxis] = useState(180);
 
   const [vertex, setVertex] = useState(12); // mm
-
-  const [kInput, setKInput] = useState(7.80);
-  const [kType, setKType] = useState('mm');
 
   const availableCyls = useMemo(() => [-0.75, -1.25, -1.75, -2.25, -2.75], []);
 
@@ -309,53 +306,6 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
               </div>
             </div>
           }
-
-          {/* Cornea Curvature Conversion */}
-          <h2 className="text-xl font-semibold text-slate-800 mt-8 mb-3">Cornea Curvature Conversion</h2>
-          <div className="grid md:grid-cols-3 gap-6 mb-4 p-5 bg-gray-50 rounded-lg">
-            <div className="md:col-span-1">
-              <label className="block font-bold mb-2 text-slate-700">Input Value:</label>
-              <input type="number" step="0.01" value={kInput} onChange={(e) => setKInput(parseFloat(e.target.value))} className="w-full p-2 border border-gray-300 rounded-md bg-white" />
-            </div>
-            <div className="md:col-span-1">
-              <label className="block font-bold mb-2 text-slate-700">Convert From:</label>
-              <select value={kType} onChange={(e) => setKType(e.target.value)} className="w-full p-2 border border-gray-300 rounded-md bg-white">
-                <option value="mm">mm to Diopters</option>
-                <option value="d">Diopters to mm</option>
-              </select>
-            </div>
-            <div className="md:col-span-1 flex items-end">
-              <div className="w-full p-3 bg-white rounded-lg border border-gray-200">
-                <h3 className="text-sm font-semibold text-slate-800">Result</h3>
-                {kResult ? (
-                  <p className="mt-1">{formatToTwoDecimals(kResult.value)} {kResult.unit}</p>
-                ) : (
-                  <p className="mt-1 text-gray-500">Enter a valid value.</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Common K Values Table */}
-          <h2 className="text-xl font-semibold text-slate-800 mt-8 mb-3">Common K Values Table</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr>
-                  <th className="border border-gray-300 p-2 text-left bg-gray-100">Diopters (D)</th>
-                  <th className="border border-gray-300 p-2 text-left bg-gray-100">Radius (mm)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tableRows.map((row, idx) => (
-                  <tr key={idx}>
-                    <td className="border border-gray-300 p-2">{row.D}</td>
-                    <td className="border border-gray-300 p-2">{row.mm}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
     </div>
