@@ -122,34 +122,35 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
 
           {/* Educational Content */}
           <div className="mb-10 bg-blue-50 p-6 rounded-lg border border-blue-200">
-            <h2 className="text-xl font-bold text-slate-800 mb-4">Radius and Diopter Conversion for Corneal Curvature</h2>
+            <h2 className="text-xl font-bold text-slate-800 mb-4">Understanding Corneal Curvature: Radius and Diopter Measurements</h2>
             
             <div className="space-y-6 text-slate-700">
               <div>
-                <h3 className="font-semibold text-slate-800 mb-2">Why millimeters and diopters describe the same curvature</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">Two Ways to Express the Same Curvature</h3>
                 <p className="text-sm leading-relaxed">
-                  Corneal curvature is commonly expressed as a <strong>radius in millimeters</strong> or as an equivalent <strong>power in diopters</strong>. These are two ways to describe the same surface. The relationship is inverse: a shorter radius means a steeper cornea and a higher dioptric value. A longer radius means a flatter cornea and a lower dioptric value.
+                  Corneal curvature can be measured in two different units: radius of curvature (mm) and refractive power (diopters). Both describe the same physical surface but from different perspectives. The relationship between them is inversely proportional—a steeper cornea has a shorter radius and greater dioptric power, while a flatter cornea has a longer radius and lower dioptric power.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-slate-800 mb-2">The keratometric index and the 337.5 constant</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">The Conversion Formula</h3>
                 <p className="text-sm leading-relaxed mb-2">
-                  Most clinical keratometers use a standardized refractive index of <strong>1.3375</strong> (the keratometric index) to approximate corneal power from the anterior surface radius. With this convention, the conversion is:
+                  To convert between these measurements, optometrists and ophthalmologists use a standard formula based on the keratometric refractive index of 1.3375. This simplified index allows for practical clinical calculations:
                 </p>
-                <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm">
-                  <p className="mb-1"><strong>D = 337.5 ÷ r</strong> (with r in millimeters)</p>
-                  <p className="text-gray-600">Example: 7.50 mm corresponds to 45.00 D</p>
+                <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm mb-2">
+                  <p className="mb-1"><strong>Power (D) = 337.5 ÷ radius (mm)</strong></p>
+                  <p className="text-gray-600">For instance, a corneal radius of 7.50 mm converts to approximately 45.00 D of refractive power.</p>
                 </div>
-                <p className="text-sm leading-relaxed mt-2">
-                  Converting the other direction uses the rearranged form: <strong>r = 337.5 ÷ D</strong>
-                </p>
+                <p className="text-sm leading-relaxed mb-2">To convert in the reverse direction:</p>
+                <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm">
+                  <p><strong>Radius (mm) = 337.5 ÷ power (D)</strong></p>
+                </div>
               </div>
 
               <div>
-                <h3 className="font-semibold text-slate-800 mb-2">Clinical Applications</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">Why This Matters Clinically</h3>
                 <p className="text-sm leading-relaxed">
-                  This matters when comparing keratometry readings, topography outputs, and contact lens base curves. One device may report a meridian as 45.00 D, while another reports the same curvature as 7.50 mm. Converting between units keeps interpretation consistent across instruments and ordering systems.
+                  Understanding this conversion is essential when interpreting measurements from different instruments. Keratometers typically report curvature in millimeters, corneal topographers may use diopters, and contact lens specifications often reference base curves in millimeters. Being able to convert between these units ensures accurate communication between devices, proper contact lens fitting, and consistent clinical decision-making.
                 </p>
               </div>
             </div>
