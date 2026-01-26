@@ -198,6 +198,7 @@ export default function HomePage() {
           <div className="hidden md:flex items-center gap-8 relative z-10">
             <a href="#philosophy" className="hover:text-blue-400 transition-colors">Philosophy</a>
             <a href="#work-experience" className="hover:text-blue-400 transition-colors">Work</a>
+            <a href="#write" className="hover:text-blue-400 transition-colors">Write</a>
             <a href="#work" className="hover:text-blue-400 transition-colors">Tools</a>
             <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
             
@@ -226,6 +227,7 @@ export default function HomePage() {
             <div className="px-6 py-4 flex flex-col gap-4">
               <a href="#philosophy" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
               <a href="#work-experience" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="#write" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Write</a>
               <a href="#work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
               <a href="#contact" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
               <button
@@ -402,6 +404,47 @@ export default function HomePage() {
                   <ArrowRight size={16} />
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Write Section */}
+      <section id="write" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+        <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            Write
+          </h2>
+          <p className={`text-lg ${textMutedClass} max-w-3xl mb-12`}>
+            Short, practical posts about optometry, myopia management, and day-to-day clinic insights. This is where I share reflections, explain complex topics simply, and document lessons learned.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className={`p-8 rounded-2xl border ${borderClass} ${isDark ? 'bg-white/5' : 'bg-white'} hover:border-blue-400/50 transition-all`}>
+              <p className="text-xs uppercase tracking-wider text-blue-400 mb-2">Clinical Notes</p>
+              <h3 className="text-xl font-bold mb-3">What I Look For During a Pediatric Eye Check</h3>
+              <p className={`text-sm ${textLightClass} leading-relaxed mb-4`}>
+                A practical walkthrough of the key checkpoints that help me spot early issues and reassure parents.
+              </p>
+              <span className={`text-xs ${textLightClass}`}>Coming soon</span>
+            </div>
+
+            <div className={`p-8 rounded-2xl border ${borderClass} ${isDark ? 'bg-white/5' : 'bg-white'} hover:border-blue-400/50 transition-all`}>
+              <p className="text-xs uppercase tracking-wider text-blue-400 mb-2">Parent Guides</p>
+              <h3 className="text-xl font-bold mb-3">Myopia Myths I Hear Every Week</h3>
+              <p className={`text-sm ${textLightClass} leading-relaxed mb-4`}>
+                Clearing up the most common misconceptions with research-backed, parent-friendly explanations.
+              </p>
+              <span className={`text-xs ${textLightClass}`}>Coming soon</span>
+            </div>
+
+            <div className={`p-8 rounded-2xl border ${borderClass} ${isDark ? 'bg-white/5' : 'bg-white'} hover:border-blue-400/50 transition-all`}>
+              <p className="text-xs uppercase tracking-wider text-blue-400 mb-2">Research Digest</p>
+              <h3 className="text-xl font-bold mb-3">One Study, Three Takeaways</h3>
+              <p className={`text-sm ${textLightClass} leading-relaxed mb-4`}>
+                Quick summaries of evidence-based updates with clear implications for practice and families.
+              </p>
+              <span className={`text-xs ${textLightClass}`}>Coming soon</span>
             </div>
           </div>
         </div>
