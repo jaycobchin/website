@@ -147,6 +147,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                   <select 
                     value={Number(rightEye.sphere).toFixed(2)} 
                     onChange={(e) => handleRightEyeChange('sphere', parseFloat(e.target.value))}
+                    style={{ maxHeight: '300px' }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {sphereOptions.map(opt => (
@@ -160,6 +161,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                   <select 
                     value={Number(rightEye.cyl).toFixed(2)} 
                     onChange={(e) => handleRightEyeChange('cyl', parseFloat(e.target.value))}
+                    style={{ maxHeight: '300px' }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {cylinderOptions.map(opt => (
@@ -217,6 +219,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                   <select 
                     value={Number(leftEye.sphere).toFixed(2)} 
                     onChange={(e) => handleLeftEyeChange('sphere', parseFloat(e.target.value))}
+                    style={{ maxHeight: '300px' }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {sphereOptions.map(opt => (
@@ -230,6 +233,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                   <select 
                     value={Number(leftEye.cyl).toFixed(2)} 
                     onChange={(e) => handleLeftEyeChange('cyl', parseFloat(e.target.value))}
+                    style={{ maxHeight: '300px' }}
                     className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {cylinderOptions.map(opt => (

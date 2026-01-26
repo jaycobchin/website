@@ -165,6 +165,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                     <select 
                       value={odSphere.toFixed(2)} 
                       onChange={(e) => setOdSphere(parseFloat(e.target.value))}
+                      style={{ maxHeight: '300px' }}
                       className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       {sphereOptions.map(opt => (
@@ -178,6 +179,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                     <select 
                       value={odCyl.toFixed(2)} 
                       onChange={(e) => setOdCyl(parseFloat(e.target.value))}
+                      style={{ maxHeight: '300px' }}
                       className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       {cylinderOptions.map(opt => (
@@ -211,6 +213,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                     <select 
                       value={osSphere.toFixed(2)} 
                       onChange={(e) => setOsSphere(parseFloat(e.target.value))}
+                      style={{ maxHeight: '300px' }}
                       className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       {sphereOptions.map(opt => (
@@ -224,6 +227,7 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                     <select 
                       value={osCyl.toFixed(2)} 
                       onChange={(e) => setOsCyl(parseFloat(e.target.value))}
+                      style={{ maxHeight: '300px' }}
                       className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       {cylinderOptions.map(opt => (
