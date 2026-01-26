@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { X, RotateCcw, Calculator } from 'lucide-react';
+import CustomSelect from './CustomSelect';
 
 export default function ContactLensVertexCalculator({ isDark = true, onClose }) {
   // OD values
@@ -162,30 +163,20 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
-                    <select 
-                      value={odSphere.toFixed(2)} 
-                      onChange={(e) => setOdSphere(parseFloat(e.target.value))}
-                      style={{ maxHeight: '300px' }}
-                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      {sphereOptions.map(opt => (
-                        <option key={opt} value={opt}>{opt}</option>
-                      ))}
-                    </select>
+                    <CustomSelect
+                      value={odSphere.toFixed(2)}
+                      onChange={(val) => setOdSphere(parseFloat(val))}
+                      options={sphereOptions}
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
-                    <select 
-                      value={odCyl.toFixed(2)} 
-                      onChange={(e) => setOdCyl(parseFloat(e.target.value))}
-                      style={{ maxHeight: '300px' }}
-                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      {cylinderOptions.map(opt => (
-                        <option key={opt} value={opt}>{opt}</option>
-                      ))}
-                    </select>
+                    <CustomSelect
+                      value={odCyl.toFixed(2)}
+                      onChange={(val) => setOdCyl(parseFloat(val))}
+                      options={cylinderOptions}
+                    />
                   </div>
 
                   <div>
@@ -210,30 +201,20 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
-                    <select 
-                      value={osSphere.toFixed(2)} 
-                      onChange={(e) => setOsSphere(parseFloat(e.target.value))}
-                      style={{ maxHeight: '300px' }}
-                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      {sphereOptions.map(opt => (
-                        <option key={opt} value={opt}>{opt}</option>
-                      ))}
-                    </select>
+                    <CustomSelect
+                      value={osSphere.toFixed(2)}
+                      onChange={(val) => setOsSphere(parseFloat(val))}
+                      options={sphereOptions}
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
-                    <select 
-                      value={osCyl.toFixed(2)} 
-                      onChange={(e) => setOsCyl(parseFloat(e.target.value))}
-                      style={{ maxHeight: '300px' }}
-                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      {cylinderOptions.map(opt => (
-                        <option key={opt} value={opt}>{opt}</option>
-                      ))}
-                    </select>
+                    <CustomSelect
+                      value={osCyl.toFixed(2)}
+                      onChange={(val) => setOsCyl(parseFloat(val))}
+                      options={cylinderOptions}
+                    />
                   </div>
 
                   <div>

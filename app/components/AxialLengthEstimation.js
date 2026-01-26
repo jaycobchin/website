@@ -144,30 +144,20 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
-                  <select 
-                    value={Number(rightEye.sphere).toFixed(2)} 
-                    onChange={(e) => handleRightEyeChange('sphere', parseFloat(e.target.value))}
-                    style={{ maxHeight: '300px' }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {sphereOptions.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
+                  <CustomSelect
+                    value={Number(rightEye.sphere).toFixed(2)}
+                    onChange={(val) => handleRightEyeChange('sphere', parseFloat(val))}
+                    options={sphereOptions}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
-                  <select 
-                    value={Number(rightEye.cyl).toFixed(2)} 
-                    onChange={(e) => handleRightEyeChange('cyl', parseFloat(e.target.value))}
-                    style={{ maxHeight: '300px' }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {cylinderOptions.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
+                  <CustomSelect
+                    value={Number(rightEye.cyl).toFixed(2)}
+                    onChange={(val) => handleRightEyeChange('cyl', parseFloat(val))}
+                    options={cylinderOptions}
+                  />
                 </div>
 
                 <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
@@ -216,30 +206,20 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
-                  <select 
-                    value={Number(leftEye.sphere).toFixed(2)} 
-                    onChange={(e) => handleLeftEyeChange('sphere', parseFloat(e.target.value))}
-                    style={{ maxHeight: '300px' }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {sphereOptions.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
+                  <CustomSelect
+                    value={Number(leftEye.sphere).toFixed(2)}
+                    onChange={(val) => handleLeftEyeChange('sphere', parseFloat(val))}
+                    options={sphereOptions}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
-                  <select 
-                    value={Number(leftEye.cyl).toFixed(2)} 
-                    onChange={(e) => handleLeftEyeChange('cyl', parseFloat(e.target.value))}
-                    style={{ maxHeight: '300px' }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {cylinderOptions.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
+                  <CustomSelect
+                    value={Number(leftEye.cyl).toFixed(2)}
+                    onChange={(val) => handleLeftEyeChange('cyl', parseFloat(val))}
+                    options={cylinderOptions}
+                  />
                 </div>
 
                 <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
