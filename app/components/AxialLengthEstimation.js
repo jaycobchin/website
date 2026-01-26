@@ -1,21 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { X } from 'lucide-react';
 
 export default function AxialLengthEstimation({ isDark = true, onClose }) {
   const [rightEye, setRightEye] = useState({
-    flatK: 8.0,
-    steepK: 8.0,
-    sphere: 0.0,
-    cyl: 0.0
+    flatK: 8.00,
+    steepK: 8.00,
+    sphere: 0.00,
+    cyl: 0.00
   });
 
   const [leftEye, setLeftEye] = useState({
-    flatK: 8.0,
-    steepK: 8.0,
-    sphere: 0.0,
-    cyl: 0.0
+    flatK: 8.00,
+    steepK: 8.00,
+    sphere: 0.00,
+    cyl: 0.00
   });
 
   const [rightResult, setRightResult] = useState('24.62');
@@ -23,6 +23,24 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
   const [rightError, setRightError] = useState(null);
   const [leftError, setLeftError] = useState(null);
   const [showReferences, setShowReferences] = useState(false);
+
+  // Generate sphere options from +20.00 to -20.00 in 0.25 steps (positive first)
+  const sphereOptions = useMemo(() => {
+    const options = [];
+    for (let i = 2000; i >= -2000; i -= 25) {
+      options.push((i / 100).toFixed(2));
+    }
+    return options;
+  }, []);
+
+  // Generate cylinder options from 0.00 to -10.00 in 0.25 steps
+  const cylinderOptions = useMemo(() => {
+    const options = ['0.00'];
+    for (let i = -25; i >= -1000; i -= 25) {
+      options.push((i / 100).toFixed(2));
+    }
+    return options;
+  }, []);
 
   const calculateAL = (flatK, steepK, sphere, cyl) => {
     const meanK = (parseFloat(flatK) + parseFloat(steepK)) / 2;
@@ -94,64 +112,68 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
           {/* Eye Cards Container */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {/* Right Eye */}
-            <div className="bg-white rounded-lg border border-gray-200 p-5">
-              <h2 className="text-xl font-bold text-slate-800 mb-4 text-center">Right Eye</h2>
+            <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
+              <h2 className="text-lg font-bold text-slate-800 mb-4">Right Eye (OD)</h2>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Flat K (mm)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Flat K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
                     min="6.00"
                     max="10.00"
-                    value={rightEye.flatK}
+                    value={Number(rightEye.flatK).toFixed(2)}
                     onChange={(e) => handleRightEyeChange('flatK', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Steep K (mm)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Steep K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
                     min="6.00"
                     max="10.00"
-                    value={rightEye.steepK}
+                    value={Number(rightEye.steepK).toFixed(2)}
                     onChange={(e) => handleRightEyeChange('steepK', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Sphere (D)</label>
-                  <input
-                    type="number"
-                    step="0.25"
-                    value={rightEye.sphere}
-                    onChange={(e) => handleRightEyeChange('sphere', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
-                  />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                  <select 
+                    value={Number(rightEye.sphere).toFixed(2)} 
+                    onChange={(e) => handleRightEyeChange('sphere', parseFloat(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {sphereOptions.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Cylinder (D) <span className="text-sm font-normal">(optional)</span></label>
-                  <input
-                    type="number"
-                    step="0.25"
-                    value={rightEye.cyl}
-                    onChange={(e) => handleRightEyeChange('cyl', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
-                  />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                  <select 
+                    value={Number(rightEye.cyl).toFixed(2)} 
+                    onChange={(e) => handleRightEyeChange('cyl', parseFloat(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {cylinderOptions.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 </div>
 
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 text-center">
+                <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
                   {rightError ? (
                     <p className="text-red-600 font-semibold text-sm">{rightError}</p>
                   ) : (
                     <>
-                      <p className="text-gray-700 text-sm mb-1">Estimated Axial Length</p>
+                      <p className="text-sm text-gray-600 mb-1">Estimated Axial Length</p>
                       <p className="text-2xl font-bold text-blue-600">{rightResult} mm</p>
                     </>
                   )}
@@ -160,64 +182,68 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
             </div>
 
             {/* Left Eye */}
-            <div className="bg-white rounded-lg border border-gray-200 p-5">
-              <h2 className="text-xl font-bold text-slate-800 mb-4 text-center">Left Eye</h2>
+            <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
+              <h2 className="text-lg font-bold text-slate-800 mb-4">Left Eye (OS)</h2>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Flat K (mm)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Flat K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
                     min="6.00"
                     max="10.00"
-                    value={leftEye.flatK}
+                    value={Number(leftEye.flatK).toFixed(2)}
                     onChange={(e) => handleLeftEyeChange('flatK', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Steep K (mm)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Steep K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
                     min="6.00"
                     max="10.00"
-                    value={leftEye.steepK}
+                    value={Number(leftEye.steepK).toFixed(2)}
                     onChange={(e) => handleLeftEyeChange('steepK', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Sphere (D)</label>
-                  <input
-                    type="number"
-                    step="0.25"
-                    value={leftEye.sphere}
-                    onChange={(e) => handleLeftEyeChange('sphere', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
-                  />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                  <select 
+                    value={Number(leftEye.sphere).toFixed(2)} 
+                    onChange={(e) => handleLeftEyeChange('sphere', parseFloat(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {sphereOptions.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
-                  <label className="block font-bold mb-2 text-slate-700">Cylinder (D) <span className="text-sm font-normal">(optional)</span></label>
-                  <input
-                    type="number"
-                    step="0.25"
-                    value={leftEye.cyl}
-                    onChange={(e) => handleLeftEyeChange('cyl', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white"
-                  />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                  <select 
+                    value={Number(leftEye.cyl).toFixed(2)} 
+                    onChange={(e) => handleLeftEyeChange('cyl', parseFloat(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {cylinderOptions.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 </div>
 
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 text-center">
+                <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
                   {leftError ? (
                     <p className="text-red-600 font-semibold text-sm">{leftError}</p>
                   ) : (
                     <>
-                      <p className="text-gray-700 text-sm mb-1">Estimated Axial Length</p>
+                      <p className="text-sm text-gray-600 mb-1">Estimated Axial Length</p>
                       <p className="text-2xl font-bold text-blue-600">{leftResult} mm</p>
                     </>
                   )}
