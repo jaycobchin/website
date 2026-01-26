@@ -9,6 +9,7 @@ import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculato
 import AxialLengthEstimation from './components/AxialLengthEstimation.js';
 import VisionSimulator from './components/VisionSimulator.js';
 import ContactLensVertexCalculator from './components/ContactLensVertexCalculator.js';
+import CorneaCurvatureConverter from './components/CorneaCurvatureConverter.js';
 
 export default function HomePage() {
   const router = useRouter();
@@ -33,7 +34,8 @@ export default function HomePage() {
     'progression-calculator': '/tools/progression-calculator',
     'axial-length-estimation': '/tools/axial-length-estimation',
     'vision-simulator': '/tools/vision-simulator',
-    'cl-rx-vertex-calculator': '/tools/cl-rx-vertex-calculator'
+    'cl-rx-vertex-calculator': '/tools/cl-rx-vertex-calculator',
+    'cornea-curvature-converter': '/tools/cornea-curvature-converter'
   };
 
   // Reverse mapping for URL to tool ID
@@ -200,7 +202,15 @@ export default function HomePage() {
       audience: ['optometrists'],
       color: 'from-indigo-500 to-purple-600', 
       id: 'cl-rx-vertex-calculator',
-      description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment; includes K conversions and common K values.'
+      description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment.'
+    },
+    { 
+      title: 'Cornea Curvature Converter', 
+      category: 'Optometrists', 
+      audience: ['optometrists'],
+      color: 'from-purple-500 to-pink-600', 
+      id: 'cornea-curvature-converter',
+      description: 'Convert between corneal radius (mm) and corneal power (D) with a comprehensive K-value reference table.'
     },
     { 
       title: 'Vision Simulator', 
@@ -597,6 +607,11 @@ export default function HomePage() {
       {/* CL Rx Vertex Calculator Modal */}
       {selectedProject === 'cl-rx-vertex-calculator' && (
         <ContactLensVertexCalculator isDark={isDark} onClose={closeTool} />
+      )}
+
+      {/* Cornea Curvature Converter Modal */}
+      {selectedProject === 'cornea-curvature-converter' && (
+        <CorneaCurvatureConverter isDark={isDark} onClose={closeTool} />
       )}
 
       {/* Work Experience Modals */}
