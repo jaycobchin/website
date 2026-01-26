@@ -926,7 +926,7 @@ export default function HomePage() {
       )}
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-start px-6 pt-28 pb-16 relative z-10">
+      <section id="contact" className="min-h-[70vh] flex items-start px-6 pt-28 pb-8 relative z-10">
         <div className="max-w-7xl mx-auto w-full text-center">
           <h2 className="text-5xl md:text-7xl font-bold mb-8">
             Let&apos;s Make Eye Care
@@ -935,11 +935,11 @@ export default function HomePage() {
               Better Together
             </span>
           </h2>
-          <p className={`text-xl ${textMutedClass} mb-12 max-w-2xl mx-auto`}>
+          <p className={`text-xl ${textMutedClass} mb-8 max-w-2xl mx-auto`}>
             Have questions about eye care? Let&apos;s talk about how we can work together to help more people understand the importance of eye health.
           </p>
 
-          <div className="flex justify-center gap-6 mb-12">
+          <div className="flex justify-center gap-6 mb-6">
             <a href="mailto:chinyanjie@gmail.com" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
               <Mail size={24} />
             </a>
