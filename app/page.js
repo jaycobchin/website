@@ -936,7 +936,7 @@ export default function HomePage() {
             </span>
           </h2>
           <p className={`text-xl ${textMutedClass} mb-12 max-w-2xl mx-auto`}>
-            Have questions about eye care? Want to collaborate? Let&apos;s talk about how we can work together to help more people understand the importance of eye health.
+            Have questions about eye care? Let&apos;s talk about how we can work together to help more people understand the importance of eye health.
           </p>
 
           <div className="flex justify-center gap-6 mb-12">
@@ -947,11 +947,6 @@ export default function HomePage() {
               <Linkedin size={24} />
             </a>
           </div>
-
-          <button className="group px-12 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 mx-auto transition-all text-lg font-semibold">
-            Start a Conversation
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
-          </button>
         </div>
       </section>
 
