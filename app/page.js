@@ -115,38 +115,32 @@ export default function HomePage() {
     }
   }, [currentImageIndex, selectedImage, galleryImages]);
 
-  // Sync URL with selected tool on mount
+  // Sync URL with selected tool on mount and handle URL changes
   useEffect(() => {
-    if (pathname && pathToTool[pathname]) {
-      setSelectedProject(pathToTool[pathname]);
-    }
-  }, []);
-
-  // Update URL when tool is selected
-  useEffect(() => {
-    if (selectedProject && toolPaths[selectedProject]) {
-      router.push(toolPaths[selectedProject]);
-    } else if (!selectedProject && pathname !== '/') {
-      // Only push to home if we're clearing a tool and not already on home
-      if (pathname.startsWith('/tools/')) {
-        router.push('/');
-      }
-    }
-  }, [selectedProject]);
-
-  // Handle browser back/forward button
-  useEffect(() => {
-    const handlePopState = () => {
-      if (pathname === '/') {
+    if (pathname === '/') {
+      if (selectedProject) {
         setSelectedProject(null);
-      } else if (pathToTool[pathname]) {
+      }
+    } else if (pathToTool[pathname]) {
+      if (selectedProject !== pathToTool[pathname]) {
         setSelectedProject(pathToTool[pathname]);
       }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    }
   }, [pathname]);
+
+  // Helper function to open a tool with URL update
+  const openTool = (toolId) => {
+    setSelectedProject(toolId);
+    if (toolPaths[toolId]) {
+      window.history.pushState({}, '', toolPaths[toolId]);
+    }
+  };
+
+  // Helper function to close tool and return to home
+  const closeTool = () => {
+    setSelectedProject(null);
+    window.history.pushState({}, '', '/');
+  };
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -563,7 +557,7 @@ export default function HomePage() {
               <div 
                 key={index}
                 className={`group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105`}
-                onClick={() => project.id && setSelectedProject(project.id)}
+                onClick={() => project.id && openTool(project.id)}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-90 group-hover:opacity-100 transition-opacity`} />
                 <div className="relative z-10 text-white">
@@ -585,24 +579,24 @@ export default function HomePage() {
 
       {/* Risk Factors Analysis Modal */}
       {selectedProject === 'risk-factors-analysis' && (
-        <RiskFactorsAnalysis isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
+        <RiskFactorsAnalysis isDark={isDark} onClose={closeTool} />
       )}
       {/* Progression Calculator Modal */}
       {selectedProject === 'progression-calculator' && (
-        <MyopiaProgressionCalculator isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
+        <MyopiaProgressionCalculator isDark={isDark} onClose={closeTool} />
       )}
       {/* Axial Length Estimation Modal */}
       {selectedProject === 'axial-length-estimation' && (
-        <AxialLengthEstimation isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
+        <AxialLengthEstimation isDark={isDark} onClose={closeTool} />
       )}
       {/* Vision Simulator Modal */}
       {selectedProject === 'vision-simulator' && (
-        <VisionSimulator isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
+        <VisionSimulator isDark={isDark} onClose={closeTool} />
       )}
 
       {/* CL Rx Vertex Calculator Modal */}
       {selectedProject === 'cl-rx-vertex-calculator' && (
-        <ContactLensVertexCalculator isDark={isDark} onClose={() => { setSelectedProject(null); router.push('/'); }} />
+        <ContactLensVertexCalculator isDark={isDark} onClose={closeTool} />
       )}
 
       {/* Work Experience Modals */}
