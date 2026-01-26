@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { X } from 'lucide-react';
+import CustomSelect from './CustomSelect';
 
 export default function AxialLengthEstimation({ isDark = true, onClose }) {
   const [rightEye, setRightEye] = useState({
