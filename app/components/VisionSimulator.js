@@ -326,7 +326,7 @@ export default function VisionSimulator({ isDark = true, onClose }) {
 
           {/* Header */}
           <div className="flex items-center gap-3 mb-8">
-            <Eye size={32} className="text-blue-500" />
+            <div className="text-3xl">👁️</div>
             <div>
               <h1 className={`text-3xl font-bold ${textClass}`}>Vision Simulator</h1>
               <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Experience different vision conditions in real-time</p>

@@ -17,6 +17,16 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
   const [showTable, setShowTable] = useState(false);
   const [showReferences, setShowReferences] = useState(false);
 
+  const bgClass = isDark ? 'bg-slate-900' : 'bg-gray-50';
+  const textClass = isDark ? 'text-white' : 'text-gray-900';
+  const cardBgClass = isDark ? 'bg-slate-800' : 'bg-white';
+  const panelBgClass = isDark ? 'bg-slate-700' : 'bg-gray-50';
+  const inputBgClass = isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900';
+  const labelClass = isDark ? 'text-gray-200' : 'text-gray-700';
+  const mutedTextClass = isDark ? 'text-gray-400' : 'text-gray-600';
+  const bodyTextClass = isDark ? 'text-gray-200' : 'text-gray-800';
+  const borderClass = isDark ? 'border-slate-600' : 'border-gray-200';
+
   const getEthnicityFactor = (ethnicity) => {
     const factors = {
       'Chinese': 1.0,
@@ -110,6 +120,9 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
 
     if (!chartData) return;
 
+    const chartTextColor = isDark ? '#e5e7eb' : '#111827';
+    const chartGridColor = isDark ? 'rgba(148,163,184,0.25)' : 'rgba(148,163,184,0.35)';
+
     chartInstanceRef.current = new Chart(ctx, {
       type: 'line',
       data: {
@@ -139,12 +152,23 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'top' }
+          legend: {
+            position: 'top',
+            labels: {
+              color: chartTextColor
+            }
+          }
         },
         scales: {
-          x: { title: { display: true, text: 'Age (years)' } },
+          x: {
+            title: { display: true, text: 'Age (years)', color: chartTextColor },
+            ticks: { color: chartTextColor },
+            grid: { color: chartGridColor }
+          },
           y: {
-            title: { display: true, text: 'Myopia Prescription (D)' },
+            title: { display: true, text: 'Myopia Prescription (D)', color: chartTextColor },
+            ticks: { color: chartTextColor },
+            grid: { color: chartGridColor },
             suggestedMin: Math.min(...chartData.baseline.ses, ...chartData.treated.ses) - 0.5,
             suggestedMax: 0
           }
@@ -158,32 +182,38 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
         chartInstanceRef.current = null;
       }
     };
-  }, [chartData]);
+  }, [chartData, isDark]);
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-        {/* Close Button */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
-          <h1 className="text-2xl font-bold text-slate-800">Myopia Progression Calculator</h1>
+    <div className={`fixed inset-0 ${bgClass} z-50 overflow-y-auto`}>
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className={`w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`}>
+          {/* Close Button */}
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
+            aria-label="Close"
           >
-            <X size={24} className="text-gray-600" />
+            <X size={24} />
           </button>
-        </div>
 
-        <div className="p-5 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
-          <p className="text-center mb-6 text-gray-600 text-sm md:text-base">
-            Projected Myopia Progression – Single Vision vs. Your Selected Treatment<br />
-            (To Age 18)
-          </p>
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-8">
+            <div className="text-3xl">📈</div>
+            <div>
+              <h1 className={`text-3xl font-bold ${textClass}`}>Myopia Progression Calculator</h1>
+              <p className={`text-sm ${mutedTextClass}`}>
+                Projected myopia progression — single vision vs. selected treatment (to age 18).
+              </p>
+            </div>
+          </div>
+
+          <div className="leading-relaxed overflow-y-auto max-h-[90vh]">
 
           {/* Input Section */}
-          <div className="grid md:grid-cols-2 gap-6 mb-6 p-5 bg-gray-50 rounded-lg">
+          <div className={`grid md:grid-cols-2 gap-6 mb-6 p-5 ${panelBgClass} rounded-lg`}>
             <div>
-              <label className="block font-bold mb-2 text-slate-700">Ethnicity:</label>
+              <label className={`block font-semibold mb-2 ${labelClass}`}>Ethnicity:</label>
               <select
                 value={ethnicity}
                 onChange={(e) => {
@@ -195,7 +225,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
                   const treated = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
                   setChartData({ baseline, treated, treatmentName: treatment });
                 }}
-                className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                className={`w-full p-2 border rounded-md ${inputBgClass}`}
               >
                 <option>Chinese</option>
                 <option>Malay</option>
@@ -206,7 +236,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             </div>
 
             <div>
-              <label className="block font-bold mb-2 text-slate-700">Gender:</label>
+              <label className={`block font-semibold mb-2 ${labelClass}`}>Gender:</label>
               <select
                 value={gender}
                 onChange={(e) => {
@@ -218,7 +248,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
                   const treated = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
                   setChartData({ baseline, treated, treatmentName: treatment });
                 }}
-                className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                className={`w-full p-2 border rounded-md ${inputBgClass}`}
               >
                 <option>Male</option>
                 <option>Female</option>
@@ -226,7 +256,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             </div>
 
             <div>
-              <label className="block font-bold mb-2 text-slate-700">Current Age:</label>
+              <label className={`block font-semibold mb-2 ${labelClass}`}>Current Age:</label>
               <select
                 value={currentAge}
                 onChange={(e) => {
@@ -238,7 +268,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
                   const treated = calculateProgression(parseInt(e.target.value), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
                   setChartData({ baseline, treated, treatmentName: treatment });
                 }}
-                className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                className={`w-full p-2 border rounded-md ${inputBgClass}`}
               >
                 {[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(age => (
                   <option key={age} value={age}>{age}</option>
@@ -247,7 +277,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             </div>
 
             <div>
-              <label className="block font-bold mb-2 text-slate-700">Current Prescription:</label>
+              <label className={`block font-semibold mb-2 ${labelClass}`}>Current Prescription:</label>
               <select
                 value={currentSE}
                 onChange={(e) => {
@@ -260,7 +290,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
                   const treated = calculateProgression(parseInt(currentAge), newSE, ethnicityFactor, isMale, reduction);
                   setChartData({ baseline, treated, treatmentName: treatment });
                 }}
-                className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                className={`w-full p-2 border rounded-md ${inputBgClass}`}
               >
                 {Array.from({ length: 40 }, (_, i) => -0.25 - (i * 0.25)).map(val => (
                   <option key={val} value={val}>{val.toFixed(2)}</option>
@@ -269,7 +299,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             </div>
 
             <div className="md:col-span-2">
-              <label className="block font-bold mb-2 text-slate-700">Treatment Option:</label>
+              <label className={`block font-semibold mb-2 ${labelClass}`}>Treatment Option:</label>
               <select
                 value={treatment}
                 onChange={(e) => {
@@ -281,7 +311,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
                   const treated = calculateProgression(parseInt(currentAge), parseFloat(currentSE), ethnicityFactor, isMale, reduction);
                   setChartData({ baseline, treated, treatmentName: e.target.value });
                 }}
-                className="w-full p-2 border border-gray-300 rounded-md bg-white"
+                className={`w-full p-2 border rounded-md ${inputBgClass}`}
               >
                 <option>Single Vision Lens</option>
                 <option>Myopia Control Spectacle Lens</option>
@@ -295,15 +325,15 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
           </div>
 
           {/* Chart */}
-          <div className="mb-4 bg-white rounded-lg p-4" style={{ height: 320 }}>
+          <div className={`mb-4 ${panelBgClass} rounded-lg p-4`} style={{ height: 320 }}>
             <canvas ref={canvasRef} />
           </div>
 
           {/* Toggle for table (hidden by default) - clickable header */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 border-t pt-4">
             <button
               onClick={() => setShowTable(!showTable)}
-              className="text-sm text-gray-600 hover:text-gray-800 flex items-center gap-2"
+              className={`text-sm font-medium flex items-center gap-2 ${isDark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-800'}`}
               aria-expanded={showTable}
             >
               <span>Results (summary shown on chart)</span>
@@ -315,23 +345,23 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
 
           {/* Results Table (collapsible) */}
           {showTable && tableData && (
-            <div className="overflow-x-auto mb-6">
+            <div className={`overflow-x-auto mb-6 ${panelBgClass} rounded-lg border ${borderClass} p-4`}>
               <table className="w-full border-collapse">
                 <thead>
                   <tr>
-                    <th className="border border-gray-300 p-2 text-left bg-gray-100">Age</th>
-                    <th className="border border-gray-300 p-2 text-left bg-gray-100">Baseline (Single Vision)</th>
-                    <th className="border border-gray-300 p-2 text-left bg-gray-100">{treatment}</th>
-                    <th className="border border-gray-300 p-2 text-left bg-gray-100">Progression Slowed</th>
+                    <th className={`border ${borderClass} p-2 text-left ${isDark ? 'bg-slate-600 text-gray-200' : 'bg-gray-100'}`}>Age</th>
+                    <th className={`border ${borderClass} p-2 text-left ${isDark ? 'bg-slate-600 text-gray-200' : 'bg-gray-100'}`}>Baseline (Single Vision)</th>
+                    <th className={`border ${borderClass} p-2 text-left ${isDark ? 'bg-slate-600 text-gray-200' : 'bg-gray-100'}`}>{treatment}</th>
+                    <th className={`border ${borderClass} p-2 text-left ${isDark ? 'bg-slate-600 text-gray-200' : 'bg-gray-100'}`}>Progression Slowed</th>
                   </tr>
                 </thead>
                 <tbody>
                   {tableData.map((row, idx) => (
                     <tr key={idx}>
-                      <td className="border border-gray-300 p-2">{row.age}</td>
-                      <td className="border border-gray-300 p-2">{row.baseline}</td>
-                      <td className="border border-gray-300 p-2">{row.treated}</td>
-                      <td className="border border-gray-300 p-2">{row.diff > 0 ? '+' : ''}{row.diff}</td>
+                      <td className={`border ${borderClass} p-2 ${bodyTextClass}`}>{row.age}</td>
+                      <td className={`border ${borderClass} p-2 ${bodyTextClass}`}>{row.baseline}</td>
+                      <td className={`border ${borderClass} p-2 ${bodyTextClass}`}>{row.treated}</td>
+                      <td className={`border ${borderClass} p-2 ${bodyTextClass}`}>{row.diff > 0 ? '+' : ''}{row.diff}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -339,15 +369,15 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
             </div>
           )}
 
-          <p className="text-sm italic text-gray-600 mb-6">
+          <p className={`text-sm italic ${mutedTextClass} mb-6`}>
             Disclaimer: This calculator provides estimates based on averaged data from clinical studies and meta-analyses. Individual progression varies significantly due to genetics, environment, and other factors. This is not medical advice. Always consult an eye care professional.
           </p>
 
           {/* Toggle for references (hidden by default) */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 border-t pt-4">
             <button
               onClick={() => setShowReferences(!showReferences)}
-              className="text-sm text-gray-600 hover:text-gray-800 flex items-center gap-2"
+              className={`text-sm font-medium flex items-center gap-2 ${isDark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-800'}`}
               aria-expanded={showReferences}
             >
               <span>References</span>
@@ -359,61 +389,62 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose }) 
 
           {/* References Section (collapsible) */}
           {showReferences && (
-          <div className="p-5 bg-white rounded-lg border border-gray-200">
-            <h2 className="text-2xl font-bold text-slate-800 mb-3">References</h2>
-            <p className="text-gray-700 mb-4">The estimates in this calculator are derived from the following peer-reviewed studies and meta-analyses. Click the links to view the original sources.</p>
+            <div className={`p-5 ${panelBgClass} rounded-lg border ${borderClass}`}>
+              <h2 className={`text-2xl font-bold ${textClass} mb-3`}>References</h2>
+              <p className={`${bodyTextClass} mb-4`}>The estimates in this calculator are derived from the following peer-reviewed studies and meta-analyses. Click the links to view the original sources.</p>
 
-            <div className="space-y-4 text-sm">
-              <div>
-                <h3 className="font-bold text-slate-700 mb-2">General Reviews & Guidelines</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+              <div className="space-y-4 text-sm">
+                <div>
+                  <h3 className={`font-bold ${labelClass} mb-2`}>General Reviews & Guidelines</h3>
+                  <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
                   <li><a href="https://doi.org/10.1167/iovs.66.12.39" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI—Interventions for controlling myopia onset and progression 2025 (IOVS, 2025)</a></li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-bold text-slate-700 mb-2">Myopia Control Spectacle Lenses</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                <div>
+                  <h3 className={`font-bold ${labelClass} mb-2`}>Myopia Control Spectacle Lenses</h3>
+                  <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
                   <li><a href="https://doi.org/10.1136/bjo-2025-327629" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Efficacy of spectacle lenses for myopia control: A meta-analysis (BJO, 2025)</a></li>
                   <li><a href="https://doi.org/10.1136/bjophthalmol-2018-313739" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DIMS spectacle lenses slow myopia progression: 2-year RCT (BJO, 2020)</a></li>
                   <li><a href="https://doi.org/10.1038/s41598-023-32700-7" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Long-term myopia control effect in children wearing DIMS lenses for 6 years (Scientific Reports, 2023)</a></li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-bold text-slate-700 mb-2">Myopia Control Soft Contact Lenses</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                <div>
+                  <h3 className={`font-bold ${labelClass} mb-2`}>Myopia Control Soft Contact Lenses</h3>
+                  <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
                   <li><a href="https://doi.org/10.1097/OPX.0000000000001410" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">3-year randomized clinical trial of MiSight lenses for myopia control (OVS, 2019)</a></li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-bold text-slate-700 mb-2">Orthokeratology</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                <div>
+                  <h3 className={`font-bold ${labelClass} mb-2`}>Orthokeratology</h3>
+                  <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
                   <li><a href="https://doi.org/10.1186/s12886-023-03175-x" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Orthokeratology in controlling myopia: A meta-analysis of RCTs (BMC Ophthalmology, 2023)</a></li>
                   <li><a href="https://www.mdpi.com/2227-9067/10/2/402" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Clinical effectiveness of DRL Orthokeratology vs SVS: 2-year study (Children, 2023)</a></li>
                   <li><a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2023.1323851/full" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Efficacy of DRL orthokeratology lens in French children (Frontiers in Medicine, 2024)</a></li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-bold text-slate-700 mb-2">Atropine Treatment</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                <div>
+                  <h3 className={`font-bold ${labelClass} mb-2`}>Atropine Treatment</h3>
+                  <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
                   <li><a href="https://doi.org/10.1016/j.ophtha.2018.05.029" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Low-concentration atropine for myopia progression (LAMP) study (Ophthalmology, 2019)</a></li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-bold text-slate-700 mb-2">Ethnicity & Epidemiology</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                <div>
+                  <h3 className={`font-bold ${labelClass} mb-2`}>Ethnicity & Epidemiology</h3>
+                  <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
                   <li><a href="https://doi.org/10.1111/opo.13401" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Regional/ethnic differences in myopic and non-myopic children (OPO, 2025)</a></li>
                   <li><a href="https://pubmed.ncbi.nlm.nih.gov/8266124/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Race, culture and myopia in Singaporean males (SMJ, 1993)</a></li>
                   <li><a href="https://doi.org/10.1167/iovs.04-0565" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Incidence and progression of myopia in Singaporean school children (IOVS, 2005)</a></li>
                 </ul>
               </div>
             </div>
-          </div>
+            </div>
           )}
+          </div>
         </div>
       </div>
     </div>

@@ -25,6 +25,16 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
   const [leftError, setLeftError] = useState(null);
   const [showReferences, setShowReferences] = useState(false);
 
+  const bgClass = isDark ? 'bg-slate-900' : 'bg-gray-50';
+  const textClass = isDark ? 'text-white' : 'text-gray-900';
+  const cardBgClass = isDark ? 'bg-slate-800' : 'bg-white';
+  const panelBgClass = isDark ? 'bg-slate-700' : 'bg-gray-50';
+  const inputBgClass = isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900';
+  const labelClass = isDark ? 'text-gray-200' : 'text-gray-700';
+  const mutedTextClass = isDark ? 'text-gray-400' : 'text-gray-600';
+  const bodyTextClass = isDark ? 'text-gray-200' : 'text-gray-800';
+  const borderClass = isDark ? 'border-slate-600' : 'border-gray-200';
+
   // Generate sphere options from +20.00 to -20.00 in 0.25 steps (positive first)
   const sphereOptions = useMemo(() => {
     const options = [];
@@ -92,33 +102,40 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-2xl max-w-5xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-        {/* Close Button */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
-          <h1 className="text-2xl font-bold text-slate-800">Axial Length Estimation</h1>
+    <div className={`fixed inset-0 ${bgClass} z-50 overflow-y-auto`}>
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className={`w-full max-w-5xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`}>
+          {/* Close Button */}
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
+            aria-label="Close"
           >
-            <X size={24} className="text-gray-600" />
+            <X size={24} />
           </button>
-        </div>
 
-        <div className="p-5 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
-          <p className="text-center mb-6 text-gray-600">
-            Estimate axial length for right and left eyes based on keratometry and refraction values.
-          </p>
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-8">
+            <div className="text-3xl">🧭</div>
+            <div>
+              <h1 className={`text-3xl font-bold ${textClass}`}>Axial Length Estimation</h1>
+              <p className={`text-sm ${mutedTextClass}`}>
+                Estimate axial length for right and left eyes based on keratometry and refraction values.
+              </p>
+            </div>
+          </div>
+
+          <div className="leading-relaxed overflow-y-auto max-h-[90vh]">
 
           {/* Eye Cards Container */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {/* Right Eye */}
-            <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-slate-800 mb-4">OD</h2>
+            <div className={`${panelBgClass} rounded-lg border ${borderClass} p-6`}>
+              <h2 className={`text-lg font-bold ${textClass} mb-4`}>OD</h2>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Flat K (mm)</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Flat K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -130,12 +147,12 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                       const val = parseFloat(e.target.value);
                       if (!isNaN(val)) handleRightEyeChange('flatK', val.toFixed(2));
                     }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`w-full p-3 border rounded-lg ${inputBgClass} focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Steep K (mm)</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Steep K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -147,12 +164,12 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                       const val = parseFloat(e.target.value);
                       if (!isNaN(val)) handleRightEyeChange('steepK', val.toFixed(2));
                     }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`w-full p-3 border rounded-lg ${inputBgClass} focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Sphere</label>
                   <CustomSelect
                     value={Number(rightEye.sphere).toFixed(2)}
                     onChange={(val) => handleRightEyeChange('sphere', parseFloat(val))}
@@ -161,7 +178,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Cylinder</label>
                   <CustomSelect
                     value={Number(rightEye.cyl).toFixed(2)}
                     onChange={(val) => handleRightEyeChange('cyl', parseFloat(val))}
@@ -169,13 +186,13 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                   />
                 </div>
 
-                <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+                <div className={`mt-6 p-4 ${isDark ? 'bg-slate-800' : 'bg-white'} rounded-lg border ${borderClass}`}>
                   {rightError ? (
-                    <p className="text-red-600 font-semibold text-sm">{rightError}</p>
+                    <p className="text-red-400 font-semibold text-sm">{rightError}</p>
                   ) : (
                     <>
-                      <p className="text-sm text-gray-600 mb-1">Estimated Axial Length</p>
-                      <p className="text-2xl font-bold text-blue-600">{rightResult} mm</p>
+                      <p className={`text-sm ${mutedTextClass} mb-1`}>Estimated Axial Length</p>
+                      <p className="text-2xl font-bold text-blue-400">{rightResult} mm</p>
                     </>
                   )}
                 </div>
@@ -183,12 +200,12 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
             </div>
 
             {/* Left Eye */}
-            <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-slate-800 mb-4">OS</h2>
+            <div className={`${panelBgClass} rounded-lg border ${borderClass} p-6`}>
+              <h2 className={`text-lg font-bold ${textClass} mb-4`}>OS</h2>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Flat K (mm)</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Flat K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -200,12 +217,12 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                       const val = parseFloat(e.target.value);
                       if (!isNaN(val)) handleLeftEyeChange('flatK', val.toFixed(2));
                     }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`w-full p-3 border rounded-lg ${inputBgClass} focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Steep K (mm)</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Steep K (mm)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -217,12 +234,12 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                       const val = parseFloat(e.target.value);
                       if (!isNaN(val)) handleLeftEyeChange('steepK', val.toFixed(2));
                     }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`w-full p-3 border rounded-lg ${inputBgClass} focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Sphere</label>
                   <CustomSelect
                     value={Number(leftEye.sphere).toFixed(2)}
                     onChange={(val) => handleLeftEyeChange('sphere', parseFloat(val))}
@@ -231,7 +248,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Cylinder</label>
                   <CustomSelect
                     value={Number(leftEye.cyl).toFixed(2)}
                     onChange={(val) => handleLeftEyeChange('cyl', parseFloat(val))}
@@ -239,13 +256,13 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                   />
                 </div>
 
-                <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+                <div className={`mt-6 p-4 ${isDark ? 'bg-slate-800' : 'bg-white'} rounded-lg border ${borderClass}`}>
                   {leftError ? (
-                    <p className="text-red-600 font-semibold text-sm">{leftError}</p>
+                    <p className="text-red-400 font-semibold text-sm">{leftError}</p>
                   ) : (
                     <>
-                      <p className="text-sm text-gray-600 mb-1">Estimated Axial Length</p>
-                      <p className="text-2xl font-bold text-blue-600">{leftResult} mm</p>
+                      <p className={`text-sm ${mutedTextClass} mb-1`}>Estimated Axial Length</p>
+                      <p className="text-2xl font-bold text-blue-400">{leftResult} mm</p>
                     </>
                   )}
                 </div>
@@ -253,15 +270,15 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
             </div>
           </div>
 
-          <p className="text-sm italic text-gray-600 mb-6">
+          <p className={`text-sm italic ${mutedTextClass} mb-6`}>
             Estimated accuracy ≈ ±0.9 mm vs. optical biometry. Consult your eye care professional for accurate measurement.
           </p>
 
           {/* Toggle for references (hidden by default) */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 border-t pt-4">
             <button
               onClick={() => setShowReferences(!showReferences)}
-              className="text-sm text-gray-600 hover:text-gray-800 flex items-center gap-2"
+              className={`text-sm font-medium flex items-center gap-2 ${isDark ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-800'}`}
               aria-expanded={showReferences}
             >
               <span>References</span>
@@ -273,11 +290,11 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
 
           {/* References Section (collapsible) */}
           {showReferences && (
-          <div className="p-5 bg-white rounded-lg border border-gray-200">
-            <h2 className="text-2xl font-bold text-slate-800 mb-3">References</h2>
-            <p className="text-gray-700 mb-4">The axial length estimation formula is based on the following peer-reviewed research.</p>
+          <div className={`p-5 ${panelBgClass} rounded-lg border ${borderClass}`}>
+            <h2 className={`text-2xl font-bold ${textClass} mb-3`}>References</h2>
+            <p className={`${bodyTextClass} mb-4`}>The axial length estimation formula is based on the following peer-reviewed research.</p>
 
-            <div className="space-y-4 text-sm text-gray-600">
+            <div className={`space-y-4 text-sm ${mutedTextClass}`}>
               <div>
                 <ul className="list-disc pl-5 space-y-3">
                   <li><a href="https://doi.org/10.1371/journal.pone.0210387" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Comparison of predicted and measured axial length for ophthalmic lens design (PLOS ONE, 2019)</a></li>
@@ -292,6 +309,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
             </div>
           </div>
           )}
+          </div>
         </div>
       </div>
     </div>
