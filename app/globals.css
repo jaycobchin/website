@@ -27,25 +27,68 @@ body {
 
 /* Animated gradient backgrounds for light/dark modes */
 .bg-gradient-animated-dark {
-  background: radial-gradient(circle at 15% 20%, #111827 0%, #0b1220 30%, #0a1a2e 55%, #06101d 80%, #030712 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 18s ease infinite;
+  background: linear-gradient(
+    -45deg,
+    #0f172a,
+    #1e293b,
+    #1e3a5f,
+    #1e293b,
+    #0f172a,
+    #164e63,
+    #1e293b
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 20s ease infinite;
 }
 
 .bg-gradient-animated-light {
-  background: radial-gradient(circle at 15% 20%, #eef6ff 0%, #e6f1ff 25%, #d7e9ff 45%, #c9e4ff 65%, #f4f8ff 90%);
-  background-size: 200% 200%;
-  animation: gradientShift 18s ease infinite;
+  background: linear-gradient(
+    -45deg,
+    #0099ff,
+    #0066ff,
+    #0088ff,
+    #0055ff,
+    #0066ff,
+    #00aaff,
+    #0077ff
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 20s ease infinite;
 }
 
-@keyframes gradientShift {
+@keyframes gradient-shift {
   0% {
     background-position: 0% 50%;
   }
-  50% {
+  25% {
     background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 50% 0%;
   }
   100% {
     background-position: 0% 50%;
   }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
