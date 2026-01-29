@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Jaycob Chin",
-  description: "Singapore optometrist sharing simple eye care tips to inspire fellow optometrists and help parents support their children's vision health. Make eye exams less scary and more enjoyable with proven optometry techniques.",
+  description: "I'm a Singapore optometrist sharing my experiences and tools that make eye care more enjoyable for optometrists and kids alike. Practical tips to help parents make eye exams less scary and even fun for their children.",
   icons: {
     icon: [
       {
