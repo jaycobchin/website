@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-export default function CustomSelect({ value, onChange, options, className = '' }) {
+export default function CustomSelect({ value, onChange, options, className = '', isDark = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const selectedRef = useRef(null);
@@ -35,22 +35,30 @@ export default function CustomSelect({ value, onChange, options, className = '' 
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between"
+        className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between ${
+          isDark
+            ? 'bg-slate-700 border-slate-600 text-white'
+            : 'bg-white border-gray-300 text-slate-800'
+        }`}
       >
         <span>{value}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+        <div
+          className={`absolute z-50 w-full mt-1 rounded-lg shadow-lg max-h-60 overflow-y-auto border ${
+            isDark ? 'bg-slate-800 border-slate-600' : 'bg-white border-gray-300'
+          }`}
+        >
           {options.map((option) => (
             <div
               key={option}
               ref={option === value ? selectedRef : null}
               onClick={() => handleSelect(option)}
-              className={`px-3 py-2 cursor-pointer hover:bg-blue-50 ${
-                option === value ? 'bg-blue-100 font-medium' : ''
-              }`}
+              className={`px-3 py-2 cursor-pointer ${
+                isDark ? 'text-white hover:bg-slate-600' : 'hover:bg-blue-50'
+              } ${option === value ? (isDark ? 'bg-slate-600 font-medium' : 'bg-blue-100 font-medium') : ''}`}
             >
               {option}
             </div>

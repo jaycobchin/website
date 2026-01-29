@@ -40,28 +40,50 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
     return commonDs.map(d => ({ D: d.toFixed(2), mm: (337.5 / d).toFixed(2) }));
   }, []);
 
-  return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-2xl max-w-5xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
-          <h1 className="text-2xl font-bold text-slate-800">Radius and Diopter Conversion Calculator</h1>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <X size={24} className="text-gray-600" />
-          </button>
-        </div>
+  const bgClass = isDark ? 'bg-slate-900' : 'bg-gray-50';
+  const textClass = isDark ? 'text-white' : 'text-gray-900';
+  const cardBgClass = isDark ? 'bg-slate-800' : 'bg-white';
+  const panelBgClass = isDark ? 'bg-slate-700' : 'bg-gray-50';
+  const inputBgClass = isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900';
+  const labelClass = isDark ? 'text-gray-200' : 'text-gray-700';
+  const mutedTextClass = isDark ? 'text-gray-400' : 'text-gray-600';
+  const bodyTextClass = isDark ? 'text-gray-200' : 'text-gray-800';
+  const borderClass = isDark ? 'border-slate-600' : 'border-gray-200';
 
-        <div className="p-8 leading-relaxed text-gray-800 overflow-y-auto max-h-[85vh]">
+  return (
+    <div className={`fixed inset-0 ${bgClass} z-50 overflow-y-auto`}>
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className={`w-full max-w-5xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`}>
+          <button
+            onClick={onClose}
+            className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
+            aria-label="Close"
+          >
+            <X size={24} />
+          </button>
+
+          <div className="flex items-center gap-3 mb-8">
+            <div className="text-3xl">👁️</div>
+            <div>
+              <h1 className={`text-3xl font-bold ${textClass}`}>Radius and Diopter Conversion Calculator</h1>
+              <p className={`text-sm ${mutedTextClass}`}>
+                Convert corneal radius and diopters with a quick clinical reference.
+              </p>
+            </div>
+          </div>
+
+          <div className="leading-relaxed overflow-y-auto max-h-[85vh]">
           {/* Conversion Section */}
           <div className="mb-10">
-            <h2 className="text-xl font-bold text-slate-800 mb-6">Convert Radius and Power</h2>
+            <h2 className={`text-xl font-bold ${textClass} mb-6`}>Convert Radius and Power</h2>
             
             <div className="grid md:grid-cols-2 gap-6">
               {/* Radius to Diopters */}
-              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                <h3 className="text-lg font-semibold text-slate-800 mb-4">Radius to Diopters</h3>
+              <div className={`${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+                <h3 className={`text-lg font-semibold ${textClass} mb-4`}>Radius to Diopters</h3>
                 
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Radius (mm)</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Radius (mm)</label>
                   <input 
                     type="number" 
                     step="0.01" 
@@ -73,15 +95,15 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                       const val = parseFloat(e.target.value);
                       if (!isNaN(val)) setRadiusInput(val.toFixed(2));
                     }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    className={`w-full p-3 border rounded-lg ${inputBgClass} text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500`} 
                   />
                 </div>
 
-                <div className="pt-4 border-t border-gray-300">
-                  <p className="text-sm text-gray-600 mb-1">Power</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                <div className={`pt-4 border-t ${borderClass}`}>
+                  <p className={`text-sm ${mutedTextClass} mb-1`}>Power</p>
+                  <p className="text-2xl font-bold text-blue-400">
                     {radiusResult === 'out-of-range' ? (
-                      <span className="text-red-600 text-base">Out of range</span>
+                      <span className="text-red-400 text-base">Out of range</span>
                     ) : radiusResult ? (
                       `${formatToTwoDecimals(radiusResult)} D`
                     ) : (
@@ -92,11 +114,11 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
               </div>
 
               {/* Diopters to Radius */}
-              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                <h3 className="text-lg font-semibold text-slate-800 mb-4">Diopters to Radius</h3>
+              <div className={`${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+                <h3 className={`text-lg font-semibold ${textClass} mb-4`}>Diopters to Radius</h3>
                 
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Diopters (D)</label>
+                  <label className={`block text-sm font-medium ${labelClass} mb-2`}>Diopters (D)</label>
                   <input 
                     type="number" 
                     step="0.01" 
@@ -108,15 +130,15 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
                       const val = parseFloat(e.target.value);
                       if (!isNaN(val)) setDiopterInput(val.toFixed(2));
                     }}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    className={`w-full p-3 border rounded-lg ${inputBgClass} text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500`} 
                   />
                 </div>
 
-                <div className="pt-4 border-t border-gray-300">
-                  <p className="text-sm text-gray-600 mb-1">Radius</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                <div className={`pt-4 border-t ${borderClass}`}>
+                  <p className={`text-sm ${mutedTextClass} mb-1`}>Radius</p>
+                  <p className="text-2xl font-bold text-blue-400">
                     {diopterResult === 'out-of-range' ? (
-                      <span className="text-red-600 text-base">Out of range</span>
+                      <span className="text-red-400 text-base">Out of range</span>
                     ) : diopterResult ? (
                       `${formatToTwoDecimals(diopterResult)} mm`
                     ) : (
@@ -129,39 +151,40 @@ export default function CorneaCurvatureConverter({ isDark = true, onClose }) {
           </div>
 
           {/* Educational Content */}
-          <div className="mb-10 bg-blue-50 p-6 rounded-lg border border-blue-200">
-            <h2 className="text-xl font-bold text-slate-800 mb-4">Understanding Corneal Curvature: Radius and Diopter Measurements</h2>
+          <div className={`mb-10 ${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+            <h2 className={`text-xl font-bold ${textClass} mb-4`}>Understanding Corneal Curvature: Radius and Diopter Measurements</h2>
             
-            <div className="space-y-6 text-slate-700">
+            <div className={`space-y-6 ${bodyTextClass}`}>
               <div>
-                <h3 className="font-semibold text-slate-800 mb-2">Two Ways to Express the Same Curvature</h3>
+                <h3 className={`font-semibold ${textClass} mb-2`}>Two Ways to Express the Same Curvature</h3>
                 <p className="text-sm leading-relaxed">
                   Corneal curvature can be measured in two different units: radius of curvature (mm) and refractive power (diopters). Both describe the same physical surface but from different perspectives. The relationship between them is inversely proportional—a steeper cornea has a shorter radius and greater dioptric power, while a flatter cornea has a longer radius and lower dioptric power.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-slate-800 mb-2">The Conversion Formula</h3>
+                <h3 className={`font-semibold ${textClass} mb-2`}>The Conversion Formula</h3>
                 <p className="text-sm leading-relaxed mb-2">
                   To convert between these measurements, optometrists and ophthalmologists use a standard formula based on the keratometric refractive index of 1.3375. This simplified index allows for practical clinical calculations:
                 </p>
-                <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm mb-2">
+                <div className={`${isDark ? 'bg-slate-800' : 'bg-white'} p-4 rounded border ${borderClass} font-mono text-sm mb-2`}>
                   <p className="mb-1"><strong>Power (D) = 337.5 ÷ radius (mm)</strong></p>
-                  <p className="text-gray-600">For instance, a corneal radius of 7.80 mm converts to approximately 43.27 D of refractive power.</p>
+                  <p className={`${mutedTextClass}`}>For instance, a corneal radius of 7.80 mm converts to approximately 43.27 D of refractive power.</p>
                 </div>
                 <p className="text-sm leading-relaxed mb-2">To convert in the reverse direction:</p>
-                <div className="bg-white p-4 rounded border border-blue-300 font-mono text-sm">
+                <div className={`${isDark ? 'bg-slate-800' : 'bg-white'} p-4 rounded border ${borderClass} font-mono text-sm`}>
                   <p><strong>Radius (mm) = 337.5 ÷ power (D)</strong></p>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-semibold text-slate-800 mb-2">Why This Matters Clinically</h3>
+                <h3 className={`font-semibold ${textClass} mb-2`}>Why This Matters Clinically</h3>
                 <p className="text-sm leading-relaxed">
                   Understanding this conversion is essential when interpreting measurements from different instruments. Keratometers typically report curvature in millimeters, corneal topographers may use diopters, and contact lens specifications often reference base curves in millimeters. Being able to convert between these units ensures accurate communication between devices, proper contact lens fitting, and consistent clinical decision-making.
                 </p>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -140,51 +140,75 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
     return `${formatToTwoDecimals(result.sphere)} ${formatToTwoDecimals(result.cyl)} ×${result.axis.toString().padStart(3, '0')}`;
   };
 
-  return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8" onClick={(e) => e.stopPropagation()}>
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
-          <h1 className="text-2xl font-bold text-slate-800">Spectacle to Contact Lens Prescription</h1>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <X size={24} className="text-gray-600" />
-          </button>
-        </div>
+  const bgClass = isDark ? 'bg-slate-900' : 'bg-gray-50';
+  const textClass = isDark ? 'text-white' : 'text-gray-900';
+  const cardBgClass = isDark ? 'bg-slate-800' : 'bg-white';
+  const panelBgClass = isDark ? 'bg-slate-700' : 'bg-gray-50';
+  const inputBgClass = isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900';
+  const labelClass = isDark ? 'text-gray-200' : 'text-gray-700';
+  const mutedTextClass = isDark ? 'text-gray-400' : 'text-gray-600';
+  const bodyTextClass = isDark ? 'text-gray-200' : 'text-gray-800';
+  const borderClass = isDark ? 'border-slate-600' : 'border-gray-200';
 
-        <div className="p-8 leading-relaxed text-gray-800 overflow-y-auto max-h-[90vh]">
+  return (
+    <div className={`fixed inset-0 ${bgClass} z-50 overflow-y-auto`}>
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className={`w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`}>
+          <button
+            onClick={onClose}
+            className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
+            aria-label="Close"
+          >
+            <X size={24} />
+          </button>
+
+          <div className="flex items-center gap-3 mb-8">
+            <div className="text-3xl">👓</div>
+            <div>
+              <h1 className={`text-3xl font-bold ${textClass}`}>Spectacle to Contact Lens Prescription</h1>
+              <p className={`text-sm ${mutedTextClass}`}>
+                Convert spectacle Rx to contact lens power with vertex distance adjustment.
+              </p>
+            </div>
+          </div>
+
+          <div className="leading-relaxed overflow-y-auto max-h-[90vh]">
           {/* Starting Spectacle Prescription */}
           <div className="mb-8">
-            <h2 className="text-xl font-bold text-slate-800 mb-6">Initial Spectacles Prescription</h2>
+            <h2 className={`text-xl font-bold ${textClass} mb-6`}>Initial Spectacles Prescription</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               {/* OD Column */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-base font-bold text-slate-800 mb-4">OD</h3>
+              <div className={`${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+                <h3 className={`text-base font-bold ${textClass} mb-4`}>OD</h3>
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                    <label className={`block text-sm font-medium ${labelClass} mb-2`}>Sphere</label>
                     <CustomSelect
                       value={odSphere.toFixed(2)}
                       onChange={(val) => setOdSphere(parseFloat(val))}
                       options={sphereOptions}
+                      isDark={isDark}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                    <label className={`block text-sm font-medium ${labelClass} mb-2`}>Cylinder</label>
                     <CustomSelect
                       value={odCyl.toFixed(2)}
                       onChange={(val) => setOdCyl(parseFloat(val))}
                       options={cylinderOptions}
+                      isDark={isDark}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Axis</label>
+                    <label className={`block text-sm font-medium ${labelClass} mb-2`}>Axis</label>
                     <select 
                       value={odAxis.toString().padStart(3, '0')} 
                       onChange={(e) => setOdAxis(parseInt(e.target.value))}
-                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className={`w-full p-3 border rounded-lg ${inputBgClass} focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                     >
                       {axisOptions.map(opt => (
                         <option key={opt} value={opt}>{opt}</option>
@@ -195,34 +219,36 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
               </div>
 
               {/* OS Column */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-base font-bold text-slate-800 mb-4">OS</h3>
+              <div className={`${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+                <h3 className={`text-base font-bold ${textClass} mb-4`}>OS</h3>
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Sphere</label>
+                    <label className={`block text-sm font-medium ${labelClass} mb-2`}>Sphere</label>
                     <CustomSelect
                       value={osSphere.toFixed(2)}
                       onChange={(val) => setOsSphere(parseFloat(val))}
                       options={sphereOptions}
+                      isDark={isDark}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Cylinder</label>
+                    <label className={`block text-sm font-medium ${labelClass} mb-2`}>Cylinder</label>
                     <CustomSelect
                       value={osCyl.toFixed(2)}
                       onChange={(val) => setOsCyl(parseFloat(val))}
                       options={cylinderOptions}
+                      isDark={isDark}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Axis</label>
+                    <label className={`block text-sm font-medium ${labelClass} mb-2`}>Axis</label>
                     <select 
                       value={osAxis.toString().padStart(3, '0')} 
                       onChange={(e) => setOsAxis(parseInt(e.target.value))}
-                      className="w-full p-3 border border-gray-300 rounded-lg bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className={`w-full p-3 border rounded-lg ${inputBgClass} focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                     >
                       {axisOptions.map(opt => (
                         <option key={opt} value={opt}>{opt}</option>
@@ -239,41 +265,42 @@ export default function ContactLensVertexCalculator({ isDark = true, onClose }) 
           {/* Results */}
           {
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-slate-800 mb-6">Results</h2>
+              <h2 className={`text-xl font-bold ${textClass} mb-6`}>Results</h2>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {/* OD Results */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                  <h3 className="text-base font-bold text-slate-800 mb-4">OD</h3>
+                <div className={`${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+                  <h3 className={`text-base font-bold ${textClass} mb-4`}>OD</h3>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-sm text-gray-600 mb-1">Contact Lens Rx</p>
-                      <p className="text-lg font-semibold text-slate-800">{formatRx(odResult)}</p>
+                      <p className={`text-sm ${mutedTextClass} mb-1`}>Contact Lens Rx</p>
+                      <p className={`text-lg font-semibold ${bodyTextClass}`}>{formatRx(odResult)}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 mb-1">Spherical Equivalent</p>
-                      <p className="text-lg font-semibold text-slate-800">{formatToTwoDecimals(odResult.se)} DS</p>
+                      <p className={`text-sm ${mutedTextClass} mb-1`}>Spherical Equivalent</p>
+                      <p className={`text-lg font-semibold ${bodyTextClass}`}>{formatToTwoDecimals(odResult.se)} DS</p>
                     </div>
                   </div>
                 </div>
 
                 {/* OS Results */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                  <h3 className="text-base font-bold text-slate-800 mb-4">OS</h3>
+                <div className={`${panelBgClass} p-6 rounded-lg border ${borderClass}`}>
+                  <h3 className={`text-base font-bold ${textClass} mb-4`}>OS</h3>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-sm text-gray-600 mb-1">Contact Lens Rx</p>
-                      <p className="text-lg font-semibold text-slate-800">{formatRx(osResult)}</p>
+                      <p className={`text-sm ${mutedTextClass} mb-1`}>Contact Lens Rx</p>
+                      <p className={`text-lg font-semibold ${bodyTextClass}`}>{formatRx(osResult)}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 mb-1">Spherical Equivalent</p>
-                      <p className="text-lg font-semibold text-slate-800">{formatToTwoDecimals(osResult.se)} DS</p>
+                      <p className={`text-sm ${mutedTextClass} mb-1`}>Spherical Equivalent</p>
+                      <p className={`text-lg font-semibold ${bodyTextClass}`}>{formatToTwoDecimals(osResult.se)} DS</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           }
+          </div>
         </div>
       </div>
     </div>

@@ -236,6 +236,16 @@ export default function HomePage() {
   const textLightClass = isDark ? 'text-gray-400' : 'text-gray-600';
   const borderClass = isDark ? 'border-white/10' : 'border-gray-200';
   const hoverBorderClass = isDark ? 'hover:border-blue-400/50' : 'hover:border-blue-500/50';
+  const accentHelloClass = isDark ? 'text-blue-400' : 'text-blue-600';
+  const accentChinFromClass = isDark ? 'from-blue-400' : 'from-blue-600';
+  const accentChinToClass = isDark ? 'to-purple-600' : 'to-violet-700';
+  const accentPhilosophyClass = isDark ? 'text-blue-400' : 'text-indigo-600';
+  const accentToolsClass = isDark ? 'text-blue-400' : 'text-sky-600';
+  const accentHeaderDotClass = isDark ? 'text-blue-400' : 'text-blue-600';
+  const accentQuoteAttributionClass = isDark ? 'text-blue-400' : 'text-sky-600';
+  const accentPhilosophyBulletClass = isDark ? 'before:text-blue-400' : 'before:text-indigo-600';
+  const accentBetterTogetherFromClass = isDark ? 'from-blue-400' : 'from-blue-600';
+  const accentBetterTogetherToClass = isDark ? 'to-cyan-600' : 'to-cyan-700';
 
   return (
     <div className={`min-h-screen ${bgClass} ${textClass} overflow-x-hidden relative transition-colors duration-500`}>
@@ -254,7 +264,7 @@ export default function HomePage() {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? `${isDark ? 'bg-black/80' : 'bg-white/80'} backdrop-blur-lg py-2` : 'py-3'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="/" className="text-2xl font-bold tracking-tight relative z-10">
-            JAYCOB<span className="text-blue-400">.</span>
+            JAYCOB<span className={accentHeaderDotClass}>.</span>
           </a>
           
           {/* Desktop Menu */}
@@ -311,11 +321,11 @@ export default function HomePage() {
             {/* Left side - Text content */}
             <div className="space-y-6">
               <div className="space-y-3">
-                <p className="text-blue-400 text-base md:text-lg tracking-wide">Hello, I am</p>
+                <p className={`${accentHelloClass} text-base md:text-lg tracking-wide`}>Hello, I am</p>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                   JAYCOB
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+                  <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentChinFromClass} ${accentChinToClass}`}>
                     CHIN
                   </span>
                 </h1>
@@ -336,7 +346,7 @@ export default function HomePage() {
                   <p className={`text-lg md:text-xl font-light italic ${textMutedClass}`}>
                     &quot;The simple act of caring is heroic.&quot;
                   </p>
-                  <p className="text-sm text-blue-400 mt-2">— Edward Albert</p>
+                  <p className={`text-sm ${accentQuoteAttributionClass} mt-2`}>— Edward Albert</p>
                 </div>
               </div>
 
@@ -373,20 +383,20 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6">
               <h2 className="text-5xl md:text-6xl font-bold">
-                My <span className="text-blue-400">Philosophy</span>
+                My <span className={accentPhilosophyClass}>Philosophy</span>
               </h2>
               <div className={`space-y-4 ${textMutedClass} text-lg`}>
                 <p>
                   I used to ask myself, &quot;how do we (optometrists) keep ourselves updated?&quot;, &quot;what do I have to do in order to provide the best care?&quot; After years of practice, trying different ways, and seeing what really helps children and families, I&apos;ve concluded:
                 </p>
                 <ul className="space-y-3 pl-6">
-                  <li className="relative before:content-['•'] before:absolute before:-left-6 before:text-blue-400 before:font-bold">
+                  <li className={`relative before:content-['•'] before:absolute before:-left-6 ${accentPhilosophyBulletClass} before:font-bold`}>
                     Pursue the &apos;Gold Standard&apos;, always
                   </li>
-                  <li className="relative before:content-['•'] before:absolute before:-left-6 before:text-blue-400 before:font-bold">
+                  <li className={`relative before:content-['•'] before:absolute before:-left-6 ${accentPhilosophyBulletClass} before:font-bold`}>
                     Adapt and move towards evidence based research
                   </li>
-                  <li className="relative before:content-['•'] before:absolute before:-left-6 before:text-blue-400 before:font-bold">
+                  <li className={`relative before:content-['•'] before:absolute before:-left-6 ${accentPhilosophyBulletClass} before:font-bold`}>
                     Take time to share and learn more from others
                   </li>
                 </ul>
@@ -517,7 +527,7 @@ export default function HomePage() {
       <section id="work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-5xl md:text-6xl font-bold mb-16">
-            Useful <span className="text-blue-400">Tools</span>
+            Useful <span className={accentToolsClass}>Tools</span>
           </h2>
 
           <div className={`inline-flex items-center gap-1 mb-10 px-1 py-1 rounded-full backdrop-blur-sm shadow-md shadow-black/10 ${isDark ? 'bg-white/5 border border-white/5' : 'bg-gray-100 border border-gray-200/40'}`}>
@@ -1004,7 +1014,7 @@ export default function HomePage() {
           <h2 className="text-5xl md:text-7xl font-bold mb-8">
             Let&apos;s Make Eye Care
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-600">
+            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentBetterTogetherFromClass} ${accentBetterTogetherToClass}`}>
               Better Together
             </span>
           </h2>

@@ -174,6 +174,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     value={Number(rightEye.sphere).toFixed(2)}
                     onChange={(val) => handleRightEyeChange('sphere', parseFloat(val))}
                     options={sphereOptions}
+                    isDark={isDark}
                   />
                 </div>
 
@@ -183,6 +184,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     value={Number(rightEye.cyl).toFixed(2)}
                     onChange={(val) => handleRightEyeChange('cyl', parseFloat(val))}
                     options={cylinderOptions}
+                    isDark={isDark}
                   />
                 </div>
 
@@ -244,6 +246,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     value={Number(leftEye.sphere).toFixed(2)}
                     onChange={(val) => handleLeftEyeChange('sphere', parseFloat(val))}
                     options={sphereOptions}
+                    isDark={isDark}
                   />
                 </div>
 
@@ -253,6 +256,7 @@ export default function AxialLengthEstimation({ isDark = true, onClose }) {
                     value={Number(leftEye.cyl).toFixed(2)}
                     onChange={(val) => handleLeftEyeChange('cyl', parseFloat(val))}
                     options={cylinderOptions}
+                    isDark={isDark}
                   />
                 </div>
 
