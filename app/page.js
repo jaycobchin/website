@@ -425,7 +425,7 @@ export default function HomePage() {
                   Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Click to open</span>
+                  <span>View clinical experience</span>
                   <ArrowRight size={16} />
                 </div>
               </div>
@@ -444,7 +444,7 @@ export default function HomePage() {
                   Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Click to open</span>
+                  <span>View professional roles</span>
                   <ArrowRight size={16} />
                 </div>
               </div>
@@ -463,7 +463,7 @@ export default function HomePage() {
                   Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Click to open</span>
+                  <span>View community work</span>
                   <ArrowRight size={16} />
                 </div>
               </div>
@@ -577,7 +577,21 @@ export default function HomePage() {
                     {project.description}
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Click to open tool</span>
+                    <span>
+                      {project.id === 'progression-calculator'
+                        ? 'Calculation progression'
+                        : project.id === 'risk-factors-analysis'
+                        ? 'Calculate risk'
+                        : project.id === 'vision-simulator'
+                        ? 'Try the simulator'
+                        : project.id === 'cornea-curvature-converter'
+                        ? 'Try the converter'
+                        : project.id === 'axial-length-estimation'
+                        ? 'Estimate axial length'
+                        : project.id === 'cl-rx-vertex-calculator'
+                        ? 'Convert to contact lens power'
+                        : 'Click to open tool'}
+                    </span>
                     <ArrowRight size={16} />
                   </div>
                 </div>
@@ -649,19 +663,19 @@ export default function HomePage() {
 
               <div className="border-t border-gray-200 pt-8">
                 <p className="text-gray-800 mb-6">
-                  I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className="text-blue-700 underline" target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
+                  I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
                 </p>
 
                 <p className="text-gray-800 mb-6">
-                  My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className="text-blue-700 underline" target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
+                  My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
                 </p>
 
                 <p className="text-gray-800 mb-6">
-                  Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className="text-blue-700 underline" target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
+                  Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
                 </p>
 
                 <p className="text-gray-800 mb-6">
-                  In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
+                  In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
                 </p>
 
                 <p className="text-gray-800">
@@ -828,10 +842,10 @@ export default function HomePage() {
                 I have taken part in volunteer work both locally and overseas.
               </p>
               <p className="text-base mb-6 text-gray-800">
-                I worked with <a href="https://givingsight.org/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Optometry Giving Sight (OGS)</a> locally to organize full eye checks and provide free spectacles to needy families in Singapore.
+                I worked with <a href="https://givingsight.org/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Optometry Giving Sight (OGS)</a> locally to organize full eye checks and provide free spectacles to needy families in Singapore.
               </p>
               <p className="text-base mb-8 text-gray-800">
-                Overseas, I joined <a href="https://lionsclubs.org.sg/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Lions Club Singapore</a> for eye screening programs in Myanmar, and also worked with <a href="https://www.facebook.com/humanitarianwithlove/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Humanitarian with Love</a> and <a href="https://www.facebook.com/CISACAMBODIA/" className="text-blue-700 underline" target="_blank" rel="noreferrer">Khmer Sight Foundation</a> to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
+                Overseas, I joined <a href="https://lionsclubs.org.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Lions Club Singapore</a> for eye screening programs in Myanmar, and also worked with <a href="https://www.facebook.com/humanitarianwithlove/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Humanitarian with Love</a> and <a href="https://www.facebook.com/CISACAMBODIA/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Khmer Sight Foundation</a> to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
               </p>
 
               {/* Photo Gallery Carousel */}

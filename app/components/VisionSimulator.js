@@ -223,16 +223,17 @@ export default function VisionSimulator({ isDark = true, onClose }) {
       canvas.width = 800;
       canvas.height = 600;
       ctx.clearRect(0, 0, 800, 600);
+
+      const blurConditions = new Set(['myopia', 'hyperopia', 'presbyopia']);
+      if (blurConditions.has(condition)) {
+        ctx.drawImage(img, 0, 0, 800, 600);
+        return;
+      }
+
       ctx.drawImage(img, 0, 0, 800, 600);
 
-      if (condition === 'myopia') {
-        applyBlur(ctx, canvas, severity / 10);
-      } else if (condition === 'hyperopia') {
-        applyBlur(ctx, canvas, severity / 12);
-      } else if (condition === 'astigmatism') {
+      if (condition === 'astigmatism') {
         applyAstigmatism(ctx, canvas, severity);
-      } else if (condition === 'presbyopia') {
-        applyBlur(ctx, canvas, severity / 15);
       } else if (condition === 'cataract') {
         applyCataract(ctx, canvas, severity);
       } else if (condition === 'glaucoma') {
@@ -296,6 +297,14 @@ export default function VisionSimulator({ isDark = true, onClose }) {
   const cardBgClass = isDark ? 'bg-slate-800' : 'bg-white';
   const inputBgClass = isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900';
   const labelClass = isDark ? 'text-gray-200' : 'text-gray-700';
+  const blurRadius =
+    condition === 'myopia'
+      ? severity / 8
+      : condition === 'hyperopia'
+      ? severity / 10
+      : condition === 'presbyopia'
+      ? severity / 12
+      : 0;
 
   // Apply effect on mount and when condition/severity changes
   useEffect(() => {
@@ -431,6 +440,7 @@ export default function VisionSimulator({ isDark = true, onClose }) {
                 className="rounded-lg shadow-lg max-w-full"
                 width={800}
                 height={600}
+                style={{ filter: blurRadius > 0 ? `blur(${blurRadius}px)` : 'none' }}
               />
             </div>
           </div>
