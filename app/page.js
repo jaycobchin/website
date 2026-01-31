@@ -149,72 +149,72 @@ export default function HomePage() {
   };
 
   const skillsDetail = [
-    { 
-      title: 'Eye Care', 
+    {
+      title: 'Eye Care',
       desc: 'Professional & Compassionate',
       detail: 'Providing comprehensive eye examinations with a focus on early detection and prevention. I believe in taking the time to understand each patient\'s unique needs and creating personalized care plans that work for their lifestyle.'
     },
-    { 
-      title: 'Education', 
+    {
+      title: 'Education',
       desc: 'Simple & Practical',
       detail: 'Breaking down complex optometry concepts into easy-to-understand information. I create resources and guides that empower both professionals and parents to make informed decisions about eye health.'
     },
-    { 
-      title: 'Experience', 
+    {
+      title: 'Experience',
       desc: 'Patient-Focused',
       detail: 'Years of hands-on practice have taught me that the best care comes from listening. Every patient interaction is an opportunity to learn and improve how we approach eye health in our community.'
     },
-    { 
-      title: 'Innovation', 
+    {
+      title: 'Innovation',
       desc: 'Making It Fun',
       detail: 'Transforming routine eye checks into engaging experiences, especially for children. Using creative techniques and modern tools to make optometry accessible and enjoyable for everyone.'
     }
   ];
 
   const projects = [
-    { 
-      title: 'Risk Factors Analysis', 
-      category: 'Parents', 
+    {
+      title: 'Risk Factors Analysis',
+      category: 'Parents',
       audience: ['parents'],
-      color: 'from-teal-500 to-cyan-600', 
+      color: 'from-teal-500 to-cyan-600',
       id: 'risk-factors-analysis',
       description: 'Interactive tool to assess your child\'s myopia risk factors and receive personalized recommendations based on current research and clinical guidelines.'
     },
-    { 
-      title: 'Myopia Progression Calculator', 
-      category: 'Parents', 
+    {
+      title: 'Myopia Progression Calculator',
+      category: 'Parents',
       audience: ['parents'],
-      color: 'from-cyan-500 to-blue-600', 
+      color: 'from-cyan-500 to-blue-600',
       id: 'progression-calculator',
       description: 'Calculate and visualize how myopia may progress over time with and without intervention, helping you make informed decisions about treatment options.'
     },
-    { 
-      title: 'Axial Length Estimation', 
-      category: 'Optometrists', 
+    {
+      title: 'Axial Length Estimation',
+      category: 'Optometrists',
       audience: ['optometrists'],
-      color: 'from-blue-500 to-indigo-600', 
+      color: 'from-blue-500 to-indigo-600',
       id: 'axial-length-estimation',
       description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
     },
-    { 
-      title: 'CL Rx Vertex Calculator', 
-      category: 'Optometrists', 
+    {
+      title: 'CL Rx Vertex Calculator',
+      category: 'Optometrists',
       audience: ['optometrists'],
-      color: 'from-indigo-500 to-purple-600', 
+      color: 'from-indigo-500 to-purple-600',
       id: 'cl-rx-vertex-calculator',
       description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment.'
     },
-    { 
-      title: 'Cornea Curvature Converter', 
-      category: 'Optometrists', 
+    {
+      title: 'Cornea Curvature Converter',
+      category: 'Optometrists',
       audience: ['optometrists'],
-      color: 'from-purple-500 to-pink-600', 
+      color: 'from-purple-500 to-pink-600',
       id: 'cornea-curvature-converter',
       description: 'Convert between corneal radius (mm) and corneal power (D) with a comprehensive K-value reference table.'
     },
-    { 
-      title: 'Vision Simulator', 
-      category: 'Parents', 
+    {
+      title: 'Vision Simulator',
+      category: 'Parents',
       audience: ['parents'],
       color: 'from-indigo-500 to-teal-600',
       id: 'vision-simulator',
@@ -225,10 +225,10 @@ export default function HomePage() {
   const filteredProjects = selectedProfile === 'all'
     ? projects
     : projects.filter((project) =>
-        selectedProfile === 'parents'
-          ? project.audience.includes('parents')
-          : project.audience.includes('optometrists')
-      );
+      selectedProfile === 'parents'
+        ? project.audience.includes('parents')
+        : project.audience.includes('optometrists')
+    );
 
   const bgClass = isDark ? 'bg-black' : 'bg-white';
   const textClass = isDark ? 'text-white' : 'text-gray-900';
@@ -253,32 +253,32 @@ export default function HomePage() {
       <div className={`fixed inset-0 ${isDark ? 'bg-gradient-animated-dark' : 'bg-gradient-animated-light'} ${isDark ? 'opacity-90' : 'opacity-100'} transition-opacity duration-500`} />
 
       {/* Mouse-tracking gradient overlay */}
-      <div 
-        className="fixed inset-0 opacity-20 pointer-events-none transition-opacity duration-500"
+      <div
+        className={`fixed inset-0 ${isDark ? 'opacity-20' : 'opacity-5'} pointer-events-none transition-opacity duration-500`}
         style={{
           background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(96, 165, 250, 0.3), transparent 80%)`
         }}
       />
 
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? `${isDark ? 'bg-black/80' : 'bg-white/80'} backdrop-blur-lg py-2` : 'py-3'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass border-b border-gray-200/50 dark:border-white/10 py-4' : 'py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="/" className="text-2xl font-bold tracking-tight relative z-10">
             JAYCOB<span className={accentHeaderDotClass}>.</span>
           </a>
-          
+
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8 relative z-10">
-            <a href="#philosophy" className="hover:text-blue-400 transition-colors">Philosophy</a>
-            <a href="#work-experience" className="hover:text-blue-400 transition-colors">Work</a>
-            <a href="#write" className="hover:text-blue-400 transition-colors">Write</a>
-            <a href="#work" className="hover:text-blue-400 transition-colors">Tools</a>
-            <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
-            
+          <div className="hidden md:flex items-center gap-8 relative z-10 font-medium">
+            <a href="#philosophy" className="hover:text-blue-500 transition-colors">Philosophy</a>
+            <a href="#work-experience" className="hover:text-blue-500 transition-colors">Work</a>
+            <a href="#write" className="hover:text-blue-500 transition-colors">Write</a>
+            <a href="#work" className="hover:text-blue-500 transition-colors">Tools</a>
+            <a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a>
+
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-full ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-200 hover:bg-gray-300'} transition-all`}
+              className={`p-2 rounded-full ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} transition-all`}
               title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {isDark ? <Moon size={20} /> : <Sun size={20} />}
@@ -286,7 +286,7 @@ export default function HomePage() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden relative z-10"
           >
@@ -296,18 +296,19 @@ export default function HomePage() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className={`md:hidden ${isDark ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-lg`}>
-            <div className="px-6 py-4 flex flex-col gap-4">
-              <a href="#philosophy" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
-              <a href="#work-experience" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
-              <a href="#write" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Write</a>
-              <a href="#work" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
-              <a href="#contact" className="hover:text-blue-400 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
+          <div className={`md:hidden absolute top-full left-0 w-full glass border-b border-gray-200/50 dark:border-white/10`}>
+            <div className="px-6 py-6 flex flex-col gap-6 font-medium">
+              <a href="#philosophy" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
+              <a href="#work-experience" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="#write" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Write</a>
+              <a href="#work" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
+              <a href="#contact" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
               <button
                 onClick={toggleTheme}
-                className={`flex items-center gap-2 p-2 rounded-lg ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl w-full ${isDark ? 'bg-white/10' : 'bg-gray-100'}`}
               >
                 {isDark ? <Moon size={20} /> : <Sun size={20} />}
+                <span>{isDark ? 'Dark Mode' : 'Light Mode'}</span>
               </button>
             </div>
           </div>
@@ -315,9 +316,12 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-16 md:pt-20 relative z-10">
-        <div className="max-w-7xl w-full">
-          <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in">
+      <section className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12 relative z-10 overflow-hidden">
+        {/* Background blobs */}
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none`} />
+
+        <div className="max-w-7xl w-full relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center animate-fade-in">
             {/* Left side - Text content */}
             <div className="space-y-6">
               <div className="space-y-3">
@@ -330,47 +334,48 @@ export default function HomePage() {
                   </span>
                 </h1>
               </div>
-              
-              <p className={`text-base md:text-lg ${textMutedClass} leading-relaxed`}>
-                I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients. I share simple tips and show how the skills you&apos;ve learned can become useful &quot;tools&quot; to make optometry more enjoyable (hopefully!).
-              </p>
 
-              <p className={`text-sm md:text-base ${textLightClass} leading-relaxed`}>
-                I also hope to help parents understand more about eye care so they can better support their kids&apos; eye health. These tips can make eye checks and glasses less scary for your children. Sometimes it can be really fun!
-              </p>
+              <div className="space-y-6 max-w-lg">
+                <p className={`text-lg md:text-xl ${textMutedClass} leading-relaxed`}>
+                  I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients. I share simple tips and show how the skills you&apos;ve learned can become useful &quot;tools&quot; to make optometry more enjoyable (hopefully!).
+                </p>
+
+                <p className={`text-base ${textLightClass} leading-relaxed`}>
+                  I also hope to help parents understand more about eye care so they can better support their kids&apos; eye health. These tips can make eye checks and glasses less scary for your children. Sometimes it can be really fun!
+                </p>
+              </div>
 
               {/* Philosophy Quote */}
-              <div className={`flex gap-4 mt-12`}>
-                <div className={`border-l-4 border-blue-400 pt-1`}></div>
+              <div className="flex gap-4 pl-4 border-l-4 border-blue-500/30">
                 <div>
-                  <p className={`text-lg md:text-xl font-light italic ${textMutedClass}`}>
+                  <p className={`text-xl font-light italic ${textMutedClass}`}>
                     &quot;The simple act of caring is heroic.&quot;
                   </p>
                   <p className={`text-sm ${accentQuoteAttributionClass} mt-2`}>— Edward Albert</p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-6">
-                <a href="#work-experience" className="group px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 transition-all text-sm md:text-base">
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a href="#work-experience" className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 transition-all font-medium shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40">
                   View My Work
                   <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                 </a>
-                <a href="#contact" className={`px-6 py-3 border ${borderClass} hover:border-blue-400 rounded-full transition-all text-sm md:text-base`}>
+                <a href="#contact" className={`px-8 py-4 border ${borderClass} hover:border-blue-500/50 rounded-full transition-all font-medium hover:bg-blue-500/5`}>
                   Get In Touch
                 </a>
               </div>
             </div>
 
             {/* Right side - Photo */}
-            <div className="flex justify-center md:justify-center items-start md:items-start -mt-12 md:-mt-16">
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                {/* Your profile photo */}
-                <img 
+            <div className="flex justify-center items-center">
+              <div className="relative w-72 h-72 md:w-[400px] md:h-[400px] group">
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 -rotate-6 opacity-20 group-hover:rotate-0 transition-transform duration-500`} />
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-teal-400 rotate-6 opacity-20 group-hover:rotate-0 transition-transform duration-500 delay-75`} />
+                <img
                   src="/jaycob_chin.jpg"
                   alt="Jaycob Chin - Optometrist"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover rounded-full shadow-2xl relative z-10 rotate-0 transition-transform duration-500 group-hover:scale-[1.02]"
                 />
-                <div className={`absolute inset-0 rounded-full border-4 ${borderClass}`} />
               </div>
             </div>
           </div>
@@ -378,36 +383,40 @@ export default function HomePage() {
       </section>
 
       {/* Philosophy Section */}
-      <section id="philosophy" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+      <section id="philosophy" className="min-h-screen flex items-center px-6 py-24 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6">
               <h2 className="text-5xl md:text-6xl font-bold">
                 My <span className={accentPhilosophyClass}>Philosophy</span>
               </h2>
-              <div className={`space-y-4 ${textMutedClass} text-lg`}>
+              <div className={`space-y-6 ${textMutedClass} text-lg md:text-xl leading-relaxed`}>
                 <p>
                   I used to ask myself, &quot;how do we (optometrists) keep ourselves updated?&quot;, &quot;what do I have to do in order to provide the best care?&quot; After years of practice, trying different ways, and seeing what really helps children and families, I&apos;ve concluded:
                 </p>
-                <ul className="space-y-3 pl-6">
-                  <li className={`relative before:content-['•'] before:absolute before:-left-6 ${accentPhilosophyBulletClass} before:font-bold`}>
-                    Pursue the &apos;Gold Standard&apos;, always
-                  </li>
-                  <li className={`relative before:content-['•'] before:absolute before:-left-6 ${accentPhilosophyBulletClass} before:font-bold`}>
-                    Adapt and move towards evidence based research
-                  </li>
-                  <li className={`relative before:content-['•'] before:absolute before:-left-6 ${accentPhilosophyBulletClass} before:font-bold`}>
-                    Take time to share and learn more from others
-                  </li>
+                <ul className="space-y-4 pt-4">
+                  {[
+                    "Pursue the 'Gold Standard', always",
+                    "Adapt and move towards evidence based research",
+                    "Take time to share and learn more from others"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-4">
+                      <span className={`flex-shrink-0 w-6 h-6 rounded-full ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-indigo-500/10 text-indigo-600'} flex items-center justify-center mt-1`}>
+                        <div className="w-2 h-2 rounded-full bg-current" />
+                      </span>
+                      <span className="font-medium">{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
 
-            <div className="w-full">
-              <img 
-                src="/philosophy_himalaya_scenery.jpeg" 
-                alt="Philosophy - Himalaya Scenery" 
-                className="w-full h-96 object-cover rounded-2xl border shadow-lg"
+            <div className="w-full relative group">
+              <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-3xl -rotate-3 group-hover:rotate-0 transition-all duration-700" />
+              <img
+                src="/philosophy_himalaya_scenery.jpeg"
+                alt="Philosophy - Himalaya Scenery"
+                className="w-full h-[500px] object-cover rounded-3xl shadow-2xl relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
               />
             </div>
           </div>
@@ -415,26 +424,31 @@ export default function HomePage() {
       </section>
 
       {/* Work Section */}
-      <section id="work-experience" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+      < section id="work-experience" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16">
+          <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tight">
             Work
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Clinical Practice Card */}
-            <div 
-              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
+            <div
+              className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
               onClick={() => setSelectedWork('clinical')}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-cyan-600 opacity-90 group-hover:opacity-100 transition-opacity" />
-              <div className="relative z-10 text-white">
-                <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
-                <h3 className="text-xl font-bold mb-4">Clinical Practice</h3>
-                <p className="text-sm opacity-90 leading-relaxed mb-4">
-                  Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
-                </p>
-                <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-400 via-blue-500 to-indigo-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/90' : 'bg-slate-800'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg className="w-24 h-24 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 mb-4">Work Experience</p>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Clinical Practice</h3>
+                  <p className={`text-base ${textMutedClass} leading-relaxed`}>
+                    Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
+                  </p>
+                </div>
+                <div className="mt-8 flex items-center gap-2 text-sm font-bold text-teal-600 dark:text-teal-400 group-hover:translate-x-2 transition-transform">
                   <span>View clinical experience</span>
                   <ArrowRight size={16} />
                 </div>
@@ -442,18 +456,23 @@ export default function HomePage() {
             </div>
 
             {/* Professional Appointment Card */}
-            <div 
-              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
+            <div
+              className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
               onClick={() => setSelectedWork('professional')}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity" />
-              <div className="relative z-10 text-white">
-                <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
-                <h3 className="text-xl font-bold mb-4">Professional Appointment</h3>
-                <p className="text-sm opacity-90 leading-relaxed mb-4">
-                  Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
-                </p>
-                <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/90' : 'bg-slate-800'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg className="w-24 h-24 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-4">Work Experience</p>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Professional Appointment</h3>
+                  <p className={`text-base ${textMutedClass} leading-relaxed`}>
+                    Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
+                  </p>
+                </div>
+                <div className="mt-8 flex items-center gap-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-2 transition-transform">
                   <span>View professional roles</span>
                   <ArrowRight size={16} />
                 </div>
@@ -461,18 +480,23 @@ export default function HomePage() {
             </div>
 
             {/* Community Engagement Card */}
-            <div 
-              className="group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105"
+            <div
+              className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
               onClick={() => setSelectedWork('community')}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-90 group-hover:opacity-100 transition-opacity" />
-              <div className="relative z-10 text-white">
-                <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Work Experience</p>
-                <h3 className="text-xl font-bold mb-4">Community Engagement</h3>
-                <p className="text-sm opacity-90 leading-relaxed mb-4">
-                  Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
-                </p>
-                <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 via-purple-500 to-pink-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/90' : 'bg-slate-800'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg className="w-24 h-24 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-4">Work Experience</p>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Community Engagement</h3>
+                  <p className={`text-base ${textMutedClass} leading-relaxed`}>
+                    Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+                  </p>
+                </div>
+                <div className="mt-8 flex items-center gap-2 text-sm font-bold text-purple-600 dark:text-purple-400 group-hover:translate-x-2 transition-transform">
                   <span>View community work</span>
                   <ArrowRight size={16} />
                 </div>
@@ -480,129 +504,144 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Write Section */}
-      <section id="write" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+      < section id="write" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Write
-          </h2>
-          <p className={`text-lg ${textMutedClass} max-w-3xl mb-12`}>
-            Short, practical posts about optometry, myopia management, and day-to-day clinic insights. This is where I share reflections, explain complex topics simply, and document lessons learned.
-          </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="space-y-4">
+              <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Insights & Thoughts</p>
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+                Write
+              </h2>
+            </div>
+            <p className={`max-w-md text-lg ${textMutedClass}`}>
+              Short, practical posts about optometry, myopia management, and day-to-day clinic insights. This is where I share reflections, explain complex topics simply, and document lessons learned.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className={`p-8 rounded-2xl border ${borderClass} ${isDark ? 'bg-white/5' : 'bg-white'} hover:border-blue-400/50 transition-all`}>
-              <p className="text-xs uppercase tracking-wider text-blue-400 mb-2">Clinical Notes</p>
-              <h3 className="text-xl font-bold mb-3">What I Look For During a Pediatric Eye Check</h3>
-              <p className={`text-sm ${textLightClass} leading-relaxed mb-4`}>
-                A practical walkthrough of the key checkpoints that help me spot early issues and reassure parents.
-              </p>
-              <span className={`text-xs ${textLightClass}`}>Coming soon</span>
+            <div className={`p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 text-blue-500 group-hover:scale-110 transition-transform">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-wider text-blue-500 mb-3">Clinical Notes</p>
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-500 transition-colors">What I Look For During a Pediatric Eye Check</h3>
+                <p className={`text-base ${textMutedClass} leading-relaxed mb-6`}>
+                  A practical walkthrough of the key checkpoints that help me spot early issues and reassure parents.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-500 group-hover:text-blue-500 transition-colors">
+                <span>Coming soon</span>
+              </div>
             </div>
 
-            <div className={`p-8 rounded-2xl border ${borderClass} ${isDark ? 'bg-white/5' : 'bg-white'} hover:border-blue-400/50 transition-all`}>
-              <p className="text-xs uppercase tracking-wider text-blue-400 mb-2">Parent Guides</p>
-              <h3 className="text-xl font-bold mb-3">Myopia Myths I Hear Every Week</h3>
-              <p className={`text-sm ${textLightClass} leading-relaxed mb-4`}>
-                Clearing up the most common misconceptions with research-backed, parent-friendly explanations.
-              </p>
-              <span className={`text-xs ${textLightClass}`}>Coming soon</span>
+            <div className={`p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 text-purple-500 group-hover:scale-110 transition-transform">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-500 mb-3">Parent Guides</p>
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-purple-500 transition-colors">Myopia Myths I Hear Every Week</h3>
+                <p className={`text-base ${textMutedClass} leading-relaxed mb-6`}>
+                  Clearing up the most common misconceptions with research-backed, parent-friendly explanations.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-500 group-hover:text-purple-500 transition-colors">
+                <span>Coming soon</span>
+              </div>
             </div>
 
-            <div className={`p-8 rounded-2xl border ${borderClass} ${isDark ? 'bg-white/5' : 'bg-white'} hover:border-blue-400/50 transition-all`}>
-              <p className="text-xs uppercase tracking-wider text-blue-400 mb-2">Research Digest</p>
-              <h3 className="text-xl font-bold mb-3">One Study, Three Takeaways</h3>
-              <p className={`text-sm ${textLightClass} leading-relaxed mb-4`}>
-                Quick summaries of evidence-based updates with clear implications for practice and families.
-              </p>
-              <span className={`text-xs ${textLightClass}`}>Coming soon</span>
+            <div className={`p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-6 text-teal-500 group-hover:scale-110 transition-transform">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-wider text-teal-500 mb-3">Research Digest</p>
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-teal-500 transition-colors">One Study, Three Takeaways</h3>
+                <p className={`text-base ${textMutedClass} leading-relaxed mb-6`}>
+                  Quick summaries of evidence-based updates with clear implications for practice and families.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-500 group-hover:text-teal-500 transition-colors">
+                <span>Coming soon</span>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
-      {/* Work Section */}
-      <section id="work" className="min-h-screen flex items-center px-6 py-16 relative z-10">
+      {/* Tools Section */}
+      < section id="work" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-5xl md:text-6xl font-bold mb-16">
             Useful <span className={accentToolsClass}>Tools</span>
           </h2>
 
-          <div className={`inline-flex items-center gap-1 mb-10 px-1 py-1 rounded-full backdrop-blur-sm shadow-md shadow-black/10 ${isDark ? 'bg-white/5 border border-white/5' : 'bg-gray-100 border border-gray-200/40'}`}>
-            <button
-              onClick={() => setSelectedProfile('all')}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                selectedProfile === 'all'
-                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/30'
+          <div className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl backdrop-blur-md border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'}`}>
+            {[
+              { id: 'all', label: 'All', color: 'bg-slate-400' },
+              { id: 'parents', label: 'Parents', color: 'bg-blue-400' },
+              { id: 'optometrists', label: 'Optometrists', color: 'bg-indigo-400' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedProfile(tab.id)}
+                className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-3 ${selectedProfile === tab.id
+                  ? 'bg-white text-slate-900 shadow-lg scale-100'
                   : isDark
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-gray-700 hover:text-gray-900'
-              }`}
-            >
-              <span className="h-2 w-2 rounded-full bg-slate-200" />
-              All
-            </button>
-            <button
-              onClick={() => setSelectedProfile('parents')}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                selectedProfile === 'parents'
-                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/30'
-                  : isDark
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-gray-700 hover:text-gray-900'
-              }`}
-            >
-              <span className="h-2 w-2 rounded-full bg-blue-300" />
-              Parents
-            </button>
-            <button
-              onClick={() => setSelectedProfile('optometrists')}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                selectedProfile === 'optometrists'
-                  ? 'bg-blue-500 text-white shadow-md shadow-blue-500/30'
-                  : isDark
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-gray-700 hover:text-gray-900'
-              }`}
-            >
-              <span className="h-2 w-2 rounded-full bg-indigo-300" />
-              Optometrists
-            </button>
+                    ? 'text-white/60 hover:text-white hover:bg-white/5'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-white/50'
+                  }`}
+              >
+                <span className={`h-2 w-2 rounded-full ${tab.color}`} />
+                {tab.label}
+              </button>
+            ))}
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
-              <div 
+              <div
                 key={index}
-                className={`group relative p-8 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-105`}
+                className={`group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full`}
                 onClick={() => project.id && openTool(project.id)}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-90 group-hover:opacity-100 transition-opacity`} />
-                <div className="relative z-10 text-white">
-                  <p className="text-xs uppercase tracking-wider mb-2 opacity-90">{project.category}</p>
-                  <h3 className="text-xl font-bold mb-4">{project.title}</h3>
-                  <p className="text-sm opacity-90 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="mt-4 flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className={`relative h-full rounded-[20px] p-8 flex flex-col justify-between border ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white border-slate-200'} backdrop-blur-sm group-hover:border-transparent transition-colors`}>
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <span className={`text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-100'} group-hover:bg-white/20 group-hover:text-white transition-colors`}>
+                        {project.category}
+                      </span>
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${isDark ? 'bg-white/5' : 'bg-slate-50'} group-hover:bg-white/20 transition-colors`}>
+                        <ArrowRight size={18} className="group-hover:-rotate-45 transition-transform duration-300 group-hover:text-white" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors">{project.title}</h3>
+                    <p className={`text-sm ${textMutedClass} leading-relaxed group-hover:text-white/90 transition-colors`}>
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-white/5 group-hover:border-white/10">
+                    <span className="text-sm font-medium group-hover:text-white transition-colors">
                       {project.id === 'progression-calculator'
-                        ? 'Calculation progression'
+                        ? 'Calculate progression'
                         : project.id === 'risk-factors-analysis'
-                        ? 'Calculate risk'
-                        : project.id === 'vision-simulator'
-                        ? 'Try the simulator'
-                        : project.id === 'cornea-curvature-converter'
-                        ? 'Try the converter'
-                        : project.id === 'axial-length-estimation'
-                        ? 'Estimate axial length'
-                        : project.id === 'cl-rx-vertex-calculator'
-                        ? 'Convert to contact lens power'
-                        : 'Click to open tool'}
+                          ? 'Calculate risk'
+                          : project.id === 'vision-simulator'
+                            ? 'Try simulator'
+                            : project.id === 'cornea-curvature-converter'
+                              ? 'Try converter'
+                              : project.id === 'axial-length-estimation'
+                                ? 'Estimate length'
+                                : project.id === 'cl-rx-vertex-calculator'
+                                  ? 'Convert power'
+                                  : 'Open tool'}
                     </span>
-                    <ArrowRight size={16} />
                   </div>
                 </div>
               </div>
@@ -612,401 +651,416 @@ export default function HomePage() {
       </section>
 
       {/* Risk Factors Analysis Modal */}
-      {selectedProject === 'risk-factors-analysis' && (
-        <RiskFactorsAnalysis isDark={isDark} onClose={closeTool} />
-      )}
+      {
+        selectedProject === 'risk-factors-analysis' && (
+          <RiskFactorsAnalysis isDark={isDark} onClose={closeTool} />
+        )
+      }
       {/* Progression Calculator Modal */}
-      {selectedProject === 'progression-calculator' && (
-        <MyopiaProgressionCalculator isDark={isDark} onClose={closeTool} />
-      )}
+      {
+        selectedProject === 'progression-calculator' && (
+          <MyopiaProgressionCalculator isDark={isDark} onClose={closeTool} />
+        )
+      }
       {/* Axial Length Estimation Modal */}
-      {selectedProject === 'axial-length-estimation' && (
-        <AxialLengthEstimation isDark={isDark} onClose={closeTool} />
-      )}
+      {
+        selectedProject === 'axial-length-estimation' && (
+          <AxialLengthEstimation isDark={isDark} onClose={closeTool} />
+        )
+      }
       {/* Vision Simulator Modal */}
-      {selectedProject === 'vision-simulator' && (
-        <VisionSimulator isDark={isDark} onClose={closeTool} />
-      )}
+      {
+        selectedProject === 'vision-simulator' && (
+          <VisionSimulator isDark={isDark} onClose={closeTool} />
+        )
+      }
 
       {/* CL Rx Vertex Calculator Modal */}
-      {selectedProject === 'cl-rx-vertex-calculator' && (
-        <ContactLensVertexCalculator isDark={isDark} onClose={closeTool} />
-      )}
+      {
+        selectedProject === 'cl-rx-vertex-calculator' && (
+          <ContactLensVertexCalculator isDark={isDark} onClose={closeTool} />
+        )
+      }
 
       {/* Cornea Curvature Converter Modal */}
-      {selectedProject === 'cornea-curvature-converter' && (
-        <CorneaCurvatureConverter isDark={isDark} onClose={closeTool} />
-      )}
+      {
+        selectedProject === 'cornea-curvature-converter' && (
+          <CorneaCurvatureConverter isDark={isDark} onClose={closeTool} />
+        )
+      }
 
       {/* Work Experience Modals */}
-      {selectedWork === 'clinical' && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
-              <h1 className="text-2xl font-bold text-slate-800">Clinical Practice</h1>
-              <button
-                onClick={() => setSelectedWork(null)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <X size={24} className="text-gray-600" />
-              </button>
-            </div>
-            <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
-              {/* Profile Photo */}
-              <div className="flex justify-center mb-8">
-                <img 
-                  src="/Clinical Practice/jaycob_chin_profile.JPG" 
-                  alt="Jaycob Chin Profile" 
-                  className="w-40 h-40 rounded-full object-cover shadow-lg"
-                />
+      {
+        selectedWork === 'clinical' && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
+            <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
+                <h1 className="text-2xl font-bold text-slate-800">Clinical Practice</h1>
+                <button
+                  onClick={() => setSelectedWork(null)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <X size={24} className="text-gray-600" />
+                </button>
               </div>
+              <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
+                {/* Profile Photo */}
+                <div className="flex justify-center mb-8">
+                  <img
+                    src="/Clinical Practice/jaycob_chin_profile.JPG"
+                    alt="Jaycob Chin Profile"
+                    className="w-40 h-40 rounded-full object-cover shadow-lg"
+                  />
+                </div>
 
-              <h2 className="text-3xl font-bold text-center mb-2 text-slate-800">Jaycob Chin, FIAOMC</h2>
-              <p className="text-center text-gray-600 mb-2 text-sm">Optometrist</p>
-              
-              <div className="text-center mb-8 text-sm text-gray-700 space-y-1">
-                <p>M.Sc Optom (Aust), B.Sc Optom (U.S.A.), Dip. Optom (S'pore)</p>
-                <p>Full Registration, Singapore Optometrists and Opticians Board</p>
-                <p>Council Member, Singapore Optometric Association</p>
-                <p>Fellow, American Academy of Orthokeratology and Myopia Control</p>
-              </div>
+                <h2 className="text-3xl font-bold text-center mb-2 text-slate-800">Jaycob Chin, FIAOMC</h2>
+                <p className="text-center text-gray-600 mb-2 text-sm">Optometrist</p>
 
-              <div className="border-t border-gray-200 pt-8">
-                <p className="text-gray-800 mb-6">
-                  I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
-                </p>
+                <div className="text-center mb-8 text-sm text-gray-700 space-y-1">
+                  <p>M.Sc Optom (Aust), B.Sc Optom (U.S.A.), Dip. Optom (S'pore)</p>
+                  <p>Full Registration, Singapore Optometrists and Opticians Board</p>
+                  <p>Council Member, Singapore Optometric Association</p>
+                  <p>Fellow, American Academy of Orthokeratology and Myopia Control</p>
+                </div>
 
-                <p className="text-gray-800 mb-6">
-                  My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
-                </p>
+                <div className="border-t border-gray-200 pt-8">
+                  <p className="text-gray-800 mb-6">
+                    I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
+                  </p>
 
-                <p className="text-gray-800 mb-6">
-                  Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
-                </p>
+                  <p className="text-gray-800 mb-6">
+                    My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
+                  </p>
 
-                <p className="text-gray-800 mb-6">
-                  In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
-                </p>
+                  <p className="text-gray-800 mb-6">
+                    Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
+                  </p>
 
-                <p className="text-gray-800">
-                  I am driven by a deep commitment to eye health, evidence-based practice, and making quality vision care available to everyone.
-                </p>
+                  <p className="text-gray-800 mb-6">
+                    In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
+                  </p>
+
+                  <p className="text-gray-800">
+                    I am driven by a deep commitment to eye health, evidence-based practice, and making quality vision care available to everyone.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
-      {selectedWork === 'professional' && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
-              <h1 className="text-2xl font-bold text-slate-800">Professional Appointment</h1>
-              <button
-                onClick={() => setSelectedWork(null)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <X size={24} className="text-gray-600" />
-              </button>
-            </div>
-            <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
-              <p className="text-base mb-8 text-gray-800">
-                I was nominated to join a professional association in handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website that I have created can help the public, parents and fellow healthcare folks better understand what optometrists do as the main primary eye care provider.
-              </p>
-
-              <h3 className="text-2xl font-bold mb-6 text-blue-900">Singapore Optometric Association (SOA)</h3>
-              
-              <div className="space-y-4">
-                <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
-                  <p className="text-sm text-gray-600 mb-2">Dec 2025 – Present</p>
-                  <p className="text-gray-700">Responsible for social media management, driving community growth and engagement.</p>
-                </div>
-
-                <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">Treasurer</h4>
-                  <p className="text-sm text-gray-600 mb-2">Dec 2023 – Dec 2025</p>
-                  <p className="text-gray-700 mb-4">Oversee financial operations and governance for the association.</p>
-                  <h5 className="font-bold text-slate-700">Student Liaison Officer</h5>
-                  <p className="text-gray-700">Focused on digital outreach (LinkedIn & Meta platforms). Built and managed social media presence, leading to significant growth: +1K followers on LinkedIn and +2K followers on Meta.</p>
-                </div>
-
-                <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">9th SOA Conference 2024 – Organizing Chair</h4>
-                  <p className="text-gray-700">Led the organization and execution of the annual conference.</p>
-                </div>
-
-                <div className="pb-4 border-b">
-                  <h4 className="font-bold text-slate-700 text-lg">10th SOA Conference 2025 – Organizing Committee Member</h4>
-                  <p className="text-gray-700">Contributed to operations and planning for the event.</p>
-                </div>
-
-                <div className="pb-4">
-                  <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
-                  <p className="text-sm text-gray-600 mb-2">Dec 2020 – Dec 2023</p>
-                  <p className="text-gray-700">Drove membership growth, produced newsletters, and organized conferences and webinars.</p>
-                </div>
+      {
+        selectedWork === 'professional' && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
+            <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
+                <h1 className="text-2xl font-bold text-slate-800">Professional Appointment</h1>
+                <button
+                  onClick={() => setSelectedWork(null)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <X size={24} className="text-gray-600" />
+                </button>
               </div>
+              <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
+                <p className="text-base mb-8 text-gray-800">
+                  I was nominated to join a professional association in handling optometry matters. It has shown me the big gap between optometrists and other healthcare professionals. I hope that this website that I have created can help the public, parents and fellow healthcare folks better understand what optometrists do as the main primary eye care provider.
+                </p>
 
-              {/* Photo Gallery Carousel */}
-              <div className="mt-12">
-                <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
-                
-                <div className="relative flex flex-col items-center gap-6 bg-gray-50 p-8 rounded-lg">
-                  {/* Carousel Image */}
-                  <div className="relative w-full flex items-center justify-center">
-                    <img 
-                      src={galleryImages[currentImageIndex].url} 
-                      alt="Gallery image" 
-                      className="max-w-full max-h-96 object-contain rounded-lg shadow-lg"
-                    />
-                    
-                    {/* Previous Button */}
-                    <button
-                      onClick={() => {
-                        const newIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-                        setCurrentImageIndex(newIndex);
-                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
-                      }}
-                      className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
-                    >
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    
-                    {/* Next Button */}
-                    <button
-                      onClick={() => {
-                        const newIndex = (currentImageIndex + 1) % galleryImages.length;
-                        setCurrentImageIndex(newIndex);
-                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
-                      }}
-                      className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
-                    >
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
+                <h3 className="text-2xl font-bold mb-6 text-blue-900">Singapore Optometric Association (SOA)</h3>
+
+                <div className="space-y-4">
+                  <div className="pb-4 border-b">
+                    <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
+                    <p className="text-sm text-gray-600 mb-2">Dec 2025 – Present</p>
+                    <p className="text-gray-700">Responsible for social media management, driving community growth and engagement.</p>
                   </div>
-                  
-                  {/* Caption */}
-                  <p className="text-lg font-medium text-slate-800 text-center">{galleryImages[currentImageIndex].caption}</p>
-                  
-                  {/* Thumbnail Preview */}
-                  <div className="flex gap-3 justify-start overflow-x-auto pb-2 w-full scrollbar-hide px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                    {galleryImages.map((image, index) => (
-                      <button
-                        key={index}
-                        ref={(el) => thumbnailRefs[index] = el}
-                        onClick={() => {
-                          setCurrentImageIndex(index);
-                          thumbnailRefs[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                        }}
-                        className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${
-                          index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
-                        }`}
-                      >
-                        <img 
-                          src={image.url} 
-                          alt={`Thumbnail ${index + 1}`} 
-                          className="w-16 h-16 object-cover"
-                        />
-                      </button>
-                    ))}
+
+                  <div className="pb-4 border-b">
+                    <h4 className="font-bold text-slate-700 text-lg">Treasurer</h4>
+                    <p className="text-sm text-gray-600 mb-2">Dec 2023 – Dec 2025</p>
+                    <p className="text-gray-700 mb-4">Oversee financial operations and governance for the association.</p>
+                    <h5 className="font-bold text-slate-700">Student Liaison Officer</h5>
+                    <p className="text-gray-700">Focused on digital outreach (LinkedIn & Meta platforms). Built and managed social media presence, leading to significant growth: +1K followers on LinkedIn and +2K followers on Meta.</p>
                   </div>
-                  
-                  {/* Thumbnail Dots */}
-                  <div className="flex gap-2 justify-center flex-wrap">
-                    {galleryImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all ${
-                          index === currentImageIndex ? 'bg-blue-500 w-8' : 'bg-gray-400 hover:bg-gray-600'
-                        }`}
+
+                  <div className="pb-4 border-b">
+                    <h4 className="font-bold text-slate-700 text-lg">9th SOA Conference 2024 – Organizing Chair</h4>
+                    <p className="text-gray-700">Led the organization and execution of the annual conference.</p>
+                  </div>
+
+                  <div className="pb-4 border-b">
+                    <h4 className="font-bold text-slate-700 text-lg">10th SOA Conference 2025 – Organizing Committee Member</h4>
+                    <p className="text-gray-700">Contributed to operations and planning for the event.</p>
+                  </div>
+
+                  <div className="pb-4">
+                    <h4 className="font-bold text-slate-700 text-lg">Council Member</h4>
+                    <p className="text-sm text-gray-600 mb-2">Dec 2020 – Dec 2023</p>
+                    <p className="text-gray-700">Drove membership growth, produced newsletters, and organized conferences and webinars.</p>
+                  </div>
+                </div>
+
+                {/* Photo Gallery Carousel */}
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
+
+                  <div className="relative flex flex-col items-center gap-6 bg-gray-50 p-8 rounded-lg">
+                    {/* Carousel Image */}
+                    <div className="relative w-full flex items-center justify-center">
+                      <img
+                        src={galleryImages[currentImageIndex].url}
+                        alt="Gallery image"
+                        className="max-w-full max-h-96 object-contain rounded-lg shadow-lg"
                       />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
-      {selectedWork === 'community' && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}>
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
-              <h1 className="text-2xl font-bold text-slate-800">Community Engagement</h1>
-              <button
-                onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <X size={24} className="text-gray-600" />
-              </button>
-            </div>
-            <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
-              <p className="text-base mb-6 text-gray-800">
-                I have taken part in volunteer work both locally and overseas.
-              </p>
-              <p className="text-base mb-6 text-gray-800">
-                I worked with <a href="https://givingsight.org/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Optometry Giving Sight (OGS)</a> locally to organize full eye checks and provide free spectacles to needy families in Singapore.
-              </p>
-              <p className="text-base mb-8 text-gray-800">
-                Overseas, I joined <a href="https://lionsclubs.org.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Lions Club Singapore</a> for eye screening programs in Myanmar, and also worked with <a href="https://www.facebook.com/humanitarianwithlove/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Humanitarian with Love</a> and <a href="https://www.facebook.com/CISACAMBODIA/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Khmer Sight Foundation</a> to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
-              </p>
-
-              {/* Photo Gallery Carousel */}
-              <div className="mt-12">
-                <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
-                
-                <div className="relative flex flex-col items-center gap-6 bg-gray-50 p-8 rounded-lg">
-                  {/* Carousel Image */}
-                  <div className="relative w-full flex items-center justify-center">
-                    <img 
-                      src={communityImages[currentImageIndex].url} 
-                      alt="Gallery image" 
-                      className="max-w-full max-h-96 object-contain rounded-lg shadow-lg"
-                    />
-                    
-                    {/* Previous Button */}
-                    <button
-                      onClick={() => {
-                        const newIndex = (currentImageIndex - 1 + communityImages.length) % communityImages.length;
-                        setCurrentImageIndex(newIndex);
-                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
-                      }}
-                      className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
-                    >
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    
-                    {/* Next Button */}
-                    <button
-                      onClick={() => {
-                        const newIndex = (currentImageIndex + 1) % communityImages.length;
-                        setCurrentImageIndex(newIndex);
-                        setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
-                      }}
-                      className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
-                    >
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
-                  
-                  {/* Caption */}
-                  <p className="text-lg font-medium text-slate-800 text-center">{communityImages[currentImageIndex].caption}</p>
-                  
-                  {/* Thumbnail Preview */}
-                  <div className="flex gap-3 justify-start overflow-x-auto pb-2 w-full scrollbar-hide px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                    {communityImages.map((image, index) => (
+                      {/* Previous Button */}
                       <button
-                        key={index}
-                        ref={(el) => thumbnailRefs[index] = el}
                         onClick={() => {
-                          setCurrentImageIndex(index);
-                          thumbnailRefs[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                          const newIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                          setCurrentImageIndex(newIndex);
+                          setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
                         }}
-                        className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${
-                          index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
-                        }`}
+                        className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
                       >
-                        <img 
-                          src={image.url} 
-                          alt={`Thumbnail ${index + 1}`} 
-                          className="w-16 h-16 object-cover"
-                        />
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
                       </button>
-                    ))}
-                  </div>
-                  
-                  {/* Thumbnail Dots */}
-                  <div className="flex gap-2 justify-center flex-wrap">
-                    {communityImages.map((_, index) => (
+
+                      {/* Next Button */}
                       <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all ${
-                          index === currentImageIndex ? 'bg-blue-500 w-8' : 'bg-gray-400 hover:bg-gray-600'
-                        }`}
-                      />
-                    ))}
+                        onClick={() => {
+                          const newIndex = (currentImageIndex + 1) % galleryImages.length;
+                          setCurrentImageIndex(newIndex);
+                          setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                        }}
+                        className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                      >
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Caption */}
+                    <p className="text-lg font-medium text-slate-800 text-center">{galleryImages[currentImageIndex].caption}</p>
+
+                    {/* Thumbnail Preview */}
+                    <div className="flex gap-3 justify-start overflow-x-auto pb-2 w-full scrollbar-hide px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                      {galleryImages.map((image, index) => (
+                        <button
+                          key={index}
+                          ref={(el) => thumbnailRefs[index] = el}
+                          onClick={() => {
+                            setCurrentImageIndex(index);
+                            thumbnailRefs[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                          }}
+                          className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
+                            }`}
+                        >
+                          <img
+                            src={image.url}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-16 h-16 object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Thumbnail Dots */}
+                    <div className="flex gap-2 justify-center flex-wrap">
+                      {galleryImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-all ${index === currentImageIndex ? 'bg-blue-500 w-8' : 'bg-gray-400 hover:bg-gray-600'
+                            }`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
+
+      {
+        selectedWork === 'community' && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}>
+            <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
+                <h1 className="text-2xl font-bold text-slate-800">Community Engagement</h1>
+                <button
+                  onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <X size={24} className="text-gray-600" />
+                </button>
+              </div>
+              <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
+                <p className="text-base mb-6 text-gray-800">
+                  I have taken part in volunteer work both locally and overseas.
+                </p>
+                <p className="text-base mb-6 text-gray-800">
+                  I worked with <a href="https://givingsight.org/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Optometry Giving Sight (OGS)</a> locally to organize full eye checks and provide free spectacles to needy families in Singapore.
+                </p>
+                <p className="text-base mb-8 text-gray-800">
+                  Overseas, I joined <a href="https://lionsclubs.org.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Lions Club Singapore</a> for eye screening programs in Myanmar, and also worked with <a href="https://www.facebook.com/humanitarianwithlove/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Humanitarian with Love</a> and <a href="https://www.facebook.com/CISACAMBODIA/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Khmer Sight Foundation</a> to do eye screenings in Cambodia. Those patients in need will be referred for further treatment if necessary. The foundation in Cambodia keeps reaching out to rural areas so people there can get help in time.
+                </p>
+
+                {/* Photo Gallery Carousel */}
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold mb-6 text-blue-900">Photo Gallery</h3>
+
+                  <div className="relative flex flex-col items-center gap-6 bg-gray-50 p-8 rounded-lg">
+                    {/* Carousel Image */}
+                    <div className="relative w-full flex items-center justify-center">
+                      <img
+                        src={communityImages[currentImageIndex].url}
+                        alt="Gallery image"
+                        className="max-w-full max-h-96 object-contain rounded-lg shadow-lg"
+                      />
+
+                      {/* Previous Button */}
+                      <button
+                        onClick={() => {
+                          const newIndex = (currentImageIndex - 1 + communityImages.length) % communityImages.length;
+                          setCurrentImageIndex(newIndex);
+                          setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                        }}
+                        className="absolute left-0 ml-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                      >
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+
+                      {/* Next Button */}
+                      <button
+                        onClick={() => {
+                          const newIndex = (currentImageIndex + 1) % communityImages.length;
+                          setCurrentImageIndex(newIndex);
+                          setTimeout(() => thumbnailRefs[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+                        }}
+                        className="absolute right-0 mr-4 p-3 bg-blue-500 hover:bg-blue-600 rounded-full transition-colors"
+                      >
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Caption */}
+                    <p className="text-lg font-medium text-slate-800 text-center">{communityImages[currentImageIndex].caption}</p>
+
+                    {/* Thumbnail Preview */}
+                    <div className="flex gap-3 justify-start overflow-x-auto pb-2 w-full scrollbar-hide px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                      {communityImages.map((image, index) => (
+                        <button
+                          key={index}
+                          ref={(el) => thumbnailRefs[index] = el}
+                          onClick={() => {
+                            setCurrentImageIndex(index);
+                            thumbnailRefs[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                          }}
+                          className={`flex-shrink-0 transition-all border-2 rounded-lg overflow-hidden ${index === currentImageIndex ? 'border-blue-500 opacity-100' : 'border-gray-300 opacity-60 hover:opacity-100'
+                            }`}
+                        >
+                          <img
+                            src={image.url}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-16 h-16 object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Thumbnail Dots */}
+                    <div className="flex gap-2 justify-center flex-wrap">
+                      {communityImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-all ${index === currentImageIndex ? 'bg-blue-500 w-8' : 'bg-gray-400 hover:bg-gray-600'
+                            }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
 
       {/* Image Carousel Modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
-          >
-            <X size={32} className="text-white" />
-          </button>
-          <div className="flex flex-col items-center gap-4 w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
-            {/* Carousel Container */}
-            <div className="relative w-full flex items-center justify-center">
-              <img 
-                src={galleryImages[currentImageIndex].url} 
-                alt="Gallery image" 
-                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
-              />
-              
-              {/* Previous Button */}
-              <button
-                onClick={() => setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)}
-                className="absolute left-0 ml-4 p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              
-              {/* Next Button */}
-              <button
-                onClick={() => setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)}
-                className="absolute right-0 mr-4 p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-            
-            {/* Caption */}
-            {galleryImages[currentImageIndex].caption && (
-              <p className="text-white text-center max-w-2xl text-lg font-medium">{galleryImages[currentImageIndex].caption}</p>
-            )}
-            
-            {/* Image Counter */}
-            <p className="text-white/70 text-sm">{currentImageIndex + 1} / {galleryImages.length}</p>
-            
-            {/* Thumbnail Dots */}
-            <div className="flex gap-2 justify-center flex-wrap">
-              {galleryImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentImageIndex ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/70'
-                  }`}
+      {
+        selectedImage && (
+          <div className="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+            >
+              <X size={32} className="text-white" />
+            </button>
+            <div className="flex flex-col items-center gap-4 w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+              {/* Carousel Container */}
+              <div className="relative w-full flex items-center justify-center">
+                <img
+                  src={galleryImages[currentImageIndex].url}
+                  alt="Gallery image"
+                  className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
                 />
-              ))}
+
+                {/* Previous Button */}
+                <button
+                  onClick={() => setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)}
+                  className="absolute left-0 ml-4 p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Next Button */}
+                <button
+                  onClick={() => setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)}
+                  className="absolute right-0 mr-4 p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Caption */}
+              {galleryImages[currentImageIndex].caption && (
+                <p className="text-white text-center max-w-2xl text-lg font-medium">{galleryImages[currentImageIndex].caption}</p>
+              )}
+
+              {/* Image Counter */}
+              <p className="text-white/70 text-sm">{currentImageIndex + 1} / {galleryImages.length}</p>
+
+              {/* Thumbnail Dots */}
+              <div className="flex gap-2 justify-center flex-wrap">
+                {galleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${index === currentImageIndex ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/70'
+                      }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* Contact Section */}
       <section id="contact" className="min-h-[70vh] flex items-start px-6 pt-28 pb-8 relative z-10">
@@ -1044,6 +1098,6 @@ export default function HomePage() {
         </div>
       </footer>
 
-    </div>
+    </div >
   );
 }
