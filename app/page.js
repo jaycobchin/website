@@ -411,13 +411,6 @@ export default function HomePage() {
                   From simple tips to advanced &quot;tools&quot;, I aim to make optometry more enjoyable and help parents support their kids&apos; eye health better.
                 </p>
               </div>
-
-              <div className={`p-5 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-white/50'} border ${borderClass}`}>
-                <p className="text-base md:text-lg italic font-light opacity-90">
-                  &quot;The simple act of caring is heroic.&quot;
-                </p>
-                <p className={`mt-2 text-xs font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>— Edward Albert</p>
-              </div>
             </div>
           </div>
 
