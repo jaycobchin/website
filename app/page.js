@@ -381,20 +381,20 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-28 pb-12 relative z-10">
-        <div className="max-w-7xl w-full mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <section className="min-h-screen flex items-center justify-center px-4 pt-24 pb-12 relative z-10">
+        <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
           {/* Left Side: Content Card */}
-          <div className={`relative z-10 p-8 md:p-12 rounded-[3rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-xl border shadow-2xl overflow-hidden group`}>
+          <div className={`relative z-10 p-6 md:p-10 rounded-[2.5rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-xl border shadow-2xl overflow-hidden group`}>
             {/* Glossy gradient accent */}
-            <div className={`absolute top-0 right-0 w-96 h-96 ${isDark ? 'bg-blue-500/20' : 'bg-sky-400/20'} rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none`} />
+            <div className={`absolute top-0 right-0 w-80 h-80 ${isDark ? 'bg-blue-500/20' : 'bg-sky-400/20'} rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none`} />
             
-            <div className="relative space-y-8">
+            <div className="relative space-y-6">
               <div className="space-y-2">
-                <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
                   Optometrist & Educator
                 </span>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9]">
                   JAYCOB
                   <br />
                   <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 via-indigo-400 to-purple-400' : 'from-blue-600 via-indigo-600 to-purple-600'}`}>
@@ -403,7 +403,7 @@ export default function HomePage() {
                 </h1>
               </div>
 
-              <div className="space-y-6 text-lg leading-relaxed max-w-xl">
+              <div className="space-y-4 text-base md:text-lg leading-relaxed max-w-lg">
                  <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
                   I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients.
                 </p>
@@ -412,38 +412,38 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className={`p-6 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-white/50'} border ${borderClass}`}>
-                <p className="text-lg italic font-light opacity-90">
+              <div className={`p-5 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-white/50'} border ${borderClass}`}>
+                <p className="text-base md:text-lg italic font-light opacity-90">
                   &quot;The simple act of caring is heroic.&quot;
                 </p>
-                <p className={`mt-2 text-sm font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>— Edward Albert</p>
+                <p className={`mt-2 text-xs font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>— Edward Albert</p>
               </div>
             </div>
           </div>
 
           {/* Right Side: Profile Photo */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
+            <div className="relative w-64 h-64 md:w-[350px] md:h-[350px]">
               {/* Decorative Rings */}
               <div className={`absolute inset-0 rounded-full border-2 ${isDark ? 'border-blue-500/30' : 'border-blue-400/30'} scale-110 animate-pulse`} />
               <div className={`absolute inset-0 rounded-full border ${isDark ? 'border-indigo-500/20' : 'border-indigo-400/20'} scale-125`} />
               
               {/* Floating Elements */}
-              <div className={`absolute -top-4 -right-4 z-20 ${isDark ? 'bg-slate-800' : 'bg-white'} p-4 rounded-2xl shadow-xl animate-bounce duration-[3000ms]`}>
-                 <span className="text-3xl">👓</span>
+              <div className={`absolute -top-2 -right-2 z-20 ${isDark ? 'bg-slate-800' : 'bg-white'} p-3 rounded-xl shadow-xl animate-bounce duration-[3000ms]`}>
+                 <span className="text-2xl">👓</span>
               </div>
-              <div className={`absolute bottom-8 -left-8 z-20 ${isDark ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-md p-4 rounded-2xl shadow-xl border ${borderClass} flex items-center gap-3`}>
-                 <div className="bg-green-100 p-2 rounded-full">
-                   <div className="w-3 h-3 bg-green-500 rounded-full animate-ping" />
+              <div className={`absolute bottom-6 -left-4 z-20 ${isDark ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-md p-3 rounded-xl shadow-xl border ${borderClass} flex items-center gap-3`}>
+                 <div className="bg-green-100 p-1.5 rounded-full">
+                   <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping" />
                  </div>
                  <div>
-                   <p className="text-xs font-bold uppercase opacity-60">Status</p>
-                   <p className="text-sm font-bold">Accepting Patients</p>
+                   <p className="text-[10px] font-bold uppercase opacity-60">Status</p>
+                   <p className="text-xs font-bold">Accepting Patients</p>
                  </div>
               </div>
 
               {/* Main Image */}
-              <div className={`relative w-full h-full rounded-full overflow-hidden border-8 ${isDark ? 'border-slate-900' : 'border-white'} shadow-2xl`}>
+              <div className={`relative w-full h-full rounded-full overflow-hidden border-4 md:border-8 ${isDark ? 'border-slate-900' : 'border-white'} shadow-2xl`}>
                 <img
                   src="/jaycob_chin.jpg"
                   alt="Jaycob Chin"
