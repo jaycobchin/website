@@ -491,9 +491,12 @@ export default function HomePage() {
       {/* Work Section */}
       < section id="work-experience" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-5xl md:text-7xl font-bold mb-16 tracking-tight">
-            Work
-          </h2>
+          <div className="space-y-4 mb-16">
+            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Professional Journey</p>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+              Work
+            </h2>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Clinical Practice Card */}
@@ -574,16 +577,11 @@ export default function HomePage() {
       {/* Write Section */}
       < section id="write" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="space-y-4">
-              <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Insights & Thoughts</p>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
-                Write
-              </h2>
-            </div>
-            <p className={`max-w-md text-lg ${textMutedClass}`}>
-              Short, practical posts about optometry, myopia management, and day-to-day clinic insights. This is where I share reflections, explain complex topics simply, and document lessons learned.
-            </p>
+          <div className="space-y-4 mb-16">
+            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Insights & Thoughts</p>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+              Write
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -641,9 +639,12 @@ export default function HomePage() {
       {/* Tools Section */}
       < section id="work" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16">
-            Useful <span className={accentToolsClass}>Tools</span>
-          </h2>
+          <div className="space-y-4 mb-16">
+            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Interactive Resources</p>
+            <h2 className="text-5xl md:text-6xl font-bold">
+              Useful <span className={accentToolsClass}>Tools</span>
+            </h2>
+          </div>
 
           <div className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl backdrop-blur-md border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'}`}>
             {[
@@ -666,7 +667,7 @@ export default function HomePage() {
               </button>
             ))}
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
             {filteredProjects.map((project, index) => (
               <div
                 key={index}
