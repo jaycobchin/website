@@ -758,57 +758,70 @@ export default function HomePage() {
       {/* Work Experience Modals */}
       {
         selectedWork === 'clinical' && (
-          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setSelectedWork(null)}>
-            <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg z-10">
-                <h1 className="text-2xl font-bold text-slate-800">Clinical Practice</h1>
+          <div className={`fixed inset-0 ${isDark ? 'bg-black/70' : 'bg-black/50'} z-50 overflow-y-auto`}>
+            <div className="min-h-screen flex items-center justify-center p-4">
+              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-8 relative`} onClick={(e) => e.stopPropagation()}>
+                {/* Close Button */}
                 <button
                   onClick={() => setSelectedWork(null)}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className={`absolute top-6 right-6 p-2 rounded-lg ${isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-200'} transition-colors`}
+                  aria-label="Close"
                 >
-                  <X size={24} className="text-gray-600" />
+                  <X size={24} />
                 </button>
-              </div>
-              <div className="overflow-y-auto p-8 leading-relaxed text-gray-800">
-                {/* Profile Photo */}
-                <div className="flex justify-center mb-8">
-                  <img
-                    src="/Clinical Practice/jaycob_chin_profile.JPG"
-                    alt="Jaycob Chin Profile"
-                    className="w-40 h-40 rounded-full object-cover shadow-lg"
-                  />
+
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="text-3xl">💼</div>
+                  <div>
+                    <h1 className="text-3xl font-bold">Clinical Practice</h1>
+                    <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                      My journey in optometry and vision care
+                    </p>
+                  </div>
                 </div>
 
-                <h2 className="text-3xl font-bold text-center mb-2 text-slate-800">Jaycob Chin, FIAOMC</h2>
-                <p className="text-center text-gray-600 mb-2 text-sm">Optometrist</p>
+                <div className="leading-relaxed overflow-y-auto max-h-[calc(90vh-120px)]">
+                  {/* Profile Photo */}
+                  <div className="flex justify-center mb-8">
+                    <img
+                      src="/Clinical Practice/jaycob_chin_profile.JPG"
+                      alt="Jaycob Chin Profile"
+                      className="w-40 h-40 rounded-full object-cover shadow-lg"
+                    />
+                  </div>
 
-                <div className="text-center mb-8 text-sm text-gray-700 space-y-1">
-                  <p>M.Sc Optom (Aust), B.Sc Optom (U.S.A.), Dip. Optom (S'pore)</p>
-                  <p>Full Registration, Singapore Optometrists and Opticians Board</p>
-                  <p>Council Member, Singapore Optometric Association</p>
-                  <p>Fellow, American Academy of Orthokeratology and Myopia Control</p>
-                </div>
+                  <h2 className="text-3xl font-bold text-center mb-2">Jaycob Chin, FIAOMC</h2>
+                  <p className={`text-center mb-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Optometrist</p>
 
-                <div className="border-t border-gray-200 pt-8">
-                  <p className="text-gray-800 mb-6">
-                    I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
-                  </p>
+                  <div className={`text-center mb-8 text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'} space-y-1`}>
+                    <p>M.Sc Optom (Aust), B.Sc Optom (U.S.A.), Dip. Optom (S'pore)</p>
+                    <p>Full Registration, Singapore Optometrists and Opticians Board</p>
+                    <p>Council Member, Singapore Optometric Association</p>
+                    <p>Fellow, American Academy of Orthokeratology and Myopia Control</p>
+                  </div>
 
-                  <p className="text-gray-800 mb-6">
-                    My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
-                  </p>
+                  <div className={`border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
+                    <p className="mb-6">
+                      I am a fully licensed and registered optometrist currently practicing at <a href="https://www.emmevisioncare.com" className={`font-semibold transition-colors ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-700 hover:text-blue-500'}`} target="_blank" rel="noreferrer"><strong>EMME Visioncare</strong></a> in HarbourFront Centre, Singapore. With a holistic approach to vision care, I go beyond simply prescribing glasses or contact lenses. I prioritize comprehensive eye examinations that focus on overall eye health and truly understand each patient's unique needs.
+                    </p>
 
-                  <p className="text-gray-800 mb-6">
-                    Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
-                  </p>
+                    <p className="mb-6">
+                      My educational journey has taken me across Singapore, the United States, and Australia. This strengthens my commitment to personalized eye care. I stay at the forefront of optometric advancements, with a strong emphasis on early prevention and detection of ocular conditions, and pediatric issues like amblyopia. I have a particular passion for myopia control, including orthokeratology, and specialized care in low vision, geriatric patients, and therapeutic contact lenses. Recently, I earned my certification in Evidence-Based Myopia Management from <a href="https://www.unsw.edu.au/" className={`font-semibold transition-colors ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-700 hover:text-blue-500'}`} target="_blank" rel="noreferrer">UNSW</a>, reflecting my dedication to the latest research-driven approaches.
+                    </p>
 
-                  <p className="text-gray-800 mb-6">
-                    In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className="text-blue-700 font-semibold hover:text-blue-500 hover:bg-blue-50/40 rounded px-1 -mx-1 transition-colors" target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
-                  </p>
+                    <p className="mb-6">
+                      Over the years, I have built extensive clinical experience helping patients find tailored vision solutions that fit their lifestyle, work, and daily activities. These include everything from prescription glasses and sunglasses to advanced contact lenses (including hybrid and scleral lenses) and non-surgical therapeutic options. In my practice at <a href="https://www.emmevisioncare.com" className={`font-semibold transition-colors ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-700 hover:text-blue-500'}`} target="_blank" rel="noreferrer">EMME Visioncare</a>, I conduct thorough eye health assessments, co-manage conditions with other healthcare professionals when needed, and mentor colleagues in complex contact lens fitting.
+                    </p>
 
-                  <p className="text-gray-800">
-                    I am driven by a deep commitment to eye health, evidence-based practice, and making quality vision care available to everyone.
-                  </p>
+                    <p className="mb-6">
+                      In leadership and educational roles, I have overseen operations, led staff training, contributed to business growth, and served as an Associate Lecturer in <a href="https://www.np.edu.sg/" className={`font-semibold transition-colors ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-700 hover:text-blue-500'}`} target="_blank" rel="noreferrer">Ngee Ann Polytechnic</a> while pursuing my Doctor of Optometry degree from <a href="https://www.aston.ac.uk/" className={`font-semibold transition-colors ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-700 hover:text-blue-500'}`} target="_blank" rel="noreferrer">Aston University</a>. I also hold a Master's in Clinical Optometry and remain deeply committed to lifelong learning and sharing knowledge.
+                    </p>
+
+                    <p>
+                      I am driven by a deep commitment to eye health, evidence-based practice, and making quality vision care available to everyone.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
