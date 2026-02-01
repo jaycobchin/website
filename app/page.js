@@ -459,40 +459,61 @@ export default function HomePage() {
       {/* Philosophy Section */}
       <section id="philosophy" className="min-h-screen flex items-center px-6 py-24 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid md:grid-cols-2 gap-16 items-start">
-            <div className="space-y-6">
-              <h2 className="text-5xl md:text-6xl font-bold">
-                My <span className={accentPhilosophyClass}>Philosophy</span>
-              </h2>
-              <div className={`space-y-6 ${textMutedClass} text-lg md:text-xl leading-relaxed`}>
-                <p>
-                  I used to ask myself, &quot;how do we (optometrists) keep ourselves updated?&quot;, &quot;what do I have to do in order to provide the best care?&quot; After years of practice, trying different ways, and seeing what really helps children and families, I&apos;ve concluded:
-                </p>
-                <ul className="space-y-4 pt-4">
-                  {[
-                    "Pursue the 'Gold Standard', always",
-                    "Adapt and move towards evidence based research",
-                    "Take time to share and learn more from others"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-4">
-                      <span className={`flex-shrink-0 w-6 h-6 rounded-full ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-indigo-500/10 text-indigo-600'} flex items-center justify-center mt-1`}>
-                        <div className="w-2 h-2 rounded-full bg-current" />
-                      </span>
-                      <span className="font-medium">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left Side: Content */}
+            <div className="order-2 md:order-1 relative">
+                <div className={`relative z-10 p-8 md:p-10 rounded-[2.5rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-md border shadow-2xl`}>
+                    <div className="space-y-6">
+                        
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                            My <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 to-indigo-400' : 'from-blue-600 to-indigo-600'}`}>Philosophy</span>
+                        </h2>
+
+                        <div className={`text-lg leading-relaxed ${textMutedClass}`}>
+                            <p className="mb-6">
+                                I often asked myself, &quot;How do we keep ourselves updated?&quot; and &quot;What defines the best care?&quot; Through years of practice and observing what truly benefits families, I&apos;ve arrived at three core pillars:
+                            </p>
+                        </div>
+                        
+                        <ul className="space-y-4">
+                            {[
+                                "Pursue the 'Gold Standard', always",
+                                "Adapt and move towards evidence-based research",
+                                "Take time to share and learn from others"
+                            ].map((item, index) => (
+                                <li key={index} className={`group flex items-center gap-4 p-4 rounded-xl transition-all duration-300 ${isDark ? 'hover:bg-white/5' : 'hover:bg-white/50'}`}>
+                                    <div className={`flex-shrink-0 w-10 h-10 rounded-full ${isDark ? 'bg-blue-500/20 text-blue-400' : 'bg-blue-100/80 text-blue-600'} flex items-center justify-center transition-transform group-hover:scale-110`}>
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="font-semibold text-lg">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Side: Image */}
+            <div className="order-1 md:order-2 w-full relative group">
+              <div className={`absolute inset-0 ${isDark ? 'bg-blue-600/30' : 'bg-blue-600/20'} blur-[60px] rounded-full opacity-50 pointer-events-none`} />
+              
+              <div className="relative overflow-hidden rounded-[2.5rem] shadow-2xl rotate-2 hover:rotate-0 transition-all duration-700 h-[600px]">
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60" />
+                 <img
+                    src="/philosophy_himalaya_scenery.jpeg"
+                    alt="Philosophy - Himalaya Scenery"
+                    className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000"
+                  />
+                  <div className="absolute bottom-8 left-8 right-8 z-20">
+                     <p className="text-white/80 font-mono text-xs mb-2">INSPIRATION</p>
+                     <p className="text-white text-xl font-medium italic">"Nature does not hurry, yet everything is accomplished."</p>
+                  </div>
               </div>
             </div>
 
-            <div className="w-full relative group">
-              <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-3xl -rotate-3 group-hover:rotate-0 transition-all duration-700" />
-              <img
-                src="/philosophy_himalaya_scenery.jpeg"
-                alt="Philosophy - Himalaya Scenery"
-                className="w-full h-[500px] object-cover rounded-3xl shadow-2xl relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
-              />
-            </div>
           </div>
         </div>
       </section>
