@@ -418,15 +418,6 @@ export default function HomePage() {
                 </p>
                 <p className={`mt-2 text-sm font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>— Edward Albert</p>
               </div>
-
-              <div className="flex flex-wrap gap-4 pt-2">
-                <a href="#work-experience" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg shadow-blue-500/25 transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
-                  View My Work <ArrowRight size={18} />
-                </a>
-                <a href="#contact" className={`px-8 py-4 rounded-full font-bold border ${isDark ? 'border-white/20 hover:bg-white/10' : 'border-gray-300 hover:bg-gray-100'} transition-all hover:scale-105 active:scale-95`}>
-                  Get In Touch
-                </a>
-              </div>
             </div>
           </div>
 
