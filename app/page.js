@@ -248,9 +248,9 @@ export default function HomePage() {
   const accentBetterTogetherToClass = isDark ? 'to-cyan-600' : 'to-cyan-700';
 
   return (
-    <div className={`min-h-screen ${bgClass} ${textClass} overflow-x-hidden relative transition-colors duration-500`}>
+    <div className={`min-h-screen ${textClass} overflow-x-hidden relative transition-colors duration-500`}>
       {/* Animated gradient background */}
-      <div className={`fixed inset-0 ${isDark ? 'bg-gradient-animated-dark' : 'bg-gradient-animated-light'} ${isDark ? 'opacity-90' : 'opacity-100'} transition-opacity duration-500`} />
+      <div className={`fixed inset-0 ${isDark ? 'bg-gradient-animated-dark' : 'bg-gradient-animated-light'} transition-opacity duration-500`} />
 
       {/* Mouse-tracking gradient overlay */}
       <div
@@ -261,34 +261,81 @@ export default function HomePage() {
       />
 
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass border-b border-gray-200/50 dark:border-white/10 py-4' : 'py-6'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isDark 
+          ? 'bg-slate-900/80 border-white/10' 
+          : 'bg-white/80 border-gray-200/50 shadow-sm'
+        } backdrop-blur-xl border-b ${scrolled ? 'py-3' : 'py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold tracking-tight relative z-10">
+          <a href="/" className={`text-2xl font-bold tracking-tight relative z-10 transition-colors ${
+            isDark ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'
+          }`}>
             JAYCOB<span className={accentHeaderDotClass}>.</span>
           </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 relative z-10 font-medium">
-            <a href="#philosophy" className="hover:text-blue-500 transition-colors">Philosophy</a>
-            <a href="#work-experience" className="hover:text-blue-500 transition-colors">Work</a>
-            <a href="#write" className="hover:text-blue-500 transition-colors">Write</a>
-            <a href="#work" className="hover:text-blue-500 transition-colors">Tools</a>
-            <a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a>
+            <a href="#philosophy" className={`${
+              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
+            } transition-colors relative group`}>
+              Philosophy
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
+                isDark ? 'bg-blue-400' : 'bg-blue-600'
+              } transition-all group-hover:w-full`}></span>
+            </a>
+            <a href="#work-experience" className={`${
+              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
+            } transition-colors relative group`}>
+              Work
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
+                isDark ? 'bg-blue-400' : 'bg-blue-600'
+              } transition-all group-hover:w-full`}></span>
+            </a>
+            <a href="#write" className={`${
+              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
+            } transition-colors relative group`}>
+              Write
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
+                isDark ? 'bg-blue-400' : 'bg-blue-600'
+              } transition-all group-hover:w-full`}></span>
+            </a>
+            <a href="#work" className={`${
+              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
+            } transition-colors relative group`}>
+              Tools
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
+                isDark ? 'bg-blue-400' : 'bg-blue-600'
+              } transition-all group-hover:w-full`}></span>
+            </a>
+            <a href="#contact" className={`${
+              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
+            } transition-colors relative group`}>
+              Contact
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
+                isDark ? 'bg-blue-400' : 'bg-blue-600'
+              } transition-all group-hover:w-full`}></span>
+            </a>
 
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-full ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} transition-all`}
+              className={`p-2.5 rounded-full ${
+                isDark 
+                  ? 'bg-white/10 hover:bg-white/20 hover:scale-110' 
+                  : 'bg-blue-100 hover:bg-blue-200 hover:scale-110'
+              } transition-all duration-200 active:scale-95`}
               title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {isDark ? <Moon size={20} /> : <Sun size={20} />}
+              {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative z-10"
+            className={`md:hidden relative z-10 p-2 rounded-lg ${
+              isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+            } transition-colors`}
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
@@ -296,19 +343,37 @@ export default function HomePage() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className={`md:hidden absolute top-full left-0 w-full glass border-b border-gray-200/50 dark:border-white/10`}>
-            <div className="px-6 py-6 flex flex-col gap-6 font-medium">
-              <a href="#philosophy" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Philosophy</a>
-              <a href="#work-experience" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Work</a>
-              <a href="#write" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Write</a>
-              <a href="#work" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Tools</a>
-              <a href="#contact" className="hover:text-blue-500 transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
+          <div className={`md:hidden absolute top-full left-0 w-full ${
+            isDark 
+              ? 'bg-slate-900/95 border-white/10' 
+              : 'bg-white/95 border-gray-200/50 shadow-lg'
+          } backdrop-blur-xl border-b`}>
+            <div className="px-6 py-6 flex flex-col gap-4 font-medium">
+              <a href="#philosophy" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Philosophy</a>
+              <a href="#work-experience" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="#write" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Write</a>
+              <a href="#work" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Tools</a>
+              <a href="#contact" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Contact</a>
               <button
                 onClick={toggleTheme}
-                className={`flex items-center gap-2 p-3 rounded-xl w-full ${isDark ? 'bg-white/10' : 'bg-gray-100'}`}
+                className={`flex items-center gap-3 p-3 rounded-xl w-full ${
+                  isDark 
+                    ? 'bg-white/10 hover:bg-white/20' 
+                    : 'bg-blue-100 hover:bg-blue-200'
+                } transition-all mt-2`}
               >
-                {isDark ? <Moon size={20} /> : <Sun size={20} />}
-                <span>{isDark ? 'Dark Mode' : 'Light Mode'}</span>
+                {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
+                <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
               </button>
             </div>
           </div>
