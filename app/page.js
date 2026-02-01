@@ -381,69 +381,87 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12 relative z-10 overflow-hidden">
-        {/* Background blobs */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none`} />
-
-        <div className="max-w-7xl w-full relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center animate-fade-in">
-            {/* Left side - Text content */}
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <p className={`${accentHelloClass} text-base md:text-lg tracking-wide`}>Hello, I am</p>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+      <section className="min-h-screen flex items-center justify-center px-6 pt-28 pb-12 relative z-10">
+        <div className="max-w-7xl w-full mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Left Side: Content Card */}
+          <div className={`relative z-10 p-8 md:p-12 rounded-[3rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-xl border shadow-2xl overflow-hidden group`}>
+            {/* Glossy gradient accent */}
+            <div className={`absolute top-0 right-0 w-96 h-96 ${isDark ? 'bg-blue-500/20' : 'bg-sky-400/20'} rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none`} />
+            
+            <div className="relative space-y-8">
+              <div className="space-y-2">
+                <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+                  Optometrist & Educator
+                </span>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
                   JAYCOB
                   <br />
-                  <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentChinFromClass} ${accentChinToClass}`}>
+                  <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 via-indigo-400 to-purple-400' : 'from-blue-600 via-indigo-600 to-purple-600'}`}>
                     CHIN
                   </span>
                 </h1>
               </div>
 
-              <div className="space-y-6 max-w-lg">
-                <p className={`text-lg md:text-xl ${textMutedClass} leading-relaxed`}>
-                  I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients. I share simple tips and show how the skills you&apos;ve learned can become useful &quot;tools&quot; to make optometry more enjoyable (hopefully!).
+              <div className="space-y-6 text-lg leading-relaxed max-w-xl">
+                 <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
+                  I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients.
                 </p>
-
-                <p className={`text-base ${textLightClass} leading-relaxed`}>
-                  I also hope to help parents understand more about eye care so they can better support their kids&apos; eye health. These tips can make eye checks and glasses less scary for your children. Sometimes it can be really fun!
+                <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>
+                  From simple tips to advanced &quot;tools&quot;, I aim to make optometry more enjoyable and help parents support their kids&apos; eye health better.
                 </p>
               </div>
 
-              {/* Philosophy Quote */}
-              <div className="flex gap-4 pl-4 border-l-4 border-blue-500/30">
-                <div>
-                  <p className={`text-xl font-light italic ${textMutedClass}`}>
-                    &quot;The simple act of caring is heroic.&quot;
-                  </p>
-                  <p className={`text-sm ${accentQuoteAttributionClass} mt-2`}>— Edward Albert</p>
-                </div>
+              <div className={`p-6 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-white/50'} border ${borderClass}`}>
+                <p className="text-lg italic font-light opacity-90">
+                  &quot;The simple act of caring is heroic.&quot;
+                </p>
+                <p className={`mt-2 text-sm font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>— Edward Albert</p>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-4">
-                <a href="#work-experience" className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 transition-all font-medium shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40">
-                  View My Work
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+              <div className="flex flex-wrap gap-4 pt-2">
+                <a href="#work-experience" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg shadow-blue-500/25 transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
+                  View My Work <ArrowRight size={18} />
                 </a>
-                <a href="#contact" className={`px-8 py-4 border ${borderClass} hover:border-blue-500/50 rounded-full transition-all font-medium hover:bg-blue-500/5`}>
+                <a href="#contact" className={`px-8 py-4 rounded-full font-bold border ${isDark ? 'border-white/20 hover:bg-white/10' : 'border-gray-300 hover:bg-gray-100'} transition-all hover:scale-105 active:scale-95`}>
                   Get In Touch
                 </a>
               </div>
             </div>
+          </div>
 
-            {/* Right side - Photo */}
-            <div className="flex justify-center items-center">
-              <div className="relative w-72 h-72 md:w-[400px] md:h-[400px] group">
-                <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 -rotate-6 opacity-20 group-hover:rotate-0 transition-transform duration-500`} />
-                <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-teal-400 rotate-6 opacity-20 group-hover:rotate-0 transition-transform duration-500 delay-75`} />
+          {/* Right Side: Profile Photo */}
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
+              {/* Decorative Rings */}
+              <div className={`absolute inset-0 rounded-full border-2 ${isDark ? 'border-blue-500/30' : 'border-blue-400/30'} scale-110 animate-pulse`} />
+              <div className={`absolute inset-0 rounded-full border ${isDark ? 'border-indigo-500/20' : 'border-indigo-400/20'} scale-125`} />
+              
+              {/* Floating Elements */}
+              <div className={`absolute -top-4 -right-4 z-20 ${isDark ? 'bg-slate-800' : 'bg-white'} p-4 rounded-2xl shadow-xl animate-bounce duration-[3000ms]`}>
+                 <span className="text-3xl">👓</span>
+              </div>
+              <div className={`absolute bottom-8 -left-8 z-20 ${isDark ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-md p-4 rounded-2xl shadow-xl border ${borderClass} flex items-center gap-3`}>
+                 <div className="bg-green-100 p-2 rounded-full">
+                   <div className="w-3 h-3 bg-green-500 rounded-full animate-ping" />
+                 </div>
+                 <div>
+                   <p className="text-xs font-bold uppercase opacity-60">Status</p>
+                   <p className="text-sm font-bold">Accepting Patients</p>
+                 </div>
+              </div>
+
+              {/* Main Image */}
+              <div className={`relative w-full h-full rounded-full overflow-hidden border-8 ${isDark ? 'border-slate-900' : 'border-white'} shadow-2xl`}>
                 <img
                   src="/jaycob_chin.jpg"
-                  alt="Jaycob Chin - Optometrist"
-                  className="w-full h-full object-cover rounded-full shadow-2xl relative z-10 rotate-0 transition-transform duration-500 group-hover:scale-[1.02]"
+                  alt="Jaycob Chin"
+                  className="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-700"
                 />
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
