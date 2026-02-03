@@ -177,6 +177,7 @@ export default function HomePage() {
       category: 'Parents',
       audience: ['parents'],
       color: 'from-teal-500 to-cyan-600',
+      textColor: 'text-teal-600 dark:text-teal-400',
       id: 'risk-factors-analysis',
       description: 'Interactive tool to assess your child\'s myopia risk factors and receive personalized recommendations based on current research and clinical guidelines.'
     },
@@ -185,6 +186,7 @@ export default function HomePage() {
       category: 'Parents',
       audience: ['parents'],
       color: 'from-cyan-500 to-blue-600',
+      textColor: 'text-cyan-600 dark:text-cyan-400',
       id: 'progression-calculator',
       description: 'Calculate and visualize how myopia may progress over time with and without intervention, helping you make informed decisions about treatment options.'
     },
@@ -193,6 +195,7 @@ export default function HomePage() {
       category: 'Optometrists',
       audience: ['optometrists'],
       color: 'from-blue-500 to-indigo-600',
+      textColor: 'text-blue-600 dark:text-blue-400',
       id: 'axial-length-estimation',
       description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
     },
@@ -201,6 +204,7 @@ export default function HomePage() {
       category: 'Optometrists',
       audience: ['optometrists'],
       color: 'from-indigo-500 to-purple-600',
+      textColor: 'text-indigo-600 dark:text-indigo-400',
       id: 'cl-rx-vertex-calculator',
       description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment.'
     },
@@ -209,6 +213,7 @@ export default function HomePage() {
       category: 'Optometrists',
       audience: ['optometrists'],
       color: 'from-purple-500 to-pink-600',
+      textColor: 'text-purple-600 dark:text-purple-400',
       id: 'cornea-curvature-converter',
       description: 'Convert between corneal radius (mm) and corneal power (D) with a comprehensive K-value reference table.'
     },
@@ -217,6 +222,7 @@ export default function HomePage() {
       category: 'Parents',
       audience: ['parents'],
       color: 'from-indigo-500 to-teal-600',
+      textColor: 'text-indigo-600 dark:text-indigo-400',
       id: 'vision-simulator',
       description: 'Experience different refractive errors and eye conditions. See how myopia, hyperopia, astigmatism, and other conditions affect vision in real-time.'
     }
@@ -526,8 +532,12 @@ export default function HomePage() {
             <div
               className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
               onClick={() => setSelectedWork('clinical')}
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
+                backgroundSize: '300% 100%',
+                backgroundPosition: '0% 50%'
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-400 via-blue-500 to-indigo-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -550,8 +560,12 @@ export default function HomePage() {
             <div
               className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
               onClick={() => setSelectedWork('professional')}
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
+                backgroundSize: '300% 100%',
+                backgroundPosition: '50% 50%'
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
@@ -574,8 +588,12 @@ export default function HomePage() {
             <div
               className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
               onClick={() => setSelectedWork('community')}
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
+                backgroundSize: '300% 100%',
+                backgroundPosition: '100% 50%'
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 via-purple-500 to-pink-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
@@ -669,7 +687,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl backdrop-blur-md border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'}`}>
+          <div className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl backdrop-blur-md border ${isDark ? 'bg-white/5 border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.25)]' : 'bg-white/80 border-slate-200 shadow-[0_10px_30px_rgba(15,23,42,0.08)]'}`}>
             {[
               { id: 'all', label: 'All', color: 'bg-slate-400' },
               { id: 'parents', label: 'Parents', color: 'bg-blue-400' },
@@ -679,10 +697,12 @@ export default function HomePage() {
                 key={tab.id}
                 onClick={() => setSelectedProfile(tab.id)}
                 className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-3 ${selectedProfile === tab.id
-                  ? 'bg-white text-slate-900 shadow-lg scale-100'
+                  ? isDark
+                    ? 'bg-white/15 text-white shadow-lg scale-100 border border-white/20'
+                    : 'bg-white text-slate-900 shadow-lg scale-100 border border-slate-200'
                   : isDark
-                    ? 'text-white/60 hover:text-white hover:bg-white/5'
-                    : 'text-slate-500 hover:text-slate-900 hover:bg-white/50'
+                    ? 'text-white/70 hover:text-white hover:bg-white/5'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-white'
                   }`}
               >
                 <span className={`h-2 w-2 rounded-full ${tab.color}`} />
@@ -694,29 +714,34 @@ export default function HomePage() {
             {filteredProjects.map((project, index) => (
               <div
                 key={index}
-                className={`group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full`}
+                className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full"
                 onClick={() => project.id && openTool(project.id)}
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, #14b8a6 0%, #0369a1 55%, #7c3aed 100%)',
+                  backgroundSize: '300% 100%',
+                  backgroundPosition: `${(index % 3) * 50}% 50%`
+                }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                <div className={`relative h-full rounded-[20px] p-8 flex flex-col justify-between border ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white border-slate-200'} backdrop-blur-sm group-hover:border-transparent transition-colors`}>
+                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/55'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                  <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <svg className={`w-24 h-24 ${project.textColor ? project.textColor.split(' ')[0] : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
                   <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <span className={`text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-100'} group-hover:bg-white/20 group-hover:text-white transition-colors`}>
-                        {project.category}
-                      </span>
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${isDark ? 'bg-white/5' : 'bg-slate-50'} group-hover:bg-white/20 transition-colors`}>
-                        <ArrowRight size={18} className="group-hover:-rotate-45 transition-transform duration-300 group-hover:text-white" />
-                      </div>
-                    </div>
-
-                    <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors">{project.title}</h3>
-                    <p className={`text-sm ${textMutedClass} leading-relaxed group-hover:text-white/90 transition-colors`}>
+                    <p className={`text-xs font-bold uppercase tracking-wider mb-4 ${project.textColor}`}>
+                      {project.category}
+                    </p>
+                    <h3 className="text-2xl font-bold mb-4">
+                      {project.title}
+                    </h3>
+                    <p className={`text-base ${textMutedClass} leading-relaxed line-clamp-3`}>
                       {project.description}
                     </p>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/5 group-hover:border-white/10">
-                    <span className="text-sm font-medium group-hover:text-white transition-colors">
+                  <div className={`mt-8 flex items-center gap-2 text-sm font-bold ${project.textColor} group-hover:translate-x-2 transition-transform`}>
+                    <span>
                       {project.id === 'progression-calculator'
                         ? 'Calculate progression'
                         : project.id === 'risk-factors-analysis'
@@ -731,6 +756,7 @@ export default function HomePage() {
                                   ? 'Convert power'
                                   : 'Open tool'}
                     </span>
+                    <ArrowRight size={16} />
                   </div>
                 </div>
               </div>
