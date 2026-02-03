@@ -339,17 +339,6 @@ export default function HomePage() {
                 I also hope to help parents understand more about eye care so they can better support their kids&apos; eye health. These tips can make eye checks and glasses less scary for your children. Sometimes it can be really fun!
               </p>
 
-              {/* Philosophy Quote */}
-              <div className={`flex gap-4 mt-12`}>
-                <div className={`border-l-4 border-blue-400 pt-1`}></div>
-                <div>
-                  <p className={`text-lg md:text-xl font-light italic ${textMutedClass}`}>
-                    &quot;The simple act of caring is heroic.&quot;
-                  </p>
-                  <p className={`text-sm ${accentQuoteAttributionClass} mt-2`}>— Edward Albert</p>
-                </div>
-              </div>
-
               <div className="flex flex-wrap gap-4 pt-6">
                 <a href="#work-experience" className="group px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center gap-2 transition-all text-sm md:text-base">
                   View My Work
