@@ -1,4 +1,5 @@
 'use client';
+// Force rebuild - quote removed
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
