@@ -243,7 +243,7 @@ export default function HomePage() {
             <a href="#philosophy" className={`${
               isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
             } transition-colors relative group`}>
-              Philosophy
+              Approach
               <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
                 isDark ? 'bg-blue-400' : 'bg-blue-600'
               } transition-all group-hover:w-full`}></span>
@@ -316,7 +316,7 @@ export default function HomePage() {
             <div className="px-6 py-6 flex flex-col gap-4 font-medium">
               <a href="#philosophy" className={`py-2 px-3 rounded-lg ${
                 isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
-              } transition-all`} onClick={() => setMenuOpen(false)}>Philosophy</a>
+              } transition-all`} onClick={() => setMenuOpen(false)}>Approach</a>
               <a href="#work-experience" className={`py-2 px-3 rounded-lg ${
                 isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
               } transition-all`} onClick={() => setMenuOpen(false)}>Work</a>
@@ -369,11 +369,11 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-4 text-base md:text-lg leading-relaxed max-w-lg">
-                 <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
-                  I&apos;m sharing what I know about optometry from my own experiences, hoping to inspire other optometrists in Singapore to do the same for their patients.
+                <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
+                  Raising kids in a digital world comes with new challenges, especially for their eyes. As an optometrist and educator, I&apos;m here to simplify the science.
                 </p>
                 <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>
-                  From simple tips to advanced &quot;tools&quot;, I aim to make optometry more enjoyable and help parents support their kids&apos; eye health better.
+                  I help parents move beyond basic check-ups by providing actionable strategies to manage screen time and slow down myopia progression. From simple daily habits to advanced vision solutions, my goal is to make caring for your child&apos;s eyes easy, effective, and stress-free.
                 </p>
               </div>
             </div>
@@ -415,64 +415,58 @@ export default function HomePage() {
       </section>
 
       {/* Philosophy Section */}
-      <section id="philosophy" className="min-h-screen flex items-center px-6 py-24 relative z-10">
+      <section id="philosophy" className="min-h-screen flex items-center px-6 py-12 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            
-            {/* Left Side: Content */}
-            <div className="order-2 md:order-1 relative">
-                <div className={`relative z-10 p-8 md:p-10 rounded-[2.5rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-md border shadow-2xl`}>
-                    <div className="space-y-6">
-                        
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                            My <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 to-indigo-400' : 'from-blue-600 to-indigo-600'}`}>Philosophy</span>
-                        </h2>
-
-                        <div className={`text-lg leading-relaxed ${textMutedClass}`}>
-                            <p className="mb-6">
-                                I often asked myself, &quot;How do we keep ourselves updated?&quot; and &quot;What defines the best care?&quot; Through years of practice and observing what truly benefits families, I&apos;ve arrived at three core pillars:
-                            </p>
-                        </div>
-                        
-                        <ul className="space-y-4">
-                            {[
-                                "Pursue the 'Gold Standard', always",
-                                "Adapt and move towards evidence-based research",
-                                "Take time to share and learn from others"
-                            ].map((item, index) => (
-                                <li key={index} className={`group flex items-center gap-4 p-4 rounded-xl transition-all duration-300 ${isDark ? 'hover:bg-white/5' : 'hover:bg-white/50'}`}>
-                                    <div className={`flex-shrink-0 w-10 h-10 rounded-full ${isDark ? 'bg-blue-500/20 text-blue-400' : 'bg-blue-100/80 text-blue-600'} flex items-center justify-center transition-transform group-hover:scale-110`}>
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <span className="font-semibold text-lg">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
+            <div className={`relative z-10 p-8 rounded-[2rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-md border shadow-2xl`}>
+                <div className="text-center max-w-3xl mx-auto mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                        My <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 to-indigo-400' : 'from-blue-600 to-indigo-600'}`}>Standard of Care</span>
+                    </h2>
+                    <div className={`text-base md:text-lg leading-relaxed ${textMutedClass}`}>
+                         <p>
+                              I know that as a parent, you want to be certain you are making the right choices for your child&apos;s eyes. I believe that exceptional eye care isn&apos;t just about a prescription check, it&apos;s about using the best tools and knowledge to protect their vision for the future.
+                         </p>
                     </div>
                 </div>
-            </div>
 
-            {/* Right Side: Image */}
-            <div className="order-1 md:order-2 w-full relative group">
-              <div className={`absolute inset-0 ${isDark ? 'bg-blue-600/30' : 'bg-blue-600/20'} blur-[60px] rounded-full opacity-50 pointer-events-none`} />
-              
-              <div className="relative overflow-hidden rounded-[2.5rem] shadow-2xl rotate-2 hover:rotate-0 transition-all duration-700 h-[600px]">
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60" />
-                 <img
-                    src="/philosophy_himalaya_scenery.jpeg"
-                    alt="Philosophy - Himalaya Scenery"
-                    className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000"
-                  />
-                  <div className="absolute bottom-8 left-8 right-8 z-20">
-                     <p className="text-white/80 font-mono text-xs mb-2">INSPIRATION</p>
-                     <p className="text-white text-xl font-medium italic">"Nature does not hurry, yet everything is accomplished."</p>
-                  </div>
-              </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {[
+                    {
+                      pillar: "Pursue the 'Gold Standard', always",
+                      headline: 'Uncompromising Quality',
+                      subtext: 'I treat your child’s eyes with the same "Gold Standard" of care I would want for my own family. No shortcuts, just the highest level of clinical excellence.'
+                    },
+                    {
+                      pillar: 'Evolve with evidence-based research',
+                      headline: 'Proven Science, Not Trends',
+                      subtext: 'Eye care is evolving fast. I stay ahead of the curve, using only clinically proven, evidence-based methods in myopia management to ensure safe and effective results.'
+                    },
+                    {
+                      pillar: 'Take time to share and learn from others',
+                      headline: 'Empowerment Through Education',
+                      subtext: 'I believe you should understand why we are doing a treatment. I take the time to explain the "how" and "why" simply, so you feel confident supporting your child\'s eye health at home.'
+                    }
+                  ].map((item, index) => (
+                    <div key={index} className={`group p-6 rounded-2xl transition-all duration-300 border ${isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-blue-500/30' : 'bg-white/50 border-white/60 hover:bg-white hover:border-blue-200'} h-full flex flex-col`}>
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-full ${isDark ? 'bg-blue-500/20 text-blue-400' : 'bg-blue-100/80 text-blue-600'} flex items-center justify-center transition-transform group-hover:scale-110 mb-4`}>
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      
+                      <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${isDark ? 'text-blue-300/80' : 'text-blue-700/80'}`}>
+                          {item.pillar}
+                      </p>
+                      
+                      <h3 className="text-xl font-bold mb-3">{item.headline}</h3>
+                      
+                      <p className={`text-sm leading-relaxed ${textLightClass} flex-grow`}>
+                        {item.subtext}
+                      </p>
+                    </div>
+                  ))}
+                </div>
             </div>
-
-          </div>
         </div>
       </section>
 
