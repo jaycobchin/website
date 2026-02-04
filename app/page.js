@@ -491,7 +491,7 @@ export default function HomePage() {
                 backgroundPosition: '0% 50%'
               }}
             >
-              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/95'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
@@ -519,7 +519,7 @@ export default function HomePage() {
                 backgroundPosition: '50% 50%'
               }}
             >
-              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/95'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 </div>
@@ -547,7 +547,7 @@ export default function HomePage() {
                 backgroundPosition: '100% 50%'
               }}
             >
-              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/95'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 </div>
@@ -590,7 +590,7 @@ export default function HomePage() {
                   backgroundPosition: `${(index % 3) * 50}% 50%`
                 }}
               >
-                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/55'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/95'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                   <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                     <svg className={`w-24 h-24 ${project.textColor ? project.textColor.split(' ')[0] : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
