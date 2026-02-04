@@ -7,10 +7,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { ArrowRight, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
-import AxialLengthEstimation from './components/AxialLengthEstimation.js';
 import VisionSimulator from './components/VisionSimulator.js';
-import ContactLensVertexCalculator from './components/ContactLensVertexCalculator.js';
-import CorneaCurvatureConverter from './components/CorneaCurvatureConverter.js';
 
 export default function HomePage() {
   const router = useRouter();
@@ -20,7 +17,6 @@ export default function HomePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [expandedCard, setExpandedCard] = useState(null);
   const [isDark, setIsDark] = useState(true); // Dark mode by default
-  const [selectedProfile, setSelectedProfile] = useState('parents');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedWork, setSelectedWork] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -33,10 +29,7 @@ export default function HomePage() {
   const toolPaths = {
     'risk-factors-analysis': '/tools/risk-factors-analysis',
     'progression-calculator': '/tools/progression-calculator',
-    'axial-length-estimation': '/tools/axial-length-estimation',
-    'vision-simulator': '/tools/vision-simulator',
-    'cl-rx-vertex-calculator': '/tools/cl-rx-vertex-calculator',
-    'cornea-curvature-converter': '/tools/cornea-curvature-converter'
+    'vision-simulator': '/tools/vision-simulator'
   };
 
   // Reverse mapping for URL to tool ID
@@ -175,8 +168,8 @@ export default function HomePage() {
   const projects = [
     {
       title: 'Risk Factors Analysis',
-      category: 'Parents',
-      audience: ['parents'],
+      category: 'Optometrists',
+      audience: ['optometrists'],
       color: 'from-teal-500 to-cyan-600',
       textColor: 'text-teal-600 dark:text-teal-400',
       id: 'risk-factors-analysis',
@@ -184,58 +177,23 @@ export default function HomePage() {
     },
     {
       title: 'Myopia Progression Calculator',
-      category: 'Parents',
-      audience: ['parents'],
+      category: 'Optometrists',
+      audience: ['optometrists'],
       color: 'from-cyan-500 to-blue-600',
       textColor: 'text-cyan-600 dark:text-cyan-400',
       id: 'progression-calculator',
       description: 'Calculate and visualize how myopia may progress over time with and without intervention, helping you make informed decisions about treatment options.'
     },
     {
-      title: 'Axial Length Estimation',
-      category: 'Optometrists',
-      audience: ['optometrists'],
-      color: 'from-blue-500 to-indigo-600',
-      textColor: 'text-blue-600 dark:text-blue-400',
-      id: 'axial-length-estimation',
-      description: 'Estimate axial length from keratometry and refraction values, a useful clinical tool for optometrists managing myopia progression.'
-    },
-    {
-      title: 'CL Rx Vertex Calculator',
-      category: 'Optometrists',
-      audience: ['optometrists'],
-      color: 'from-indigo-500 to-purple-600',
-      textColor: 'text-indigo-600 dark:text-indigo-400',
-      id: 'cl-rx-vertex-calculator',
-      description: 'Convert spectacle prescriptions to contact lens powers with vertex distance adjustment.'
-    },
-    {
-      title: 'Cornea Curvature Converter',
-      category: 'Optometrists',
-      audience: ['optometrists'],
-      color: 'from-purple-500 to-pink-600',
-      textColor: 'text-purple-600 dark:text-purple-400',
-      id: 'cornea-curvature-converter',
-      description: 'Convert between corneal radius (mm) and corneal power (D) with a comprehensive K-value reference table.'
-    },
-    {
       title: 'Vision Simulator',
-      category: 'Parents',
-      audience: ['parents'],
+      category: 'Optometrists',
+      audience: ['optometrists'],
       color: 'from-indigo-500 to-teal-600',
       textColor: 'text-indigo-600 dark:text-indigo-400',
       id: 'vision-simulator',
       description: 'Experience different refractive errors and eye conditions. See how myopia, hyperopia, astigmatism, and other conditions affect vision in real-time.'
     }
   ];
-
-  const filteredProjects = selectedProfile === 'all'
-    ? projects
-    : projects.filter((project) =>
-      selectedProfile === 'parents'
-        ? project.audience.includes('parents')
-        : project.audience.includes('optometrists')
-    );
 
   const bgClass = isDark ? 'bg-black' : 'bg-white';
   const textClass = isDark ? 'text-white' : 'text-gray-900';
@@ -298,18 +256,18 @@ export default function HomePage() {
                 isDark ? 'bg-blue-400' : 'bg-blue-600'
               } transition-all group-hover:w-full`}></span>
             </a>
-            <a href="#write" className={`${
-              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
-            } transition-colors relative group`}>
-              Write
-              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
-                isDark ? 'bg-blue-400' : 'bg-blue-600'
-              } transition-all group-hover:w-full`}></span>
-            </a>
             <a href="#work" className={`${
               isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
             } transition-colors relative group`}>
               Tools
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
+                isDark ? 'bg-blue-400' : 'bg-blue-600'
+              } transition-all group-hover:w-full`}></span>
+            </a>
+            <a href="#write" className={`${
+              isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
+            } transition-colors relative group`}>
+              Write
               <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${
                 isDark ? 'bg-blue-400' : 'bg-blue-600'
               } transition-all group-hover:w-full`}></span>
@@ -362,12 +320,12 @@ export default function HomePage() {
               <a href="#work-experience" className={`py-2 px-3 rounded-lg ${
                 isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
               } transition-all`} onClick={() => setMenuOpen(false)}>Work</a>
-              <a href="#write" className={`py-2 px-3 rounded-lg ${
-                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
-              } transition-all`} onClick={() => setMenuOpen(false)}>Write</a>
               <a href="#work" className={`py-2 px-3 rounded-lg ${
                 isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
               } transition-all`} onClick={() => setMenuOpen(false)}>Tools</a>
+              <a href="#write" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Write</a>
               <a href="#contact" className={`py-2 px-3 rounded-lg ${
                 isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
               } transition-all`} onClick={() => setMenuOpen(false)}>Contact</a>
@@ -616,6 +574,65 @@ export default function HomePage() {
         </div>
       </section >
 
+      {/* Tools Section */}
+      < section id="work" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="space-y-4 mb-16">
+            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Track your child's vision</p>
+            <h2 className="text-5xl md:text-6xl font-bold">
+              Useful <span className={accentToolsClass}>Tools</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full"
+                onClick={() => project.id && openTool(project.id)}
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, #14b8a6 0%, #0369a1 55%, #7c3aed 100%)',
+                  backgroundSize: '300% 100%',
+                  backgroundPosition: `${(index % 3) * 50}% 50%`
+                }}
+              >
+                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/55'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                  <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <svg className={`w-24 h-24 ${project.textColor ? project.textColor.split(' ')[0] : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className={`text-xs font-bold uppercase tracking-wider mb-4 ${project.textColor}`}>
+                      {project.category}
+                    </p>
+                    <h3 className="text-2xl font-bold mb-4">
+                      {project.title}
+                    </h3>
+                    <p className={`text-base ${textMutedClass} leading-relaxed line-clamp-3`}>
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className={`mt-8 flex items-center gap-2 text-sm font-bold ${project.textColor} group-hover:translate-x-2 transition-transform`}>
+                    <span>
+                      {project.id === 'progression-calculator'
+                        ? 'Calculate progression'
+                        : project.id === 'risk-factors-analysis'
+                          ? 'Calculate risk'
+                          : project.id === 'vision-simulator'
+                            ? 'Try simulator'
+                            : 'Open tool'}
+                    </span>
+                    <ArrowRight size={16} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Write Section */}
       < section id="write" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
@@ -678,94 +695,6 @@ export default function HomePage() {
         </div>
       </section >
 
-      {/* Tools Section */}
-      < section id="work" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="space-y-4 mb-16">
-            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Track your child's vision</p>
-            <h2 className="text-5xl md:text-6xl font-bold">
-              Useful <span className={accentToolsClass}>Tools</span>
-            </h2>
-          </div>
-
-          <div className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl backdrop-blur-md border ${isDark ? 'bg-white/5 border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.25)]' : 'bg-white/80 border-slate-200 shadow-[0_10px_30px_rgba(15,23,42,0.08)]'}`}>
-            {[
-              { id: 'all', label: 'All', color: 'bg-slate-400' },
-              { id: 'parents', label: 'Parents', color: 'bg-blue-400' },
-              { id: 'optometrists', label: 'Optometrists', color: 'bg-indigo-400' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setSelectedProfile(tab.id)}
-                className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-3 ${selectedProfile === tab.id
-                  ? isDark
-                    ? 'bg-white/15 text-white shadow-lg scale-100 border border-white/20'
-                    : 'bg-white text-slate-900 shadow-lg scale-100 border border-slate-200'
-                  : isDark
-                    ? 'text-white/70 hover:text-white hover:bg-white/5'
-                    : 'text-slate-500 hover:text-slate-900 hover:bg-white'
-                  }`}
-              >
-                <span className={`h-2 w-2 rounded-full ${tab.color}`} />
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {filteredProjects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full"
-                onClick={() => project.id && openTool(project.id)}
-                style={{
-                  backgroundImage: 'linear-gradient(90deg, #14b8a6 0%, #0369a1 55%, #7c3aed 100%)',
-                  backgroundSize: '300% 100%',
-                  backgroundPosition: `${(index % 3) * 50}% 50%`
-                }}
-              >
-                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/55'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
-                  <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <svg className={`w-24 h-24 ${project.textColor ? project.textColor.split(' ')[0] : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className={`text-xs font-bold uppercase tracking-wider mb-4 ${project.textColor}`}>
-                      {project.category}
-                    </p>
-                    <h3 className="text-2xl font-bold mb-4">
-                      {project.title}
-                    </h3>
-                    <p className={`text-base ${textMutedClass} leading-relaxed line-clamp-3`}>
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className={`mt-8 flex items-center gap-2 text-sm font-bold ${project.textColor} group-hover:translate-x-2 transition-transform`}>
-                    <span>
-                      {project.id === 'progression-calculator'
-                        ? 'Calculate progression'
-                        : project.id === 'risk-factors-analysis'
-                          ? 'Calculate risk'
-                          : project.id === 'vision-simulator'
-                            ? 'Try simulator'
-                            : project.id === 'cornea-curvature-converter'
-                              ? 'Try converter'
-                              : project.id === 'axial-length-estimation'
-                                ? 'Estimate length'
-                                : project.id === 'cl-rx-vertex-calculator'
-                                  ? 'Convert power'
-                                  : 'Open tool'}
-                    </span>
-                    <ArrowRight size={16} />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Risk Factors Analysis Modal */}
       {
         selectedProject === 'risk-factors-analysis' && (
@@ -778,12 +707,6 @@ export default function HomePage() {
           <MyopiaProgressionCalculator isDark={isDark} onClose={closeTool} />
         )
       }
-      {/* Axial Length Estimation Modal */}
-      {
-        selectedProject === 'axial-length-estimation' && (
-          <AxialLengthEstimation isDark={isDark} onClose={closeTool} />
-        )
-      }
       {/* Vision Simulator Modal */}
       {
         selectedProject === 'vision-simulator' && (
@@ -791,19 +714,6 @@ export default function HomePage() {
         )
       }
 
-      {/* CL Rx Vertex Calculator Modal */}
-      {
-        selectedProject === 'cl-rx-vertex-calculator' && (
-          <ContactLensVertexCalculator isDark={isDark} onClose={closeTool} />
-        )
-      }
-
-      {/* Cornea Curvature Converter Modal */}
-      {
-        selectedProject === 'cornea-curvature-converter' && (
-          <CorneaCurvatureConverter isDark={isDark} onClose={closeTool} />
-        )
-      }
 
       {/* Work Experience Modals */}
       {
