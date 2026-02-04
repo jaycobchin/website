@@ -346,11 +346,11 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-24 pb-12 relative z-10">
-        <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <section className="min-h-screen flex items-center justify-center px-4 pt-24 pb-24 md:pb-12 relative z-10">
+        <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Left Side: Content Card */}
-          <div className={`relative z-10 p-6 md:p-10 rounded-[2.5rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-xl border shadow-2xl overflow-hidden group`}>
+          <div className={`order-2 lg:order-1 relative z-10 p-6 md:p-10 rounded-[2.5rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-xl border shadow-2xl overflow-hidden group`}>
             {/* Glossy gradient accent */}
             <div className={`absolute top-0 right-0 w-80 h-80 ${isDark ? 'bg-blue-500/20' : 'bg-sky-400/20'} rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none`} />
             
@@ -359,7 +359,7 @@ export default function HomePage() {
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
                   Optometrist & Educator
                 </span>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9]">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-none md:leading-[0.9]">
                   JAYCOB
                   <br />
                   <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 via-indigo-400 to-purple-400' : 'from-blue-600 via-indigo-600 to-purple-600'}`}>
@@ -380,8 +380,8 @@ export default function HomePage() {
           </div>
 
           {/* Right Side: Profile Photo */}
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="relative w-64 h-64 md:w-[350px] md:h-[350px]">
+          <div className="order-1 lg:order-2 relative flex justify-center lg:justify-end mt-12 md:mt-0">
+            <div className="relative w-52 h-52 md:w-[350px] md:h-[350px]">
               {/* Decorative Rings */}
               <div className={`absolute inset-0 rounded-full border-2 ${isDark ? 'border-blue-500/30' : 'border-blue-400/30'} scale-110 animate-pulse`} />
               <div className={`absolute inset-0 rounded-full border ${isDark ? 'border-indigo-500/20' : 'border-indigo-400/20'} scale-125`} />
@@ -390,7 +390,7 @@ export default function HomePage() {
               <div className={`absolute -top-2 -right-2 z-20 ${isDark ? 'bg-slate-800' : 'bg-white'} p-3 rounded-xl shadow-xl animate-bounce duration-[3000ms]`}>
                  <span className="text-2xl">👓</span>
               </div>
-              <div className={`absolute bottom-6 -left-4 z-20 ${isDark ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-md p-3 rounded-xl shadow-xl border ${borderClass} flex items-center gap-3`}>
+              <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 md:translate-y-0 md:bottom-6 md:-left-4 md:translate-x-0 z-20 ${isDark ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-md p-3 rounded-xl shadow-xl border ${borderClass} flex items-center gap-3 w-max`}>
                  <div className="bg-green-100 p-1.5 rounded-full">
                    <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping" />
                  </div>
@@ -415,9 +415,9 @@ export default function HomePage() {
       </section>
 
       {/* Philosophy Section */}
-      <section id="philosophy" className="min-h-screen flex items-center px-6 py-12 relative z-10">
+      <section id="philosophy" className="min-h-screen flex items-center px-4 md:px-6 py-12 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
-            <div className={`relative z-10 p-8 rounded-[2rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-md border shadow-2xl`}>
+            <div className={`relative z-10 p-5 md:p-8 rounded-[2rem] ${isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/40 border-white/50'} backdrop-blur-md border shadow-2xl`}>
                 <div className="text-center max-w-3xl mx-auto mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
                         My <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-blue-400 to-indigo-400' : 'from-blue-600 to-indigo-600'}`}>Standard of Care</span>
@@ -471,11 +471,11 @@ export default function HomePage() {
       </section>
 
       {/* Work Section */}
-      < section id="work-experience" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
+      < section id="work-experience" className="min-h-screen flex items-center px-4 md:px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
             <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Professional Journey</p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Work
             </h2>
           </div>
@@ -491,7 +491,7 @@ export default function HomePage() {
                 backgroundPosition: '0% 50%'
               }}
             >
-              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
@@ -519,7 +519,7 @@ export default function HomePage() {
                 backgroundPosition: '50% 50%'
               }}
             >
-              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 </div>
@@ -547,7 +547,7 @@ export default function HomePage() {
                 backgroundPosition: '100% 50%'
               }}
             >
-              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+              <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/60'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 </div>
@@ -569,11 +569,11 @@ export default function HomePage() {
       </section >
 
       {/* Tools Section */}
-      < section id="work" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
+      < section id="work" className="min-h-screen flex items-center px-4 md:px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
             <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Track your child's vision</p>
-            <h2 className="text-5xl md:text-6xl font-bold">
+            <h2 className="text-4xl md:text-6xl font-bold">
               Useful <span className={accentToolsClass}>Tools</span>
             </h2>
           </div>
@@ -590,7 +590,7 @@ export default function HomePage() {
                   backgroundPosition: `${(index % 3) * 50}% 50%`
                 }}
               >
-                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/55'} backdrop-blur-xl rounded-[22px] p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
+                <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/55'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                   <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                     <svg className={`w-24 h-24 ${project.textColor ? project.textColor.split(' ')[0] : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -628,17 +628,17 @@ export default function HomePage() {
       </section>
 
       {/* Write Section */}
-      < section id="write" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
+      < section id="write" className="min-h-screen flex items-center px-4 md:px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
             <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Insights & Thoughts</p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Write
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className={`p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
+            <div className={`p-6 md:p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 text-blue-500 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
@@ -654,7 +654,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className={`p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
+            <div className={`p-6 md:p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 text-purple-500 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
@@ -670,7 +670,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className={`p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
+            <div className={`p-6 md:p-8 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} hover:border-blue-500/50 transition-all hover-lift flex flex-col justify-between h-full group`}>
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-6 text-teal-500 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
@@ -714,7 +714,7 @@ export default function HomePage() {
         selectedWork === 'clinical' && (
           <div className={`fixed inset-0 ${isDark ? 'bg-black/70' : 'bg-black/50'} z-50 overflow-y-auto`}>
             <div className="min-h-screen flex items-center justify-center p-4">
-              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-8 relative`} onClick={(e) => e.stopPropagation()}>
+              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-6 md:p-8 relative`} onClick={(e) => e.stopPropagation()}>
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedWork(null)}
@@ -787,7 +787,7 @@ export default function HomePage() {
         selectedWork === 'professional' && (
           <div className={`fixed inset-0 ${isDark ? 'bg-black/70' : 'bg-black/50'} z-50 overflow-y-auto`}>
             <div className="min-h-screen flex items-center justify-center p-4">
-              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-8 relative`} onClick={(e) => e.stopPropagation()}>
+              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-6 md:p-8 relative`} onClick={(e) => e.stopPropagation()}>
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedWork(null)}
@@ -938,7 +938,7 @@ export default function HomePage() {
         selectedWork === 'community' && (
           <div className={`fixed inset-0 ${isDark ? 'bg-black/70' : 'bg-black/50'} z-50 overflow-y-auto`}>
             <div className="min-h-screen flex items-center justify-center p-4">
-              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-8 relative`} onClick={(e) => e.stopPropagation()}>
+              <div className={`w-full max-w-4xl ${isDark ? 'bg-slate-900' : 'bg-white'} rounded-2xl shadow-2xl p-6 md:p-8 relative`} onClick={(e) => e.stopPropagation()}>
                 {/* Close Button */}
                 <button
                   onClick={() => { setSelectedWork(null); setCurrentGallery('professional'); setCurrentImageIndex(0); }}
@@ -1122,9 +1122,9 @@ export default function HomePage() {
       }
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-[70vh] flex items-start px-6 pt-28 pb-8 relative z-10">
+      <section id="contact" className="min-h-[70vh] flex items-start px-4 md:px-6 pt-28 pb-8 relative z-10">
         <div className="max-w-7xl mx-auto w-full text-center">
-          <h2 className="text-5xl md:text-7xl font-bold mb-8">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
             Let&apos;s Make Eye Care
             <br />
             <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentBetterTogetherFromClass} ${accentBetterTogetherToClass}`}>
