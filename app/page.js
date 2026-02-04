@@ -682,7 +682,7 @@ export default function HomePage() {
       < section id="work" className="min-h-screen flex items-center px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
-            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Interactive Resources</p>
+            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Track your child's vision</p>
             <h2 className="text-5xl md:text-6xl font-bold">
               Useful <span className={accentToolsClass}>Tools</span>
             </h2>
