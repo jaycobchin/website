@@ -1125,14 +1125,14 @@ export default function HomePage() {
       <section id="contact" className="min-h-[70vh] flex items-start px-4 md:px-6 pt-28 pb-8 relative z-10">
         <div className="max-w-7xl mx-auto w-full text-center">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
-            Let&apos;s Make Eye Care
+            Let&apos;s Protect Their
             <br />
             <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentBetterTogetherFromClass} ${accentBetterTogetherToClass}`}>
-              Better Together
+              Vision Together
             </span>
           </h2>
           <p className={`text-xl ${textMutedClass} mb-8 max-w-2xl mx-auto`}>
-            Have questions about eye care? Let&apos;s talk about how we can work together to help more people understand the importance of eye health.
+            Have questions about your child&apos;s eye health? I&apos;m here to answer your concerns and help you make the best decisions for their future.
           </p>
 
           <div className="flex justify-center gap-6 mb-6">
