@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { ArrowRight, Linkedin, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import RiskFactorsAnalysis from './components/RiskFactorsAnalysis.js';
 import MyopiaProgressionCalculator from './components/MyopiaProgressionCalculator.js';
@@ -484,15 +485,15 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Clinical Practice Card */}
-            <div
-              className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
-              onClick={() => router.push('/work/clinical-practice')}
-              style={{
-                backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
-                backgroundSize: '300% 100%',
-                backgroundPosition: '0% 50%'
-              }}
-            >
+            <Link href="/work/clinical-practice" prefetch={true}>
+              <div
+                className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
+                  backgroundSize: '300% 100%',
+                  backgroundPosition: '0% 50%'
+                }}
+              >
               <div className={`relative h-full ${isDark ? 'bg-slate-900/60' : 'bg-white/95'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -510,11 +511,12 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+            </Link>
 
             {/* Professional Appointment Card */}
+            <Link href="/work/professional-appointment" prefetch={true}>
             <div
               className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
-              onClick={() => setSelectedWork('professional')}
               style={{
                 backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
                 backgroundSize: '300% 100%',
@@ -538,11 +540,12 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+            </Link>
 
             {/* Community Engagement Card */}
+            <Link href="/work/community-engagement" prefetch={true}>
             <div
               className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
-              onClick={() => setSelectedWork('community')}
               style={{
                 backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
                 backgroundSize: '300% 100%',
@@ -566,6 +569,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+            </Link>
           </div>
         </div>
       </section >

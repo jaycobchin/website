@@ -10,6 +10,7 @@ export default function ClinicalPracticePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -18,8 +19,9 @@ export default function ClinicalPracticePage() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -33,7 +35,7 @@ export default function ClinicalPracticePage() {
   const accentClass = isDark ? 'text-teal-400' : 'text-teal-600';
 
   return (
-    <main className={`min-h-screen ${textClass} relative overflow-hidden transition-colors duration-500`}>
+    <main className={`min-h-screen ${textClass} relative overflow-hidden`}>
       {/* Animated gradient background - same as homepage */}
       <div className={`fixed inset-0 ${isDark ? 'bg-gradient-animated-dark' : 'bg-gradient-animated-light'} transition-opacity duration-500`} />
 
