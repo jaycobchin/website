@@ -474,7 +474,9 @@ export default function HomePage() {
       < section id="work-experience" className="min-h-screen flex items-center px-4 md:px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
-            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Professional Journey</p>
+            <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+              Professional Journey
+            </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Work
             </h2>
@@ -572,7 +574,9 @@ export default function HomePage() {
       < section id="work" className="min-h-screen flex items-center px-4 md:px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
-            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Track your child's vision</p>
+            <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+              Track your child's vision
+            </span>
             <h2 className="text-4xl md:text-6xl font-bold">
               Useful <span className={accentToolsClass}>Tools</span>
             </h2>
@@ -631,7 +635,9 @@ export default function HomePage() {
       < section id="write" className="min-h-screen flex items-center px-4 md:px-6 py-24 relative z-10" >
         <div className="max-w-7xl mx-auto w-full">
           <div className="space-y-4 mb-16">
-            <p className="text-blue-500 font-bold tracking-widest text-sm uppercase">Insights & Thoughts</p>
+            <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase ${isDark ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+              Insights & Thoughts
+            </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Write
             </h2>
