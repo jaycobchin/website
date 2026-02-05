@@ -656,6 +656,16 @@ export default function HomePage() {
                 );
               }
 
+                if (project.id === 'vision-simulator') {
+                  return (
+                    <Link key={index} href="/tools/vision-simulator" prefetch={true} className="block">
+                      <div {...cardWrapperProps}>
+                        {cardInner}
+                      </div>
+                    </Link>
+                  );
+                }
+
               return (
                 <div
                   key={index}
@@ -1168,25 +1178,27 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section id="contact" className="min-h-[70vh] flex items-start px-4 md:px-6 pt-28 pb-8 relative z-10">
-        <div className="max-w-7xl mx-auto w-full text-center">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
-            Let&apos;s Protect Their
-            <br />
-            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentBetterTogetherFromClass} ${accentBetterTogetherToClass}`}>
-              Vision Together
-            </span>
-          </h2>
-          <p className={`text-xl ${textMutedClass} mb-8 max-w-2xl mx-auto`}>
-            Have questions about your child&apos;s eye health? I&apos;m here to answer your concerns and help you make the best decisions for their future.
-          </p>
+        <div className="max-w-7xl mx-auto w-full">
+          <div className={`text-center rounded-3xl border ${borderClass} ${isDark ? 'bg-slate-900/60' : 'bg-white/80'} backdrop-blur-xl shadow-2xl px-6 md:px-12 py-10 md:py-14`}>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
+              Let&apos;s Protect Their
+              <br />
+              <span className={`text-transparent bg-clip-text bg-gradient-to-r ${accentBetterTogetherFromClass} ${accentBetterTogetherToClass}`}>
+                Vision Together
+              </span>
+            </h2>
+            <p className={`text-xl ${textMutedClass} mb-8 max-w-2xl mx-auto`}>
+              Have questions about your child&apos;s eye health? I&apos;m here to answer your concerns and help you make the best decisions for their future.
+            </p>
 
-          <div className="flex justify-center gap-6 mb-6">
-            <a href="mailto:chinyanjie@gmail.com" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
-              <Mail size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/jaycob-chin/" target="_blank" rel="noreferrer" className={`p-4 ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
-              <Linkedin size={24} />
-            </a>
+            <div className="flex justify-center gap-6 mb-2">
+              <a href="mailto:chinyanjie@gmail.com" className={`p-4 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
+                <Mail size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/jaycob-chin/" target="_blank" rel="noreferrer" className={`p-4 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} rounded-full border ${borderClass} ${hoverBorderClass} transition-all`}>
+                <Linkedin size={24} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
