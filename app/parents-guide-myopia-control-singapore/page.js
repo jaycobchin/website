@@ -574,71 +574,136 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
               </div>
-              
-              <p className="leading-relaxed mb-4 text-sm">
-                <strong>The Commitment Required:</strong> Ortho-K requires nightly lens wear, typically 6-8 hours, to maintain the corneal reshaping effect. Missing even one night may cause vision to blur the following day. The daily routine includes carefully inserting and removing lenses, thorough cleaning and disinfection, proper storage, and regular replacement of solutions and cases. Your child will need frequent follow-up visits initially (weekly or bi-weekly), then quarterly check-ups once stabilized. You'll also need to watch for warning signs like redness, pain, light sensitivity, or discharge, which require immediate attention.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Despite these requirements, for motivated families who can commit to the hygiene protocols and regular monitoring, Ortho-K can be an excellent option. Many children love the freedom of not wearing glasses during the day, and parents appreciate the dual benefit of clear vision plus myopia control. The Singapore Optometric Association has published comprehensive Orthokeratology Fitting and Management Guidelines [13] that certified optometrists follow to ensure safe, effective treatment.
-              </p>
 
-              <h4 className="text-xl font-bold mb-4 mt-8">Myopia Control Soft Contact Lenses</h4>
-              
-              <p className="leading-relaxed mb-4">
-                For children who are responsible enough for contact lens wear but prefer not to wear lenses overnight, myopia control soft contact lenses offer another excellent option. These are daily wear lenses that combine vision correction with myopia control technology.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>How They Work:</strong> Similar to myopia control spectacles, these soft lenses use special optical designs to create peripheral myopic defocus while maintaining clear central vision. The advantage over spectacles is that the optical treatment moves with the eye, potentially providing more consistent peripheral defocus throughout the day. Available options include dual-focus designs (like MiSight), extended depth of focus designs, and concentric ring designs.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Clinical trials have demonstrated significant efficacy. The MiSight 1 day lens, for example, showed 59% reduction in myopia progression and 52% reduction in axial elongation over 3 years in clinical trials [14]. A 7-year follow-up study confirmed sustained treatment effects, with children who started treatment earlier showing better long-term outcomes [15]. Recent meta-analyses confirm that various soft contact lens designs for myopia control show consistent efficacy, with progression reductions ranging from 30-60% [16].
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Who Are Good Candidates?</strong> These lenses are typically suitable for children aged 8 and older who demonstrate maturity and good hygiene habits, can follow proper insertion and removal techniques, understand the importance of wearing schedules and replacement schedules, and are motivated to wear contact lenses (often for sports, aesthetics, or lifestyle reasons). Parental supervision and support are essential, especially in the first few months.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Daily Wear vs. Ortho-K:</strong> Unlike Ortho-K lenses worn overnight, these soft lenses are worn during the day (typically 10-12 hours) and removed before sleep. Many are available as daily disposables, which eliminates the need for cleaning and storage solutions, reducing infection risk. This can be more convenient for some families, though the ongoing cost of daily disposable lenses may be higher than reusable Ortho-K lenses over time.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Risks to Consider:</strong> While generally safe, soft contact lenses carry similar infection risks to Ortho-K, though the risk is lower with daily disposable lenses compared to reusable lenses. Proper hygiene remains critical: always wash hands before handling lenses, never sleep in lenses not designed for overnight wear, never use water or saliva to wet lenses, replace lenses according to the prescribed schedule, and attend all follow-up appointments. Signs of problems include redness, pain, excessive tearing, light sensitivity, or blurred vision, any of these warrant immediate contact with your eye care provider.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Your optometrist can help determine which myopia control option, spectacles, soft contact lenses, or Ortho-K, best suits your child's needs, lifestyle, and maturity level.
-              </p>
+              {/* Soft Contact Lenses Card */}
+              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-cyan-500 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-cyan-500/10 to-slate-800/50' 
+                  : 'bg-gradient-to-br from-cyan-50 to-slate-50'
+              }`}>
+                <div className="flex items-start gap-4 mb-4">
+                  <span className={`text-3xl font-bold ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>👁️</span>
+                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Myopia Control Soft Contact Lenses</h4>
+                </div>
+                
+                <p className="leading-relaxed mb-4 text-sm">
+                  For children who are responsible enough for contact lens wear but prefer not to wear lenses overnight, myopia control soft contact lenses offer another excellent option. These are daily wear lenses that combine vision correction with myopia control technology.
+                </p>
+                <p className="leading-relaxed mb-4 text-sm">
+                  <span className="font-bold">How They Work:</span> Similar to myopia control spectacles, these soft lenses use special optical designs to create peripheral myopic defocus while maintaining clear central vision. The advantage over spectacles is that the optical treatment moves with the eye, potentially providing more consistent peripheral defocus throughout the day.
+                </p>
+                
+                <div className={`p-4 rounded-lg mb-4 border-l-2 border-green-500 ${
+                  isDark ? 'bg-green-500/10' : 'bg-green-50'
+                }`}>
+                  <p className="text-sm font-medium">
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> 30-60% reduction in myopia progression. MiSight lenses showed 59% reduction over 3 years [14][15][16].
+                  </p>
+                </div>
+                
+                <p className="text-sm font-bold mb-3">Ideal Candidates:</p>
+                <ul className="space-y-2 text-sm mb-4">
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-cyan-300' : 'text-cyan-600'}>•</span>
+                    <span>Children aged 8 and older with mature hygiene habits</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-cyan-300' : 'text-cyan-600'}>•</span>
+                    <span>Motivated to wear contact lenses (sports, lifestyle)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-cyan-300' : 'text-cyan-600'}>•</span>
+                    <span>Daily disposables available (lower infection risk)</span>
+                  </li>
+                </ul>
+              </div>
 
-              <h4 className="text-xl font-bold mb-4 mt-8">Low-Dose Atropine Eye Drops</h4>
-              
-              <p className="leading-relaxed mb-4">
-                Singapore has actually led the world in atropine myopia research through our landmark ATOM (Atropine for the Treatment of Myopia) studies. Low-dose atropine eye drops (0.01% to 0.05% concentration) can effectively slow myopia progression, reducing progression by 43-67% over two years [17][18].
-              </p>
-              <p className="leading-relaxed mb-4">
-                Long-term safety data from 10-20 year follow-up studies show atropine is safe with no long-term adverse effects [19]. These aren't marginal improvements, they're clinically significant reductions that can help prevent high myopia and its complications.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>What Parents Should Know About Side Effects:</strong> While low-dose atropine is generally well-tolerated, it's important to understand potential side effects. Common short-term effects may include light sensitivity and difficulty focusing on near objects, though these are typically mild at low concentrations. More importantly, parents should be aware of the rebound effect, when treatment is stopped, some children may experience a temporary acceleration in myopia progression. This is why it's crucial to work closely with your eye care professional to develop a long-term management plan, including strategies for eventually tapering off treatment rather than stopping abruptly. Your ophthalmologist will monitor your child regularly to ensure the benefits continue to outweigh any side effects.
-              </p>
-              <p className="leading-relaxed mb-4 text-sm">
-                Currently, atropine requires a prescription from an ophthalmologist. Your optometrist can refer you if this treatment is appropriate for your child.
-              </p>
+              {/* Atropine Card */}
+              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-amber-500 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-amber-500/10 to-slate-800/50' 
+                  : 'bg-gradient-to-br from-amber-50 to-slate-50'
+              }`}>
+                <div className="flex items-start gap-4 mb-4">
+                  <span className={`text-3xl font-bold ${isDark ? 'text-amber-300' : 'text-amber-600'}`}>💧</span>
+                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Low-Dose Atropine Eye Drops</h4>
+                </div>
+                
+                <p className="leading-relaxed mb-4 text-sm">
+                  Singapore has actually led the world in atropine myopia research through our landmark ATOM (Atropine for the Treatment of Myopia) studies. Low-dose atropine eye drops (0.01% to 0.05% concentration) can effectively slow myopia progression.
+                </p>
+                
+                <div className={`p-4 rounded-lg mb-4 border-l-2 border-green-500 ${
+                  isDark ? 'bg-green-500/10' : 'bg-green-50'
+                }`}>
+                  <p className="text-sm font-medium">
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> 43-67% reduction in myopia progression over two years [17][18]. Long-term safety confirmed (10-20 year studies) [19].
+                  </p>
+                </div>
+                
+                <div className={`p-4 rounded-lg border-l-2 border-amber-500 ${
+                  isDark ? 'bg-amber-500/10' : 'bg-amber-50'
+                }`}>
+                  <p className="text-sm font-medium mb-2">
+                    <span className={isDark ? 'text-amber-300' : 'text-amber-700'}>⚠️ Important:</span>
+                  </p>
+                  <p className="text-sm">
+                    Possible mild light sensitivity and near focus difficulty. Watch for rebound effect when stopping treatment. Requires prescription from ophthalmologist.
+                  </p>
+                </div>
+              </div>
             </section>
 
             {/* Singapore's National Efforts */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">Singapore's National Efforts: You're Not Alone in This</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-teal-400 to-cyan-400' : 'from-teal-600 to-cyan-600'}`}>
+                  Singapore's National Efforts: You're Not Alone
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-6 text-base">
                 Singapore takes childhood myopia seriously. The National Myopia Prevention Programme (NMPP), implemented since 2001, works through two main approaches [1]:
               </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Public Education:</strong> Raising awareness about myopia risks and prevention, particularly emphasizing outdoor activities as a protective factor.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Vision Screening:</strong> Systematic screening in primary schools conducted annually by the Health Promotion Board for children from Kindergarten 1 to Primary 4 [20].
-              </p>
-              <p className="leading-relaxed mb-4">
-                The programme has shown encouraging results. Myopia prevalence among Primary 1 students decreased to 26% in 2023, down from around 30% in the mid-2000s [20]. Overall primary school myopia rates fell from 37.7% to 29.3% between 2004 and 2015 [1].
-              </p>
-              <p className="leading-relaxed mb-4">
+              
+              <div className="space-y-4 mb-8">
+                <div className={`p-6 rounded-2xl border-l-4 border-teal-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40' 
+                    : 'bg-slate-50'
+                }`}>
+                  <h3 className={`font-bold text-lg mb-3 ${isDark ? 'text-teal-300' : 'text-teal-700'}`}>📢 Public Education</h3>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Raising awareness about myopia risks and prevention, particularly emphasizing outdoor activities as a protective factor.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-cyan-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40' 
+                    : 'bg-slate-50'
+                }`}>
+                  <h3 className={`font-bold text-lg mb-3 ${isDark ? 'text-cyan-300' : 'text-cyan-700'}`}>👁️ Vision Screening</h3>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Systematic screening in primary schools conducted annually by the Health Promotion Board for children from Kindergarten 1 to Primary 4 [20].
+                  </p>
+                </div>
+              </div>
+              
+              <div className={`p-6 rounded-2xl border-l-4 border-green-500 mb-6 ${
+                isDark 
+                  ? 'bg-green-500/10' 
+                  : 'bg-green-50'
+              }`}>
+                <p className="text-base font-bold mb-3">
+                  <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Encouraging Results:</span>
+                </p>
+                <p className={`leading-relaxed text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  Myopia prevalence among Primary 1 students decreased to <strong>26%</strong> in 2023, down from around 30% in the mid-2000s [20]. Overall primary school myopia rates fell from 37.7% to 29.3% between 2004 and 2015 [1].
+                </p>
+              </div>
+              
+              <p className="leading-relaxed text-base">
                 However, school screenings are just the starting point. For comprehensive assessment and personalized myopia management, a full optometric examination is essential.
               </p>
             </section>
@@ -754,14 +819,18 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <p className="leading-relaxed text-base">
+                <p className="leading-relaxed text-base mb-6">
                   That might seem like a small difference, but over the course of her childhood, it could mean the difference between moderate myopia and sight-threatening high myopia. This child is now on track for much better long-term eye health.
                 </p>
+                
+                <div className={`p-4 rounded-xl border-l-2 border-emerald-500 ${
+                  isDark ? 'bg-emerald-500/5' : 'bg-emerald-50/50'
+                }`}>
+                  <p className={`text-sm italic ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    "I wish I had known about this earlier. But I'm so grateful we're doing something now." — Parent of a myopia control patient
+                  </p>
+                </div>
               </div>
-              
-              <p className="leading-relaxed mb-4 text-base">
-                Her mother recently told me, "I wish I had known about this earlier. But I'm so grateful we're doing something now." And that's exactly the message I want to share with you that it's never too early to start protecting your child's vision.
-              </p>
             </section>
 
             {/* Your Child's Vision Is Worth Protecting */}
