@@ -26,15 +26,12 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose, em
   const mutedTextClass = isDark ? 'text-gray-400' : 'text-gray-600';
   const bodyTextClass = isDark ? 'text-gray-200' : 'text-gray-800';
   const borderClass = isDark ? 'border-slate-600' : 'border-gray-200';
-
-  const referenceLinkClass = isDark
-    ? 'text-blue-300 hover:text-blue-200 underline underline-offset-2'
-    : 'text-blue-700 hover:text-blue-800 underline underline-offset-2';
+  const referenceLinkClass = isDark ? 'text-blue-300 hover:text-blue-200 underline underline-offset-2' : 'text-blue-700 hover:text-blue-800 underline underline-offset-2';
 
   const containerClass = embedded ? 'w-full' : `fixed inset-0 ${bgClass} z-50 overflow-y-auto`;
   const wrapperClass = embedded ? 'w-full' : 'min-h-screen flex items-center justify-center p-4';
-  const cardClass = embedded ? `w-full ${cardBgClass} rounded-2xl shadow-2xl p-8 relative` : `w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`;
-  const contentClass = embedded ? 'leading-relaxed' : 'leading-relaxed overflow-y-auto max-h-[90vh]';
+  const cardClass = embedded ? 'w-full' : `w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`;
+
   const getEthnicityFactor = (ethnicity) => {
     const factors = {
       'Chinese': 1.0,
@@ -194,10 +191,10 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose, em
 
   return (
     <div className={containerClass}>
-      <div className={wrapperClass}>
+      {!embedded && <div className={wrapperClass}>
         <div className={cardClass}>
           {/* Close Button */}
-          {!embedded && onClose && (
+          {onClose && (
             <button
               onClick={onClose}
               className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
@@ -218,7 +215,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose, em
             </div>
           </div>
 
-          <div className={contentClass}>
+          <div className="leading-relaxed overflow-y-auto max-h-[90vh]">
 
           {/* Input Section */}
           <div className={`grid md:grid-cols-2 gap-6 mb-6 p-5 ${panelBgClass} rounded-lg`}>
@@ -407,23 +404,23 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose, em
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>General Reviews & Guidelines</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                  <li><a href="https://doi.org/10.1167/iovs.66.12.39" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI—Interventions for controlling myopia onset and progression 2025 (IOVS, 2025)</a></li>
+                  <li><a href="https://doi.org/10.1167/iovs.66.12.39" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>IMI—Interventions for controlling myopia onset and progression 2025 (IOVS, 2025)</a></li>
                 </ul>
               </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Myopia Control Spectacle Lenses</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                  <li><a href="https://doi.org/10.1136/bjo-2025-327629" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Efficacy of spectacle lenses for myopia control: A meta-analysis (BJO, 2025)</a></li>
-                  <li><a href="https://doi.org/10.1136/bjophthalmol-2018-313739" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DIMS spectacle lenses slow myopia progression: 2-year RCT (BJO, 2020)</a></li>
-                  <li><a href="https://doi.org/10.1038/s41598-023-32700-7" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Long-term myopia control effect in children wearing DIMS lenses for 6 years (Scientific Reports, 2023)</a></li>
+                  <li><a href="https://doi.org/10.1136/bjo-2025-327629" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Efficacy of spectacle lenses for myopia control: A meta-analysis (BJO, 2025)</a></li>
+                  <li><a href="https://doi.org/10.1136/bjophthalmol-2018-313739" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>DIMS spectacle lenses slow myopia progression: 2-year RCT (BJO, 2020)</a></li>
+                  <li><a href="https://doi.org/10.1038/s41598-023-32700-7" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Long-term myopia control effect in children wearing DIMS lenses for 6 years (Scientific Reports, 2023)</a></li>
                 </ul>
               </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Myopia Control Soft Contact Lenses</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                  <li><a href="https://doi.org/10.1097/OPX.0000000000001410" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">3-year randomized clinical trial of MiSight lenses for myopia control (OVS, 2019)</a></li>
+                  <li><a href="https://doi.org/10.1097/OPX.0000000000001410" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>3-year randomized clinical trial of MiSight lenses for myopia control (OVS, 2019)</a></li>
                 </ul>
               </div>
 
@@ -446,7 +443,7 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose, em
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Ethnicity & Epidemiology</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                  <li><a href="https://doi.org/10.1111/opo.13401" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Regional/ethnic differences in myopic and non-myotic children (OPO, 2025)</a></li>
+                  <li><a href="https://doi.org/10.1111/opo.13401" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Regional/ethnic differences in myopic and non-myopic children (OPO, 2025)</a></li>
                   <li><a href="https://pubmed.ncbi.nlm.nih.gov/8266124/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Race, culture and myopia in Singaporean males (SMJ, 1993)</a></li>
                   <li><a href="https://doi.org/10.1167/iovs.04-0565" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Incidence and progression of myopia in Singaporean school children (IOVS, 2005)</a></li>
                 </ul>
@@ -456,7 +453,9 @@ export default function MyopiaProgressionCalculator({ isDark = true, onClose, em
           )}
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
+      </div>}
+      
+      {embedded && <div className="leading-relaxed">
+
+          {/* Input Section */}
+          <div className={`grid md:grid-cols-2 gap-6 mb-6 p-5 ${panelBgClass} rounded-lg`}>

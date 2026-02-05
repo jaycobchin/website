@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
-export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
+export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded = false }) {
   const [age, setAge] = useState(8);
   const [gender, setGender] = useState(0);
   const [ethnicity, setEthnicity] = useState(3);
@@ -156,32 +156,31 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
   const mutedTextClass = isDark ? 'text-gray-400' : 'text-gray-600';
   const bodyTextClass = isDark ? 'text-gray-200' : 'text-gray-800';
   const borderClass = isDark ? 'border-slate-600' : 'border-gray-200';
+  const referenceLinkClass = isDark
+    ? 'text-blue-300 hover:text-blue-200 underline underline-offset-2'
+    : 'text-blue-700 hover:text-blue-800 underline underline-offset-2';
+
+  const containerClass = embedded ? 'w-full' : `fixed inset-0 ${bgClass} z-50 overflow-y-auto`;
+  const wrapperClass = embedded ? 'w-full' : 'min-h-screen flex items-center justify-center p-4';
+  const cardClass = embedded ? `w-full ${cardBgClass} rounded-2xl shadow-2xl p-8 relative` : `w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`;
+  const contentClass = embedded ? 'leading-relaxed' : 'leading-relaxed overflow-y-auto max-h-[90vh]';
 
   return (
-    <div className={`fixed inset-0 ${bgClass} z-50 overflow-y-auto`}>
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className={`w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`}>
+    <div className={containerClass}>
+      <div className={wrapperClass}>
+        <div className={cardClass}>
           {/* Close Button */}
-          <button
-            onClick={onClose}
-            className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
-            aria-label="Close"
-          >
-            <X size={24} />
-          </button>
+          {!embedded && onClose && (
+            <button
+              onClick={onClose}
+              className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
+              aria-label="Close"
+            >
+              <X size={24} />
+            </button>
+          )}
 
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="text-3xl">🧒</div>
-            <div>
-              <h1 className={`text-3xl font-bold ${textClass}`}>Myopia Risk Analysis</h1>
-              <p className={`text-sm ${mutedTextClass}`}>
-                Assess myopia risk with easy-to-use inputs using the latest research.
-              </p>
-            </div>
-          </div>
-
-          <div className="leading-relaxed overflow-y-auto max-h-[90vh]">
+          <div className={contentClass}>
 
           {/* Input Section */}
           <div className={`space-y-4 mb-6 p-5 ${panelBgClass} rounded-lg`}>
@@ -358,63 +357,63 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose }) {
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Age Factor</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/27350183/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Age of onset of myopia predicts risk of high myopia in later childhood (PubMed, 2016)</a></li>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6170055/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Childhood Myopia: Epidemiology, Risk Factors, and Prevention (PMC, 2018)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/27350183/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Age of onset of myopia predicts risk of high myopia in later childhood (PubMed, 2016)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6170055/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Childhood Myopia: Epidemiology, Risk Factors, and Prevention (PMC, 2018)</a></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Gender</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/37729320/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Global risk factor analysis of myopia onset in children (PubMed, 2023)</a></li>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11670848/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Evaluation of risk factors for childhood myopia progression (PMC, 2025)</a></li>
-                    <li><a href="https://www.emro.who.int/emhj-volume-30-2024/volume-30-issue-4/systematic-review-and-meta-analysis-of-the-prevalence-of-myopia-among-school-age-children-in-the-eastern-mediterranean-region.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">WHO EMHJ 2024 - Myopia prevalence meta-analysis</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/37729320/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Global risk factor analysis of myopia onset in children (PubMed, 2023)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11670848/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Evaluation of risk factors for childhood myopia progression (PMC, 2025)</a></li>
+                    <li><a href="https://www.emro.who.int/emhj-volume-30-2024/volume-30-issue-4/systematic-review-and-meta-analysis-of-the-prevalence-of-myopia-among-school-age-children-in-the-eastern-mediterranean-region.html" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>WHO EMHJ 2024 - Myopia prevalence meta-analysis</a></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Ethnicity</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4941141/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Global variations and time trends in childhood myopia (PMC, 2016)</a></li>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/16809384/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ethnicity-specific prevalences in Malaysia and Singapore (PubMed, 2006)</a></li>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1857458/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ethnicity‐specific prevalences in Asian children (PMC, 2007)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4941141/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Global variations and time trends in childhood myopia (PMC, 2016)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/16809384/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Ethnicity-specific prevalences in Malaysia and Singapore (PubMed, 2006)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1857458/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Ethnicity‐specific prevalences in Asian children (PMC, 2007)</a></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Family History</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2869059/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Early Childhood Refractive Error and Parental History (IOVS, 2010)</a></li>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/19737876/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Parental history of myopia as predictors (PubMed, 2010)</a></li>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4473431/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Association between parental myopia and risk in child (PMC, 2015)</a></li>
-                    <li><a href="https://iovs.arvojournals.org/article.aspx?articleid=2772539" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI Risk Factors for Myopia (IOVS, 2021)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2869059/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Early Childhood Refractive Error and Parental History (IOVS, 2010)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/19737876/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Parental history of myopia as predictors (PubMed, 2010)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4473431/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Association between parental myopia and risk in child (PMC, 2015)</a></li>
+                    <li><a href="https://iovs.arvojournals.org/article.aspx?articleid=2772539" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>IMI Risk Factors for Myopia (IOVS, 2021)</a></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Prescription in Myopia</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6735818/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI – Defining and Classifying Myopia (PMC, 2019)</a></li>
-                    <li><a href="https://doi.org/10.1371/journal.pone.0167628" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Pre/Postcycloplegic Refractions in Children (PLOS ONE, 2016)</a></li>
-                    <li><a href="https://iovs.arvojournals.org/article.aspx?articleid=2772539" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI Risk Factors for Myopia (IOVS, 2021)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6735818/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>IMI – Defining and Classifying Myopia (PMC, 2019)</a></li>
+                    <li><a href="https://doi.org/10.1371/journal.pone.0167628" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Pre/Postcycloplegic Refractions in Children (PLOS ONE, 2016)</a></li>
+                    <li><a href="https://iovs.arvojournals.org/article.aspx?articleid=2772539" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>IMI Risk Factors for Myopia (IOVS, 2021)</a></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Outdoor Time</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/22809757/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Time outdoors and myopia: systematic review (PubMed, 2012)</a></li>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/28251836/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Outdoor activities and myopia control meta-analysis (PubMed, 2017)</a></li>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/31330865/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Dose–Response of Outdoor Exposure and Myopia (PubMed, 2019)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/22809757/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Time outdoors and myopia: systematic review (PubMed, 2012)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/28251836/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Outdoor activities and myopia control meta-analysis (PubMed, 2017)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/31330865/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Dose–Response of Outdoor Exposure and Myopia (PubMed, 2019)</a></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className={`font-bold ${labelClass} mb-2`}>Near Work Habits</h3>
                   <ul className={`list-disc pl-5 space-y-1 ${mutedTextClass}`}>
-                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4618477/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Near Work Activities and Myopia—Systematic Review (PMC, 2015)</a></li>
-                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/39982728/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Digital Screen Time and Myopia Meta-Analysis (PubMed, 2025)</a></li>
-                    <li><a href="https://iovs.arvojournals.org/article.aspx?articleid=2772539" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">IMI Risk Factors for Myopia (IOVS, 2021)</a></li>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4618477/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Near Work Activities and Myopia—Systematic Review (PMC, 2015)</a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/39982728/" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>Digital Screen Time and Myopia Meta-Analysis (PubMed, 2025)</a></li>
+                    <li><a href="https://iovs.arvojournals.org/article.aspx?articleid=2772539" target="_blank" rel="noopener noreferrer" className={referenceLinkClass}>IMI Risk Factors for Myopia (IOVS, 2021)</a></li>
                   </ul>
                 </div>
               </div>

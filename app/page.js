@@ -587,17 +587,8 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full"
-                onClick={() => project.id && openTool(project.id)}
-                style={{
-                  backgroundImage: 'linear-gradient(90deg, #14b8a6 0%, #0369a1 55%, #7c3aed 100%)',
-                  backgroundSize: '300% 100%',
-                  backgroundPosition: `${(index % 3) * 50}% 50%`
-                }}
-              >
+            {projects.map((project, index) => {
+              const cardInner = (
                 <div className={`relative h-full ${isDark ? 'bg-slate-900/55' : 'bg-white/95'} backdrop-blur-xl rounded-[22px] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-lg`}>
                   <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                     <svg className={`w-24 h-24 ${project.textColor ? project.textColor.split(' ')[0] : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -634,8 +625,47 @@ export default function HomePage() {
                     <ArrowRight size={16} />
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+
+              const cardWrapperProps = {
+                className: 'group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift h-full',
+                style: {
+                  backgroundImage: 'linear-gradient(90deg, #14b8a6 0%, #0369a1 55%, #7c3aed 100%)',
+                  backgroundSize: '300% 100%',
+                  backgroundPosition: `${(index % 3) * 50}% 50%`
+                }
+              };
+
+              if (project.id === 'risk-factors-analysis') {
+                return (
+                  <Link key={index} href="/tools/risk-factors-analysis" prefetch={true} className="block">
+                    <div {...cardWrapperProps}>
+                      {cardInner}
+                    </div>
+                  </Link>
+                );
+              }
+
+              if (project.id === 'progression-calculator') {
+                return (
+                  <Link key={index} href="/tools/myopia-progression-calculator" prefetch={true} className="block">
+                    <div {...cardWrapperProps}>
+                      {cardInner}
+                    </div>
+                  </Link>
+                );
+              }
+
+              return (
+                <div
+                  key={index}
+                  {...cardWrapperProps}
+                  onClick={() => project.id && openTool(project.id)}
+                >
+                  {cardInner}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
