@@ -168,30 +168,30 @@ export default function HomePage() {
   const projects = [
     {
       title: 'Risk Factors Analysis',
-      category: 'Optometrists',
+      subtext: 'Is your child at risk for myopia?',
       audience: ['optometrists'],
       color: 'from-teal-500 to-cyan-600',
       textColor: 'text-teal-600 dark:text-teal-400',
       id: 'risk-factors-analysis',
-      description: 'Interactive tool to assess your child\'s myopia risk factors and receive personalized recommendations based on current research and clinical guidelines.'
+      description: 'Assess your child\'s risk factors and get personalized recommendations to protect their vision.'
     },
     {
       title: 'Myopia Progression Calculator',
-      category: 'Optometrists',
+      subtext: 'See your child\'s vision future',
       audience: ['optometrists'],
       color: 'from-cyan-500 to-blue-600',
       textColor: 'text-cyan-600 dark:text-cyan-400',
       id: 'progression-calculator',
-      description: 'Calculate and visualize how myopia may progress over time with and without intervention, helping you make informed decisions about treatment options.'
+      description: 'Visualize how myopia may progress with and without treatment to make informed decisions.'
     },
     {
       title: 'Vision Simulator',
-      category: 'Optometrists',
+      subtext: 'See through your child\'s eyes',
       audience: ['optometrists'],
       color: 'from-indigo-500 to-teal-600',
       textColor: 'text-indigo-600 dark:text-indigo-400',
       id: 'vision-simulator',
-      description: 'Experience different refractive errors and eye conditions. See how myopia, hyperopia, astigmatism, and other conditions affect vision in real-time.'
+      description: 'Experience how myopia, hyperopia, astigmatism, and other conditions affect daily vision.'
     }
   ];
 
@@ -498,10 +498,10 @@ export default function HomePage() {
                   <svg className="w-24 h-24 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 mb-4">Work Experience</p>
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Clinical Practice</h3>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Clinical Practice</h3>
+                  <p className="text-sm font-medium text-teal-600 dark:text-teal-400 mb-4">Expert care for your child's vision</p>
                   <p className={`text-base ${textMutedClass} leading-relaxed`}>
-                    Years of hands-on experience providing comprehensive eye care to diverse patient populations, focusing on myopia management and preventive care strategies.
+                    Specialized experience protecting and managing your child's eye health, with a focus on myopia control and early intervention to safeguard their sight for life.
                   </p>
                 </div>
                 <div className="mt-8 flex items-center gap-2 text-sm font-bold text-teal-600 dark:text-teal-400 group-hover:translate-x-2 transition-transform">
@@ -526,10 +526,10 @@ export default function HomePage() {
                   <svg className="w-24 h-24 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-4">Work Experience</p>
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">Professional Appointment</h3>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">Professional Appointment</h3>
+                  <p className="text-sm font-medium text-sky-600 dark:text-sky-400 mb-4">Trusted by the profession</p>
                   <p className={`text-base ${textMutedClass} leading-relaxed`}>
-                    Appointed positions in professional organizations, contributing to standards development and advancing best practices in optometry across the region.
+                    Recognized leader in optometry, working with professional organizations to advance the highest standards of care that your family deserves.
                   </p>
                 </div>
                 <div className="mt-8 flex items-center gap-2 text-sm font-bold text-sky-600 dark:text-sky-400 group-hover:translate-x-2 transition-transform">
@@ -554,10 +554,10 @@ export default function HomePage() {
                   <svg className="w-24 h-24 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-4">Work Experience</p>
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Community Engagement</h3>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Community Engagement</h3>
+                  <p className="text-sm font-medium text-purple-600 dark:text-purple-400 mb-4">Advocating for accessible vision care</p>
                   <p className={`text-base ${textMutedClass} leading-relaxed`}>
-                    Active involvement in community education initiatives, helping raise awareness about eye health and supporting vision care accessibility for all.
+                    Passionate about ensuring everyone has access to quality eye care through community education programs and vision health awareness initiatives.
                   </p>
                 </div>
                 <div className="mt-8 flex items-center gap-2 text-sm font-bold text-purple-600 dark:text-purple-400 group-hover:translate-x-2 transition-transform">
@@ -604,9 +604,14 @@ export default function HomePage() {
                     <p className={`text-xs font-bold uppercase tracking-wider mb-4 ${project.textColor}`}>
                       {project.category}
                     </p>
-                    <h3 className="text-2xl font-bold mb-4">
+                    <h3 className="text-xl font-bold mb-2 leading-tight">
                       {project.title}
                     </h3>
+                    {project.subtext && (
+                      <p className={`text-sm font-medium ${project.textColor} mb-4`}>
+                        {project.subtext}
+                      </p>
+                    )}
                     <p className={`text-base ${textMutedClass} leading-relaxed line-clamp-3`}>
                       {project.description}
                     </p>
@@ -734,9 +739,9 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-8">
                   <div className="text-3xl">💼</div>
                   <div>
-                    <h1 className="text-3xl font-bold">Clinical Practice</h1>
-                    <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      My journey in optometry and vision care
+                    <h1 className="text-4xl font-bold">Clinical Practice</h1>
+                    <p className={`text-lg font-medium ${isDark ? 'text-teal-400' : 'text-teal-600'}`}>
+                      Expert care for your child's vision
                     </p>
                   </div>
                 </div>
@@ -807,9 +812,9 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-8">
                   <div className="text-3xl">🏆</div>
                   <div>
-                    <h1 className="text-3xl font-bold">Professional Appointment</h1>
-                    <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Leadership and service in optometry
+                    <h1 className="text-4xl font-bold">Professional Appointment</h1>
+                    <p className={`text-lg font-medium ${isDark ? 'text-sky-400' : 'text-sky-600'}`}>
+                      Trusted by the profession
                     </p>
                   </div>
                 </div>
@@ -958,9 +963,9 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-8">
                   <div className="text-3xl">🤝</div>
                   <div>
-                    <h1 className="text-3xl font-bold">Community Engagement</h1>
-                    <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Volunteering and giving back to communities in need
+                    <h1 className="text-4xl font-bold">Community Engagement</h1>
+                    <p className={`text-lg font-medium ${isDark ? 'text-purple-400' : 'text-purple-600'}`}>
+                      Advocating for accessible vision care
                     </p>
                   </div>
                 </div>
