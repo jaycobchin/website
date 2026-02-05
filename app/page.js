@@ -486,7 +486,7 @@ export default function HomePage() {
             {/* Clinical Practice Card */}
             <div
               className="group relative p-1 rounded-3xl overflow-hidden cursor-pointer hover-lift"
-              onClick={() => setSelectedWork('clinical')}
+              onClick={() => router.push('/work/clinical-practice')}
               style={{
                 backgroundImage: 'linear-gradient(90deg, #00b4d8 0%, #4361ee 50%, #b5179e 100%)',
                 backgroundSize: '300% 100%',
