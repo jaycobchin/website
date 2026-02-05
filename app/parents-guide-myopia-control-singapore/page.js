@@ -131,155 +131,408 @@ export default function MyopiaGuideArticle() {
       <main className="relative z-10 pt-32 pb-24">
         <article className="max-w-4xl mx-auto px-4 md:px-6">
           {/* Article Header */}
-          <header className="mb-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <header className={`mb-16 p-8 md:p-12 rounded-3xl ${
+            isDark 
+              ? 'bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-transparent border border-blue-500/20' 
+              : 'bg-gradient-to-br from-blue-100 via-purple-50 to-transparent border border-blue-200'
+          }`}>
+            <div className="mb-4">
+              <span className={`inline-block px-4 py-2 rounded-full text-sm font-bold tracking-wider uppercase ${
+                isDark ? 'bg-blue-500/20 text-blue-300' : 'bg-blue-200 text-blue-700'
+              }`}>
+                Parent Guide
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300">
               A Parent's Guide to Protecting Your Child's Vision in Singapore
             </h1>
+            <p className={`text-lg ${textMutedClass}`}>
+              Evidence-based strategies to slow myopia progression and protect your child's long-term eye health
+            </p>
           </header>
 
           {/* Article Body */}
-          <div className={`prose prose-lg ${isDark ? 'prose-invert' : ''} max-w-none`}>
+          <div className="max-w-none">
             {/* Introduction */}
-            <section className="mb-12">
-              <p className="leading-relaxed mb-4">
+            <section className={`mb-12 p-8 md:p-10 rounded-2xl ${
+              isDark 
+                ? 'bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800/70' 
+                : 'bg-slate-50 border border-slate-200 hover:bg-slate-100'
+            } transition-colors`}>
+              <p className="text-lg leading-relaxed mb-4 font-medium">
                 As a parent in Singapore, you want the best for your child. You ensure they eat well, do their homework, and get enough sleep. But there's one aspect of their health that often goes unnoticed until it becomes a problem: their eyesight.
               </p>
               <p className="leading-relaxed mb-4">
                 Let me share a story from my optometry practice that might sound familiar. Recently, a mother brought her six-year-old daughter in for an eye check. The little girl was squinting at the vision chart, struggling to read even the largest letters. After a comprehensive examination, I discovered she was already -3.50D myopic in both eyes, quite severe for her age. The mother was understandably shocked. "How did this happen so fast?" she asked. "She was fine last year."
               </p>
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed">
                 This isn't an isolated case. As an optometrist practicing here in Singapore, I see this almost daily. And here's something that might surprise you: Singapore has earned the unfortunate title of "Myopia Capital of the World." This isn't just about your child needing glasses, it's about protecting their long-term eye health and preventing serious complications later in life.
               </p>
             </section>
 
             {/* What Every Singapore Parent Should Know About Myopia */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">What Every Singapore Parent Should Know About Myopia</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-blue-400 to-purple-400' : 'from-blue-600 to-purple-600'}`}>
+                  What Every Singapore Parent Should Know
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-6 text-base">
                 The numbers are concerning, and as a parent, you need to know what we're facing:
               </p>
-              <p className="leading-relaxed mb-4">
+              
+              <div className="grid md:grid-cols-3 gap-4 mb-8">
+                <div className={`p-6 rounded-xl border-t-4 border-blue-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40' 
+                    : 'bg-slate-100'
+                }`}>
+                  <div className={`text-3xl font-bold mb-2 ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>65%</div>
+                  <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>of children by age 12 have myopia</p>
+                </div>
+                <div className={`p-6 rounded-xl border-t-4 border-purple-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40' 
+                    : 'bg-slate-100'
+                }`}>
+                  <div className={`text-3xl font-bold mb-2 ${isDark ? 'text-purple-300' : 'text-purple-600'}`}>83%</div>
+                  <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>by young adulthood</p>
+                </div>
+                <div className={`p-6 rounded-xl border-t-4 border-amber-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40' 
+                    : 'bg-slate-100'
+                }`}>
+                  <div className={`text-3xl font-bold mb-2 ${isDark ? 'text-amber-300' : 'text-amber-600'}`}>20%</div>
+                  <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>now have high myopia</p>
+                </div>
+              </div>
+              
+              <p className="leading-relaxed mb-4 text-base">
                 By age 12, approximately 65% of children in Singapore have developed myopia [1]. By young adulthood, this rises to 83% [2] and that's more than eight out of every ten young adults. Even more worrying is that high myopia (severe shortsightedness) is becoming increasingly common. Up to 20% of children now have high myopia, compared to around 10% a decade ago, and children are developing myopia at younger ages than before [3].
               </p>
-              <p className="leading-relaxed mb-4">
-                Why does this matter? Because when myopia starts earlier, there's more time for it to progress, potentially leading to much stronger prescriptions and higher risks of complications.
-              </p>
+              
+              <div className={`p-6 rounded-xl border-l-4 border-red-500 ${
+                isDark 
+                  ? 'bg-red-500/10' 
+                  : 'bg-red-50'
+              }`}>
+                <p className="leading-relaxed text-base">
+                  <span className={`font-bold ${isDark ? 'text-red-300' : 'text-red-600'}`}>Why This Matters:</span> When myopia starts earlier, there's more time for it to progress, potentially leading to much stronger prescriptions and higher risks of serious eye complications later in life.
+                </p>
+              </div>
             </section>
 
             {/* Beyond Glasses */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">Beyond Glasses: Why Myopia Is More Than Just Blurry Vision</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-red-400 to-pink-400' : 'from-red-600 to-pink-600'}`}>
+                  Beyond Glasses: Why Myopia Is More Than Just Blurry Vision
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-6 text-base">
                 When I tell parents their child has myopia, many respond with, "Well, they'll just need glasses, right?" I understand this reaction, that glasses seem like a simple solution. But there's more to the story, especially when myopia becomes severe.
               </p>
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-6 text-base font-medium">
                 High myopia isn't just an inconvenience; it significantly increases your child's risk of developing serious eye conditions later in life:
               </p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li><strong>Myopic Macular Degeneration:</strong> The leading cause of vision loss in highly myopic individuals. As the eyeball elongates excessively, the retina can degenerate, affecting central vision needed for reading and recognizing faces.</li>
-                <li><strong>Retinal Detachment:</strong> The stretching of the eye makes the retina thinner and more prone to tears and detachment. In Singapore, we've even seen cases of pediatric retinal detachment in children with high myopia [4].</li>
-                <li><strong>Glaucoma:</strong> High myopia increases the risk of this progressive optic nerve disease that can lead to irreversible blindness.</li>
-                <li><strong>Early Cataracts:</strong> Myopic individuals tend to develop cataracts earlier than those without myopia.</li>
-              </ul>
-              <p className="leading-relaxed mb-4">
-                The good news? By managing myopia progression now, while your child is young, we can significantly reduce these risks and protect their vision for life.
-              </p>
+              
+              <div className="space-y-4 mb-6">
+                <div className={`p-6 rounded-2xl border-l-4 border-red-500 ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-red-500/10 to-transparent' 
+                    : 'bg-gradient-to-r from-red-100 to-transparent'
+                }`}>
+                  <h4 className={`font-bold text-lg mb-3 ${isDark ? 'text-red-300' : 'text-red-700'}`}>💊 Myopic Macular Degeneration</h4>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    The leading cause of vision loss in highly myopic individuals. As the eyeball elongates excessively, the retina can degenerate, affecting central vision needed for reading and recognizing faces.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-orange-500 ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-orange-500/10 to-transparent' 
+                    : 'bg-gradient-to-r from-orange-100 to-transparent'
+                }`}>
+                  <h4 className={`font-bold text-lg mb-3 ${isDark ? 'text-orange-300' : 'text-orange-700'}`}>⚠️ Retinal Detachment</h4>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    The stretching of the eye makes the retina thinner and more prone to tears and detachment. In Singapore, we've even seen cases of pediatric retinal detachment in children with high myopia [4].
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-yellow-500 ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-yellow-500/10 to-transparent' 
+                    : 'bg-gradient-to-r from-yellow-100 to-transparent'
+                }`}>
+                  <h4 className={`font-bold text-lg mb-3 ${isDark ? 'text-yellow-300' : 'text-yellow-700'}`}>👁️ Glaucoma & Cataracts</h4>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    High myopia increases the risk of glaucoma (progressive optic nerve disease) and early cataract development, both of which can lead to irreversible vision loss.
+                  </p>
+                </div>
+              </div>
+              
+              <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                isDark 
+                  ? 'bg-green-500/10' 
+                  : 'bg-green-50'
+              }`}>
+                <p className="leading-relaxed text-base font-medium">
+                  <span className={`${isDark ? 'text-green-300' : 'text-green-700'}`}>✓ The good news?</span> <span className={`${isDark ? 'text-slate-300' : 'text-slate-700'}`}>By managing myopia progression now, while your child is young, we can significantly reduce these risks and protect their vision for life.</span>
+                </p>
+              </div>
             </section>
 
             {/* Why Is Singapore Facing This Challenge */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">Why Is Singapore Facing This Challenge?</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-amber-400 to-orange-400' : 'from-amber-600 to-orange-600'}`}>
+                  Why Is Singapore Facing This Challenge?
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-8 text-base">
                 As both an optometrist and a parent in Singapore, I understand the unique pressures our children face. Several factors combine to create our nation's high myopia rates:
               </p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li><strong>Academic Intensity:</strong> Singapore's education system is world-class, but it requires prolonged periods of near work such as reading, writing, and screen time. Research shows that intensive near work is linked to myopia development [5]. While we want our children to excel academically, we also need to balance this with protecting their eye health.</li>
-                <li><strong>Not Enough Outdoor Time:</strong> One of the most important findings in myopia research is the protective effect of outdoor time. Natural light exposure and opportunities to look at distant objects help slow myopia development. Current research recommends at least two hours of outdoor time daily [1]. Yet in our busy urban environment, with homework, tuition, and indoor activities, many children get less than 30 minutes outdoors on school days.</li>
-                <li><strong>Genetic Factors:</strong> Children of East Asian descent have higher myopia rates [6], which means our children may be at higher genetic risk. Combined with environmental factors, this creates a perfect storm for myopia development.</li>
-              </ul>
+              
+              <div className="space-y-5 mb-8">
+                <div className={`p-6 rounded-2xl border-l-4 border-blue-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <h3 className={`font-bold text-lg mb-3 ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>📚 Academic Intensity</h3>
+                  <p className={`leading-relaxed text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Singapore's education system is world-class, but it requires prolonged periods of near work such as reading, writing, and screen time. Research shows that intensive near work is linked to myopia development [5]. While we want our children to excel academically, we also need to balance this with protecting their eye health.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <h3 className={`font-bold text-lg mb-3 ${isDark ? 'text-green-300' : 'text-green-600'}`}>🌳 Not Enough Outdoor Time</h3>
+                  <p className={`leading-relaxed text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    One of the most important findings in myopia research is the protective effect of outdoor time. Natural light exposure and opportunities to look at distant objects help slow myopia development. Current research recommends at least two hours of outdoor time daily [1]. Yet in our busy urban environment, with homework, tuition, and indoor activities, many children get less than 30 minutes outdoors on school days.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-purple-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <h3 className={`font-bold text-lg mb-3 ${isDark ? 'text-purple-300' : 'text-purple-600'}`}>🧬 Genetic Factors</h3>
+                  <p className={`leading-relaxed text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Children of East Asian descent have higher myopia rates [6], which means our children may be at higher genetic risk. Combined with environmental factors, this creates a perfect storm for myopia development.
+                  </p>
+                </div>
+              </div>
             </section>
 
             {/* What Can You Do to Protect Your Child's Vision */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">What Can You Do to Protect Your Child's Vision?</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-green-400 to-emerald-400' : 'from-green-600 to-emerald-600'}`}>
+                  What Can You Do to Protect Your Child's Vision?
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
-                Here's the empowering truth: you're not helpless in this situation. There are proven strategies and treatments that can significantly slow myopia progression. As an optometrist, I work with families every day to implement these solutions.
-              </p>
+              <div className={`p-6 rounded-2xl mb-8 border-l-4 border-green-500 ${
+                isDark 
+                  ? 'bg-green-500/10' 
+                  : 'bg-green-50'
+              }`}>
+                <p className="leading-relaxed text-base font-medium">
+                  <span className={`${isDark ? 'text-green-300' : 'text-green-700'}`}>💡 The empowering truth:</span> <span className={`${isDark ? 'text-slate-300' : 'text-slate-700'}`}>You're not helpless in this situation. There are proven strategies and treatments that can significantly slow myopia progression. As an optometrist, I work with families every day to implement these solutions.</span>
+                </p>
+              </div>
             </section>
 
             {/* Simple Lifestyle Changes */}
             <section className="mb-12">
-              <h3 className="text-2xl font-bold mb-4">Simple Lifestyle Changes That Make a Big Difference</h3>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-blue-400 to-cyan-400' : 'from-blue-600 to-cyan-600'}`}>
+                  Simple Lifestyle Changes That Make a Big Difference
+                </span>
+              </h3>
               
-              <ol className="list-decimal pl-6 mb-6 space-y-4">
-                <li>
-                  <strong>Prioritize Outdoor Time</strong><br />
-                  This is the single most important change you can make. Research confirms that at least two hours of outdoor activity daily can significantly reduce myopia risk [7]. The activity doesn't need to be sports-specific, simply being outdoors in natural light provides the benefit. Consider early morning or evening outdoor play, weekend nature trips, or even outdoor reading sessions.
-                </li>
-                <li>
-                  <strong>Follow the 20-20-20 Rule</strong><br />
-                  For every 20 minutes of close-up work (reading, homework, or screen time), have your child look at something 20 feet away for at least 20 seconds. This simple habit reduces eye strain and gives the focusing system a necessary break.
-                </li>
-                <li>
-                  <strong>Ensure Proper Reading Conditions</strong><br />
-                  Make sure your child has good lighting for reading and maintains an appropriate distance, at least 30cm from eyes to books or screens. Proper posture and working distance help reduce accommodative stress on the eyes.
-                </li>
-                <li>
-                  <strong>Manage Screen Time Wisely</strong><br />
-                  While we can't eliminate screens from modern life, managing total screen time and ensuring regular breaks remains important for eye health.
-                </li>
-              </ol>
+              <div className="space-y-5 mb-8">
+                <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">🌳</span>
+                    <h4 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Prioritize Outdoor Time</h4>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    This is the single most important change you can make. Research confirms that at least two hours of outdoor activity daily can significantly reduce myopia risk [7]. The activity doesn't need to be sports-specific, simply being outdoors in natural light provides the benefit. Consider early morning or evening outdoor play, weekend nature trips, or even outdoor reading sessions.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-amber-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">👁️</span>
+                    <h4 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Follow the 20-20-20 Rule</h4>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    For every 20 minutes of close-up work (reading, homework, or screen time), have your child look at something 20 feet away for at least 20 seconds. This simple habit reduces eye strain and gives the focusing system a necessary break.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-blue-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">💡</span>
+                    <h4 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Ensure Proper Reading Conditions</h4>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Make sure your child has good lighting for reading and maintains an appropriate distance, at least 30cm from eyes to books or screens. Proper posture and working distance help reduce accommodative stress on the eyes.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-purple-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">📱</span>
+                    <h4 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Manage Screen Time Wisely</h4>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    While we can't eliminate screens from modern life, managing total screen time and ensuring regular breaks remains important for eye health. Set daily limits and encourage frequent visual breaks during extended screen use.
+                  </p>
+                </div>
+              </div>
             </section>
 
             {/* Professional Treatments */}
             <section className="mb-12">
-              <h3 className="text-2xl font-bold mb-4">Professional Treatments That Slow Myopia Progression</h3>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-blue-400 to-cyan-400' : 'from-blue-600 to-cyan-600'}`}>
+                  Professional Treatments That Slow Myopia Progression
+                </span>
+              </h3>
               
-              <p className="leading-relaxed mb-6">
+              <p className="leading-relaxed mb-8 text-base">
                 Beyond lifestyle changes, modern optometry offers several evidence-based treatments that can meaningfully slow your child's myopia progression. These aren't experimental as they're backed by solid research and much of it is conducted right here in Singapore.
               </p>
 
-              <h4 className="text-xl font-bold mb-4">Myopia Control Spectacle Lenses</h4>
-              
-              <p className="leading-relaxed mb-4">
-                If you're hesitant about eye drops or overnight contact lenses, specialized myopia control spectacle lenses offer an excellent non-invasive alternative that your child can wear just like regular glasses.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>How They Work:</strong> These innovative lenses use special optical designs that provide clear central vision while creating specific peripheral defocus patterns on the retina. This peripheral defocus signals the eye to slow its elongation. The two main technologies available are DIMS (Defocus Incorporated Multiple Segments) lenses and HALT (Highly Aspherical Lenslet Target) lenses, though several other brands are now available globally.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Research shows these lenses can reduce myopia progression by approximately 30-60% compared to single-vision spectacles [8][9]. A landmark 2-year study on DIMS lenses found they slowed myopia progression by 52% and axial elongation by 62% compared to regular glasses [8]. More recent systematic reviews confirm that various myopia control spectacle lens designs consistently demonstrate efficacy in slowing both refractive progression and axial elongation [10].
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>The Advantages for Parents:</strong> What makes these lenses particularly appealing is their simplicity. They look nearly identical to regular glasses, require no special maintenance beyond standard spectacle care (cleaning and proper storage), need no daily insertion and removal routines like contact lenses, and carry minimal risk compared to contact lens options. Your child simply wears them during waking hours, just like any other pair of glasses. This makes them an ideal option for younger children (even as young as 6-7 years old), children who aren't ready for the responsibility of contact lens care, or families who prefer a lower-maintenance approach.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>What to Expect:</strong> Most children adapt to these lenses within a few days. Some may initially notice slight differences in peripheral vision or minor visual effects in low light, but these typically resolve quickly. The lenses are most effective when worn full-time during waking hours. Your optometrist will monitor your child's progression every 6 months to assess effectiveness and make any necessary adjustments to the prescription.
-              </p>
+              {/* Spectacle Lenses Card */}
+              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-blue-500 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-blue-500/10 to-slate-800/50' 
+                  : 'bg-gradient-to-br from-blue-50 to-slate-50'
+              }`}>
+                <div className="flex items-start gap-4 mb-4">
+                  <span className={`text-3xl font-bold ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>👓</span>
+                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Myopia Control Spectacle Lenses</h4>
+                </div>
+                
+                <p className="leading-relaxed mb-4 text-sm">
+                  If you're hesitant about eye drops or overnight contact lenses, specialized myopia control spectacle lenses offer an excellent non-invasive alternative that your child can wear just like regular glasses.
+                </p>
+                <p className="leading-relaxed mb-4 text-sm">
+                  <span className="font-bold">How They Work:</span> These innovative lenses use special optical designs that provide clear central vision while creating specific peripheral defocus patterns on the retina. This peripheral defocus signals the eye to slow its elongation. The two main technologies available are DIMS (Defocus Incorporated Multiple Segments) lenses and HALT (Highly Aspherical Lenslet Target) lenses, though several other brands are now available globally.
+                </p>
+                
+                <div className={`p-4 rounded-lg mb-4 border-l-2 border-green-500 ${
+                  isDark ? 'bg-green-500/10' : 'bg-green-50'
+                }`}>
+                  <p className="text-sm font-medium">
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> These lenses can reduce myopia progression by approximately 30-60% compared to single-vision spectacles [8][9].
+                  </p>
+                </div>
+                
+                <p className="text-sm font-bold mb-3">Key Advantages:</p>
+                <ul className="space-y-2 text-sm mb-4">
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-blue-300' : 'text-blue-600'}>✓</span>
+                    <span>Look nearly identical to regular glasses</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-blue-300' : 'text-blue-600'}>✓</span>
+                    <span>Require no special maintenance beyond standard spectacle care</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-blue-300' : 'text-blue-600'}>✓</span>
+                    <span>No daily insertion and removal routines like contact lenses</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-blue-300' : 'text-blue-600'}>✓</span>
+                    <span>Ideal for younger children (even as young as 6-7 years old)</span>
+                  </li>
+                </ul>
+              </div>
 
-              <h4 className="text-xl font-bold mb-4 mt-8">Orthokeratology (Ortho-K)</h4>
-              
-              <p className="leading-relaxed mb-4">
-                Orthokeratology, commonly known as Ortho-K, involves wearing specially designed rigid gas-permeable contact lenses overnight that gently reshape the corneal surface while your child sleeps. Think of it like dental braces for the eyes, the lenses apply controlled pressure to temporarily flatten the center of the cornea. When your child removes the lenses in the morning, they can see clearly throughout the day without needing glasses or daytime contact lenses.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Beyond the obvious convenience of glasses-free daytime vision, research shows that Ortho-K can slow axial elongation, the lengthening of the eyeball that causes myopia to worsen. The lenses create a specific optical effect on the peripheral retina that appears to signal the eye to slow its growth. Studies have shown that Ortho-K can reduce myopia progression by approximately 30-60% compared to wearing regular glasses [11].
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>How the Process Works:</strong> Your child will first undergo comprehensive measurements to custom-design lenses for their eyes. The fitting process typically takes 2-4 weeks as we monitor how the cornea responds and fine-tune the lens parameters. During this adaptation period, vision may fluctuate as the cornea adjusts to the new shape. Once the optimal fit is achieved, most children experience stable, clear vision throughout the day. However, the corneal reshaping is temporary, if lens wear is discontinued, the cornea gradually returns to its original shape within a few weeks, and glasses or contact lenses will be needed again.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Who Is a Good Candidate?</strong> The ideal Ortho-K candidate is typically 8-16 years old, has myopia between -1.00D to -4.00D (though some cases outside this range can be fitted), has healthy eyes with no existing corneal conditions, demonstrates mature hygiene habits and responsibility, and has strong parental support for daily lens care routines. Children who are active in sports or swimming often particularly appreciate the freedom from daytime glasses.
-              </p>
-              <p className="leading-relaxed mb-4">
-                <strong>Important Risks to Understand:</strong> While Ortho-K is generally safe when proper protocols are followed, parents need to be aware of potential risks. The most serious concern is microbial keratitis, an infection of the cornea. Although rare (occurring in approximately 1 in 1,000 to 1 in 10,000 wearers per year [12]), this infection can be sight-threatening if not treated promptly. The risk is significantly reduced through meticulous hygiene practices: proper hand washing before handling lenses, daily cleaning and disinfection using recommended solutions, regular replacement of lens cases, and never using tap water with lenses.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Other potential issues include minor corneal staining (usually temporary and resolves with adjusted lens fit), discomfort during the initial adaptation period, dry eyes or mild irritation, and the possibility of lens binding (where the lens temporarily adheres to the eye upon waking). Regular follow-up appointments with your optometrist are essential to monitor corneal health and ensure the lenses continue to fit properly.
+              {/* Ortho-K Card */}
+              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-purple-500 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-purple-500/10 to-slate-800/50' 
+                  : 'bg-gradient-to-br from-purple-50 to-slate-50'
+              }`}>
+                <div className="flex items-start gap-4 mb-4">
+                  <span className={`text-3xl font-bold ${isDark ? 'text-purple-300' : 'text-purple-600'}`}>🌙</span>
+                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Orthokeratology (Ortho-K)</h4>
+                </div>
+                
+                <p className="leading-relaxed mb-4 text-sm">
+                  Orthokeratology, commonly known as Ortho-K, involves wearing specially designed rigid gas-permeable contact lenses overnight that gently reshape the corneal surface while your child sleeps. Think of it like dental braces for the eyes, the lenses apply controlled pressure to temporarily flatten the center of the cornea. When your child removes the lenses in the morning, they can see clearly throughout the day without needing glasses or daytime contact lenses.
+                </p>
+                
+                <div className={`p-4 rounded-lg mb-4 border-l-2 border-green-500 ${
+                  isDark ? 'bg-green-500/10' : 'bg-green-50'
+                }`}>
+                  <p className="text-sm font-medium">
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> Ortho-K can reduce myopia progression by approximately 30-60% compared to wearing regular glasses [11].
+                  </p>
+                </div>
+                
+                <p className="text-sm font-bold mb-3">Ideal Candidates:</p>
+                <ul className="space-y-2 text-sm mb-4">
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-purple-300' : 'text-purple-600'}>•</span>
+                    <span>Typically 8-16 years old</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-purple-300' : 'text-purple-600'}>•</span>
+                    <span>Myopia between -1.00D to -4.00D</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-purple-300' : 'text-purple-600'}>•</span>
+                    <span>Mature hygiene habits and responsibility</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className={isDark ? 'text-purple-300' : 'text-purple-600'}>•</span>
+                    <span>Strong parental support for daily lens care</span>
+                  </li>
+                </ul>
+                
+                <div className={`p-4 rounded-lg border-l-2 border-red-500 ${
+                  isDark ? 'bg-red-500/10' : 'bg-red-50'
+                }`}>
+                  <p className="text-sm font-medium mb-2">
+                    <span className={isDark ? 'text-red-300' : 'text-red-700'}>⚠️ Important:</span>
+                  </p>
+                  <p className="text-sm">
+                    While generally safe, meticulous hygiene practices are essential to prevent infections. Regular follow-up appointments with your optometrist are necessary to monitor corneal health.
+                  </p>
+                </div>
+              </div>
+            </section>
               </p>
               <p className="leading-relaxed mb-4">
                 <strong>The Commitment Required:</strong> Ortho-K requires nightly lens wear, typically 6-8 hours, to maintain the corneal reshaping effect. Missing even one night may cause vision to blur the following day. The daily routine includes carefully inserting and removing lenses, thorough cleaning and disinfection, proper storage, and regular replacement of solutions and cases. Your child will need frequent follow-up visits initially (weekly or bi-weekly), then quarterly check-ups once stabilized. You'll also need to watch for warning signs like redness, pain, light sensitivity, or discharge, which require immediate attention.
@@ -351,50 +604,110 @@ export default function MyopiaGuideArticle() {
 
             {/* Your Action Plan */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">Your Action Plan: Steps to Take Today</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-indigo-400 to-blue-400' : 'from-indigo-600 to-blue-600'}`}>
+                  Your Action Plan: Steps to Take Today
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-8 text-base font-medium">
                 Early intervention makes a tremendous difference. Every year of rapid myopia progression that we prevent is meaningful. Here's what I recommend:
               </p>
               
-              <p className="leading-relaxed mb-4">
-                <strong>Schedule a Comprehensive Eye Examination</strong>
-              </p>
-              <p className="leading-relaxed mb-4">
-                Book an appointment for your child by age 3-4, even if they show no obvious vision problems. Early baseline measurements allow us to track changes over time and intervene promptly if myopia develops. Don't rely solely on school screenings, comprehensive optometry examinations offer more detailed assessment and earlier detection.
-              </p>
-              
-              <p className="leading-relaxed mb-4">
-                <strong>Take Progression Seriously</strong>
-              </p>
-              <p className="leading-relaxed mb-4">
-                If your child's myopia is progressing rapidly (more than -0.50D per year), ask your optometrist about myopia control interventions. The goal isn't just clearer vision now, it's preventing high myopia and its complications later in life.
-              </p>
-              
-              <p className="leading-relaxed mb-4">
-                <strong>Make Outdoor Time Non-Negotiable</strong>
-              </p>
-              <p className="leading-relaxed mb-4">
-                I know our climate is hot and humid. I know academic demands are intense. But two hours of outdoor time daily can make a significant difference in protecting your child's vision. Build it into your family routine as it's one of the most powerful tools you have.
-              </p>
-              
-              <p className="leading-relaxed mb-4">
-                <strong>Choose an Optometrist Who Specializes in Myopia Management</strong>
-              </p>
-              <p className="leading-relaxed mb-4">
-                Ask whether they offer myopia control options, attend continuing education in this area, and take detailed measurements beyond basic refraction. An optometrist who stays current with myopia management research can provide the most effective care for your child.
-              </p>
+              <div className="space-y-4 mb-8">
+                <div className={`p-6 rounded-2xl border-l-4 border-blue-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">👁️</span>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Schedule a Comprehensive Eye Examination</h3>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Book an appointment for your child by age 3-4, even if they show no obvious vision problems. Early baseline measurements allow us to track changes over time and intervene promptly if myopia develops. Don't rely solely on school screenings, comprehensive optometry examinations offer more detailed assessment and earlier detection.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-red-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">📈</span>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Take Progression Seriously</h3>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    If your child's myopia is progressing rapidly (more than -0.50D per year), ask your optometrist about myopia control interventions. The goal isn't just clearer vision now, it's preventing high myopia and its complications later in life.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">🌞</span>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Make Outdoor Time Non-Negotiable</h3>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    I know our climate is hot and humid. I know academic demands are intense. But two hours of outdoor time daily can make a significant difference in protecting your child's vision. Build it into your family routine as it's one of the most powerful tools you have.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl border-l-4 border-purple-500 ${
+                  isDark 
+                    ? 'bg-slate-800/40 hover:bg-slate-800/60' 
+                    : 'bg-slate-50 hover:bg-slate-100'
+                } transition-colors`}>
+                  <div className="flex gap-3 items-start mb-3">
+                    <span className="text-2xl">👨‍⚕️</span>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Choose a Myopia-Focused Optometrist</h3>
+                  </div>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Ask whether they offer myopia control options, attend continuing education in this area, and take detailed measurements beyond basic refraction. An optometrist who stays current with myopia management research can provide the most effective care for your child.
+                  </p>
+                </div>
+              </div>
             </section>
 
             {/* A Real Success Story */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">A Real Success Story</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-emerald-400 to-teal-400' : 'from-emerald-600 to-teal-600'}`}>
+                  A Real Success Story
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
-                Remember that six-year-old girl I mentioned at the beginning? We started her on myopia control spectacle lenses immediately and worked with her parents to increase outdoor time and implement better visual habits.
-              </p>
-              <p className="leading-relaxed mb-4">
-                One year later, her myopia had progressed only -0.25D instead of the -0.75D to -1.00D we would have expected without intervention. That might seem like a small difference, but over the course of her childhood, it could mean the difference between moderate myopia and sight-threatening high myopia.
+              <div className={`p-8 rounded-2xl border-l-4 border-emerald-500 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-emerald-500/10 to-slate-800/50' 
+                  : 'bg-gradient-to-br from-emerald-50 to-slate-50'
+              }`}>
+                <p className="leading-relaxed mb-6 text-base">
+                  Remember that six-year-old girl I mentioned at the beginning? We started her on myopia control spectacle lenses immediately and worked with her parents to increase outdoor time and implement better visual habits.
+                </p>
+                
+                <div className={`p-6 rounded-2xl mb-6 border-l-4 border-green-500 ${
+                  isDark 
+                    ? 'bg-green-500/10' 
+                    : 'bg-green-100/50'
+                }`}>
+                  <p className="text-base font-bold mb-3">
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>📊 The Result:</span>
+                  </p>
+                  <p className={`leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    One year later, her myopia had progressed only <strong>-0.25D</strong> instead of the <strong>-0.75D to -1.00D</strong> we would have expected without intervention. That's a <strong>70-75% reduction in progression</strong> — a remarkable outcome.
+                  </p>
+                </div>
+                
+                <p className="leading-relaxed text-base">
+                  That might seem like a small difference, but over the course of her childhood, it could mean the difference between moderate myopia and sight-threatening high myopia. This child is now on track for much better long-term eye health.
+                </p>
+              </div>
+            </section>
               </p>
               <p className="leading-relaxed mb-4">
                 Her mother recently told me, "I wish I had known about this earlier. But I'm so grateful we're doing something now." And that's exactly the message I want to share with you that it's never too early to start protecting your child's vision.
@@ -403,29 +716,80 @@ export default function MyopiaGuideArticle() {
 
             {/* Your Child's Vision Is Worth Protecting */}
             <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">Your Child's Vision Is Worth Protecting</h2>
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-pink-400 to-rose-400' : 'from-pink-600 to-rose-600'}`}>
+                  Your Child's Vision Is Worth Protecting
+                </span>
+              </h2>
               
-              <p className="leading-relaxed mb-4">
-                Singapore faces a significant challenge with childhood myopia, but we also have access to evidence-based solutions. What we need is awareness and action.
-              </p>
-              <p className="leading-relaxed mb-4">
-                As a parent, you have more power than you might realize. Simple lifestyle changes, combined with appropriate professional interventions when needed, can make a meaningful difference in your child's long-term eye health.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Your child's vision is precious. Their future depends on being able to see clearly, not just now, but for decades to come. By taking action today, whether it's scheduling that eye exam, prioritizing outdoor time, or exploring myopia control treatments, you're investing in their lifelong eye health.
-              </p>
-              <p className="leading-relaxed mb-4">
-                I became an optometrist to help families like yours. I'm passionate about protecting children's vision and giving parents the knowledge they need to make informed decisions. Together, we can change the trajectory of Singapore's myopia epidemic, one child at a time.
-              </p>
-              <p className="leading-relaxed mb-4">
-                Let's protect their vision together.
-              </p>
+              <div className={`space-y-4 mb-8`}>
+                <div className={`p-6 rounded-2xl ${
+                  isDark 
+                    ? 'bg-slate-800/50 border border-slate-700/50' 
+                    : 'bg-slate-100 border border-slate-200'
+                }`}>
+                  <p className="leading-relaxed text-base">
+                    Singapore faces a significant challenge with childhood myopia, but we also have access to evidence-based solutions. What we need is awareness and action.
+                  </p>
+                </div>
+                
+                <div className={`p-6 rounded-2xl ${
+                  isDark 
+                    ? 'bg-slate-800/50 border border-slate-700/50' 
+                    : 'bg-slate-100 border border-slate-200'
+                }`}>
+                  <p className="leading-relaxed text-base">
+                    As a parent, you have more power than you might realize. Simple lifestyle changes, combined with appropriate professional interventions when needed, can make a meaningful difference in your child's long-term eye health.
+                  </p>
+                </div>
+                
+                <div className={`p-8 rounded-2xl border-l-4 border-purple-500 ${
+                  isDark 
+                    ? 'bg-gradient-to-br from-purple-500/10 to-transparent' 
+                    : 'bg-gradient-to-br from-purple-100 to-transparent'
+                }`}>
+                  <p className="leading-relaxed text-base font-medium mb-4">
+                    Your child's vision is precious. Their future depends on being able to see clearly, not just now, but for decades to come.
+                  </p>
+                  <p className="leading-relaxed text-base">
+                    By taking action today — whether it's scheduling that eye exam, prioritizing outdoor time, or exploring myopia control treatments — you're investing in their lifelong eye health.
+                  </p>
+                </div>
+              </div>
+              
+              <div className={`p-8 rounded-2xl border-l-4 border-blue-500 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-blue-500/10 to-transparent' 
+                  : 'bg-gradient-to-br from-blue-100 to-transparent'
+              }`}>
+                <p className="leading-relaxed text-base mb-4">
+                  I became an optometrist to help families like yours. I'm passionate about protecting children's vision and giving parents the knowledge they need to make informed decisions. Together, we can change the trajectory of Singapore's myopia epidemic, one child at a time.
+                </p>
+                <p className={`text-lg font-bold ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>
+                  Let's protect their vision together.
+                </p>
+              </div>
             </section>
 
             {/* References */}
-            <section className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">References</h2>
-              <ol className="list-decimal pl-6 space-y-3 text-sm">
+            <section className="mb-12 pt-8 border-t border-slate-700/50">
+              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-cyan-400 to-blue-400' : 'from-cyan-600 to-blue-600'}`}>
+                  References
+                </span>
+              </h2>
+              
+              <div className={`p-6 rounded-2xl mb-4 ${
+                isDark 
+                  ? 'bg-slate-800/40' 
+                  : 'bg-slate-50'
+              }`}>
+                <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'} font-medium mb-4`}>
+                  Evidence-based sources supporting the information in this guide:
+                </p>
+              </div>
+              
+              <ol className={`list-decimal pl-6 space-y-4 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                 <li>Karuppiah, V., Wong, L., Tay, V., Ge, X., & Kang, L. L. (2021). School-based programme to address childhood myopia in Singapore. <em>Singapore Medical Journal, 62</em>(2), 63–68. <a href="https://doi.org/10.11622/smedj.2019144" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.11622/smedj.2019144</a></li>
                 <li>Ministry of Health Singapore. (2019). Speech by Dr Lam Pin Min, Senior Minister of State for Health, at the opening of the Singapore National Eye Centre's Myopia Centre. <a href="https://www.moh.gov.sg/newsroom/speech-by-dr-lam-pin-min-senior-minister-of-state-for-health-at-the-opening-of-the-singapore-national-eye-centre-s-myopia-centre-16-august-2019/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://www.moh.gov.sg/newsroom/speech-by-dr-lam-pin-min-senior-minister-of-state-for-health-at-the-opening-of-the-singapore-national-eye-centre-s-myopia-centre-16-august-2019/</a></li>
                 <li>National University Hospital. (2024). Understanding and preventing high myopia in children. <a href="https://www.nuh.com.sg/health-resources/newsletter/envisioninghealth---changing-lives-one-idea-at-a-time/understanding-and-preventing-high-myopia-in-children" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://www.nuh.com.sg/health-resources/newsletter/envisioninghealth---changing-lives-one-idea-at-a-time/understanding-and-preventing-high-myopia-in-children</a></li>
