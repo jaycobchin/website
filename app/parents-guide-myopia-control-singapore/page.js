@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Sun, Moon } from 'lucide-react';
 
 export default function MyopiaGuideArticle() {
@@ -172,6 +173,17 @@ export default function MyopiaGuideArticle() {
 
             {/* What Every Singapore Parent Should Know About Myopia */}
             <section className="mb-12">
+              <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
+                <Image
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/singapore-childhood-myopia-statistics-83-percent-young-adults.png"
+                  alt="Singapore childhood myopia statistics showing 83% of young adults affected"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+              
               <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-blue-400 to-purple-400' : 'from-blue-600 to-purple-600'}`}>
                   What Every Singapore Parent Should Know
@@ -226,6 +238,16 @@ export default function MyopiaGuideArticle() {
 
             {/* Beyond Glasses */}
             <section className="mb-12">
+              <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
+                <Image
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/high-myopia-complications-retinal-detachment-risk-diagram.png"
+                  alt="High myopia complications and retinal detachment risk diagram"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                />
+              </div>
+              
               <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-red-400 to-pink-400' : 'from-red-600 to-pink-600'}`}>
                   Beyond Glasses: Why Myopia Is More Than Just Blurry Vision
@@ -335,6 +357,16 @@ export default function MyopiaGuideArticle() {
 
             {/* What Can You Do to Protect Your Child's Vision */}
             <section className="mb-12">
+              <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
+                <Image
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/outdoor-time-myopia-prevention-children-singapore.png"
+                  alt="Outdoor time for myopia prevention in children in Singapore"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                />
+              </div>
+              
               <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-green-400 to-emerald-400' : 'from-green-600 to-emerald-600'}`}>
                   What Can You Do to Protect Your Child's Vision?
@@ -421,6 +453,16 @@ export default function MyopiaGuideArticle() {
 
             {/* Professional Treatments */}
             <section className="mb-12">
+              <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
+                <Image
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/myopia-control-effectiveness-chart-singapore-children.jpg"
+                  alt="Myopia control effectiveness chart for Singapore children"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                />
+              </div>
+              
               <h3 className={`text-2xl md:text-3xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-blue-400 to-cyan-400' : 'from-blue-600 to-cyan-600'}`}>
                   Professional Treatments That Slow Myopia Progression
@@ -532,9 +574,8 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
               </div>
-            </section>
-              </p>
-              <p className="leading-relaxed mb-4">
+              
+              <p className="leading-relaxed mb-4 text-sm">
                 <strong>The Commitment Required:</strong> Ortho-K requires nightly lens wear, typically 6-8 hours, to maintain the corneal reshaping effect. Missing even one night may cause vision to blur the following day. The daily routine includes carefully inserting and removing lenses, thorough cleaning and disinfection, proper storage, and regular replacement of solutions and cases. Your child will need frequent follow-up visits initially (weekly or bi-weekly), then quarterly check-ups once stabilized. You'll also need to watch for warning signs like redness, pain, light sensitivity, or discharge, which require immediate attention.
               </p>
               <p className="leading-relaxed mb-4">
@@ -576,7 +617,7 @@ export default function MyopiaGuideArticle() {
               <p className="leading-relaxed mb-4">
                 <strong>What Parents Should Know About Side Effects:</strong> While low-dose atropine is generally well-tolerated, it's important to understand potential side effects. Common short-term effects may include light sensitivity and difficulty focusing on near objects, though these are typically mild at low concentrations. More importantly, parents should be aware of the rebound effect, when treatment is stopped, some children may experience a temporary acceleration in myopia progression. This is why it's crucial to work closely with your eye care professional to develop a long-term management plan, including strategies for eventually tapering off treatment rather than stopping abruptly. Your ophthalmologist will monitor your child regularly to ensure the benefits continue to outweigh any side effects.
               </p>
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-4 text-sm">
                 Currently, atropine requires a prescription from an ophthalmologist. Your optometrist can refer you if this treatment is appropriate for your child.
               </p>
             </section>
@@ -604,6 +645,16 @@ export default function MyopiaGuideArticle() {
 
             {/* Your Action Plan */}
             <section className="mb-12">
+              <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
+                <Image
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/myopia-control-treatment-options-spectacles-ortho-k-atropine.png"
+                  alt="Myopia control treatment options: spectacles, ortho-k, and atropine"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                />
+              </div>
+              
               <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-indigo-400 to-blue-400' : 'from-indigo-600 to-blue-600'}`}>
                   Your Action Plan: Steps to Take Today
@@ -707,9 +758,8 @@ export default function MyopiaGuideArticle() {
                   That might seem like a small difference, but over the course of her childhood, it could mean the difference between moderate myopia and sight-threatening high myopia. This child is now on track for much better long-term eye health.
                 </p>
               </div>
-            </section>
-              </p>
-              <p className="leading-relaxed mb-4">
+              
+              <p className="leading-relaxed mb-4 text-base">
                 Her mother recently told me, "I wish I had known about this earlier. But I'm so grateful we're doing something now." And that's exactly the message I want to share with you that it's never too early to start protecting your child's vision.
               </p>
             </section>
