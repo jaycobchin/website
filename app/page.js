@@ -332,14 +332,14 @@ export default function HomePage() {
               } transition-all`} onClick={() => setMenuOpen(false)}>Contact</a>
               <button
                 onClick={toggleTheme}
-                className={`flex items-center gap-3 p-3 rounded-xl w-full ${
+                className={`flex items-center justify-center p-2.5 rounded-lg border w-fit ${
                   isDark 
-                    ? 'bg-white/10 hover:bg-white/20' 
-                    : 'bg-blue-100 hover:bg-blue-200'
+                    ? 'border-white/20 hover:bg-white/10' 
+                    : 'border-gray-200 hover:bg-gray-50'
                 } transition-all mt-2`}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               >
                 {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
-                <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
               </button>
             </div>
           </div>

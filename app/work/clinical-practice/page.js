@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ClinicalPracticePage() {
   const [isDark, setIsDark] = useState(true); // Dark theme by default
   const [scrolled, setScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
 
@@ -116,7 +117,54 @@ export default function ClinicalPracticePage() {
               {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
             </button>
           </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`md:hidden relative z-10 p-2 rounded-lg ${
+              isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+            } transition-colors`}
+          >
+            {menuOpen ? <X /> : <Menu />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className={`md:hidden absolute top-full left-0 w-full ${
+            isDark 
+              ? 'bg-slate-900/95 border-white/10' 
+              : 'bg-white/95 border-gray-200/50 shadow-lg'
+          } backdrop-blur-xl border-b`}>
+            <div className="px-6 py-6 flex flex-col gap-4 font-medium">
+              <a href="/#philosophy" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Approach</a>
+              <a href="/#work-experience" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="/#work" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Tools</a>
+              <a href="/#write" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Write</a>
+              <a href="/#contact" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Contact</a>
+              <button
+                onClick={toggleTheme}
+                className={`flex items-center justify-center p-2.5 rounded-lg border w-fit ${
+                  isDark 
+                    ? 'border-white/20 hover:bg-white/10' 
+                    : 'border-gray-200 hover:bg-gray-50'
+                } transition-all mt-2`}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Content */}
@@ -126,7 +174,7 @@ export default function ClinicalPracticePage() {
           <div className="max-w-5xl mx-auto w-full">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left: Text Content */}
-              <div className="space-y-8">
+              <div className="space-y-8 order-2 md:order-1">
                 <div className="space-y-4">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase ${
                     isDark ? 'bg-teal-500/10 text-teal-400 border border-teal-500/20' : 'bg-teal-100 text-teal-700 border border-teal-200'
@@ -156,13 +204,13 @@ export default function ClinicalPracticePage() {
               </div>
 
               {/* Right: Profile Image */}
-              <div className="flex justify-center md:justify-end">
+              <div className="flex justify-center md:justify-end order-1 md:order-2">
                 <div className="relative">
                   <div className={`absolute inset-0 ${isDark ? 'bg-teal-500/20' : 'bg-teal-400/20'} rounded-full blur-3xl`}></div>
                   <img
                     src="/Clinical Practice/jaycob_chin_profile.JPG"
                     alt="Jaycob Chin Profile"
-                    className={`relative w-72 h-72 rounded-full object-cover shadow-2xl ${
+                    className={`relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-2xl ${
                       isDark ? 'ring-4 ring-teal-500/20' : 'ring-4 ring-teal-400/30'
                     }`}
                   />
