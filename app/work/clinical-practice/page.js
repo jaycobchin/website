@@ -170,7 +170,7 @@ export default function ClinicalPracticePage() {
       {/* Content */}
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center px-4 md:px-6 py-32">
+        <section className="min-h-screen flex items-center px-4 md:px-6 py-24 md:py-32">
           <div className="max-w-5xl mx-auto w-full">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left: Text Content */}
@@ -181,7 +181,7 @@ export default function ClinicalPracticePage() {
                   }`}>
                     Professional Profile
                   </span>
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                     Clinical Practice
                   </h1>
                   <p className={`text-2xl font-medium ${accentClass}`}>
@@ -197,7 +197,7 @@ export default function ClinicalPracticePage() {
                   href="https://www.emmevisioncare.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-block px-8 py-4 rounded-lg font-semibold bg-teal-600 hover:bg-teal-700 text-white transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-teal-600/50"
+                  className="inline-block w-full md:w-auto text-center px-8 py-4 rounded-lg font-semibold bg-teal-600 hover:bg-teal-700 text-white transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-teal-600/50"
                 >
                   Visit EMME Visioncare
                 </a>
@@ -221,15 +221,15 @@ export default function ClinicalPracticePage() {
         </section>
 
         {/* Credentials Section */}
-        <section className="px-4 md:px-6 py-24">
+        <section className="px-4 md:px-6 py-16 md:py-24">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Jaycob Chin, FIAOMC</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Jaycob Chin, FIAOMC</h2>
               <p className={`text-xl ${isDark ? 'text-gray-400' : 'text-gray-600'} mb-8`}>Optometrist</p>
               
               <div className={`inline-grid grid-cols-1 gap-3 text-sm ${textMutedClass} ${
                 isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'
-              } backdrop-blur-sm rounded-2xl p-8 border`}>
+              } backdrop-blur-sm rounded-2xl p-6 md:p-8 border`}>
                 <p className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${isDark ? 'bg-teal-400' : 'bg-teal-600'}`}></span>
                   M.Sc Optom (Aust), B.Sc Optom (U.S.A.), Dip. Optom (S'pore)
@@ -252,7 +252,7 @@ export default function ClinicalPracticePage() {
         </section>
 
         {/* About Section */}
-        <section className="px-4 md:px-6 py-24">
+        <section className="px-4 md:px-6 py-16 md:py-24">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-16">
               {/* Section 1 */}
@@ -304,13 +304,13 @@ export default function ClinicalPracticePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="px-4 md:px-6 py-24 pb-32">
+        <section className="px-4 md:px-6 py-16 md:py-24 pb-24 md:pb-32">
           <div className="max-w-4xl mx-auto">
             <div className={`relative overflow-hidden rounded-3xl ${
               isDark 
                 ? 'bg-gradient-to-br from-teal-900/40 to-cyan-900/40 border-teal-500/20' 
                 : 'bg-gradient-to-br from-teal-50 to-cyan-50 border-teal-200'
-            } border p-12 text-center backdrop-blur-sm`}>
+            } border p-8 md:p-12 text-center backdrop-blur-sm`}>
               <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-br from-teal-500/10 to-transparent' : 'bg-gradient-to-br from-teal-100/50 to-transparent'}`}></div>
               <div className="relative z-10 space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold">Ready for Expert Eye Care?</h2>
@@ -321,7 +321,7 @@ export default function ClinicalPracticePage() {
                   href="https://www.emmevisioncare.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-block px-10 py-4 rounded-lg font-semibold bg-teal-600 hover:bg-teal-700 text-white transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-teal-600/50"
+                  className="inline-block w-full md:w-auto px-10 py-4 rounded-lg font-semibold bg-teal-600 hover:bg-teal-700 text-white transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-teal-600/50"
                 >
                   Visit EMME Visioncare
                 </a>

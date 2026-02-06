@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CommunityEngagementPage() {
@@ -9,7 +9,46 @@ export default function CommunityEngagementPage() {
   const [scrolled, setScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
   const thumbnailRefs = useRef([]);
+
+  const minSwipeDistance = 50;
+  
+  const handlePrev = () => {
+    const newIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    setCurrentImageIndex(newIndex);
+    setTimeout(() => thumbnailRefs.current[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+  };
+  
+  const handleNext = () => {
+    const newIndex = (currentImageIndex + 1) % galleryImages.length;
+    setCurrentImageIndex(newIndex);
+    setTimeout(() => thumbnailRefs.current[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
+  };
+  
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+  };
 
   const galleryImages = [
     { url: '/Community Engagement/Volunteer - Humanitarian with Love (Cambodia)/Humanitarian with Love & Khmer Sight Foundation 2023 - 1.JPG', caption: 'Humanitarian with Love & Khmer Sight Foundation 2023 - 1' },
@@ -96,7 +135,7 @@ export default function CommunityEngagementPage() {
             JAYCOB<span className={accentHeaderDotClass}>.</span>
           </Link>
 
-          <div className="flex items-center gap-8 relative z-10 font-medium">
+          <div className="hidden md:flex items-center gap-8 relative z-10 font-medium">
             <Link href="/#philosophy" className={`${
               isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
             } transition-colors relative group`}>
@@ -151,14 +190,62 @@ export default function CommunityEngagementPage() {
               {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`md:hidden relative z-10 p-2 rounded-lg ${
+              isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+            } transition-colors`}
+          >
+            {menuOpen ? <X /> : <Menu />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className={`md:hidden absolute top-full left-0 w-full ${
+            isDark 
+              ? 'bg-slate-900/95 border-white/10' 
+              : 'bg-white/95 border-gray-200/50 shadow-lg'
+          } backdrop-blur-xl border-b`}>
+            <div className="px-6 py-6 flex flex-col gap-4 font-medium">
+              <a href="/#philosophy" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Approach</a>
+              <a href="/#work-experience" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Work</a>
+              <a href="/#work" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Tools</a>
+              <a href="/#write" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Write</a>
+              <a href="/#contact" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Contact</a>
+              <button
+                onClick={toggleTheme}
+                className={`flex items-center justify-center p-2.5 rounded-lg border w-fit ${
+                  isDark 
+                    ? 'border-white/20 hover:bg-white/10' 
+                    : 'border-gray-200 hover:bg-gray-50'
+                } transition-all mt-2`}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         {/* Hero Section */}
-        <div className="mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Community Engagement
           </h1>
           <p className={`text-xl md:text-2xl font-medium ${isDark ? 'text-purple-400' : 'text-purple-600'} mb-6`}>
@@ -170,7 +257,7 @@ export default function CommunityEngagementPage() {
         </div>
 
         {/* Main Content */}
-        <div className={`${isDark ? 'bg-slate-900/60 shadow-2xl' : 'bg-white border border-slate-200/80 shadow-lg'} backdrop-blur-xl rounded-3xl p-8 md:p-12 space-y-8`}>
+        <div className={`${isDark ? 'bg-slate-900/60 shadow-2xl' : 'bg-white border border-slate-200/80 shadow-lg'} backdrop-blur-xl rounded-3xl p-6 md:p-12 space-y-8`}>
           <p className="text-base">
             I have taken part in volunteer work both locally and overseas.
           </p>
@@ -185,10 +272,15 @@ export default function CommunityEngagementPage() {
           <div className="mt-12">
             <h2 className={`text-3xl font-bold mb-8 ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>Photo Gallery</h2>
 
-            <div className={`relative ${isDark ? 'bg-slate-800/50' : 'bg-gradient-to-b from-white to-slate-50 border border-slate-200/80 shadow-md'} p-8 md:p-12 rounded-2xl`}>
+            <div className={`relative ${isDark ? 'bg-slate-800/50' : 'bg-gradient-to-b from-white to-slate-50 border border-slate-200/80 shadow-md'} p-4 md:p-12 rounded-2xl`}>
               {/* Main Image */}
-              <div className="relative w-full mb-6 px-16">
-                <div className="w-full h-96 flex items-center justify-center">
+              <div 
+                className="relative w-full mb-6 px-0 md:px-16 touch-pan-y"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div className="w-full h-[300px] md:h-96 flex items-center justify-center bg-black/5 rounded-lg">
                   <img
                     src={galleryImages[currentImageIndex].url}
                     alt={galleryImages[currentImageIndex].caption}
@@ -198,48 +290,40 @@ export default function CommunityEngagementPage() {
 
                 {/* Previous Button */}
                 <button
-                  onClick={() => {
-                    const newIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-                    setCurrentImageIndex(newIndex);
-                    setTimeout(() => thumbnailRefs.current[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
-                  }}
-                  className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full transition-colors shadow-lg z-10 ${
+                  onClick={handlePrev}
+                  className={`absolute left-2 top-1/2 -translate-y-1/2 p-2 md:p-3 rounded-full transition-colors shadow-lg z-10 ${
                     isDark 
-                      ? 'bg-blue-500 hover:bg-blue-600 text-white' 
-                      : 'bg-white/95 text-blue-700 border border-slate-200 hover:bg-blue-50'
+                      ? 'bg-blue-500/80 hover:bg-blue-600 text-white backdrop-blur-sm' 
+                      : 'bg-white/80 text-blue-700 border border-slate-200 hover:bg-blue-50 backdrop-blur-sm'
                   }`}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
 
                 {/* Next Button */}
                 <button
-                  onClick={() => {
-                    const newIndex = (currentImageIndex + 1) % galleryImages.length;
-                    setCurrentImageIndex(newIndex);
-                    setTimeout(() => thumbnailRefs.current[newIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 100);
-                  }}
-                  className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full transition-colors shadow-lg z-10 ${
+                  onClick={handleNext}
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 md:p-3 rounded-full transition-colors shadow-lg z-10 ${
                     isDark 
-                      ? 'bg-blue-500 hover:bg-blue-600 text-white' 
-                      : 'bg-white/95 text-blue-700 border border-slate-200 hover:bg-blue-50'
+                      ? 'bg-blue-500/80 hover:bg-blue-600 text-white backdrop-blur-sm' 
+                      : 'bg-white/80 text-blue-700 border border-slate-200 hover:bg-blue-50 backdrop-blur-sm'
                   }`}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
               </div>
 
               {/* Caption */}
-              <p className={`text-center text-xs italic mb-6 px-4 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
+              <p className={`text-center text-xs italic mb-6 px-2 md:px-4 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
                 {galleryImages[currentImageIndex].caption}
               </p>
 
               {/* Thumbnails */}
-              <div className="relative -mx-8 md:-mx-12 px-8 md:px-12">
+              <div className="relative -mx-6 md:-mx-12 px-6 md:px-12">
                 <div className={`flex gap-4 overflow-x-auto pb-4 scrollbar-hide ${isDark ? '' : 'rounded-xl bg-slate-50/70 border border-slate-200/60 px-4 py-3'}`}>
                   {galleryImages.map((img, index) => (
                     <button
@@ -248,7 +332,7 @@ export default function CommunityEngagementPage() {
                         thumbnailRefs.current[index] = el;
                       }}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden transition-all ${
+                      className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden transition-all ${
                         currentImageIndex === index 
                           ? `ring-4 ${isDark ? 'ring-blue-500' : 'ring-blue-400/80'} scale-105` 
                           : 'opacity-70 hover:opacity-100'
