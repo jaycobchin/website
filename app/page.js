@@ -1208,12 +1208,8 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className={`border-t ${borderClass} py-8 px-6 relative z-10`}>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center gap-4">
           <p className={textLightClass}>© 2026 Jaycob Chin. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className={`${textLightClass} hover:text-blue-400 transition-colors`}>Privacy</a>
-            <a href="#" className={`${textLightClass} hover:text-blue-400 transition-colors`}>Terms</a>
-          </div>
         </div>
       </footer>
 
