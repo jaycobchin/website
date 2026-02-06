@@ -86,42 +86,6 @@ export default function VisionSimulatorPage() {
     ? 'text-blue-300 hover:text-blue-200 underline underline-offset-2'
     : 'text-blue-700 hover:text-blue-800 underline underline-offset-2';
 
-  const generateSampleImage = () => {
-    const tempCanvas = document.createElement('canvas');
-    tempCanvas.width = 800;
-    tempCanvas.height = 600;
-    const tCtx = tempCanvas.getContext('2d');
-    
-    const gradient = tCtx.createLinearGradient(0, 0, 800, 600);
-    gradient.addColorStop(0, '#4158D0');
-    gradient.addColorStop(0.46, '#C850C0');
-    gradient.addColorStop(1, '#FFCC70');
-    tCtx.fillStyle = gradient;
-    tCtx.fillRect(0, 0, 800, 600);
-    
-    tCtx.fillStyle = 'white';
-    tCtx.font = 'bold 60px Arial';
-    tCtx.textAlign = 'center';
-    tCtx.fillText('VISION TEST', 400, 150);
-    
-    tCtx.font = '40px Arial';
-    tCtx.fillText('Can you read this?', 400, 250);
-    
-    tCtx.font = '30px Arial';
-    tCtx.fillText('How about this text?', 400, 320);
-    
-    tCtx.font = '20px Arial';
-    tCtx.fillText('And this smaller text?', 400, 370);
-    
-    tCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    for (let i = 0; i < 5; i++) {
-      tCtx.beginPath();
-      tCtx.arc(150 + i * 130, 480, 30, 0, Math.PI * 2);
-      tCtx.fill();
-    }
-    
-    return tempCanvas.toDataURL();
-  };
 
   const applyBlur = (ctx, canvas, radius) => {
     if (radius > 0) {
@@ -134,6 +98,31 @@ export default function VisionSimulatorPage() {
       ctx.drawImage(temp, 0, 0);
       ctx.filter = 'none';
     }
+  };
+
+  const applyPresbyopia = (ctx, canvas, severity) => {
+    if (severity <= 0) return;
+    
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    const tCtx = tempCanvas.getContext('2d');
+    
+    // Draw blurred image to temp canvas
+    tCtx.filter = `blur(${severity / 6.5}px)`;
+    tCtx.drawImage(canvas, 0, 0);
+    tCtx.filter = 'none';
+    
+    // Apply gradient mask to temp (keep blurred part at bottom)
+    tCtx.globalCompositeOperation = 'destination-in';
+    const maskGradient = tCtx.createLinearGradient(0, canvas.height * 0.4, 0, canvas.height);
+    maskGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+    maskGradient.addColorStop(1, 'rgba(0, 0, 0, 1)');
+    tCtx.fillStyle = maskGradient;
+    tCtx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw masked blurred image over original
+    ctx.drawImage(tempCanvas, 0, 0);
   };
 
   const applyAstigmatism = (ctx, canvas, severity) => {
@@ -257,7 +246,7 @@ export default function VisionSimulatorPage() {
       canvas.height = 600;
       ctx.clearRect(0, 0, 800, 600);
 
-      const blurConditions = new Set(['myopia', 'hyperopia', 'presbyopia']);
+      const blurConditions = new Set(['myopia', 'hyperopia']);
       if (blurConditions.has(condition)) {
         ctx.drawImage(img, 0, 0, 800, 600);
         return;
@@ -265,7 +254,9 @@ export default function VisionSimulatorPage() {
 
       ctx.drawImage(img, 0, 0, 800, 600);
 
-      if (condition === 'astigmatism') {
+      if (condition === 'presbyopia') {
+        applyPresbyopia(ctx, canvas, severity);
+      } else if (condition === 'astigmatism') {
         applyAstigmatism(ctx, canvas, severity);
       } else if (condition === 'cataract') {
         applyCataract(ctx, canvas, severity);
@@ -279,7 +270,7 @@ export default function VisionSimulatorPage() {
     if (imageSource === 'upload' && uploadedImage) {
       img.src = uploadedImage;
     } else {
-      img.src = generateSampleImage();
+      img.src = '/philosophy_himalaya_scenery.jpeg';
     }
   };
 
@@ -330,8 +321,6 @@ export default function VisionSimulatorPage() {
       ? severity / 8
       : condition === 'hyperopia'
       ? severity / 10
-      : condition === 'presbyopia'
-      ? severity / 12
       : 0;
 
   useEffect(() => {
