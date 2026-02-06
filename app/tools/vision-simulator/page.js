@@ -546,50 +546,8 @@ export default function VisionSimulatorPage() {
                   </div>
                 )}
 
-                {/* Image Source Buttons */}
-                <div className="hidden md:block">
-                  <label className={`block text-xs md:text-sm font-bold uppercase tracking-wider mb-2 ${labelClass}`}>Image Source</label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      onClick={handleSampleImage}
-                      className={`p-3 rounded-lg border text-sm font-medium transition-all shadow-sm ${
-                        imageSource === 'sample'
-                          ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                          : isDark
-                          ? 'border-slate-600 hover:bg-slate-700 hover:border-slate-500 text-gray-300'
-                          : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700'
-                      }`}
-                    >
-                      Sample Image
-                    </button>
-                    <button
-                      onClick={() => fileInputRef.current?.click()}
-                      className={`p-3 rounded-lg border text-sm font-medium transition-all shadow-sm ${
-                        isDark
-                          ? 'border-slate-600 hover:bg-slate-700 hover:border-slate-500 text-gray-300'
-                          : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700'
-                      }`}
-                    >
-                      Upload Image
-                    </button>
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileUpload}
-                      className="hidden"
-                    />
-                  </div>
-                </div>
-
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-2">
-                  <button
-                    onClick={handleDownload}
-                    className="hidden md:block flex-1 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-md hover:shadow-lg active:scale-95"
-                  >
-                    Download
-                  </button>
                   <button
                     onClick={handleReset}
                     className={`flex-1 p-3 rounded-lg transition font-medium border shadow-sm active:scale-95 ${
