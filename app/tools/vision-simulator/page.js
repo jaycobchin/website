@@ -2,11 +2,12 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 
 export default function VisionSimulatorPage() {
   const [isDark, setIsDark] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [condition, setCondition] = useState('normal');
   const [severity, setSeverity] = useState(50);
@@ -371,7 +372,7 @@ export default function VisionSimulatorPage() {
             JAYCOB<span className={accentHeaderDotClass}>.</span>
           </Link>
 
-          <div className="flex items-center gap-8 relative z-10 font-medium">
+          <div className="hidden md:flex items-center gap-8 relative z-10 font-medium">
             <Link href="/#philosophy" className={`${
               isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
             } transition-colors relative group`}>
@@ -425,7 +426,58 @@ export default function VisionSimulatorPage() {
               {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`md:hidden relative z-10 p-2 rounded-lg ${
+              isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+            } transition-colors`}
+          >
+           <span className={isDark ? 'text-white' : 'text-gray-900'}>
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+           </span>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className={`md:hidden absolute top-full left-0 w-full ${
+            isDark 
+              ? 'bg-slate-900/95 border-white/10' 
+              : 'bg-white/95 border-gray-200/50 shadow-lg'
+          } backdrop-blur-xl border-b`}>
+            <div className="px-6 py-6 flex flex-col gap-4 font-medium">
+              <Link href="/#philosophy" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Approach</Link>
+              <Link href="/#work-experience" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Work</Link>
+              <Link href="/#work" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Tools</Link>
+              <Link href="/#write" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Write</Link>
+              <Link href="/#contact" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Contact</Link>
+              
+              <button
+                onClick={toggleTheme}
+                className={`flex items-center justify-center p-2.5 rounded-lg border w-fit ${
+                  isDark 
+                    ? 'border-white/20 hover:bg-white/10' 
+                    : 'border-gray-200 hover:bg-gray-50'
+                } transition-all mt-2`}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Content */}
@@ -445,24 +497,29 @@ export default function VisionSimulatorPage() {
 
         {/* Tool */}
         <div className="space-y-8">
-          <div className={`${cardBgClass} rounded-2xl shadow-2xl p-8`}>
+          <div className={`${cardBgClass} rounded-2xl shadow-2xl p-4 md:p-8`}>
             {/* Main Grid */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               {/* Controls */}
               <div className="space-y-6">
                 {/* Vision Condition */}
                 <div>
-                  <label className={`block text-sm font-semibold ${labelClass} mb-3`}>Vision Condition</label>
-                  <select
-                    value={condition}
-                    onChange={handleConditionChange}
-                    className={`w-full p-3 border-2 rounded-lg focus:border-blue-500 focus:outline-none ${inputBgClass}`}
-                  >
-                    {Object.entries(conditions).map(([key, val]) => (
-                      <option key={key} value={key}>{val.name}</option>
-                    ))}
-                  </select>
-                  <p className={`text-sm mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <label className={`block text-xs md:text-sm font-bold uppercase tracking-wider mb-2 ${labelClass}`}>Vision Condition</label>
+                  <div className="relative">
+                    <select
+                      value={condition}
+                      onChange={handleConditionChange}
+                      className={`w-full px-4 py-3 border rounded-lg text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-blue-500/50 outline-none appearance-none ${inputBgClass}`}
+                    >
+                      {Object.entries(conditions).map(([key, val]) => (
+                        <option key={key} value={key}>{val.name}</option>
+                      ))}
+                    </select>
+                    <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                  </div>
+                  <p className={`text-xs md:text-sm mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     {conditions[condition].desc}
                   </p>
                 </div>
@@ -470,7 +527,7 @@ export default function VisionSimulatorPage() {
                 {/* Severity Slider */}
                 {condition !== 'normal' && (
                   <div>
-                    <label className={`block text-sm font-semibold ${labelClass} mb-3`}>
+                    <label className={`block text-xs md:text-sm font-bold uppercase tracking-wider mb-2 ${labelClass}`}>
                       Severity: <span className="text-blue-400">{severity}%</span>
                     </label>
                     <input
@@ -479,9 +536,9 @@ export default function VisionSimulatorPage() {
                       max="100"
                       value={severity}
                       onChange={handleSeverityChange}
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                      className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
                     />
-                    <div className="flex justify-between text-xs text-gray-500 mt-2">
+                    <div className={`flex justify-between text-xs mt-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                       <span>Mild</span>
                       <span>Moderate</span>
                       <span>Severe</span>
@@ -490,27 +547,27 @@ export default function VisionSimulatorPage() {
                 )}
 
                 {/* Image Source Buttons */}
-                <div>
-                  <label className={`block text-sm font-semibold ${labelClass} mb-3`}>Image Source</label>
-                  <div className="flex gap-3">
+                <div className="hidden md:block">
+                  <label className={`block text-xs md:text-sm font-bold uppercase tracking-wider mb-2 ${labelClass}`}>Image Source</label>
+                  <div className="grid grid-cols-2 gap-3">
                     <button
                       onClick={handleSampleImage}
-                      className={`flex-1 p-3 rounded-lg border-2 transition ${
+                      className={`p-3 rounded-lg border text-sm font-medium transition-all shadow-sm ${
                         imageSource === 'sample'
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
+                          ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
                           : isDark
-                          ? 'border-slate-600 hover:border-slate-500'
-                          : 'border-gray-300 hover:border-gray-400'
+                          ? 'border-slate-600 hover:bg-slate-700 hover:border-slate-500 text-gray-300'
+                          : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700'
                       }`}
                     >
                       Sample Image
                     </button>
                     <button
                       onClick={() => fileInputRef.current?.click()}
-                      className={`flex-1 p-3 rounded-lg border-2 transition ${
+                      className={`p-3 rounded-lg border text-sm font-medium transition-all shadow-sm ${
                         isDark
-                          ? 'border-slate-600 hover:border-slate-500'
-                          : 'border-gray-300 hover:border-gray-400'
+                          ? 'border-slate-600 hover:bg-slate-700 hover:border-slate-500 text-gray-300'
+                          : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700'
                       }`}
                     >
                       Upload Image
@@ -526,19 +583,19 @@ export default function VisionSimulatorPage() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 pt-4">
+                <div className="flex gap-3 pt-2">
                   <button
                     onClick={handleDownload}
-                    className="flex-1 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition font-medium"
+                    className="hidden md:block flex-1 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-md hover:shadow-lg active:scale-95"
                   >
                     Download
                   </button>
                   <button
                     onClick={handleReset}
-                    className={`flex-1 p-3 rounded-lg transition font-medium ${
+                    className={`flex-1 p-3 rounded-lg transition font-medium border shadow-sm active:scale-95 ${
                       isDark
-                        ? 'bg-slate-700 hover:bg-slate-600'
-                        : 'bg-gray-200 hover:bg-gray-300'
+                        ? 'bg-slate-700 hover:bg-slate-600 border-slate-600 text-gray-200'
+                        : 'bg-white hover:bg-gray-50 border-gray-300 text-gray-700'
                     }`}
                   >
                     Reset
@@ -547,7 +604,7 @@ export default function VisionSimulatorPage() {
               </div>
 
               {/* Canvas */}
-              <div className={`rounded-xl p-4 flex items-center justify-center ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
+              <div className={`rounded-xl p-2 md:p-4 flex items-center justify-center ${isDark ? 'bg-slate-700/50' : 'bg-gray-100'}`}>
                 <canvas
                   ref={canvasRef}
                   className="rounded-lg shadow-lg max-w-full"

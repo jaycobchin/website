@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import RiskFactorsAnalysis from '../../components/RiskFactorsAnalysis';
 
@@ -9,6 +9,7 @@ export default function RiskFactorsAnalysisPage() {
   const [isDark, setIsDark] = useState(true); // Dark theme by default
   const [scrolled, setScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +61,8 @@ export default function RiskFactorsAnalysisPage() {
             JAYCOB<span className={accentHeaderDotClass}>.</span>
           </Link>
 
-          <div className="flex items-center gap-8 relative z-10 font-medium">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8 relative z-10 font-medium">
             <Link href="/#philosophy" className={`${
               isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'
             } transition-colors relative group`}>
@@ -115,7 +117,58 @@ export default function RiskFactorsAnalysisPage() {
               {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`md:hidden relative z-10 p-2 rounded-lg ${
+              isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+            } transition-colors`}
+          >
+           <span className={isDark ? 'text-white' : 'text-gray-900'}>
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+           </span>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className={`md:hidden absolute top-full left-0 w-full ${
+            isDark 
+              ? 'bg-slate-900/95 border-white/10' 
+              : 'bg-white/95 border-gray-200/50 shadow-lg'
+          } backdrop-blur-xl border-b`}>
+            <div className="px-6 py-6 flex flex-col gap-4 font-medium">
+              <Link href="/#philosophy" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Approach</Link>
+              <Link href="/#work-experience" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Work</Link>
+              <Link href="/#work" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Tools</Link>
+              <Link href="/#write" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Write</Link>
+              <Link href="/#contact" className={`py-2 px-3 rounded-lg ${
+                isDark ? 'hover:bg-white/10 hover:text-blue-400' : 'hover:bg-blue-50 hover:text-blue-600'
+              } transition-all`} onClick={() => setMenuOpen(false)}>Contact</Link>
+              
+              <button
+                onClick={toggleTheme}
+                className={`flex items-center justify-center p-2.5 rounded-lg border w-fit ${
+                  isDark 
+                    ? 'border-white/20 hover:bg-white/10' 
+                    : 'border-gray-200 hover:bg-gray-50'
+                } transition-all mt-2`}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Content */}

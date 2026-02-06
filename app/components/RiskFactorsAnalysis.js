@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 
 export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded = false }) {
   const [age, setAge] = useState(8);
@@ -162,7 +162,7 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
 
   const containerClass = embedded ? 'w-full' : `fixed inset-0 ${bgClass} z-50 overflow-y-auto`;
   const wrapperClass = embedded ? 'w-full' : 'min-h-screen flex items-center justify-center p-4';
-  const cardClass = embedded ? `w-full ${cardBgClass} rounded-2xl shadow-2xl p-8 relative` : `w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-8 relative`;
+  const cardClass = embedded ? `w-full ${cardBgClass} rounded-2xl shadow-2xl p-4 md:p-8 relative` : `w-full max-w-4xl ${cardBgClass} rounded-2xl shadow-2xl p-4 md:p-8 relative`;
   const contentClass = embedded ? 'leading-relaxed' : 'leading-relaxed overflow-y-auto max-h-[90vh]';
 
   return (
@@ -173,7 +173,7 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
           {!embedded && onClose && (
             <button
               onClick={onClose}
-              className={`absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
+              className={`absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-lg hover:bg-gray-200 ${isDark ? 'hover:bg-slate-700' : ''}`}
               aria-label="Close"
             >
               <X size={24} />
@@ -183,63 +183,81 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
           <div className={contentClass}>
 
           {/* Input Section */}
-          <div className={`space-y-4 mb-6 p-5 ${panelBgClass} rounded-lg`}>
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>Child's Age</label>
-              <select
-                value={age}
-                onChange={(e) => setAge(parseInt(e.target.value))}
-                className={`w-full p-2 border rounded-md ${inputBgClass}`}
-              >
-                {Array.from({ length: 17 }, (_, i) => i + 1).map(y => (
-                  <option key={y} value={y}>{y} year{y > 1 ? 's' : ''}</option>
-                ))}
-              </select>
+          <div className={`grid grid-cols-2 gap-4 mb-6 p-4 md:p-6 ${panelBgClass} rounded-lg`}>
+            {/* Child's Age */}
+            <div className="col-span-1">
+              <label className={`block text-xs font-bold uppercase mb-2 ${labelClass}`}>Child's Age</label>
+              <div className="relative">
+                <select
+                  value={age}
+                  onChange={(e) => setAge(parseInt(e.target.value))}
+                  className={`appearance-none w-full p-2.5 pr-8 border rounded-lg text-sm font-medium ${inputBgClass} focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer`}
+                >
+                  {Array.from({ length: 17 }, (_, i) => i + 1).map(y => (
+                    <option key={y} value={y}>{y} year{y > 1 ? 's' : ''}</option>
+                  ))}
+                </select>
+                <ChevronDown className={`absolute right-2.5 top-3 w-4 h-4 pointer-events-none ${mutedTextClass}`} />
+              </div>
             </div>
 
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>Gender</label>
-              <select
-                value={gender}
-                onChange={(e) => setGender(parseInt(e.target.value))}
-                className={`w-full p-2 border rounded-md ${inputBgClass}`}
-              >
-                <option value="0">Male</option>
-                <option value="1">Female</option>
-              </select>
+            {/* Gender */}
+            <div className="col-span-1">
+              <label className={`block text-xs font-bold uppercase mb-2 ${labelClass}`}>Gender</label>
+              <div className="relative">
+                <select
+                  value={gender}
+                  onChange={(e) => setGender(parseInt(e.target.value))}
+                  className={`appearance-none w-full p-2.5 pr-8 border rounded-lg text-sm font-medium ${inputBgClass} focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer`}
+                >
+                  <option value="0">Male</option>
+                  <option value="1">Female</option>
+                </select>
+                <ChevronDown className={`absolute right-2.5 top-3 w-4 h-4 pointer-events-none ${mutedTextClass}`} />
+              </div>
             </div>
 
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>Ethnicity</label>
-              <select
-                value={ethnicity}
-                onChange={(e) => setEthnicity(parseInt(e.target.value))}
-                className={`w-full p-2 border rounded-md ${inputBgClass}`}
-              >
-                <option value="0">Caucasian</option>
-                <option value="1">Malay</option>
-                <option value="2">Indian</option>
-                <option value="3">Chinese</option>
-              </select>
+            {/* Ethnicity */}
+            <div className="col-span-1">
+              <label className={`block text-xs font-bold uppercase mb-2 ${labelClass}`}>Ethnicity</label>
+              <div className="relative">
+                <select
+                  value={ethnicity}
+                  onChange={(e) => setEthnicity(parseInt(e.target.value))}
+                  className={`appearance-none w-full p-2.5 pr-8 border rounded-lg text-sm font-medium ${inputBgClass} focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer`}
+                >
+                  <option value="0">Caucasian</option>
+                  <option value="1">Malay</option>
+                  <option value="2">Indian</option>
+                  <option value="3">Chinese</option>
+                </select>
+                <ChevronDown className={`absolute right-2.5 top-3 w-4 h-4 pointer-events-none ${mutedTextClass}`} />
+              </div>
             </div>
 
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>Number of Myopic Parents</label>
-              <select
-                value={family}
-                onChange={(e) => setFamily(parseInt(e.target.value))}
-                className={`w-full p-2 border rounded-md ${inputBgClass}`}
-              >
-                <option value="0">None</option>
-                <option value="1">One parent</option>
-                <option value="2">Both parents</option>
-              </select>
+            {/* Myopic Parents */}
+            <div className="col-span-1">
+              <label className={`block text-xs font-bold uppercase mb-2 whitespace-nowrap ${labelClass}`}>Myopic Parents</label>
+              <div className="relative">
+                <select
+                  value={family}
+                  onChange={(e) => setFamily(parseInt(e.target.value))}
+                  className={`appearance-none w-full p-2.5 pr-8 border rounded-lg text-sm font-medium ${inputBgClass} focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer`}
+                >
+                  <option value="0">None</option>
+                  <option value="1">One parent</option>
+                  <option value="2">Both parents</option>
+                </select>
+                <ChevronDown className={`absolute right-2.5 top-3 w-4 h-4 pointer-events-none ${mutedTextClass}`} />
+              </div>
             </div>
 
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>
-                Current Prescription: <span className="text-blue-400">{refractionDisplay}</span> D
-              </label>
+            {/* Prescription */}
+            <div className="col-span-2 mt-2">
+              <div className="flex justify-between items-center mb-2">
+                <label className={`text-xs font-bold uppercase tracking-wider ${labelClass}`}>Current Prescription</label>
+                <span className="text-blue-500 font-bold">{refractionDisplay} D</span>
+              </div>
               <input
                 type="range"
                 min="-6"
@@ -247,15 +265,17 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
                 value={refraction}
                 onChange={handleRefractionChange}
                 step="0.25"
-                className="w-full accent-blue-500"
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
               />
-              <p className={`text-sm italic mt-2 ${mutedTextClass}`}>Slide left for minus (myopia), right for plus. Optional – leave at default if unknown.</p>
+              <p className={`text-xs mt-2 ${mutedTextClass}`}>Slide left for minus (myopia), right for plus.</p>
             </div>
 
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>
-                Daily Outdoor Time: <span className="text-blue-400">{outdoorDisplay}</span> hours
-              </label>
+            {/* Outdoor Time */}
+            <div className="col-span-2">
+              <div className="flex justify-between items-center mb-2">
+                <label className={`text-xs font-bold uppercase tracking-wider ${labelClass}`}>Daily Outdoor Time</label>
+                <span className="text-blue-500 font-bold">{outdoorDisplay}h</span>
+              </div>
               <input
                 type="range"
                 min="0"
@@ -263,14 +283,16 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
                 value={outdoor}
                 onChange={handleOutdoorChange}
                 step="0.5"
-                className="w-full accent-blue-500"
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
               />
             </div>
 
-            <div>
-              <label className={`block font-semibold mb-2 ${labelClass}`}>
-                Daily Near Work (outside school): <span className="text-blue-400">{nearworkDisplay}</span> hours
-              </label>
+            {/* Near Work */}
+            <div className="col-span-2">
+              <div className="flex justify-between items-center mb-2">
+                <label className={`text-xs font-bold uppercase tracking-wider ${labelClass}`}>Daily Near Work</label>
+                <span className="text-blue-500 font-bold">{nearworkDisplay}h</span>
+              </div>
               <input
                 type="range"
                 min="0"
@@ -278,22 +300,45 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
                 value={nearwork}
                 onChange={handleNearworkChange}
                 step="0.5"
-                className="w-full accent-blue-500"
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
               />
             </div>
           </div>
 
           {/* Results Section */}
           {results && (
-            <div className={`mb-6 p-5 ${panelBgClass} rounded-lg`}>
-              <h2 className={`text-2xl font-bold ${textClass} mb-4`}>Your Child's Myopia Risk Assessment</h2>
-              <p className={`text-lg mb-4 ${bodyTextClass}`}>
-                Overall Risk Level: <span className={`font-bold px-3 py-1 rounded text-white inline-block ${getRiskBadgeClass(results.overallColor)}`}>
-                  {results.overallLevel}
-                </span> <span className={`ml-3 ${mutedTextClass}`}>(Score: {results.totalPoints.toFixed(1)} / 14)</span>
-              </p>
+            <div className={`mb-6 p-4 md:p-6 ${panelBgClass} rounded-lg`}>
+              <h2 className={`text-xl md:text-2xl font-bold ${textClass} mb-4`}>Prediction Results</h2>
+              
+              {/* Summary Dashboard */}
+              <div className="grid grid-cols-2 sm:flex sm:items-center gap-3 sm:gap-8 mb-6">
+                <div className={`flex flex-col justify-between text-center sm:text-left p-3 sm:p-0 rounded-lg ${isDark ? 'bg-slate-800/50 sm:bg-transparent' : 'bg-white/50 sm:bg-transparent'}`}>
+                  <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${mutedTextClass} mb-1 sm:mb-2`}>
+                    Overall Risk Level
+                  </p>
+                  <div className="flex-1 flex items-center justify-center sm:justify-start">
+                    <span className={`text-sm sm:text-2xl font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-white shadow-sm inline-block w-full sm:w-auto ${getRiskBadgeClass(results.overallColor)}`}>
+                      {results.overallLevel}
+                    </span>
+                  </div>
+                </div>
 
-              <div className="overflow-x-auto mb-4">
+                <div className="hidden sm:block w-px h-12 bg-gray-200 dark:bg-gray-600/50"></div>
+
+                <div className={`flex flex-col justify-between text-center sm:text-left p-3 sm:p-0 rounded-lg ${isDark ? 'bg-slate-800/50 sm:bg-transparent' : 'bg-white/50 sm:bg-transparent'}`}>
+                  <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${mutedTextClass} mb-1 sm:mb-2`}>
+                    Risk Score
+                  </p>
+                  <div className="flex-1 flex items-center justify-center sm:justify-start">
+                    <p className={`text-xl sm:text-3xl font-bold flex items-baseline gap-1 ${bodyTextClass}`}>
+                      {results.totalPoints.toFixed(1)} <span className={`text-xs sm:text-base font-normal ${mutedTextClass}`}>/ 14</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop View Table */}
+              <div className="hidden md:block overflow-x-auto mb-4">
                 <table className="w-full border-collapse">
                   <thead>
                     <tr>
@@ -316,6 +361,21 @@ export default function RiskFactorsAnalysis({ isDark = true, onClose, embedded =
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Mobile View Cards */}
+              <div className="md:hidden grid gap-3 mb-4">
+                {results.riskFactors.map((factor, idx) => (
+                  <div key={idx} className={`p-3 rounded-lg border ${borderClass} ${isDark ? 'bg-slate-700/30' : 'bg-white shadow-sm'}`}>
+                    <div className="flex justify-between items-center mb-2">
+                       <span className={`text-xs font-bold uppercase tracking-wide ${mutedTextClass}`}>{factor.category}</span>
+                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full text-white uppercase ${getRiskBadgeClass(factor.risk)}`}>
+                        {factor.risk.replace('-', ' ')}
+                      </span>
+                    </div>
+                    <p className={`text-sm ${bodyTextClass} leading-relaxed`}>{factor.exp}</p>
+                  </div>
+                ))}
               </div>
 
               <p className={`text-sm italic ${mutedTextClass}`}>Based on latest research guidelines. Consult an eye care professional for personalized advice.</p>
