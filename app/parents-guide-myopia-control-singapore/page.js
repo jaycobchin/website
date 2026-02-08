@@ -548,23 +548,23 @@ export default function MyopiaGuideArticle() {
                 />
               </div>
 
-              <div className={`mb-10 p-4 md:p-6 rounded-2xl border-l-4 border-cyan-500 ${
+              <div className={`mb-10 p-3 md:p-5 rounded-2xl border-l-4 border-cyan-500 ${
                 isDark
                   ? 'bg-cyan-500/10'
                   : 'bg-cyan-50'
               }`}>
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div>
-                    <p className={`text-base font-bold ${isDark ? 'text-cyan-300' : 'text-cyan-700'}`}>
+                  <div className="text-center md:text-left">
+                    <p className={`text-sm md:text-base font-bold ${isDark ? 'text-cyan-300' : 'text-cyan-700'}`}>
                       Want to estimate your child's myopia progression?
                     </p>
-                    <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <p className={`text-xs md:text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                       Use the interactive calculator to visualize projected changes over time.
                     </p>
                   </div>
                   <Link
                     href="/tools/myopia-progression-calculator"
-                    className={`inline-flex items-center justify-center px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    className={`inline-flex items-center justify-center w-full md:w-auto px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
                       isDark
                         ? 'bg-cyan-500 text-slate-900 hover:bg-cyan-400'
                         : 'bg-cyan-600 text-white hover:bg-cyan-700'
