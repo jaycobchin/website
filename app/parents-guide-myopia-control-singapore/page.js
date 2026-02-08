@@ -3,12 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, ArrowUp, Menu, X } from 'lucide-react';
 
 export default function MyopiaGuideArticle() {
   const [isDark, setIsDark] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showReferences, setShowReferences] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -24,6 +27,10 @@ export default function MyopiaGuideArticle() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setReadingProgress(progress);
     };
 
     const handleMouseMove = (e) => {
@@ -40,6 +47,8 @@ export default function MyopiaGuideArticle() {
   }, []);
 
   const toggleTheme = () => setIsDark(!isDark);
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const textClass = isDark ? 'text-white' : 'text-gray-900';
   const textMutedClass = isDark ? 'text-slate-400' : 'text-slate-600';
@@ -57,6 +66,14 @@ export default function MyopiaGuideArticle() {
           background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(96, 165, 250, 0.3), transparent 80%)`
         }}
       />
+
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[60]">
+        <div 
+          className={`h-full ${isDark ? 'bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400' : 'bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600'}`}
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -125,29 +142,86 @@ export default function MyopiaGuideArticle() {
               {isDark ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-600" />}
             </button>
           </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full ${
+                isDark 
+                  ? 'bg-white/10' 
+                  : 'bg-blue-100'
+              }`}
+            >
+              {isDark ? <Sun size={18} className="text-yellow-300" /> : <Moon size={18} className="text-blue-600" />}
+            </button>
+            <button
+              onClick={toggleMobileMenu}
+              className={`p-2 ${isDark ? 'text-white' : 'text-gray-900'}`}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transition-all duration-300 md:hidden flex flex-col items-center justify-center gap-8 ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        }`}>
+           <Link href="/#philosophy" onClick={toggleMobileMenu} className="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+            Approach
+          </Link>
+          <Link href="/#work-experience" onClick={toggleMobileMenu} className="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+            Work
+          </Link>
+          <Link href="/#work" onClick={toggleMobileMenu} className="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+            Tools
+          </Link>
+          <Link href="/#write" onClick={toggleMobileMenu} className="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+            Write
+          </Link>
+          <Link href="/#contact" onClick={toggleMobileMenu} className="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+            Contact
+          </Link>
         </div>
       </nav>
 
+      {/* Back to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 z-50 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 ${
+          isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        } ${
+          isDark 
+            ? 'bg-blue-600 hover:bg-blue-500 text-white' 
+            : 'bg-white hover:bg-gray-50 text-blue-600'
+        }`}
+        aria-label="Back to top"
+      >
+        <ArrowUp className="w-5 h-5 md:w-6 md:h-6" />
+      </button>
+
       {/* Article Content */}
-      <main className="relative z-10 pt-32 pb-24">
+      <main className="relative z-10 pt-28 md:pt-32 pb-16 md:pb-24">
         <article className="max-w-4xl mx-auto px-4 md:px-6">
           {/* Article Header */}
-          <header className={`mb-16 p-8 md:p-12 rounded-3xl ${
+          <header className={`mb-12 md:mb-16 p-6 md:p-12 rounded-3xl ${
             isDark 
               ? 'bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-transparent border border-blue-500/20' 
               : 'bg-gradient-to-br from-blue-100 via-purple-50 to-transparent border border-blue-200'
           }`}>
             <div className="mb-4">
-              <span className={`inline-block px-4 py-2 rounded-full text-sm font-bold tracking-wider uppercase ${
+              <span className={`inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold tracking-wider uppercase ${
                 isDark ? 'bg-blue-500/20 text-blue-300' : 'bg-blue-200 text-blue-700'
               }`}>
                 Parent Guide
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300">
               A Parent's Guide to Protecting Your Child's Vision in Singapore
             </h1>
-            <p className={`text-lg ${textMutedClass}`}>
+            <p className={`text-base md:text-lg ${textMutedClass}`}>
               Evidence-based strategies to slow myopia progression and protect your child's long-term eye health
             </p>
           </header>
@@ -155,16 +229,16 @@ export default function MyopiaGuideArticle() {
           {/* Article Body */}
           <div className="max-w-none">
             {/* Introduction */}
-            <section className={`mb-12 p-8 md:p-10 rounded-2xl ${
+            <section className={`mb-12 p-6 md:p-10 rounded-2xl ${
               isDark 
                 ? 'bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800/70' 
                 : 'bg-slate-50 border border-slate-200 hover:bg-slate-100'
             } transition-colors`}>
-              <p className="text-lg leading-relaxed mb-4 font-medium">
+              <p className="text-base md:text-lg leading-relaxed mb-4 font-medium">
                 As a parent in Singapore, you want the best for your child. You ensure they eat well, do their homework, and get enough sleep. But there's one aspect of their health that often goes unnoticed until it becomes a problem: their eyesight.
               </p>
               <p className="leading-relaxed mb-4">
-                Let me share a story from my optometry practice that might sound familiar. Recently, a mother brought her six-year-old daughter in for an eye check. The little girl was squinting at the vision chart, struggling to read even the largest letters. After a comprehensive examination, I discovered she was already -3.50D myopic in both eyes, quite severe for her age. The mother was understandably shocked. "How did this happen so fast?" she asked. "She was fine last year."
+                Let me share a story from my optometry practice that might sound familiar. Recently, a mother brought her six-year-old daughter in for an eye check. The little girl was squinting at the vision chart, struggling to read even the largest letters. After a comprehensive examination, I discovered she was already -1.00D myopic in both eyes, considered quite severe for her age. The mother was understandably shocked. "How did this happen so fast?" she asked. "She was fine last year."
               </p>
               <p className="leading-relaxed">
                 This isn't an isolated case. As an optometrist practicing here in Singapore, I see this almost daily. And here's something that might surprise you: Singapore has earned the unfortunate title of "Myopia Capital of the World." This isn't just about your child needing glasses, it's about protecting their long-term eye health and preventing serious complications later in life.
@@ -175,8 +249,8 @@ export default function MyopiaGuideArticle() {
             <section className="mb-12">
               <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
                 <Image
-                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/singapore-childhood-myopia-statistics-83-percent-young-adults.png"
-                  alt="Singapore childhood myopia statistics showing 83% of young adults affected"
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/A Parent's Guide to Protecting Your Child's Vision in Singapore.png"
+                  alt="A Parent's Guide to Protecting Your Child's Vision in Singapore"
                   width={1200}
                   height={675}
                   className="w-full h-auto"
@@ -194,8 +268,22 @@ export default function MyopiaGuideArticle() {
                 The numbers are concerning, and as a parent, you need to know what we're facing:
               </p>
               
+              <p className="leading-relaxed mb-6 text-base">
+                By age 12, approximately 65% of children in Singapore have developed myopia [1]. By young adulthood, this rises to 83% [2] and that's more than eight out of every ten young adults. Even more worrying is that high myopia (severe shortsightedness) is becoming increasingly common. Up to 20% of children now have high myopia, compared to around 10% a decade ago, and children are developing myopia at younger ages than before [3].
+              </p>
+              
+              <div className={`p-4 md:p-6 rounded-xl border-l-4 border-red-500 ${
+                isDark
+                  ? 'bg-red-500/10'
+                  : 'bg-red-50'
+              } mb-6`}>
+                <p className="leading-relaxed text-base">
+                  <span className={`font-bold ${isDark ? 'text-red-300' : 'text-red-600'}`}>Why This Matters:</span> When myopia starts earlier, there's more time for it to progress, potentially leading to much stronger prescriptions and higher risks of serious eye complications later in life.
+                </p>
+              </div>
+              
               <div className="grid md:grid-cols-3 gap-4 mb-8">
-                <div className={`p-6 rounded-xl border-t-4 border-blue-500 ${
+                <div className={`p-4 md:p-6 rounded-xl border-t-4 border-blue-500 ${
                   isDark 
                     ? 'bg-slate-800/40' 
                     : 'bg-slate-100'
@@ -203,7 +291,7 @@ export default function MyopiaGuideArticle() {
                   <div className={`text-3xl font-bold mb-2 ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>65%</div>
                   <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>of children by age 12 have myopia</p>
                 </div>
-                <div className={`p-6 rounded-xl border-t-4 border-purple-500 ${
+                <div className={`p-4 md:p-6 rounded-xl border-t-4 border-purple-500 ${
                   isDark 
                     ? 'bg-slate-800/40' 
                     : 'bg-slate-100'
@@ -211,7 +299,7 @@ export default function MyopiaGuideArticle() {
                   <div className={`text-3xl font-bold mb-2 ${isDark ? 'text-purple-300' : 'text-purple-600'}`}>83%</div>
                   <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>by young adulthood</p>
                 </div>
-                <div className={`p-6 rounded-xl border-t-4 border-amber-500 ${
+                <div className={`p-4 md:p-6 rounded-xl border-t-4 border-amber-500 ${
                   isDark 
                     ? 'bg-slate-800/40' 
                     : 'bg-slate-100'
@@ -219,20 +307,6 @@ export default function MyopiaGuideArticle() {
                   <div className={`text-3xl font-bold mb-2 ${isDark ? 'text-amber-300' : 'text-amber-600'}`}>20%</div>
                   <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>now have high myopia</p>
                 </div>
-              </div>
-              
-              <p className="leading-relaxed mb-4 text-base">
-                By age 12, approximately 65% of children in Singapore have developed myopia [1]. By young adulthood, this rises to 83% [2] and that's more than eight out of every ten young adults. Even more worrying is that high myopia (severe shortsightedness) is becoming increasingly common. Up to 20% of children now have high myopia, compared to around 10% a decade ago, and children are developing myopia at younger ages than before [3].
-              </p>
-              
-              <div className={`p-6 rounded-xl border-l-4 border-red-500 ${
-                isDark 
-                  ? 'bg-red-500/10' 
-                  : 'bg-red-50'
-              }`}>
-                <p className="leading-relaxed text-base">
-                  <span className={`font-bold ${isDark ? 'text-red-300' : 'text-red-600'}`}>Why This Matters:</span> When myopia starts earlier, there's more time for it to progress, potentially leading to much stronger prescriptions and higher risks of serious eye complications later in life.
-                </p>
               </div>
             </section>
 
@@ -262,7 +336,7 @@ export default function MyopiaGuideArticle() {
               </p>
               
               <div className="space-y-4 mb-6">
-                <div className={`p-6 rounded-2xl border-l-4 border-red-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-red-500 ${
                   isDark 
                     ? 'bg-gradient-to-r from-red-500/10 to-transparent' 
                     : 'bg-gradient-to-r from-red-100 to-transparent'
@@ -273,7 +347,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-orange-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-orange-500 ${
                   isDark 
                     ? 'bg-gradient-to-r from-orange-500/10 to-transparent' 
                     : 'bg-gradient-to-r from-orange-100 to-transparent'
@@ -284,19 +358,30 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-yellow-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-yellow-500 ${
                   isDark 
                     ? 'bg-gradient-to-r from-yellow-500/10 to-transparent' 
                     : 'bg-gradient-to-r from-yellow-100 to-transparent'
                 }`}>
-                  <h4 className={`font-bold text-lg mb-3 ${isDark ? 'text-yellow-300' : 'text-yellow-700'}`}>👁️ Glaucoma & Cataracts</h4>
+                  <h4 className={`font-bold text-lg mb-3 ${isDark ? 'text-yellow-300' : 'text-yellow-700'}`}>👁️ Glaucoma</h4>
                   <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                    High myopia increases the risk of glaucoma (progressive optic nerve disease) and early cataract development, both of which can lead to irreversible vision loss.
+                    High myopia increases the risk of this progressive optic nerve disease that can lead to irreversible blindness.
+                  </p>
+                </div>
+
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-amber-500 ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-amber-500/10 to-transparent' 
+                    : 'bg-gradient-to-r from-amber-100 to-transparent'
+                }`}>
+                  <h4 className={`font-bold text-lg mb-3 ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>☁️ Early Cataracts</h4>
+                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Myopic individuals tend to develop cataracts earlier than those without myopia.
                   </p>
                 </div>
               </div>
               
-              <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+              <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-green-500 ${
                 isDark 
                   ? 'bg-green-500/10' 
                   : 'bg-green-50'
@@ -320,7 +405,7 @@ export default function MyopiaGuideArticle() {
               </p>
               
               <div className="space-y-5 mb-8">
-                <div className={`p-6 rounded-2xl border-l-4 border-blue-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-blue-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -331,7 +416,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-green-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -342,7 +427,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-purple-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-purple-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -393,7 +478,7 @@ export default function MyopiaGuideArticle() {
               </h3>
               
               <div className="space-y-5 mb-8">
-                <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-green-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -407,7 +492,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-amber-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-amber-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -421,7 +506,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-blue-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-blue-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -435,7 +520,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-purple-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-purple-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -455,12 +540,39 @@ export default function MyopiaGuideArticle() {
             <section className="mb-12">
               <div className={`mb-8 rounded-2xl overflow-hidden ${isDark ? 'bg-slate-800/40' : 'bg-slate-100'}`}>
                 <Image
-                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/myopia-control-effectiveness-chart-singapore-children.jpg"
+                  src="/Singapore Parents' Guide to Myopia Control, Evidence-Based Strategies to Protect Your Child's Vision/myopia-control-effectiveness-chart-singapore-children-1.JPG"
                   alt="Myopia control effectiveness chart for Singapore children"
                   width={1200}
                   height={675}
                   className="w-full h-auto"
                 />
+              </div>
+
+              <div className={`mb-10 p-4 md:p-6 rounded-2xl border-l-4 border-cyan-500 ${
+                isDark
+                  ? 'bg-cyan-500/10'
+                  : 'bg-cyan-50'
+              }`}>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div>
+                    <p className={`text-base font-bold ${isDark ? 'text-cyan-300' : 'text-cyan-700'}`}>
+                      Want to estimate your child's myopia progression?
+                    </p>
+                    <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                      Use the interactive calculator to visualize projected changes over time.
+                    </p>
+                  </div>
+                  <Link
+                    href="/tools/myopia-progression-calculator"
+                    className={`inline-flex items-center justify-center px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 ${
+                      isDark
+                        ? 'bg-cyan-500 text-slate-900 hover:bg-cyan-400'
+                        : 'bg-cyan-600 text-white hover:bg-cyan-700'
+                    }`}
+                  >
+                    Try the Myopia Progression Calculator
+                  </Link>
+                </div>
               </div>
               
               <h3 className={`text-2xl md:text-3xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
@@ -474,28 +586,28 @@ export default function MyopiaGuideArticle() {
               </p>
 
               {/* Spectacle Lenses Card */}
-              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-blue-500 ${
+              <div className={`mb-8 p-6 md:p-8 rounded-2xl border-l-4 border-blue-500 ${
                 isDark 
                   ? 'bg-gradient-to-br from-blue-500/10 to-slate-800/50' 
                   : 'bg-gradient-to-br from-blue-50 to-slate-50'
               }`}>
                 <div className="flex items-start gap-4 mb-4">
-                  <span className={`text-3xl font-bold ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>👓</span>
-                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Myopia Control Spectacle Lenses</h4>
+                  <span className={`text-2xl md:text-3xl font-bold ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>👓</span>
+                  <h4 className={`text-lg md:text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Myopia Control Spectacle Lenses</h4>
                 </div>
                 
                 <p className="leading-relaxed mb-4 text-sm">
                   If you're hesitant about eye drops or overnight contact lenses, specialized myopia control spectacle lenses offer an excellent non-invasive alternative that your child can wear just like regular glasses.
                 </p>
                 <p className="leading-relaxed mb-4 text-sm">
-                  <span className="font-bold">How They Work:</span> These innovative lenses use special optical designs that provide clear central vision while creating specific peripheral defocus patterns on the retina. This peripheral defocus signals the eye to slow its elongation. The two main technologies available are DIMS (Defocus Incorporated Multiple Segments) lenses and HALT (Highly Aspherical Lenslet Target) lenses, though several other brands are now available globally.
+                  <span className="font-bold">How They Work</span>: These innovative lenses use special optical designs to provide clear central vision while creating specific peripheral defocus patterns on the retina. This peripheral defocus signals the eye to slow its elongation. The two main technologies available are HALT (Highly Aspherical Lenslet Target) lenses [8] and DIMS (Defocus Incorporated Multiple Segments) lenses [9], though several other brands are now available globally.
                 </p>
                 
                 <div className={`p-4 rounded-lg mb-4 border-l-2 border-green-500 ${
                   isDark ? 'bg-green-500/10' : 'bg-green-50'
                 }`}>
                   <p className="text-sm font-medium">
-                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> These lenses can reduce myopia progression by approximately 30-60% compared to single-vision spectacles [8][9].
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> Research shows these lenses can reduce myopia progression by approximately 60% compared to single-vision spectacles [9,10]. A landmark 2-year study on DIMS lenses found they slowed myopia progression by 52% and axial elongation by 62% compared to regular glasses [9]. More recent systematic reviews confirm that various myopia control spectacle lens designs consistently demonstrate efficacy in slowing both refractive progression and axial elongation [11].
                   </p>
                 </div>
                 
@@ -521,14 +633,14 @@ export default function MyopiaGuideArticle() {
               </div>
 
               {/* Ortho-K Card */}
-              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-purple-500 ${
+              <div className={`mb-8 p-6 md:p-8 rounded-2xl border-l-4 border-purple-500 ${
                 isDark 
                   ? 'bg-gradient-to-br from-purple-500/10 to-slate-800/50' 
                   : 'bg-gradient-to-br from-purple-50 to-slate-50'
               }`}>
                 <div className="flex items-start gap-4 mb-4">
-                  <span className={`text-3xl font-bold ${isDark ? 'text-purple-300' : 'text-purple-600'}`}>🌙</span>
-                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Orthokeratology (Ortho-K)</h4>
+                  <span className={`text-2xl md:text-3xl font-bold ${isDark ? 'text-purple-300' : 'text-purple-600'}`}>🌙</span>
+                  <h4 className={`text-lg md:text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Orthokeratology (Ortho-K)</h4>
                 </div>
                 
                 <p className="leading-relaxed mb-4 text-sm">
@@ -539,7 +651,7 @@ export default function MyopiaGuideArticle() {
                   isDark ? 'bg-green-500/10' : 'bg-green-50'
                 }`}>
                   <p className="text-sm font-medium">
-                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> Ortho-K can reduce myopia progression by approximately 30-60% compared to wearing regular glasses [11].
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> Ortho-K can reduce myopia progression by approximately 40-60% compared to wearing regular glasses [12].
                   </p>
                 </div>
                 
@@ -573,17 +685,31 @@ export default function MyopiaGuideArticle() {
                     While generally safe, meticulous hygiene practices are essential to prevent infections. Regular follow-up appointments with your optometrist are necessary to monitor corneal health.
                   </p>
                 </div>
+                
+                <div className={`mt-6 p-4 rounded-lg border-l-2 border-blue-500 ${
+                  isDark ? 'bg-blue-500/10' : 'bg-blue-50'
+                }`}>
+                  <p className="text-sm font-bold mb-2">
+                    <span className={isDark ? 'text-blue-300' : 'text-blue-700'}>Advanced OrthoK Designs:</span>
+                  </p>
+                  <p className="text-sm mb-2">
+                    Recent research has focused on optimizing orthokeratology lens designs to enhance myopia control effectiveness. One notable innovation is the Double Reservoir Lens (DRL) design, which features a dual tear reservoir system that improves lens centration and accelerates corneal reshaping.
+                  </p>
+                  <p className="text-sm">
+                    Studies on DRL orthokeratology lenses in French children have demonstrated impressive results, showing an 86% reduction in axial elongation after 6 months and a 70% reduction after 12 months compared to single-vision spectacles [15]. A larger two-year study involving 360 children confirmed these findings, with DRL lenses achieving a 78.5% myopia progression control rate in the first year and 80% in the second year [16].
+                  </p>
+                </div>
               </div>
 
               {/* Soft Contact Lenses Card */}
-              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-cyan-500 ${
+              <div className={`mb-8 p-6 md:p-8 rounded-2xl border-l-4 border-cyan-500 ${
                 isDark 
                   ? 'bg-gradient-to-br from-cyan-500/10 to-slate-800/50' 
                   : 'bg-gradient-to-br from-cyan-50 to-slate-50'
               }`}>
                 <div className="flex items-start gap-4 mb-4">
-                  <span className={`text-3xl font-bold ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>👁️</span>
-                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Myopia Control Soft Contact Lenses</h4>
+                  <span className={`text-2xl md:text-3xl font-bold ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>👁️</span>
+                  <h4 className={`text-lg md:text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Myopia Control Soft Contact Lenses</h4>
                 </div>
                 
                 <p className="leading-relaxed mb-4 text-sm">
@@ -597,7 +723,7 @@ export default function MyopiaGuideArticle() {
                   isDark ? 'bg-green-500/10' : 'bg-green-50'
                 }`}>
                   <p className="text-sm font-medium">
-                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> 30-60% reduction in myopia progression. MiSight lenses showed 59% reduction over 3 years [14][15][16].
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> 30-60% reduction in myopia progression. MiSight lenses showed 59% reduction over 3 years [17-19].
                   </p>
                 </div>
                 
@@ -619,36 +745,54 @@ export default function MyopiaGuideArticle() {
               </div>
 
               {/* Atropine Card */}
-              <div className={`mb-8 p-8 rounded-2xl border-l-4 border-amber-500 ${
+              <div className={`mb-8 p-6 md:p-8 rounded-2xl border-l-4 border-amber-500 ${
                 isDark 
                   ? 'bg-gradient-to-br from-amber-500/10 to-slate-800/50' 
                   : 'bg-gradient-to-br from-amber-50 to-slate-50'
               }`}>
                 <div className="flex items-start gap-4 mb-4">
-                  <span className={`text-3xl font-bold ${isDark ? 'text-amber-300' : 'text-amber-600'}`}>💧</span>
-                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Low-Dose Atropine Eye Drops</h4>
+                  <span className={`text-2xl md:text-3xl font-bold ${isDark ? 'text-amber-300' : 'text-amber-600'}`}>💧</span>
+                  <h4 className={`text-lg md:text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Low-Dose Atropine Eye Drops</h4>
                 </div>
                 
                 <p className="leading-relaxed mb-4 text-sm">
-                  Singapore has actually led the world in atropine myopia research through our landmark ATOM (Atropine for the Treatment of Myopia) studies. Low-dose atropine eye drops (0.01% to 0.05% concentration) can effectively slow myopia progression.
+                  Singapore has actually led the world in atropine myopia research through our landmark ATOM (Atropine for the Treatment of Myopia) studies. Low-dose atropine eye drops (0.01% to 0.05% concentration) can effectively slow myopia progression, reducing progression by 43-67% over two years [20,21].
+                </p>
+                
+                <p className="leading-relaxed mb-4 text-sm">
+                  Long-term safety data from 10-20 year follow-up studies show atropine is safe with no long-term adverse effects [22]. These aren't marginal improvements, they're clinically significant reductions that can help prevent high myopia and its complications.
                 </p>
                 
                 <div className={`p-4 rounded-lg mb-4 border-l-2 border-green-500 ${
                   isDark ? 'bg-green-500/10' : 'bg-green-50'
                 }`}>
                   <p className="text-sm font-medium">
-                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> 43-67% reduction in myopia progression over two years [17][18]. Long-term safety confirmed (10-20 year studies) [19].
+                    <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Effectiveness:</span> 43-67% reduction in myopia progression over two years [20,21]. Long-term safety confirmed (10-20 year studies) [22].
                   </p>
                 </div>
                 
-                <div className={`p-4 rounded-lg border-l-2 border-amber-500 ${
+                <div className={`p-4 rounded-lg mb-4 border-l-2 border-amber-500 ${
                   isDark ? 'bg-amber-500/10' : 'bg-amber-50'
                 }`}>
+                  <p className={`text-sm font-bold mb-2 ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>
+                    What Parents Should Know About Side Effects:
+                  </p>
+                  <p className="text-sm mb-2">
+                    While low-dose atropine is generally well-tolerated, it's important to understand potential side effects. Common short-term effects may include light sensitivity and difficulty focusing on near objects, though these are typically mild at low concentrations.
+                  </p>
+                  <p className="text-sm mb-2">
+                    More importantly, parents should be aware of the rebound effect: when treatment is stopped, some children may experience a temporary acceleration in myopia progression. This is why it's crucial to work closely with your eye care professional to develop a long-term management plan, including strategies for eventually tapering off treatment rather than stopping abruptly.
+                  </p>
+                </div>
+                
+                <div className={`p-4 rounded-lg border-l-2 border-orange-500 ${
+                  isDark ? 'bg-orange-500/10' : 'bg-orange-50'
+                }`}>
                   <p className="text-sm font-medium mb-2">
-                    <span className={isDark ? 'text-amber-300' : 'text-amber-700'}>⚠️ Important:</span>
+                    <span className={isDark ? 'text-orange-300' : 'text-orange-700'}>📋 Important:</span>
                   </p>
                   <p className="text-sm">
-                    Possible mild light sensitivity and near focus difficulty. Watch for rebound effect when stopping treatment. Requires prescription from ophthalmologist.
+                    Currently, atropine requires a prescription from an ophthalmologist. Your optometrist can refer you if this treatment is appropriate for your child.
                   </p>
                 </div>
               </div>
@@ -667,7 +811,7 @@ export default function MyopiaGuideArticle() {
               </p>
               
               <div className="space-y-4 mb-8">
-                <div className={`p-6 rounded-2xl border-l-4 border-teal-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-teal-500 ${
                   isDark 
                     ? 'bg-slate-800/40' 
                     : 'bg-slate-50'
@@ -678,19 +822,19 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-cyan-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-cyan-500 ${
                   isDark 
                     ? 'bg-slate-800/40' 
                     : 'bg-slate-50'
                 }`}>
                   <h3 className={`font-bold text-lg mb-3 ${isDark ? 'text-cyan-300' : 'text-cyan-700'}`}>👁️ Vision Screening</h3>
                   <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                    Systematic screening in primary schools conducted annually by the Health Promotion Board for children from Kindergarten 1 to Primary 4 [20].
+                    Systematic screening in primary schools conducted annually by the Health Promotion Board for children from Kindergarten 1 to Primary 4 [23].
                   </p>
                 </div>
               </div>
               
-              <div className={`p-6 rounded-2xl border-l-4 border-green-500 mb-6 ${
+              <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-green-500 mb-6 ${
                 isDark 
                   ? 'bg-green-500/10' 
                   : 'bg-green-50'
@@ -699,7 +843,7 @@ export default function MyopiaGuideArticle() {
                   <span className={isDark ? 'text-green-300' : 'text-green-700'}>✓ Encouraging Results:</span>
                 </p>
                 <p className={`leading-relaxed text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                  Myopia prevalence among Primary 1 students decreased to <strong>26%</strong> in 2023, down from around 30% in the mid-2000s [20]. Overall primary school myopia rates fell from 37.7% to 29.3% between 2004 and 2015 [1].
+                  Myopia prevalence among Primary 1 students decreased to <strong>26%</strong> in 2023, down from around 30% in the mid-2000s [22]. Overall primary school myopia rates fell from 37.7% to 29.3% between 2004 and 2015 [1].
                 </p>
               </div>
               
@@ -731,7 +875,7 @@ export default function MyopiaGuideArticle() {
               </p>
               
               <div className="space-y-4 mb-8">
-                <div className={`p-6 rounded-2xl border-l-4 border-blue-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-blue-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -745,7 +889,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-red-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-red-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -759,7 +903,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-green-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-green-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -773,7 +917,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border-l-4 border-purple-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl border-l-4 border-purple-500 ${
                   isDark 
                     ? 'bg-slate-800/40 hover:bg-slate-800/60' 
                     : 'bg-slate-50 hover:bg-slate-100'
@@ -797,7 +941,7 @@ export default function MyopiaGuideArticle() {
                 </span>
               </h2>
               
-              <div className={`p-8 rounded-2xl border-l-4 border-emerald-500 ${
+              <div className={`p-5 md:p-8 rounded-2xl border-l-4 border-emerald-500 ${
                 isDark 
                   ? 'bg-gradient-to-br from-emerald-500/10 to-slate-800/50' 
                   : 'bg-gradient-to-br from-emerald-50 to-slate-50'
@@ -806,7 +950,7 @@ export default function MyopiaGuideArticle() {
                   Remember that six-year-old girl I mentioned at the beginning? We started her on myopia control spectacle lenses immediately and worked with her parents to increase outdoor time and implement better visual habits.
                 </p>
                 
-                <div className={`p-6 rounded-2xl mb-6 border-l-4 border-green-500 ${
+                <div className={`p-4 md:p-6 rounded-2xl mb-6 border-l-4 border-green-500 ${
                   isDark 
                     ? 'bg-green-500/10' 
                     : 'bg-green-100/50'
@@ -815,13 +959,9 @@ export default function MyopiaGuideArticle() {
                     <span className={isDark ? 'text-green-300' : 'text-green-700'}>📊 The Result:</span>
                   </p>
                   <p className={`leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                    One year later, her myopia had progressed only <strong>-0.25D</strong> instead of the <strong>-0.75D to -1.00D</strong> we would have expected without intervention. That's a <strong>70-75% reduction in progression</strong> — a remarkable outcome.
+                    One year later, her myopia had progressed only -0.25D instead of the -0.75D to -1.00D we would have expected without intervention. That might seem like a small difference, but over the course of her childhood, it could mean the difference between moderate myopia and sight-threatening high myopia.
                   </p>
                 </div>
-                
-                <p className="leading-relaxed text-base mb-6">
-                  That might seem like a small difference, but over the course of her childhood, it could mean the difference between moderate myopia and sight-threatening high myopia. This child is now on track for much better long-term eye health.
-                </p>
                 
                 <div className={`p-4 rounded-xl border-l-2 border-emerald-500 ${
                   isDark ? 'bg-emerald-500/5' : 'bg-emerald-50/50'
@@ -842,7 +982,7 @@ export default function MyopiaGuideArticle() {
               </h2>
               
               <div className={`space-y-4 mb-8`}>
-                <div className={`p-6 rounded-2xl ${
+                <div className={`p-4 md:p-6 rounded-2xl ${
                   isDark 
                     ? 'bg-slate-800/50 border border-slate-700/50' 
                     : 'bg-slate-100 border border-slate-200'
@@ -852,7 +992,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl ${
+                <div className={`p-4 md:p-6 rounded-2xl ${
                   isDark 
                     ? 'bg-slate-800/50 border border-slate-700/50' 
                     : 'bg-slate-100 border border-slate-200'
@@ -862,7 +1002,7 @@ export default function MyopiaGuideArticle() {
                   </p>
                 </div>
                 
-                <div className={`p-8 rounded-2xl border-l-4 border-purple-500 ${
+                <div className={`p-5 md:p-8 rounded-2xl border-l-4 border-purple-500 ${
                   isDark 
                     ? 'bg-gradient-to-br from-purple-500/10 to-transparent' 
                     : 'bg-gradient-to-br from-purple-100 to-transparent'
@@ -876,7 +1016,7 @@ export default function MyopiaGuideArticle() {
                 </div>
               </div>
               
-              <div className={`p-8 rounded-2xl border-l-4 border-blue-500 ${
+              <div className={`p-5 md:p-8 rounded-2xl border-l-4 border-blue-500 ${
                 isDark 
                   ? 'bg-gradient-to-br from-blue-500/10 to-transparent' 
                   : 'bg-gradient-to-br from-blue-100 to-transparent'
@@ -892,36 +1032,45 @@ export default function MyopiaGuideArticle() {
 
             {/* References */}
             <section className="mb-12 pt-8 border-t border-slate-700/50">
-              <h2 className={`text-3xl md:text-4xl font-bold mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-cyan-400 to-blue-400' : 'from-cyan-600 to-blue-600'}`}>
-                  References
-                </span>
-              </h2>
-              
-              <div className={`p-6 rounded-2xl mb-4 ${
-                isDark 
-                  ? 'bg-slate-800/40' 
-                  : 'bg-slate-50'
-              }`}>
-                <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'} font-medium mb-4`}>
-                  Evidence-based sources supporting the information in this guide:
-                </p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <h2 className={`text-3xl md:text-4xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isDark ? 'from-cyan-400 to-blue-400' : 'from-cyan-600 to-blue-600'}`}>
+                    References
+                  </span>
+                </h2>
+                <button
+                  onClick={() => setShowReferences(!showReferences)}
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium w-full sm:w-auto text-center transition-all duration-200 ${
+                    isDark 
+                      ? 'bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30 hover:scale-105' 
+                      : 'bg-cyan-200 text-cyan-700 hover:bg-cyan-300 hover:scale-105'
+                  } active:scale-95`}
+                >
+                  {showReferences ? 'Hide References' : 'Show References'}
+                </button>
               </div>
               
-              <ol className={`list-decimal pl-6 space-y-4 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+              {showReferences && (
+                <div className={`overflow-hidden transition-all duration-300 ${
+                  showReferences ? 'opacity-100' : 'opacity-0'
+                }`}>
+                  <ol className={`list-decimal pl-6 space-y-4 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                 <li>Karuppiah, V., Wong, L., Tay, V., Ge, X., & Kang, L. L. (2021). School-based programme to address childhood myopia in Singapore. <em>Singapore Medical Journal, 62</em>(2), 63–68. <a href="https://doi.org/10.11622/smedj.2019144" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.11622/smedj.2019144</a></li>
                 <li>Ministry of Health Singapore. (2019). Speech by Dr Lam Pin Min, Senior Minister of State for Health, at the opening of the Singapore National Eye Centre's Myopia Centre. <a href="https://www.moh.gov.sg/newsroom/speech-by-dr-lam-pin-min-senior-minister-of-state-for-health-at-the-opening-of-the-singapore-national-eye-centre-s-myopia-centre-16-august-2019/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://www.moh.gov.sg/newsroom/speech-by-dr-lam-pin-min-senior-minister-of-state-for-health-at-the-opening-of-the-singapore-national-eye-centre-s-myopia-centre-16-august-2019/</a></li>
                 <li>National University Hospital. (2024). Understanding and preventing high myopia in children. <a href="https://www.nuh.com.sg/health-resources/newsletter/envisioninghealth---changing-lives-one-idea-at-a-time/understanding-and-preventing-high-myopia-in-children" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://www.nuh.com.sg/health-resources/newsletter/envisioninghealth---changing-lives-one-idea-at-a-time/understanding-and-preventing-high-myopia-in-children</a></li>
                 <li>Cheong, K.-X., Jiang, Y., Htoon, H. M., Pan, W., Foo, L.-L., Hu, Z., ... & Saw, S.-M. (2025). Characteristics of myopic traction maculopathy in the Aier-SERI High Myopia Adult Cohort Study. <em>Ophthalmology Science, 5</em>(6), Article 100894. <a href="https://doi.org/10.1016/j.xops.2025.100894" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1016/j.xops.2025.100894</a></li>
                 <li>McCrann, S., Loughman, J., Butler, J. S., Paudel, N., & Flitcroft, D. I. (2021). Smartphone use as a possible risk factor for myopia. <em>Clinical and Experimental Optometry, 104</em>(1), 35–41. <a href="https://doi.org/10.1111/cxo.13092" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1111/cxo.13092</a></li>
-                <li>Xu, L., Ma, Y., Yuan, J., Zhang, Y., Wang, H., Zhang, G., ... & Jonas, J. B. (2024). Global prevalence, trend and projection of myopia in children and adolescents from 1990 to 2050. <em>British Journal of Ophthalmology, 109</em>(3), 362–371. <a href="https://doi.org/10.1136/bjo-2024-325427" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1136/bjo-2024-325427</a></li>
-                <li>Sun, Y., Zhao, L., Li, X., & Wang, Y. (2024). Efficacy of outdoor interventions for myopia in children and adolescents: A systematic review and meta-analysis of randomized controlled trials. <em>Frontiers in Public Health, 12</em>, Article 1452567. <a href="https://doi.org/10.3389/fpubh.2024.1452567" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.3389/fpubh.2024.1452567</a></li>
+                <li>Liang, J., Pu, Y., Chen, J., Liu, M., Ouyang, B., Jin, Z., Ge, W., Wu, Z., Yang, X., Qin, C., Wang, C., Huang, S., Jiang, N., Hu, L., Zhang, Y., Gui, Z., Pu, X., Huang, S., & Chen, Y. (2025). Global prevalence, trend and projection of myopia in children and adolescents from 1990 to 2050: A comprehensive systematic review and meta-analysis. <em>British Journal of Ophthalmology, 109</em>(3), 362–371. <a href="https://doi.org/10.1136/bjo-2024-325427" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1136/bjo-2024-325427</a></li>
+                <li>Mei, Z., Zhang, Y., Jiang, W., Lam, C., Luo, S., Cai, C., & Luo, S. (2024). Efficacy of outdoor interventions for myopia in children and adolescents: A systematic review and meta-analysis of randomized controlled trials. <em>Frontiers in Public Health, 12</em>, Article 1452567. <a href="https://doi.org/10.3389/fpubh.2024.1452567" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.3389/fpubh.2024.1452567</a></li>
+                <li>Wang, L., Wong, Y. L., Drobe, B., & Wang, X. (2025). Effectiveness of spectacle lenses with highly aspherical lenslets in slowing axial elongation among non-myopic children. <em>Clinical and Experimental Optometry</em>. Advance online publication. <a href="https://doi.org/10.1080/08164622.2025.2502527" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1080/08164622.2025.2502527</a></li>
                 <li>Lam, C. S. Y., Tang, W. C., Tse, D. Y. Y., Lee, R. P. K., Chun, R. K. M., Hasegawa, K., ... & To, C. H. (2020). Defocus Incorporated Multiple Segments (DIMS) spectacle lenses slow myopia progression: A 2-year randomised clinical trial. <em>British Journal of Ophthalmology, 104</em>(3), 363–368. <a href="https://doi.org/10.1136/bjophthalmol-2018-313739" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1136/bjophthalmol-2018-313739</a></li>
                 <li>Shah, R. L. (2024). High myopia: Reviews of myopia control strategies and myopia complications. <em>Ophthalmic and Physiological Optics, 44</em>(5), 1011–1025. <a href="https://doi.org/10.1111/opo.13366" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1111/opo.13366</a></li>
-                <li>Lam, C. S. Y., & Zhang, H. Y. (2023). Myopia control spectacle lenses: A narrative review. <em>Japanese Journal of Ophthalmology, 67</em>(2), 337–352. <a href="https://doi.org/10.1007/s10384-023-00985-4" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1007/s10384-023-00985-4</a></li>
+                <li>Perea-Romero, J., Signes-Soler, I., Badenes-Ribera, L., & Tauste, A. (2025). Efficacy of spectacle lenses specifically designed for myopia control: Systematic review and meta-analysis. <em>Graefe's Archive for Clinical and Experimental Ophthalmology, 263</em>(4), 909–924. <a href="https://doi.org/10.1007/s00417-024-06706-4" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1007/s00417-024-06706-4</a></li>
                 <li>Cho, P., & Cheung, S. W. (2012). Retardation of myopia in Orthokeratology (ROMIO) study: A 2-year randomized clinical trial. <em>Investigative Ophthalmology & Visual Science, 53</em>(11), 7077–7085. <a href="https://doi.org/10.1167/iovs.12-10565" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1167/iovs.12-10565</a></li>
                 <li>Bullimore, M. A., Sinnott, L. T., & Jones-Jordan, L. A. (2013). The risk of microbial keratitis with overnight corneal reshaping lenses. <em>Optometry and Vision Science, 90</em>(9), 937–944. <a href="https://doi.org/10.1097/OPX.0b013e31829cac92" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1097/OPX.0b013e31829cac92</a></li>
-                <li>Singapore Optometric Association. (2024). Orthokeratology fitting and management guidelines (Ver. 1.0). <a href="https://singaporeoptometricassociation.com/wp-content/uploads/2024/05/SOA-Orthokeratology-Fitting-and-Management-Guideline2024.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://singaporeoptometricassociation.com/wp-content/uploads/2024/05/SOA-Orthokeratology-Fitting-and-Management-Guideline2024.pdf</a></li>
+                <li>Singapore Optometric Association. (2024). Orthokeratology fitting and management guidelines (Ver. 1.0). <a href="https://singaporeoptometricassociation.com/wp-content/uploads/2024/05/SOA-Orthokeratology-Fitting-and-Management-Guideline-2024.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://singaporeoptometricassociation.com/wp-content/uploads/2024/05/SOA-Orthokeratology-Fitting-and-Management-Guideline-2024.pdf</a></li>
+                <li>Queirós, A., Rolland le Moal, P., Angioi-Duprez, K., Berrod, J.-P., Conart, J.-B., Chaume, A., & Pauné, J. (2024). Efficacy of the DRL orthokeratology lens in slowing axial elongation in French children. <em>Frontiers in Medicine, 10</em>, Article 1323851. <a href="https://doi.org/10.3389/fmed.2023.1323851" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.3389/fmed.2023.1323851</a></li>
+                <li>Queirós, A., Beaujeux, P., Bloise, L., Chaume, A., Colliot, J. P., Proust, D. P., Rossi, P., Tritsch, B., Crinon, D. B., & Pauné, J. (2023). Assessment of the clinical effectiveness of DRL orthokeratology lenses vs. single-vision spectacles in controlling the progression of myopia in children and teenagers: 2 year retrospective study. <em>Children, 10</em>(2), Article 402. <a href="https://doi.org/10.3390/children10020402" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.3390/children10020402</a></li>
                 <li>Chamberlain, P., Peixoto-de-Matos, S. C., Logan, N. S., Ngo, C., Jones, D., & Young, G. (2019). A 3-year randomized clinical trial of MiSight lenses for myopia control. <em>Optometry and Vision Science, 96</em>(8), 556–567. <a href="https://doi.org/10.1097/OPX.0000000000001410" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1097/OPX.0000000000001410</a></li>
                 <li>Chamberlain, P., Bradley, A., Arumugam, B., Hammond, D., McNally, J., Logan, N. S., Jones, D., Ngo, C., & Young, G. (2022). Long-term effect of dual-focus contact lenses on myopia progression in children: A 6-year multicenter clinical trial. <em>Optometry and Vision Science, 99</em>(3), 204–212. <a href="https://doi.org/10.1097/OPX.0000000000001858" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1097/OPX.0000000000001858</a></li>
                 <li>Sankaridurg, P., Berntsen, D., Bullimore, M., Cho, P., Flitcroft, I., Gawne, T., ... & Wildsoet, C. F. (2023). IMI 2023 Digest. <em>Investigative Ophthalmology & Visual Science, 64</em>(6), Article 7. <a href="https://doi.org/10.1167/iovs.64.6.7" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1167/iovs.64.6.7</a></li>
@@ -929,11 +1078,13 @@ export default function MyopiaGuideArticle() {
                 <li>Yam, J. C., Zhang, X. J., Zhang, Y., Yip, B. H. K., Tang, F., Wong, E. S., ... & Pang, C. P. (2023). Effect of low-concentration atropine eyedrops vs placebo on myopia incidence in children: The LAMP2 randomized clinical trial. <em>JAMA, 329</em>(6), 472–481. <a href="https://doi.org/10.1001/jama.2022.24162" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1001/jama.2022.24162</a></li>
                 <li>Li, Y., Yip, M., Ning, Y., Chung, J., Toh, A., Leow, C., ... & Ang, M. (2024). Topical atropine for childhood myopia control: The Atropine Treatment Long-term Assessment Study. <em>JAMA Ophthalmology, 142</em>(1), 15–23. <a href="https://doi.org/10.1001/jamaophthalmol.2023.5467" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://doi.org/10.1001/jamaophthalmol.2023.5467</a></li>
                 <li>Singapore Ministry of Health. (2025). Speech by Dr Koh Poh Koon at the Singapore Optometric Association Conference. <a href="https://www.moh.gov.sg/newsroom/speech-by-dr-koh-poh-koon--senior-minister-of-state--ministry-of-health--and-ministry-of-manpower--at-the-singapore-optometric-association-conference" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://www.moh.gov.sg/newsroom/speech-by-dr-koh-poh-koon--senior-minister-of-state--ministry-of-health--and-ministry-of-manpower--at-the-singapore-optometric-association-conference</a></li>
-              </ol>
+                  </ol>
+                </div>
+              )}
             </section>
 
             {/* About the Author */}
-            <section className={`mt-16 p-8 rounded-3xl ${isDark ? 'bg-white/5 border border-white/10' : 'bg-slate-50 border border-slate-200'}`}>
+            <section className={`mt-16 p-5 md:p-8 rounded-3xl ${isDark ? 'bg-white/5 border border-white/10' : 'bg-slate-50 border border-slate-200'}`}>
               <h2 className="text-xl font-bold mb-4">About the Author</h2>
               <p className="leading-relaxed mb-4">
                 Jaycob Chin, FIAOMC, is an optometrist at EMME Visioncare dedicated to combating childhood myopia. He works to raise awareness about Singapore's myopia epidemic and help parents protect their children's vision.
